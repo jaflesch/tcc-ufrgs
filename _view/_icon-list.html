@@ -1,0 +1,29 @@
+<ul class="icon-list {{ nav_display == 'right' ? 'right' : '' }}">
+	{% if social_midia.facebook is not empty %}
+	<li><a href='{{ social_midia.facebook }}' title="Karen Muñoz - Facebook " alt="Karen Muñoz - Facebook"><i class='fa fa-facebook'></i></a></li>
+	{% endif %}
+	
+	{% if social_midia.twitter is not empty %}
+	<li><a href='{{ social_midia.twitter }}' title="Karen Muñoz - Twitter" alt="Karen Muñoz - Twitter"> <i class='fa fa-twitter'></i> </a></li>
+	{% endif %}
+
+	{% if social_midia.youtube is not empty %}
+	<li><a href='{{ social_midia.youtube }}' title="Karen Muñoz - Youtube" alt="Karen Muñoz - Youtube"> <i class='fa fa-youtube-play'></i> </a></li>
+	{% endif %}
+	
+	{% if social_midia.vimeo is not empty %}
+	<li><a href='{{ social_midia.vimeo }}' title="Karen Muñoz - Vimeo" alt="Karen Muñoz - Vimeo"> <i class='fa fa-youtube-vimeo'></i> </a></li>
+	{% endif %}
+	
+	{% if social_midia.linkedin is not empty %}
+	<li><a href='{{ social_midia.linkedin }}' title="Karen Muñoz - Linkedin" alt="Karen Muñoz - Linkedin"> <i class='fa fa-linkedin'></i> </a></li>
+	{% endif %}
+
+	{% if social_midia.pinterest is not empty %}
+	<li><a href='{{ social_midia.pinterest }}' title="Karen Muñoz - Pinterest" alt="Karen Muñoz - Pinterest"> <i class='fa fa-pinterest'></i> </a></li>
+	{% endif %}
+
+	{% if social_midia.instagram is not empty %}
+	<li><a href='{{ social_midia.instagram }}' title="Karen Muñoz - Instagram" alt="Karen Muñoz - Instagram"> <i class='fa fa-instagram'></i> </a></li>
+	{% endif %}
+</ul>

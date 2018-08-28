@@ -1,0 +1,105 @@
+// Mixins
+@mixin input-placeholder {
+    &.placeholder { @content; }
+    &:-moz-placeholder { @content; }
+    &::-moz-placeholder { @content; }
+    &:-ms-input-placeholder { @content; }
+    &::-webkit-input-placeholder { @content; }
+    // @include input-placeholder { rules... }
+}
+
+@mixin text($align: justify, $align-last: left) {
+	text-align: $align;
+	text-align-last: $align-last;
+}
+
+@mixin size ($width, $height: auto) {
+	width: $width;
+	height: $height;
+}
+
+@mixin button($bg-color, $color: #fff) {
+	background: $bg-color;
+	color: $color;
+	transition: $transition;
+	@include border-radius(2px);
+	
+	&:hover, &:focus, &:active, &:active:focus, &:active:hover {
+		background: lighten($bg-color, 7.5%);
+		outline: none;
+		box-shadow: none;
+		transition: $transition;
+	}
+}
+
+@mixin border-radius($radius) {
+	-webkit-border-radius: $radius;
+	-moz-border-radius: $radius;
+	-ms-border-radius: $radius;
+	border-radius: $radius;
+}
+@mixin elipse($radius: 50%) {
+	@include border-radius($radius);
+}
+@mixin flat() {
+	@include border-radius(0);
+}
+
+@mixin va-middle() {
+	position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+@mixin ha-middle() {
+	position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@mixin vh-middle() {
+	position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);	
+}
+
+@mixin colors($background, $text) {
+	background: $background;
+	color: $text;
+}
+
+@mixin transition($props: all 0.2s ease-in-out) {
+	transition: $props;
+	&:hover, &:focus, &:active, &:active:focus, &:active:hover { transition: $props; }
+}
+
+@mixin bg($height: 100vh) {
+	background: {
+		position: center;
+		repeat: no-repeat;
+		size: cover;
+	}
+	height: $height;
+}
+
+@mixin disp-ib($vertical-alignment: middle) {
+	display: inline-block;
+	vertical-align: $vertical-alignment;
+}
+
+@mixin font($family, $size: inherit, $weight: 400) {
+	font: {
+		family: $family;
+		size: $size;
+		weight: $weight;
+	}
+}
+
+@mixin upper() {
+	text-transform: uppercase;
+}
+
+@mixin lower() {
+	text-transform: lowercase;
+}
