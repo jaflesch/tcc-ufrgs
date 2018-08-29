@@ -1,21 +1,19 @@
-{% set company_name = 'Kamakura' %}
 <section id="login">
 	<div class='container'>
 		<div class='row'>
 			<div class='col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3'>
-				<div class="box-login">
-					<img src='{{ path.img }}/admin/logo-empresa.png' alt="Logo {{ company_name }}" title="Logo {{ company_name }}" class='center-block img-responsive'>
-					<form id="formLogin" action='{{ path.root }}/login/submit-form'>
-						<div class='input-group-custom'>
-							<span class="addon"><i class='fa fa-user'></i></span>
-							<input class='form-control' name='login' type='text' placeholder='Nome' style="background: #fff">
-						</div>
-						<div class='input-group-custom'>
-							<span class="addon"><i class='fa fa-lock'></i></span>
-							<input class='form-control' name='password' type='password' placeholder='Senha' style="background: #fff">
-						</div>
-						<input class='btn btn-submit center-block' type='submit' value="LOGIN">
+				<img src='{{ path.img }}/logo/logo-inf-ufrgs.png' alt="Instituto de Informática - Universidade Federal do Rio Grande do Sul" title="Instituto de Informática - Universidade Federal do Rio Grande do Sul" class='center-block img-responsive'>
+				<div class="box">
+					<h1>Entrar no sistema </h1>
+					<form id="formLogin" action='{{ path.root }}/login/submit-form' autocomplete="off">
+						<input class='form-data' name='login' type='text' placeholder='Nome de usuário ou e-mail'><br/>
+						<input class='form-data' name='password' type='password' placeholder='Senha' autocomplete="new-password">
+
+						<button type="submit" role="submit" class='btn btn-submit'>Entrar</button>
 					</form>
+					<p>
+						<a href="" title="Esqueceu sua senha?">Esqueceu sua senha?</a>
+					</p>
 				</div>
 			</div>
 		</div>

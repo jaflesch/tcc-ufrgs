@@ -8,6 +8,8 @@ html, body {
     overflow-x: hidden;
     background: $background;
    	color: $text-color;
+    text-rendering: optimizeLegibility;
+    font-family: $primary-font;
 }
 ul, ol { 
 	margin: 0;

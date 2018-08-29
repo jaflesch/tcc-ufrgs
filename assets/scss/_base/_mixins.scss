@@ -96,10 +96,13 @@
 	}
 }
 
-@mixin upper() {
-	text-transform: uppercase;
-}
+@mixin upper() { text-transform: uppercase; }
+@mixin lower() { text-transform: lowercase; }
 
-@mixin lower() {
-	text-transform: lowercase;
+@mixin gradient($color-1, $color-2, $deg: 90deg) {
+	background: $color-1;
+	background: -moz-linear-gradient($deg, $color-1 0%, $color-2 100%);
+	background: -webkit-linear-gradient($deg, $color-1 0%, $color-2 100%);
+	background: linear-gradient($deg, $color-1 0%, $color-2 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#{$color-1}",endColorstr="#{$color-2}",GradientType=1);
 }

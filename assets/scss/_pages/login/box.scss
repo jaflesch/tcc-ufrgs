@@ -1,0 +1,49 @@
+#login {
+	background: $background-gray;
+	height: 100vh;
+	
+	>.container { 
+		@include va-middle(); 
+		transform:translateY(-80%);
+	}
+
+	img {
+		width: 228px;
+		margin-bottom: 30px;
+	}
+
+	.box {
+		@include border-radius(2px);
+		background: #fff;
+		border: 1px solid #e7e7e7;
+		padding: 15px;
+	}
+
+	h1 {
+		font: {
+			family: $secondary-font;
+			size: 20px;
+			// weight: bold;
+			letter-spacing: -2px;
+		}
+		color: $text-color-dark;
+		text-align: center;
+		margin: 15px 0 15px;
+	}
+
+	p {
+		text-align: center;
+		margin: 30px 0 0;
+	}
+
+	a { 
+		font-size: 13px;
+		color: $primary-color;
+
+		&:hover, &:focus, &:active {
+			color: $secondary-color;
+			text-decoration: none;
+			
+		}
+	}
+}

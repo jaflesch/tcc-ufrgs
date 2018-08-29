@@ -65,17 +65,15 @@
 		<header>
 			{% include '_header.html' %}
 		</header>
-		<div id="wrapper">
-			<main>
-				<div id="admin" class="container">
-					{% block main %}
-					{% endblock %}
-				</div>
-			</main>
-			<footer>
-				{% include '_footer.html' %}
-			</footer>
-		</div>
+		<main>
+			<div id="wrapper">
+				{% block main %}
+				{% endblock %}
+			</div>
+		</main>
+		<footer>
+			{% include '_footer.html' %}
+		</footer>
 
 		<!-- JS -->
 		<script type="text/javascript" src="{{ path.js }}/vendor/jquery-3.2.1.min.js"></script>
