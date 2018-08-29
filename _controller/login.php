@@ -19,7 +19,7 @@ class Login extends Controller {
 		$json = new stdclass();
 		if($r && $db->rows() == 1) {
 			unset($r->password);
-			$user = $r;			
+			$user = new User($r);
 			Auth::setUser($user);
 			$json->success = true;			
 		}

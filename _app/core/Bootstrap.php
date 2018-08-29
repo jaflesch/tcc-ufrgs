@@ -7,4 +7,5 @@ require_once(LIB_PATH.'DbConn.php');
 require_once(LIB_PATH.'String.php');
 require_once(LIB_PATH.'Authentication.php');
 require_once(LIB_PATH.'Data.php');
+require_once(LIB_PATH.'User.php');
 require_once(LIB_PATH.'/Twig/Autoloader.php');
