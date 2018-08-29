@@ -1,54 +1,22 @@
-<nav class="navbar navbar-fixed-top navbar-admin" style="display:none;">
+<nav class="navbar navbar-fixed-top navbar-admin">
 	<div class="container">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+		<div class="navbar-logo">
+			<a class="navbar-brand" href="{{ path.root  }}/"> 
+				<img src="{{ path.img }}/logo/logo-inf-ufrgs.png">
+			</a>
+		</div>
+		<div class="navbar-search">
+			<input type="search" name="search" placeholder="Encontre pessoas ou vagas">
+			<button>
+				<span class="fa fa-search"></span>
+			</button>
+		</div>
+		<div class="more-options">
+			<button type="button" class="navbar-toggle">
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span> 
 			</button>
-			<a class="navbar-brand" href="{{ path.root  }}/"> 
-				<img src="{{ path.img }}/admin/logo-empresa.png">
-			</a>
-		</div>
-		
-		<div class="collapse navbar-collapse" id="myNavbar">
-			<ul class="nav navbar-nav">
-				<li class="{{ app.controller == 'home' ? 'active' : '' }}">
-					<a href="{{ path.root }}"><i class="fa fa-home"></i> Home </a>
-				</li>
-				<li class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class='fa fa-globe'></i> Site
-					<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li class="{{ app.controller == 'contato' ? 'active' : '' }}">
-							<a href="{{ path.root }}/contato"><i class="fa fa-map-marker"></i> Contato </a>
-						</li>
-					</ul>
-				</li>
-				
-				<li class="{{ app.controller == 'leads' ? 'active' : '' }}">
-					<a href="{{ path.root }}/leads"><i class="fa fa-inbox"></i> Leads </a>
-				</li>
-				<li class="{{ app.controller == 'dicionario' ? 'active' : '' }}">
-					<a href="{{ path.root }}/dicionario"><i class="fa fa-language"></i> Dicionário </a>
-				</li> 
-				<li class="{{ app.controller == 'usuarios' ? 'active' : '' }}">
-					<a href="{{ path.root }}/usuarios"><i class="fa fa-group"></i> Usuários</a>
-				</li> 
-				<!-- <li class="{{ app.controller == 'theme' ? 'active' : '' }}">
-					<a href="{{ path.root }}/theme"><i class="fa fa-paint-brush"></i> Aparência </a>
-				</li> -->
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class='fa fa-user'></i> {{ user.login }}
-					<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="{{ path.root }}/usuarios/editar/{{ user.id }}"><i class='fa fa-edit'></i> Editar Perfil</a></li>
-						<li><a href="{{ path.root }}/home/logout"><i class='fa fa-power-off'></i> Sair</a></li>
-					</ul>
-				</li>
-			</ul>
 		</div>
 	</div>
 </nav>

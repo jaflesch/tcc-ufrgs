@@ -1,0 +1,9 @@
+<section id="user-profile">
+	<img src="{{ path.root }}/public/user/{{ user.id }}/{{ user.avatar }}" alt="Foto de {{ user.name }}" title="Foto de {{ user.name }}" class="img-responsive">
+	<h1>{{ user.name }} </h1>
+	<h2>{{ user.role.title }} </h2>
+	<hr>
+	<h3><span class="fa fa-map-marker"></span> {{ user.location.live_in }}</h3>
+	<h3><span class="fa fa-link"></span> {{ user.personal_link }}</h3>
+	<h3><span class="fa fa-calendar"></span> Participa desde dd/mm/aaa</h3>
+</section>

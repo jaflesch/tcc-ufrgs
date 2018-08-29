@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% set page_title = 'Home' %}
+
+{% block main %}
+	<section id="feed">
+		{% include 'feed/_user.html' %}
+		{% include 'feed/_timeline.html' %}
+		{% include 'feed/_related.html' %}
+	</section>
+{% endblock %}
+
+{% block styles %}
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
