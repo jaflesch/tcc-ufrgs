@@ -20,6 +20,8 @@ class User {
 	private $birthday;
 	private $gender;
 	private $avatar;
+	private $datetime_joined;
+	private $personal_link;
 
 	public function __construct($data) {
 		$this->id 		= $data->id;		
@@ -35,6 +37,8 @@ class User {
 		$this->birthday = $data->birthday;		
 		$this->gender 	= $data->gender;		
 		$this->avatar 	= $data->avatar;		
+		$this->datetime_joined = $data->datetime_joined;
+		$this->personal_link = $data->personal_link;
 	}
 
 	public function getName() {
@@ -80,6 +84,27 @@ class User {
 	
 	public function getAvatar() {
 		return $this->avatar;
+	}
+
+	public function getPersonalLink() {
+		return $this->personal_link;
+	}
+
+	public function getJoinedDatetime() {
+		$pieces = explode(" ", $this->datetime_joined);
+		$date = $pieces[0];
+		$time = $pieces[1];
+		unset($pieces);
+		$pieces = explode("-", $date);
+
+		$string = Data::getMonth($pieces[1])." de ".$pieces[0];
+
+		return array(
+			"raw" => $this->datetime_joined,
+			"str" => $string,
+			"time" => $time,
+			"date" => $date
+		);
 	}
 
 	// Helpers

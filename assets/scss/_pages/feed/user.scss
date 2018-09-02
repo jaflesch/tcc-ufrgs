@@ -1,0 +1,47 @@
+#user-profile-widget {
+	@include border-radius(2px);
+	background: #fff;
+	width: 260px;
+	margin-right: 30px;
+	padding: 20px;
+
+	h1, h2 { text-align: center; }
+	h1 {
+		font-size: 16px;
+		color: #000;
+		margin: 0 0 5px;
+	}
+	h2 {
+		font-size: 14px;
+		color: #777;
+		margin: 0;
+	}
+
+	.avatar-box {
+		$avatar-size: 128px;
+		@include size($avatar-size, $avatar-size);
+		@include elipse();
+		position: relative;
+		display: block;
+		background-color: #eee;
+		margin: 0 auto 20px;
+		overflow: hidden;
+
+		img { max-width: 100%; }
+	}
+	.default-avatar {
+		@include ha-middle();
+		position: absolute;
+		bottom: -30px;
+	}
+
+	h3 {
+		font-size: 13px;
+		color: #999;
+
+		.fa { 
+			font-size: 14px;
+			margin-right: 10px; 
+		}
+	}
+}

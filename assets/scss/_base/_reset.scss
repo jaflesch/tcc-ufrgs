@@ -10,6 +10,7 @@ html, body {
    	color: $text-color;
     text-rendering: optimizeLegibility;
     font-family: $primary-font;
+    background: $background-gray;
 }
 ul, ol { 
 	margin: 0;
