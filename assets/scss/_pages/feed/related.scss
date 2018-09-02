@@ -1,14 +1,82 @@
 #related-widget {
-	@include border-radius(2px);
-	width: 260px;
-	background: #fff;
-	padding: 20px;
+	width: 320px;
+	
+	.suggest-box {
+		@include border-radius(2px);
+		background: #fff;
+		padding: 20px;
+		margin-bottom: 10px;
+	}
 	
 	h2 {
 		font: {
 			size: 16px;
 		}
 		color: #000;
-		margin: 0 0 10px;
+		margin: 0 0 20px;
+	}
+
+	ul {
+		list-style: none;
+	}
+
+	li {
+		display: flex;
+		align-items: center;
+		margin-bottom: 15px;
+
+		&:last-child { margin-bottom: 0; }
+	}
+
+	.avatar {
+		$avatar-size: 48px;
+		@include size($avatar-size, $avatar-size);
+		@include elipse();
+		display: inline-block;
+		background: #ddd;
+		margin-right: 10px;
+		overflow: hidden;
+
+		img { max-width: 100%; }
+	}
+
+	h4 {
+		font: {
+			size: 14px;
+			weight: bold;
+		}
+		color: #2b2b2b;
+		margin: 0 0 5px;
+	}
+	h5 {
+		font-size: 13px;
+		color: #999;
+		margin: 0;
+	}
+
+	.btn-follow {
+		@include colors($primary-color, #fff);
+		@include border-radius(2px);
+		@include transition();
+		display: inline-block;
+		font-size: 13px; 
+		padding: 2px 15px;
+		border: 1px solid $primary-color;
+
+		&:hover {
+			@include colors(transparent, $primary-color);
+			text-decoration: none;
+		}
+	}
+
+	p { 
+		margin: 20px 0 0; 
+		> a {
+			font: {
+				size: 13px;
+				weight: bold;
+			}
+			color: $primary-color;
+		}
 	}
 }

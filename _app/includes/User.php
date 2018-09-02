@@ -112,7 +112,7 @@ class User {
 		if($this->gender == self::MALE) {
 			switch ($this->role) {
 				case self::ADMIN: 		return "administrador";
-				case self::PROFESSOR: 	return "professor";
+				case self::PROFESOR: 	return "professor";
 				case self::EMPLOYEE:	return "técnico";
 				case self::STUDENT: 	return "aluno";
 			}
@@ -120,7 +120,7 @@ class User {
 		else {
 			switch ($this->role) {
 				case self::ADMIN: 		return "administradora";
-				case self::PROFESSOR: 	return "professora";
+				case self::PROFESOR: 	return "professora";
 				case self::EMPLOYEE:	return "técnica";
 				case self::STUDENT: 	return "aluna";
 			}	
