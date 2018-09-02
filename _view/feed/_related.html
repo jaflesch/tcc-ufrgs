@@ -2,42 +2,28 @@
 	<div class="suggest-box">
 		<h2>Aumente seu feed</h2>
 		<ul>
+			{% for profile in profiles %}
 			<li>
 				<div class="avatar">
 					<img src="">
 				</div>
 				<div class="user-info">
-					<h4>Usuário</h4>
-					<h5>Escolaridade ou profissão</h5>
+					<h4>{{ profile.name }}</h4>
+					<h5>
+						{% if profile.job_title is not empty %}
+							{{ profile.job_title }}
+						{% elseif profile.education_title %}
+							{{ profile.education_title }}
+						{% else %}
+							{{ profile.live_in_city }}, {{ profile.live_in_state }}
+						{% endif %}
+					</h5>
 				</div>
 				<div class="follow">
 					<a href="" class="btn-follow"> Seguir </a>
 				</div>
 			</li>
-			<li>
-				<div class="avatar">
-					<img src="">
-				</div>
-				<div class="user-info">
-					<h4>Usuário</h4>
-					<h5>Escolaridade ou profissão</h5>
-				</div>
-				<div class="follow">
-					<a href="" class="btn-follow"> Seguir </a>
-				</div>
-			</li>
-			<li>
-				<div class="avatar">
-					<img src="">
-				</div>
-				<div class="user-info">
-					<h4>Usuário</h4>
-					<h5>Escolaridade ou profissão</h5>
-				</div>
-				<div class="follow">
-					<a href="" class="btn-follow"> Seguir </a>
-				</div>
-			</li>
+			{% endfor %}
 		</ul>
 		<p>
 			<a href="">Ver todas as sugestões</a>
@@ -46,33 +32,17 @@
 	<div class="suggest-box">
 		<h2>Sugestões para você</h2>
 		<ul>
+			{% for job in jobs %}
 			<li>
 				<div class="avatar">
 					<img src="">
 				</div>
 				<div class="user-info">
-					<h4>Vaga</h4>
-					<h5>Local</h5>
+					<h4>{{ job. title }}</h4>
+					<h5>{{ job.location is empty ? job.location_city ~ ', ' ~ job.location_state : job.location }}</h5>
 				</div>
 			</li>
-			<li>
-				<div class="avatar">
-					<img src="">
-				</div>
-				<div class="user-info">
-					<h4>Vaga</h4>
-					<h5>Local</h5>
-				</div>
-			</li>
-			<li>
-				<div class="avatar">
-					<img src="">
-				</div>
-				<div class="user-info">
-					<h4>Vaga</h4>
-					<h5>Local</h5>
-				</div>
-			</li>
+			{% endfor %}
 		</ul>
 		<p>
 			<a href="">Ver todas as sugestões</a>

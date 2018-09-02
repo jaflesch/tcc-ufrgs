@@ -12,8 +12,10 @@ class User {
 	private $email;
 	private $name;
 	private $age;
-	private $born_in;
-	private $live_in;
+	private $born_in_city;
+	private $born_in_state;
+	private $live_in_city;
+	private $live_in_state;
 	private $role;
 	private $role_str;
 	private $phone;
@@ -29,8 +31,6 @@ class User {
 		$this->email 	= $data->email;		
 		$this->name 	= $data->name;		
 		$this->age 		= $data->age;		
-		$this->born_in 	= $data->born_in;		
-		$this->live_in 	= $data->live_in;		
 		$this->role 	= $data->role;		
 		$this->role_str = $this->getString();		
 		$this->phone 	= $data->phone;		
@@ -39,6 +39,14 @@ class User {
 		$this->avatar 	= $data->avatar;		
 		$this->datetime_joined = $data->datetime_joined;
 		$this->personal_link = $data->personal_link;
+		$this->born_in_city 	= $data->born_in_city;
+		$this->born_in_state 	= $data->born_in_state;
+		$this->live_in_city 	= $data->live_in_city;
+		$this->live_in_state 	= $data->live_in_state;
+	}
+
+	public function getId() {
+		return $this->id;
 	}
 
 	public function getName() {
@@ -59,8 +67,12 @@ class User {
 	
 	public function getLocation() {
 		return array(
-			"born_in" => $this->born_in,
-			"live_in" => $this->live_in
+			"born_in_city" => $this->born_in_city,
+			"born_in_state" => $this->born_in_state,
+			"live_in_city" => $this->live_in_city,
+			"live_in_state" => $this->live_in_state,
+			"born_in_string" => $this->born_in_city.", ".$this->born_in_state,
+			"live_in_string" => $this->live_in_city.", ".$this->live_in_state
 		);
 	}
 	public function getRole() {

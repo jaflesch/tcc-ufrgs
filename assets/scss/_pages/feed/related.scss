@@ -54,6 +54,8 @@
 		margin: 0;
 	}
 
+	.user-info { flex-grow: 3; }
+
 	.btn-follow {
 		@include colors($primary-color, #fff);
 		@include border-radius(2px);
