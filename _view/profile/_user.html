@@ -1,0 +1,60 @@
+<section id="profile-content">
+	<div class="banner">
+		{% if user.getId() == profile.user.id %}
+		<a href="#" class="btn-edit">Editar perfil</a>
+		{% endif %}
+	</div>
+
+	<div class="avatar-box">
+		{% if profile.user.avatar is empty %}
+			{% if profile.user.gender == 0 %}
+				{% set avatar = 'default-male-profile-avatar.png' %}
+			{% else %}
+				{% set avatar = 'default-female-profile-avatar.png' %}
+			{% endif %}
+			<img src="{{ path.img }}/profile/{{ avatar }}" alt="Foto de {{ profile.user.name }}" title="Foto de {{ profile.user.name }}" class="default-avatar">
+		{% else %}
+		<img src="{{ path.root }}/public/user/{{ profile.user.id }}/{{ profile.user.avatar }}" alt="Foto de {{ profile.user.name }}" title="Foto de {{ profile.user.name }}" class="img-responsive">
+		{% endif %}
+	</div>
+	
+	<h1>{{ profile.user.name }}</h1>
+	<h2>
+		{% if profile.jobs is not empty %}
+			emprego
+			{{ profile.user.getJobTitle() }}
+		{% elseif user.getEducationTitle() %}
+			educação
+			{{ profile.user.getEducationTitle() }}
+		{% else %}
+			local
+			{{ profile.user.getLocation().live_in_string }}
+		{% endif %}
+	</h2>
+	<hr><div class="about-grid">
+		<div class="about-box">
+			<h3>
+				<span class="fa fa-map-marker"></span>
+				{{ profile.user.getLocation().live_in_string == ', ' ? 'Definir meu endereço' : user.getLocation().live_in_string }}
+			</h3>
+			{% if user.getPersonalLink() %}
+			<h3>
+				<span class="fa fa-link"></span>
+				<a href="{{ profile.user.getPersonalLink() }}" target="_blank">{{ profile.user.personal_link }}</a>
+			</h3>
+			{% endif %}
+			<h3>
+				<span class="fa fa-calendar"></span>
+				{{ profile.user.gender == 0 ? 'Ativo' : 'Ativa' }} desde {{ profile.user.date_joining }}
+			</h3>
+		</div>
+		<div class="bio-box">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		</div>
+	</div>
+</section>

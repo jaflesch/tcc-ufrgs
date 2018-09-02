@@ -1,0 +1,32 @@
+<section id="related-widget">
+	<div class="suggest-box">
+		<h2>Talvez você conheça</h2>
+		<ul>
+			{% for profile in profiles %}
+			<li>
+				<div class="avatar">
+					<img src="">
+				</div>
+				<div class="user-info">
+					<h4>{{ profile.name }}</h4>
+					<h5>
+						{% if profile.job_title is not empty %}
+							{{ profile.job_title }}
+						{% elseif profile.education_title %}
+							{{ profile.education_title }}
+						{% else %}
+							{{ profile.live_in_city }}, {{ profile.live_in_state }}
+						{% endif %}
+					</h5>
+				</div>
+				<div class="follow">
+					<a href="" class="btn-follow"> Seguir </a>
+				</div>
+			</li>
+			{% endfor %}
+		</ul>
+		<p>
+			<a href="">Ver todas as sugestões</a>
+		</p>
+	</div>
+</section>

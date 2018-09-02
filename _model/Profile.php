@@ -25,8 +25,47 @@ class Profile {
 			WHERE u.active = 1 AND u.id <> {$user_id}
 			ORDER BY name
 			LIMIT 3
-		", true);		
+		", true);
+	}
 
-		debug($data);
+	public static function getByLogin($login) {
+		$db = new DBConn();
+		
+		$user = $db->query("
+			SELECT *
+			FROM user
+			WHERE active = 1 AND login = '{$login}'
+		");
+
+		$jobs = $db->query("
+			SELECT uj.* 
+			FROM user_job uj 
+			INNER JOIN user u ON u.id = uj.id_user
+			WHERE uj.active = 1 AND u.id = {$user->id}
+			ORDER BY selected DESC, date_start DESC, title
+		", true);
+
+		$educations = $db->query("
+			SELECT ue.* 
+			FROM user_education ue 
+			INNER JOIN user u ON u.id = ue.id_user
+			WHERE ue.active = 1 AND u.id = {$user->id}
+			ORDER BY selected DESC, date_start DESC, title
+		", true);
+
+		$skills = $db->query("
+			SELECT us.* 
+			FROM user_skill us 
+			INNER JOIN user u ON u.id = us.id_user
+			WHERE us.active = 1 AND u.id = {$user->id}
+			ORDER BY level DESC, time DESC, title
+		", true);
+
+		return array(
+			"user" => $user,
+			"jobs" => $jobs,
+			"educations" => $educations,
+			"skills" => $skills
+		);
 	}
 }

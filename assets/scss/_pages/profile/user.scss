@@ -1,0 +1,109 @@
+#profile-content {
+	$banner-size: 180px;
+	
+	@include border-radius(2px);
+	background: #fff;
+	margin-right: 20px;
+	padding: 20px;
+	flex-grow: 2;
+	position: relative;
+
+	.banner {
+		@include bg($banner-size);
+		@include gradient(lighten($primary-color, 25%), #e7e7e7);
+		position: relative;
+		margin: -20px -20px 15px;
+	}
+
+	.btn-edit {
+		@include colors($primary-color, #fff);
+		@include border-radius(2px);
+		@include transition();
+		padding: 4px 15px;
+		position: absolute;
+		bottom: 10px;
+		right: 10px;
+		border: 1px solid $primary-color;
+
+		&:hover, &:focus, &:active {
+			@include colors(lighten($primary-color, 10%), #fff);
+			border: 1px solid lighten($primary-color, 10%);
+			text-decoration: none;
+		}
+	}
+
+	h1 {
+		font: {
+			size: 24px;
+			weight: bold;
+		}
+		color: #000 !important;
+		padding-left: 170px; 
+		margin: 0;
+	}
+	h2 {
+		font-size: 16px;
+		color: #777;
+		margin: 10px 0 25px;
+		padding-left: 170px;
+	}
+
+	.avatar-box {
+		$avatar-size: 160px;
+		@include size($avatar-size, $avatar-size);
+		@include elipse();
+		position: absolute;
+		top: $banner-size - ($avatar-size / 2);
+		display: block;
+		background-color: #eee;
+		margin: 0 auto 20px;
+		overflow: hidden;
+		border: 5px solid #fff;
+
+		img { max-width: 100%; }
+	}
+	.default-avatar {
+		@include ha-middle();
+		position: absolute;
+		bottom: -35px;
+	}
+
+	h3 {
+		font-size: 14px;
+		color: #999;
+
+		.fa { 
+			font-size: 14px;
+			margin-right: 10px; 
+		}
+	}
+
+	hr {
+		margin-bottom: 0;
+		line-height: 160%;
+	}
+
+	.about-grid {
+		display: flex;
+		align-items: stretch;
+		margin-top: 15px;
+	}
+	.about-box {
+		width: 320px;
+    	flex-shrink: 0;
+    	border-right: 1px solid #eee;
+    	margin-right: 15px;
+
+    	h3:first-child { margin-top: 0px; }
+	}
+	
+	.bio-box {
+		flex-grow: 2;
+		padding: 10px 20px 10px 10px;
+
+		p {
+			text-align: justify;
+			line-height: 160%;
+		}
+	}
+}
