@@ -1,0 +1,14 @@
+#related-widget {
+	@include border-radius(2px);
+	width: 260px;
+	background: #fff;
+	padding: 20px;
+	
+	h2 {
+		font: {
+			size: 16px;
+		}
+		color: #000;
+		margin: 0 0 10px;
+	}
+}

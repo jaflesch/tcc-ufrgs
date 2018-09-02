@@ -1,4 +1,11 @@
-<se<h1>Olá, {{ user.name }}!</h1>
-<p>Atualmente você ocupa a posição de {{ user.role.title }} no sistema. </p>
-<br>
-<a href="{{ path.root }}/login/leave">Logout</a>
+<section id="timeline">
+	<article>
+		<h1>Olá, {{ user.name }}!</h1>
+		<p>Atualmente você ocupa a posição de {{ user.role.title }} no sistema. </p>
+		<br>
+		<a href="{{ path.root }}/login/leave">Logout</a>
+	</article>
+	<article>
+		<p>Exemplo de outro post</p>
+	</article>
+</section>
