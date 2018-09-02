@@ -1,0 +1,73 @@
+header nav.navbar {
+	background: #3b3b3b;
+	font-size: 0;
+	padding: 5px 0;
+	height: $header-height;
+	
+	.navbar-logo, .navbar-search, .navbar-options {
+		@include disp-ib();		
+	}
+
+	.navbar-logo { width: 125px; }
+	
+	.navbar-options { 
+		width: 75px; 
+		text-align: right;
+	}
+	.navbar-search { 
+		width: calc(100% - 200px); 
+		position: relative;
+		font-size: 14px;
+	}
+
+	img { height: 50px; }
+
+	$input-size: 35px;
+	input { 
+		@include size(100%, $input-size);
+		@include colors(#2b2b2b, #eee);
+		padding: 6px 12px;
+		border: 1px solid #494949;
+		&:focus {
+			outline: none;
+			box-shadow: none;
+			border: 1px solid #555;
+
+			~ .button-search { 
+				background: #555;
+			}
+		}
+	}
+	.button-search {
+		@include size(40px, $input-size);
+		@include colors(transparent, #fff);
+		position: absolute;
+		top: 0;
+		right: 0;
+		border: 0;
+
+		&:hover, &:focus, &:active {
+			background: #555;
+		}
+	}
+
+	.navbar-expand {
+		background: transparent;
+		padding: 0;
+		border: 0 !important;
+		box-shadow: none !important;
+
+		.bar { 
+			display: block;
+			background: #fff;
+			@include size(28px, 1px);
+
+			+ .bar { margin-top: 7px; }
+		}
+
+		&:hover, &:focus, &:active {
+			box-shadow: none;
+			outline: none;
+		}
+	}
+}
