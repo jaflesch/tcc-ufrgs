@@ -1,4 +1,6 @@
 <?php
+require MODEL_PATH.'Profile.php';
+
 class Login extends Controller {
 
 	public function index() {
@@ -11,9 +13,11 @@ class Login extends Controller {
 		$password = Auth::generateHash($this->post->password);
 		
 		$r = $db->query("
-			SELECT *
-			FROM user 
-			WHERE BINARY login = '{$this->post->login}' AND BINARY password = '{$password}'
+			SELECT u.*, uj.title job_title, ue.title education_title
+			FROM user u
+			LEFT JOIN user_job uj ON u.id = uj.id_user AND uj.selected = 1
+			LEFT JOIN user_education ue ON u.id = ue.id_user AND ue.selected = 1
+			WHERE u.active = 1 AND BINARY u.login = '{$this->post->login}' AND BINARY u.password = '{$password}'
 		");
 		
 		$json = new stdclass();

@@ -24,6 +24,8 @@ class User {
 	private $avatar;
 	private $datetime_joined;
 	private $personal_link;
+	private $job_title;
+	private $education_title;
 
 	public function __construct($data) {
 		$this->id 		= $data->id;		
@@ -43,6 +45,8 @@ class User {
 		$this->born_in_state 	= $data->born_in_state;
 		$this->live_in_city 	= $data->live_in_city;
 		$this->live_in_state 	= $data->live_in_state;
+		$this->job_title		= isset($data->job_title) ? $data->job_title : "";
+		$this->education_title	= isset($data->education_title) ? $data->education_title : "";;
 	}
 
 	public function getId() {
@@ -100,6 +104,14 @@ class User {
 
 	public function getPersonalLink() {
 		return $this->personal_link;
+	}
+
+	public function getJobTitle() {
+		return $this->job_title;
+	}
+
+	public function getEducationTitle() {
+		return $this->education_title;
 	}
 
 	public function getJoinedDatetime() {

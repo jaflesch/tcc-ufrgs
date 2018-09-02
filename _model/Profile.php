@@ -15,7 +15,10 @@ class Profile {
 		$user_id = Auth::id();
 
 		return $db->query("
-			SELECT u.*, uj.title job_title, ue.title education_title
+			SELECT 
+				u.name, u.id, u.born_in_city, u.born_in_state, u.live_in_city, u.live_in_state,
+				uj.title job_title, 
+				ue.title education_title
 			FROM user u
 			LEFT JOIN user_job uj ON u.id = uj.id_user AND uj.selected = 1
 			LEFT JOIN user_education ue ON u.id = ue.id_user AND ue.selected = 1
