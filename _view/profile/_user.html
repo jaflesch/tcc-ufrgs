@@ -1,60 +1,134 @@
 <section id="profile-content">
-	<div class="banner">
-		{% if user.getId() == profile.user.id %}
-		<a href="#" class="btn-edit">Editar perfil</a>
-		{% endif %}
-	</div>
-
-	<div class="avatar-box">
-		{% if profile.user.avatar is empty %}
-			{% if profile.user.gender == 0 %}
-				{% set avatar = 'default-male-profile-avatar.png' %}
+	<section id="basic-info">
+		<div class="banner">
+			{% if user.getId() == profile.user.id %}
+			<a href="#" class="btn-edit">Editar perfil</a>
+			{% endif %}
+		</div>		
+		<div class="avatar-box">
+			{% if profile.user.avatar is empty %}
+				{% if profile.user.gender == 0 %}
+					{% set avatar = 'default-male-profile-avatar.png' %}
+				{% else %}
+					{% set avatar = 'default-female-profile-avatar.png' %}
+				{% endif %}
+				<img src="{{ path.img }}/profile/{{ avatar }}" alt="Foto de {{ profile.user.name }}" title="Foto de {{ profile.user.name }}" class="default-avatar">
 			{% else %}
-				{% set avatar = 'default-female-profile-avatar.png' %}
+			<img src="{{ path.root }}/public/user/{{ profile.user.id }}/{{ profile.user.avatar }}" alt="Foto de {{ profile.user.name }}" title="Foto de {{ profile.user.name }}" class="img-responsive">
 			{% endif %}
-			<img src="{{ path.img }}/profile/{{ avatar }}" alt="Foto de {{ profile.user.name }}" title="Foto de {{ profile.user.name }}" class="default-avatar">
-		{% else %}
-		<img src="{{ path.root }}/public/user/{{ profile.user.id }}/{{ profile.user.avatar }}" alt="Foto de {{ profile.user.name }}" title="Foto de {{ profile.user.name }}" class="img-responsive">
-		{% endif %}
-	</div>
+		</div>
+		
+		<h1>{{ profile.user.name }}</h1>
+		<h2>
+			{% if profile.jobs is not empty %}
+				emprego
+				{{ profile.user.getJobTitle() }}
+			{% elseif user.getEducationTitle() %}
+				educação
+				{{ profile.user.getEducationTitle() }}
+			{% else %}
+				local
+				{{ profile.user.getLocation().live_in_string }}
+			{% endif %}
+		</h2>
+		<hr>
+		<div class="resume-grid">
+			<div class="about-box">
+				<h3>
+					<span class="fa fa-map-marker"></span>
+					{{ profile.user.getLocation().live_in_string == ', ' ? 'Definir meu endereço' : user.getLocation().live_in_string }}
+				</h3>
+				{% if user.getPersonalLink() %}
+				<h3>
+					<span class="fa fa-link"></span>
+					<a href="{{ profile.user.getPersonalLink() }}" target="_blank">{{ profile.user.personal_link }}</a>
+				</h3>
+				{% endif %}
+				<h3>
+					<span class="fa fa-calendar"></span>
+					{{ profile.user.gender == 0 ? 'Ativo' : 'Ativa' }} desde {{ profile.user.date_joining }}
+				</h3>
+			</div>
+			<div class="bio-box">
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			</div>
+		</div>
+	</section>
 	
-	<h1>{{ profile.user.name }}</h1>
-	<h2>
-		{% if profile.jobs is not empty %}
-			emprego
-			{{ profile.user.getJobTitle() }}
-		{% elseif user.getEducationTitle() %}
-			educação
-			{{ profile.user.getEducationTitle() }}
-		{% else %}
-			local
-			{{ profile.user.getLocation().live_in_string }}
-		{% endif %}
-	</h2>
-	<hr><div class="about-grid">
-		<div class="about-box">
-			<h3>
-				<span class="fa fa-map-marker"></span>
-				{{ profile.user.getLocation().live_in_string == ', ' ? 'Definir meu endereço' : user.getLocation().live_in_string }}
-			</h3>
-			{% if user.getPersonalLink() %}
-			<h3>
-				<span class="fa fa-link"></span>
-				<a href="{{ profile.user.getPersonalLink() }}" target="_blank">{{ profile.user.personal_link }}</a>
-			</h3>
-			{% endif %}
-			<h3>
-				<span class="fa fa-calendar"></span>
-				{{ profile.user.gender == 0 ? 'Ativo' : 'Ativa' }} desde {{ profile.user.date_joining }}
-			</h3>
-		</div>
-		<div class="bio-box">
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-		</div>
-	</div>
+	<section id="job-experiences" class="box-experience">
+		<h2>Experiência profissional</h2>
+		<button class="btn-new"><span class="fa fa-plus"></span>Adicionar nova experiência</button>
+		<hr>
+		<ul>
+			{% for job in profile.jobs %}
+			<li>
+				<div class="avatar">
+					<img src="">
+				</div>
+				<div class="text">
+					<h3>{{ job.company }}UFRGS </h3>
+					<h4>{{ job.title }} <span class="separator">·</span> {{ job.date }} De 2017 até o momento <span class="separator">·</span> {{ job.location }} Porto Alegre, RS</h4>
+					</h4>
+				</div>
+			</li>
+			{% endfor %}
+		</ul>
+	</section>
+
+	<section id="education-experiences" class="box-experience">
+		<h2>Educação</h2>
+		<button class="btn-new"><span class="fa fa-plus"></span>Adicionar nova educação</button>
+		<hr>
+		<ul>
+			{% for education in profile.educations %}
+			<li>
+				<div class="avatar">
+					<img src="">
+				</div>
+				<div class="text">
+					<h3>{{ education.title }} </h3>
+					<h4>{{ education.course }}Ciência da Computação <span class="separator">·</span> {{ education.date }} De 2012 até 2018 <span class="separator">·</span> {{ education.location }} Porto Alegre, RS</h4>
+					</h4>
+				</div>
+			</li>
+			{% endfor %}
+		</ul>
+	</section>
+
+	<section id="skills" class="box-experience">
+		<h2>Habilidades profissionais</h2>
+		<ul>
+		{% for skill in profile.skills %}
+			<li>
+				<div class="skill-title">
+					<h3>{{ skill.title }} </h3>
+				</div>
+				<div class="text">
+					<h4>{{ skill.level }} <span class="separator">·</span> {{ skill.time }} anos</h4>
+				</div>
+			</li>
+		{% endfor %}
+		</ul>
+	</section>
+
+	<section id="languages" class="box-experience">
+		<h2>Idiomas</h2>
+		<ul>
+		{% for language in profile.languages %}
+			<li>
+				<div class="languages-flag">
+					<img src="{{ path.img }}/icons/flags/32/Brazil.png">
+				</div>
+				<div class="text">
+					<h4>{{ language.title }} <span class="separator">·</span> {{ language.level }} </h4>
+				</div>
+			</li>
+		{% endfor %}
+		</ul>
+	</section>
 </section>

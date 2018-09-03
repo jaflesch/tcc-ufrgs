@@ -28,6 +28,24 @@ class Profile {
 		", true);
 	}
 
+	public static function getAllFeedRelatedExceptBy($login) {
+		$db = new DBConn();
+		$user_id = Auth::id();
+
+		return $db->query("
+			SELECT 
+				u.name, u.id, u.born_in_city, u.born_in_state, u.live_in_city, u.live_in_state,
+				uj.title job_title, 
+				ue.title education_title
+			FROM user u
+			LEFT JOIN user_job uj ON u.id = uj.id_user AND uj.selected = 1
+			LEFT JOIN user_education ue ON u.id = ue.id_user AND ue.selected = 1
+			WHERE u.active = 1 AND u.id <> {$user_id} AND u.login <> '{$login}'
+			ORDER BY name
+			LIMIT 10
+		", true);
+	}
+
 	public static function getByLogin($login) {
 		$db = new DBConn();
 		
@@ -61,11 +79,20 @@ class Profile {
 			ORDER BY level DESC, time DESC, title
 		", true);
 
+		$langs = $db->query("
+			SELECT ul.* 
+			FROM user_language ul 
+			INNER JOIN user u ON u.id = ul.id_user
+			WHERE ul.active = 1 AND u.id = {$user->id}
+			ORDER BY level DESC, title
+		", true);
+
 		return array(
 			"user" => $user,
 			"jobs" => $jobs,
 			"educations" => $educations,
-			"skills" => $skills
+			"skills" => $skills,
+			"languages" => $langs
 		);
 	}
 }

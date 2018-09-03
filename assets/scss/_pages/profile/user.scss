@@ -1,12 +1,15 @@
 #profile-content {
 	$banner-size: 180px;
-	
-	@include border-radius(2px);
-	background: #fff;
-	margin-right: 20px;
-	padding: 20px;
-	flex-grow: 2;
-	position: relative;
+
+	> section {
+		@include border-radius(2px);
+		background: #fff;
+		padding: 20px;
+		margin-right: 20px;
+		margin-bottom: 20px;
+		flex-grow: 2;
+		position: relative;
+	}
 
 	.banner {
 		@include bg($banner-size);
@@ -83,7 +86,7 @@
 		line-height: 160%;
 	}
 
-	.about-grid {
+	.resume-grid {
 		display: flex;
 		align-items: stretch;
 		margin-top: 15px;
@@ -96,7 +99,7 @@
 
     	h3:first-child { margin-top: 0px; }
 	}
-	
+
 	.bio-box {
 		flex-grow: 2;
 		padding: 10px 20px 10px 10px;
@@ -106,4 +109,92 @@
 			line-height: 160%;
 		}
 	}
+
+	.box-experience {
+		h2 {
+			font-size: 18px;
+			color: #2b2b2b;
+			text-align: left;
+			padding: 0;
+		}
+
+		.btn-new { 
+			@include colors(transparent, $primary-color);
+			@include transition();
+			padding: 4px 15px;
+			margin-bottom: 10px;
+			border: 1px dashed $primary-color; 
+
+			.fa { margin-right: 5px; }
+			
+			&:hover, &:active, &:focus {
+				@include colors(rgba($primary-color, .1), $primary-color);
+			}
+		}
+
+		hr {
+			border-top: 1px solid #eee;
+			margin: 10px 0;
+		}
+
+		ul {
+			list-style: none;
+
+			> li {
+				display: flex;
+				align-items: center;
+				margin: 10px 0;
+				padding-bottom: 10px;
+				border-bottom: 1px solid #eee;
+
+				&:last-child { border: 0; }
+			}
+		}
+
+		.avatar {
+			$avatar-size: 64px;
+			@include size($avatar-size, $avatar-size);
+			@include elipse();
+			display: block;
+			background-color: #eee;
+			margin-right: 10px;
+			overflow: hidden;
+			
+			img { max-width: 100%; }
+		}
+		.text {
+			flex-grow: 3;
+
+			h3 {
+				font: {
+					size: 16px;
+					weight: bold;
+				}
+				color: #2b2b2b;
+				margin: 0 0 5px;
+			}
+
+			h4 {
+				font-size: 14px;
+				margin: 0;
+			}
+			.separator { margin: 0 3px; }
+		}
+
+		.skill-title {
+			h3 {
+				@include colors(#fff, $primary-color);
+				@include border-radius(2px);
+				padding: 4px 15px;
+				margin: 0;
+				margin-right: 10px;
+				border: 1px solid $primary-color;
+			}
+		}
+
+		.languages-flag {
+			margin-right: 10px;
+		}
+	}
+	#skills h4, #languages h4 { font-size: 13px; }
 }

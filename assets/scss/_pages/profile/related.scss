@@ -1,5 +1,6 @@
 #related-widget {
 	width: 320px;
+	flex-shrink: 0;
 	
 	.suggest-box {
 		@include border-radius(2px);
