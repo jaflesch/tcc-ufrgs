@@ -4,6 +4,10 @@
 			{% if user.getId() == profile.user.id %}
 			<a href="#" class="btn-edit">Editar perfil</a>
 			{% endif %}
+			
+			{% if user.is('adm') and user.getId() != profile.user.id%}
+			<a href="#" class="btn-options">Bloquear perfil</a>
+			{% endif %}
 		</div>		
 		<div class="avatar-box">
 			{% if profile.user.avatar is empty %}
@@ -47,10 +51,12 @@
 					{{ profile.educations[0].title }}
 				</h3>
 				{% endif %}
+				{% if profile.user.live_in_string is not empty %}
 				<h3>
 					<span class="fa fa-fw fa-map-marker"></span>
-					{{ profile.user.getLocation().live_in_string == ', ' ? 'Definir meu endereço' : user.getLocation().live_in_string }}
+					{{ profile.user.live_in_string }}
 				</h3>
+				{% endif %}
 				{% if profile.user.personal_link %}
 				<h3>
 					<span class="fa fa-fw fa-link"></span>

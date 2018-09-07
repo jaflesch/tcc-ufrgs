@@ -94,6 +94,10 @@ class Profile {
 		$data = explode("-", $data[0]);
 		$user->date_joined = Data::getMonth($data[1])." de ".$data[0];
 
+		if($user->live_in_city != "" && $user->live_in_state != "") {
+			$user->live_in_string = $user->live_in_city.", ".$user->live_in_state;
+		}
+
 		if($skills !== NULL) {
 			foreach ($skills as $skill) {
 				$skill->level_string = Skill::getString($skill->level);

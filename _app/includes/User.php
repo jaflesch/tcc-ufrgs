@@ -131,6 +131,35 @@ class User {
 		);
 	}
 
+	public function is($role) {
+		switch (strtolower($role)) {
+			case 'adm':
+			case 'admin':
+			case 'administrador':
+			case self::ADMIN:
+				return $this->role == self::ADMIN;
+				
+			case 'professor':
+			case 'profesor':
+			case 'prof':
+			case self::PROFESOR:
+				return $this->role == self::PROFESOR;
+
+			case 'employee':
+			case 'funcionario':
+			case 'emp':
+			case self::EMPLOYEE:
+				return $this->role == self::EMPLOYEE;
+
+			case 'aluno':
+			case 'student':
+			case self::STUDENT:
+				return $this->role == self::STUDENT;
+			
+			default: return false;
+		}
+	}
+
 	// Helpers
 	private function getString() {
 		if($this->gender == self::MALE) {

@@ -35,6 +35,23 @@
 		}
 	}
 
+	.btn-options {
+		@include colors(#f4f4f4, #777);
+		@include border-radius(2px);
+		@include transition();
+		padding: 4px 15px;
+		position: absolute;
+		bottom: 10px;
+		right: 10px;
+		border: 1px solid #ddd;
+
+		&:hover, &:focus, &:active {
+			@include colors(#b21616, #fff);
+			border: 1px solid #b21616;
+			text-decoration: none;
+		}
+	}
+
 	h1 {
 		font: {
 			size: 24px;
@@ -99,7 +116,7 @@
     	border-right: 1px solid #eee;
 
     	h3:first-child { margin-top: 0px; }
-    	
+
     	.fa { color: #555; }
 	}
 
