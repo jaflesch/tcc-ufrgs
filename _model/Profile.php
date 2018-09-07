@@ -94,8 +94,10 @@ class Profile {
 		$data = explode("-", $data[0]);
 		$user->date_joined = Data::getMonth($data[1])." de ".$data[0];
 
-		foreach ($skills as $skill) {
-			$skill->level_string = Skill::getString($skill->level);
+		if($skills !== NULL) {
+			foreach ($skills as $skill) {
+				$skill->level_string = Skill::getString($skill->level);
+			}			
 		}
 
 		// Return all

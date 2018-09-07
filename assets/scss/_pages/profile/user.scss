@@ -94,10 +94,13 @@
 	.about-box {
 		width: 320px;
     	flex-shrink: 0;
-    	border-right: 1px solid #eee;
+    	padding-top: 15px;
     	margin-right: 15px;
+    	border-right: 1px solid #eee;
 
     	h3:first-child { margin-top: 0px; }
+    	
+    	.fa { color: #555; }
 	}
 
 	.bio-box {
@@ -199,8 +202,11 @@
 	#skills h4, #languages h4 { font-size: 13px; }
 
 	.no-info { 
-		font-size: 20px;
-		opacity: .4;
+		font: {
+			size: 18px;
+			weight: bold;
+		}
+		color: #cacaca;
 		margin: 0;
 	}
 }

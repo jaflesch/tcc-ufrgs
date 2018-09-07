@@ -6,7 +6,7 @@ class Feed extends Controller {
 		$login = $this->route[PARAM_INDEX];
 		$bag['profile'] = Profile::getByLogin($login);
 		$bag['related_profiles'] = Profile::getAllFeedRelatedExceptBy($login);
-
+		
 		$this->render("profile/index", $bag);
 	}
 	public function me() {

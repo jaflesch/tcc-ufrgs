@@ -34,19 +34,36 @@
 		<hr>
 		<div class="resume-grid">
 			<div class="about-box">
+				{% if profile.jobs is not empty %}
 				<h3>
-					<span class="fa fa-map-marker"></span>
+					<span class="fa fa-fw fa-briefcase"></span>
+					{{ profile.jobs[0].title }}
+				</h3>
+				{% endif %}
+
+				{% if profile.educations is not empty %}
+				<h3>
+					<span class="fa fa-fw fa-graduation-cap"></span>
+					{{ profile.educations[0].title }}
+				</h3>
+				{% endif %}
+				<h3>
+					<span class="fa fa-fw fa-map-marker"></span>
 					{{ profile.user.getLocation().live_in_string == ', ' ? 'Definir meu endereço' : user.getLocation().live_in_string }}
 				</h3>
-				{% if user.getPersonalLink() %}
+				{% if profile.user.personal_link %}
 				<h3>
-					<span class="fa fa-link"></span>
+					<span class="fa fa-fw fa-link"></span>
 					<a href="{{ profile.user.getPersonalLink() }}" target="_blank">{{ profile.user.personal_link }}</a>
 				</h3>
 				{% endif %}
 				<h3>
-					<span class="fa fa-calendar"></span>
-					{{ profile.user.gender == 0 ? 'Ativo' : 'Ativa' }} desde {{ profile.user.date_joining }}
+					<span class="fa fa-fw fa-rss"></span>
+					42 seguidores
+				</h3>
+				<h3>
+					<span class="fa fa-fw fa-calendar"></span>
+					{{ profile.user.gender == 0 ? 'Ativo' : 'Ativa' }} desde {{ profile.user.date_joined }}
 				</h3>
 			</div>
 			<div class="bio-box">
@@ -131,7 +148,7 @@
 					<h3>{{ skill.title }} </h3>
 				</div>
 				<div class="text">
-					<h4>{{ skill.level }} <span class="separator">·</span> {{ skill.time }} anos</h4>
+					<h4>{{ skill.level_string }} <span class="separator">·</span> {{ skill.time }} anos</h4>
 				</div>
 			</li>
 		{% endfor %}
