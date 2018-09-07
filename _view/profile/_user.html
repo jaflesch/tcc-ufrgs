@@ -62,8 +62,13 @@
 	
 	<section id="job-experiences" class="box-experience">
 		<h2>Experiência profissional</h2>
+
+		{% if user.getId() == profile.user.id %}
 		<button class="btn-new"><span class="fa fa-plus"></span>Adicionar nova experiência</button>
 		<hr>
+		{% endif %}
+		
+		{% if profile.jobs is not empty %}
 		<ul>
 			{% for job in profile.jobs %}
 			<li>
@@ -78,12 +83,20 @@
 			</li>
 			{% endfor %}
 		</ul>
+		{% else %}
+		<p class="no-info">Não há experiências para exibir</p>
+		{% endif %}
 	</section>
 
 	<section id="education-experiences" class="box-experience">
 		<h2>Educação</h2>
+
+		{% if user.getId() == profile.user.id %}
 		<button class="btn-new"><span class="fa fa-plus"></span>Adicionar nova educação</button>
 		<hr>
+		{% endif %}
+
+		{% if profile.educations is not empty %}
 		<ul>
 			{% for education in profile.educations %}
 			<li>
@@ -98,10 +111,19 @@
 			</li>
 			{% endfor %}
 		</ul>
+		{% else %}
+		<p class="no-info">Não há informações para exibir</p>
+		{% endif %}
 	</section>
 
 	<section id="skills" class="box-experience">
 		<h2>Habilidades profissionais</h2>
+
+		{% if user.getId() == profile.user.id %}
+		<button class="btn-new"><span class="fa fa-plus"></span>Adicionar nova habilidade</button>
+		{% endif %}
+
+		{% if profile.skills is not empty %}
 		<ul>
 		{% for skill in profile.skills %}
 			<li>
@@ -114,10 +136,19 @@
 			</li>
 		{% endfor %}
 		</ul>
+		{% else %}
+		<p class="no-info">Não há habilidades para exibir</p>
+		{% endif %}
 	</section>
 
 	<section id="languages" class="box-experience">
 		<h2>Idiomas</h2>
+
+		{% if user.getId() == profile.user.id %}
+		<button class="btn-new"><span class="fa fa-plus"></span>Adicionar novo idioma</button>
+		{% endif %}
+
+		{% if profile.languages is not empty %}
 		<ul>
 		{% for language in profile.languages %}
 			<li>
@@ -130,5 +161,8 @@
 			</li>
 		{% endfor %}
 		</ul>
+		{% else %}
+		<p class="no-info">Não há idiomas para exibir</p>
+		{% endif %}
 	</section>
 </section>
