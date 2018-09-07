@@ -1,4 +1,6 @@
 <?php
+require MODEL_PATH.'Skill.php';
+
 class Profile {
 	/*
 		type (int): 
@@ -87,6 +89,16 @@ class Profile {
 			ORDER BY level DESC, title
 		", true);
 
+		// Format data
+		$data = explode(" ", $user->datetime_joined);
+		$data = explode("-", $data[0]);
+		$user->date_joined = Data::getMonth($data[1])." de ".$data[0];
+
+		foreach ($skills as $skill) {
+			$skill->level_string = Skill::getString($skill->level);
+		}
+
+		// Return all
 		return array(
 			"user" => $user,
 			"jobs" => $jobs,
