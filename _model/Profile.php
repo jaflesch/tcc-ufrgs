@@ -2,16 +2,6 @@
 require MODEL_PATH.'Skill.php';
 
 class Profile {
-	/*
-		type (int): 
-			0	- monitoria
-			1	- bolsa ads
-			2	- bolsa ic
-			3	- estágio
-			4 	- trainee
-			5 	- clt
-	*/
-
 	public static function getAllFeedRelated() {
 		$db = new DBConn();
 		$user_id = Auth::id();

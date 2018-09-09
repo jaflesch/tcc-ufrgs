@@ -1,0 +1,86 @@
+<section id="job-filter">
+	<div class="header">
+		<h1> Vagas <span id="title-filter"></span></h1>
+		<button class="show-filter">Expandir filtro</button>
+	</div>
+
+	<div class="filter-box" style="display:none;">
+		<div class="form-box">
+			<input type="text" class="form-data" name="title" placeholder="Palava ou texto no título e descrição">
+			<input type="text" class="form-data" name="location" placeholder="Localidade"><br/>
+		</div>
+
+		<h2>Tipo de vaga</h2>
+		<input type="checkbox" name="type" value="0">Voluntária<br/>
+		<input type="checkbox" name="type" value="0">Monitoria<br/>
+		<input type="checkbox" name="type" value="0">Administrativa<br/>
+		<input type="checkbox" name="type" value="0">Iniciação científica<br/>
+		<input type="checkbox" name="type" value="0">Estágio<br/>
+		<input type="checkbox" name="type" value="0">Trainee<br/>
+		<input type="checkbox" name="type" value="0">Efetivo<br/>
+
+		<h2>Benefício PRAE</h2>
+		<input type="radio" name="is_prae" value="-1">Todas <br/>
+		<input type="radio" name="is_prae" value="0">Sem benefício PRAE <br/>
+		<input type="radio" name="is_prae" value="1">Com benefício PRAE <br/>
+
+		<h2>Área de atuação</h2>
+		<input type="checkbox" name="category" value="0">Artes<br/>
+		<input type="checkbox" name="category" value="0">Gestão<br/>
+		<input type="checkbox" name="category" value="0">Tecnologia<br/>
+		<input type="checkbox" name="category" value="0">Exatas<br/>
+		<input type="checkbox" name="category" value="0">Saúde<br/>
+		<input type="checkbox" name="category" value="0">Humanas<br/>
+
+		<h2>Carga Horária</h2>
+		<input type="radio" name="schedule" value="0">Todas<br/>
+		<input type="radio" name="schedule" value="0">Até 20h<br/>
+		<input type="radio" name="schedule" value="0">Até 30h<br/>
+		<input type="radio" name="type" value="0">Até 40h<br/>
+		<input type="radio" name="type" value="0">À combinar<br/>
+
+		<h2>Modalidade</h2>
+		<input type="radio" name="type" value="0">À distância<br/>
+		<input type="radio" name="type" value="0">Presencial<br/>
+
+		<h2>Turnos</h2>
+		<input type="checkbox" name="turn" value="0">Manhã<br/>
+		<input type="checkbox" name="turn" value="0">Tarde<br/>
+		<input type="checkbox" name="turn" value="0">Noite<br/>
+
+		<h2>Currículo</h2>
+		<input type="radio" name="type" value="0">Não exige<br/>
+		<input type="radio" name="type" value="0">Exige<br/>
+
+		<h2>Histórico Escolar</h2>
+		<input type="radio" name="type" value="0">Não exige<br/>
+		<input type="radio" name="type" value="0">Exige<br/>
+
+		<h2>Requisitos</h2>
+		<div class="requisit-field form-data" contenteditable="true"></div>
+
+		<h2>Remuneração</h2>
+		<div class="form-box">
+			<input type="text"  class="form-data" name="turn" placeholder="De R$">
+			<input type="text"  class="form-data" name="turn" placeholder="Até R$">
+		</div>
+		<hr>
+		<button class="hide-filter">Esconder filtros</button>
+	</div>
+
+	<div class="filter-list">
+		<span class="item">
+			<span class="title">Área</span>
+			<span class="value">Tecnologia</span>
+			<span class="remove-item">&times;</span>
+		</span>
+		<span class="item">
+			<span class="title">Modalidade</span>
+			<span class="value">Presencial</span>
+			<span class="remove-item">&times;</span>
+		</span>
+
+		<button>Limpar todos</button>
+	</div>
+	<hr class="custom-line">
+</section>

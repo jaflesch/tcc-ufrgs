@@ -11,14 +11,51 @@ class Job {
 	public static function getAll() {
 		$db = new DBConn();
 
-		$data = $db->query("
+		$result = $db->query("
 			SELECT * 
 			FROM job
 			WHERE active = 1
 			ORDER BY date_start, title
 		", true);
 
-		foreach ($data as $d) {
+		$result = self::formatData($result);
+
+		return $result;
+	}
+
+	public static function getById($id) {
+		$db = new DBConn();
+
+		$jobs = $db->query("
+			SELECT * 
+			FROM job
+			WHERE active = 1 AND id = {$id}
+		", true);
+
+		$jobs = self::formatData($jobs);
+
+		return $jobs;
+	}
+
+	public static function getRelated($id) {
+		$jobs = self::getAll();
+
+		for($i = 0; $i < count($jobs); $i++) {
+			if($jobs[$i]->id == $id) unset($jobs[$i]);
+		}
+
+		return $jobs;
+	}
+
+	public static function getAllFeedRelated() {
+		return array_slice(self::getAll(), 0, 3);
+	}
+
+	// Helper
+	private static function formatData($array) {
+		$db = new DBConn();
+
+		foreach ($array as $d) {
 			$d->slug = self::setSlug($d->title);
 
 			if($d->category_list != "") {
@@ -27,11 +64,7 @@ class Job {
 			}
 		}
 
-		return $data;
-	}
-
-	public static function getAllFeedRelated() {
-		return array_slice(self::getAll(), 0, 3);
+		return $array;
 	}
 
 	private static function setSlug($string) {
