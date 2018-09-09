@@ -18,7 +18,7 @@ class Profile {
 
 		return $db->query("
 			SELECT 
-				u.name, u.id, u.born_in_city, u.born_in_state, u.live_in_city, u.live_in_state,
+				u.name, u.login, u.id, u.born_in_city, u.born_in_state, u.live_in_city, u.live_in_state,
 				uj.title job_title, 
 				ue.title education_title
 			FROM user u
@@ -36,7 +36,7 @@ class Profile {
 
 		return $db->query("
 			SELECT 
-				u.name, u.id, u.born_in_city, u.born_in_state, u.live_in_city, u.live_in_state,
+				u.name, u.login, u.id, u.born_in_city, u.born_in_state, u.live_in_city, u.live_in_state,
 				uj.title job_title, 
 				ue.title education_title
 			FROM user u

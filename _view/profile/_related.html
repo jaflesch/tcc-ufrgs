@@ -8,7 +8,7 @@
 					<img src="">
 				</div>
 				<div class="user-info">
-					<h4>{{ profile.name }}</h4>
+					<h4><a href="{{ path.root }}/feed/usuario/{{ profile.login }}" title="Ver perfil de {{ profile.name }}">{{ profile.name }}</a></h4>
 					<h5>
 						{% if profile.job_title is not empty %}
 							{{ profile.job_title }}
