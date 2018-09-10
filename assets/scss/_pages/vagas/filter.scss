@@ -107,7 +107,25 @@
 	}
 
 	.custom-line {
-		margin: 10px auto;
+		margin: 10px auto 20px;
 		border-top: 2px solid #e7e7e7;
+	}
+
+	.order-limit {
+		display: flex;
+		align-items: center;
+		
+		p { 
+			flex-grow: 10;
+			font-size: 13px;
+			margin: 0;
+		}
+
+		select {
+			@include size(170px, 36px);
+			background: #fff;
+			padding: 6px;
+			margin: 0;
+		}
 	}
 }

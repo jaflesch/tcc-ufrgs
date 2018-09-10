@@ -1,48 +1,139 @@
-#user-profile-widget {
-	@include border-radius(2px);
-	background: #fff;
-	width: 260px;
-	margin-right: 20px;
-	padding: 20px;
-
-	h1, h2 { text-align: center; }
-	h1 {
-		font-size: 16px;
-		margin: 0 0 5px;
-
-		a { color: #000 !important; }
+#job-result {
+	.row {
+		display: flex;
+		align-items: start;
+		margin: 0 -10px;
+		flex-wrap: wrap;
 	}
-	h2 {
+
+	article {
+		flex: 0 0 33.3333%;
+		margin-bottom: 20px;
+	}	
+	.job-card { 
+		background: #fff;
+		padding: 15px;
+		margin: 0 10px; 
+	}
+
+	.header {
+		display: flex;
+		align-items: center;
+		margin-bottom: 10px;
+	}
+	.title {
+		font: {
+			size: 18px;
+		}
+		color: #000;
+		margin: 0;
+		flex-grow: 10;
+	}
+	.options {
+		font-size: 18px;
+		color: #555;
+
+		span + span { margin-left: 5px; }
+	}
+
+	.upper-body { margin: 0 0 20px; }
+
+
+	.location h3 {
 		font-size: 14px;
-		color: #777;
+		color: #999;
+		margin: 0 0 20px;
+	}
+	.category {
+		font-size: 0;
+		margin: 0 -5px;
+		padding: 0 2.5px;
+
+		span { 
+			@include disp-ib();
+			@include colors(transparent, #555);
+			@include border-radius(2px);
+			@include transition();
+			font-size: 13px;
+			padding: 4px 8px;
+			margin: 0 2.5px;
+			border: 1px solid #555;
+
+			&:hover { 
+				color: $primary-color;
+				border: 1px solid $primary-color;
+			}
+		}
+	}	
+	.description {
+		display: -webkit-box;
+		-webkit-line-clamp: 3;
+  		-webkit-box-orient: vertical;  
+		margin: 10px 0 30px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		text-align: justify;
+		font-size: 13px;
+		min-height: 40px;
+	}
+	
+	.lower-body {
+		display: flex;
+		align-items: center;
+		padding-bottom: 10px;
+		border-bottom: 1px solid #e7e7e7;
+	}
+	.salary {
+		font: {
+			size: 16px;
+			weight: bold;
+		}
+		color: #2b2b2b;
+		width: 50%;
 		margin: 0;
 	}
-
-	.avatar-box {
-		$avatar-size: 128px;
-		@include size($avatar-size, $avatar-size);
-		@include elipse();
-		position: relative;
-		display: block;
-		background-color: #eee;
-		margin: 0 auto 20px;
-		overflow: hidden;
-
-		img { max-width: 100%; }
-	}
-	.default-avatar {
-		@include ha-middle();
-		position: absolute;
-		bottom: -30px;
-	}
-
-	h3 {
-		font-size: 13px;
+	.schedule { 
+		font: {
+			size: 16px;
+			weight: lighter;
+		}
 		color: #999;
+		text-align: right;
+		width: 50%;
+		margin: 0;
 
-		.fa { 
-			font-size: 14px;
-			margin-right: 10px; 
+		.fa { margin-right: 5px;}
+	}
+
+	.bottom { 
+		display: flex;
+		margin-top: 10px;	
+	}
+	button {
+		@include disp-ib();
+		@include transition();
+		font-size: 14px;
+		width: 50%;
+		padding: 6px 15px;
+		
+		+ button { margin-left: 3px; }
+	}
+	.apply {
+		@include colors($primary-color, #fff);		
+		border: 1px solid $primary-color;
+
+		&:hover, &:active, &:focus {
+			background: darken($primary-color, 10%);
+			border: 1px solid darken($primary-color, 10%);
+		}
+	}
+	.recommend {
+		@include colors(transparent, $primary-color);		
+		border: 1px solid $primary-color;	
+
+		&:hover, &:active, &:focus {
+			color: darken($primary-color, 10%);
+			border: 1px solid darken($primary-color, 10%);
 		}
 	}
 }
