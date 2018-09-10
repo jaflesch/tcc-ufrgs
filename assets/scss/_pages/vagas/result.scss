@@ -109,13 +109,17 @@
 		display: flex;
 		margin-top: 10px;	
 	}
-	button {
+	button, a {
 		@include disp-ib();
 		@include transition();
 		font-size: 14px;
 		width: 50%;
 		padding: 6px 15px;
-		
+		text: {
+			align: center;
+			decoration: none !important;
+		}
+
 		+ button { margin-left: 3px; }
 	}
 	.apply {
