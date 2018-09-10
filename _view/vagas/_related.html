@@ -1,38 +1,8 @@
 <section id="related-widget">
 	<div class="suggest-box">
-		<h2>Aumente seu feed</h2>
+		<h2>Vagas semelhantes</h2>
 		<ul>
-			{% for profile in profiles %}
-			<li>
-				<div class="avatar">
-					<img src="">
-				</div>
-				<div class="user-info">
-					<h4><a href="{{ path.root }}/feed/usuario/{{ profile.login }}" title="Ver perfil de {{ profile.name }}">{{ profile.name }}</a></h4>
-					<h5>
-						{% if profile.job_title is not empty %}
-							{{ profile.job_title }}
-						{% elseif profile.education_title %}
-							{{ profile.education_title }}
-						{% else %}
-							{{ profile.live_in_city }}, {{ profile.live_in_state }}
-						{% endif %}
-					</h5>
-				</div>
-				<div class="follow">
-					<a href="" class="btn-follow"> Seguir </a>
-				</div>
-			</li>
-			{% endfor %}
-		</ul>
-		<p>
-			<a href="">Ver todas as sugestões</a>
-		</p>
-	</div>
-	<div class="suggest-box">
-		<h2>Sugestões para você</h2>
-		<ul>
-			{% for job in jobs %}
+			{% for job in related_jobs %}
 			<li>
 				<div class="avatar">
 					<img src="">

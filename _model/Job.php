@@ -64,6 +64,7 @@ class Job {
 				if($d->category_list != "") {
 					$result = $db->query("SELECT id, title FROM job_category WHERE id IN ({$d->category_list}) AND active = 1");
 					$d->category_list_array = $result;
+					$d->skill_array = explode(",", $d->skills);
 					$d->type_string = self::getType($d->type);
 					$d->modality_string = self::getModality($d->modality);
 				}
@@ -75,6 +76,7 @@ class Job {
 			if($mixed->category_list != "") {
 				$result = $db->query("SELECT id, title FROM job_category WHERE id IN ({$mixed->category_list}) AND active = 1", true);
 				$mixed->category_list_array = $result;
+				$mixed->skill_array = explode(",", $mixed->skills);
 				$mixed->type_string = self::getType($mixed->type);
 				$mixed->modality_string = self::getModality($mixed->modality);
 			}

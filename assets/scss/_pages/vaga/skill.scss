@@ -1,131 +1,39 @@
-#job-skill {
+#job-skills {
 	background: #fff;
 	padding: 20px;
 	margin-bottom: 20px;
 
-	.header { 
-		display: flex;
-		align-items: center;
-		margin-bottom: 0;
-
-		button { flex-shrink: 0; }
-	}
-
-	h1 {
-		font: {
-			size: 20px;
-		}
-		color: #000;
-		margin: 0;
-		flex-grow: 10;
-	}
-
-	button {
-		@include colors($primary-color, #fff);
-		@include border-radius(2px);
-		@include transition();
-		padding: 4px 15px;
-		border: 1px solid $primary-color;
-
-		&:hover, &:focus, &:active {
-			@include colors($secondary-color, #fff);
-			border-color: $secondary-color;
-		}
-	}
-
-	.filter-box {
-		padding: 10px;
-		margin: 10px 0 20px;
-		border: 1px solid #e0e0e0;
-
-		hr { 
-			border-top: 1px solid #e0e0e0;
-			margin-bottom: 10px;
-		}
-	}
-
 	h2 {
-		font: {
-			size: 16px;
-			weight: lighter;
-		}
+		font-size: 18px;
 		color: #2b2b2b;
-		position: relative;
-
-		&:after {
-			@include size(40px, 1px);
-			content: '';
-			position: absolute;
-			bottom: -5px;
-			left: 0;
-			background: $primary-color;
-		}
+		text-align: left;
+		padding: 0;
+		margin-bottom: 30px;
 	}
 
-	.form-box {
-		display: flex;
-		input + input { margin-left: 10px; }
-	}
-
-	.filter-list {
-		background: #f4f4f4;
-		font-size: 13px;
-		padding: 6px 7.5px;
-		margin: 10px 0 0;
-
-		.item {
-			@include disp-ib();
-			position: relative;
-			padding: 5px 30px 5px 10px;
-			margin: 0 2.5px;
-			box-shadow: 0 0 2px rgba(#000, .15);
-		}
-
-		.title, .value { display: block; }
-		.title { font-weight: bold; }
-
-		.remove-item {
-			@include va-middle();
-			position: absolute;
-			right: 5px;
-			font: {
-				size: 20px;
-				weight: lighter;
-			}
-			cursor: pointer;
-		}
-
-		button {
-			@include colors(transparent, #2b2b2b);
-			text-decoration: underline;
-			border: 1px solid transparent;
-
-			&:hover, &:focus, &:active {
-				color: #000;
-			}
-		}
-	}
-
-	.custom-line {
-		margin: 10px auto 20px;
-		border-top: 2px solid #e7e7e7;
-	}
-
-	.order-limit {
-		display: flex;
-		align-items: center;
+	.list {
+		font-size: 0;
+		margin: 0 -5px 20px;
+		padding: 0 2.5px;
 		
-		p { 
-			flex-grow: 10;
-			font-size: 13px;
-			margin: 0;
-		}
+		span { 
+			@include disp-ib();
+			@include colors(transparent, #555);
+			@include border-radius(2px);
+			@include transition();
+			font-size: 14px;
+			padding: 6px 10px;
+			margin: 0 2.5px;
+			border: 1px solid #555;
 
-		select {
-			@include size(170px, 36px);
-			background: #fff;
-			padding: 6px;
-			margin: 0;
+			&.active {
+				@include colors($primary-color !important, #fff !important);
+				border: 1px solid $primary-color !important;
+			}
+			
+			.fa { margin-right: 5px; }
 		}
-	}
+	}	
+
+	hr { border-top: 2px solid #e7e7e7; }
 }

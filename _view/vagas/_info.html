@@ -10,14 +10,20 @@
 		<div class="body">
 			<div class="location">
 				<h3><span class="fa fa-map-marker"></span>
-					{{ job.location }} 
-					
-					{% if job.location_city is not empty %}
-						- {{ job.location_city }}
+					{% if job.location is not empty %}
+						{{ job.location }} 
 					{% endif %}
+
+					{% if job.location is not empty and (job.location_city is not empty or job.location_state is not empty) %} - {% endif %}
+
+					{% if job.location_city is not empty %}
+						{{ job.location_city }}
+					{% endif %}
+
+					{% if job.location_city is not empty and job.location_state is not empty %} , {% endif %}
 					
 					{% if job.location_state is not empty %}
-					, {{ job.location_state }}
+						{{ job.location_state }}
 					{% endif %}
 				</h3>
 			</div>

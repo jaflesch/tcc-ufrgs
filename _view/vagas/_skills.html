@@ -1,2 +1,21 @@
+{% if job.skills is not empty %}
 <section id="job-skills">
+	<h2>Competências</h2>
+
+	<div class="list">
+		{% for skill in job.skill_array %}
+			{% if loop.index == 1 %}
+			<span class="active">
+				<i class="fa fa-check-circle"></i class="fa fa-check-circle">{{ skill }}
+			</span>
+			{% else %}
+			<span>{{ skill }}</span>
+			{% endif %}
+		{% endfor %}
+	</div>
+	<p>Você possui 1 competência solicitada para a vaga!</p>
 </section>
+{% endif %}
+<p class="text-right">
+	<small><em>Vaga publicada em {{ job.datetime_publication }}.</em></small>
+</p>
