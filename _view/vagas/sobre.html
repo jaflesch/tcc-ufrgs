@@ -1,13 +1,16 @@
 {% extends 'layout.html' %}
 
-{% set page_title = 'Feed' %}
+{% set page_title = 'Vaga' %}
 
 {% block main %}
-	<section id="feed">
+	<section id="job">
 		<div class="container">
-			{% include 'feed/_user.html' %}
-			{% include 'feed/_timeline.html' %}
-			{% include 'feed/_related.html' %}
+			<section id="job-container">
+				{% include 'vagas/_info.html' %}
+				{% include 'vagas/_extra-info.html' %}
+				{% include 'vagas/_skills.html' %}
+			</section>
+			{% include 'vagas/_related.html' %}
 		</div>
 	</section>
 {% endblock %}

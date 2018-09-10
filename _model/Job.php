@@ -7,6 +7,8 @@ class Job {
 	const TRAINEE = 4;
 	const EFETIVO = 5;
 	const VOLUNTARIO = 6;
+	const PRESENCIAL = 0;
+	const DISTANCIA = 1;
 	
 	public static function getAll() {
 		$db = new DBConn();
@@ -30,7 +32,7 @@ class Job {
 			SELECT * 
 			FROM job
 			WHERE active = 1 AND id = {$id}
-		", true);
+		");
 
 		$jobs = self::formatData($jobs);
 
@@ -52,22 +54,56 @@ class Job {
 	}
 
 	// Helper
-	private static function formatData($array) {
+	private static function formatData($mixed) {
 		$db = new DBConn();
 
-		foreach ($array as $d) {
-			$d->slug = self::setSlug($d->title);
+		if(is_array($mixed)) {
+			foreach ($mixed as $d) {
+				$d->slug = self::setSlug($d->title);
 
-			if($d->category_list != "") {
-				$result = $db->query("SELECT id, title FROM job_category WHERE id IN ({$d->category_list}) AND active = 1");
-				$d->category_list_array = $result;
+				if($d->category_list != "") {
+					$result = $db->query("SELECT id, title FROM job_category WHERE id IN ({$d->category_list}) AND active = 1");
+					$d->category_list_array = $result;
+					$d->type_string = self::getType($d->type);
+					$d->modality_string = self::getModality($d->modality);
+				}
 			}
 		}
+		else {
+			$mixed->slug = self::setSlug($mixed->title);
 
-		return $array;
+			if($mixed->category_list != "") {
+				$result = $db->query("SELECT id, title FROM job_category WHERE id IN ({$mixed->category_list}) AND active = 1", true);
+				$mixed->category_list_array = $result;
+				$mixed->type_string = self::getType($mixed->type);
+				$mixed->modality_string = self::getModality($mixed->modality);
+			}
+		}			
+
+		return $mixed;
 	}
 
 	private static function setSlug($string) {
 		return linkfy(strtolower(trim($string)));
+	}
+
+	private static function getModality($int) {
+		switch ($int) {
+			case self::PRESENCIAL: 	return "Presencial";
+			case self::DISTANCIA: 	return "À distância";
+			default: return "Indefinido";
+		}
+	}
+
+	private static function getType($int) {
+		switch ($int) {
+			case self::MONITORIA: 	return "Monitoria";
+			case self::BOLSA_ADS: 	return "Bolsa Administrativa";
+			case self::BOLSA_IC: 	return "Bolsa Iniciação Científica";
+			case self::ESTAGIO: 	return "Estágio";
+			case self::TRAINEE: 	return "Trainee";
+			case self::EFETIVO: 	return "Efetivo";
+			case self::VOLUNTARIO: 	return "Voluntário";
+		}
 	}
 }
