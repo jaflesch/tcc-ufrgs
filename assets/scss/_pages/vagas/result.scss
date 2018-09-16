@@ -16,6 +16,26 @@
 		margin: 0 10px; 
 	}
 
+	.alert { 
+		font-size: 13px;
+		position: relative;
+		padding: 5px 25px 5px 10px; 
+		margin: 0 0 10px;
+
+		> .fa { margin-right: 7px; }
+
+		> .close { 
+			@include va-middle();
+			color: inherit;
+			position: absolute;
+			right: 10px;
+			text-shadow: none;
+			opacity: .5;
+
+			&:hover { opacity: 1; }
+		}
+	}
+
 	.header {
 		display: flex;
 		align-items: center;
@@ -30,14 +50,26 @@
 		flex-grow: 10;
 	}
 	.options {
-		font-size: 18px;
-		color: #555;
+		$size: 28px;
+		font-size: 14px;
+		
+		a {
+			@include disp-ib();
+			@include elipse();
+			@include size($size, $size);
+			color: #555;
+			line-height: $size;
+			text-align: center;
+			cursor: pointer;
 
-		span + span { margin-left: 5px; }
+			&:hover { @include colors(#ddd, #333); }
+			&:focus { @include colors($primary-color, #fff !important); }
+
+			&.active { color: $primary-color; }
+		}		
 	}
 
 	.upper-body { margin: 0 0 20px; }
-
 
 	.location h3 {
 		font-size: 14px;
@@ -109,7 +141,7 @@
 		display: flex;
 		margin-top: 10px;	
 	}
-	button, a {
+	button, a.cta {
 		@include disp-ib();
 		@include transition();
 		font-size: 14px;
