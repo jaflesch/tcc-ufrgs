@@ -5,8 +5,8 @@
 	top: 0;
 	right: 0;
 	height: 100vh;
-	// width: 0;
-	width: 340px;
+	width: 0;
+	overflow-y: auto;
 	
 	&.opened { width: 340px; }
 
