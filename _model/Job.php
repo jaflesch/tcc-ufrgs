@@ -12,12 +12,18 @@ class Job {
 	
 	public static function getAll() {
 		$db = new DBConn();
+		$id_user = Auth::id();
 
 		$result = $db->query("
-			SELECT * 
-			FROM job
-			WHERE active = 1
-			ORDER BY date_start, title
+			SELECT j.*, f.id favorite_id 
+			FROM job j
+			LEFT JOIN 
+				favorite f ON j.id = f.id_object AND
+				f.type = 1 AND
+				f.active = 1 AND
+				f.id_user = {$id_user}
+			WHERE j.active = 1
+			ORDER BY j.date_start, title
 		", true);
 
 		$result = self::formatData($result);
@@ -60,6 +66,7 @@ class Job {
 		if(is_array($mixed)) {
 			foreach ($mixed as $d) {
 				$d->slug = self::setSlug($d->title);
+				$d->is_favorite = self::checkIfFavorite($d->favorite_id);
 
 				if($d->category_list != "") {
 					$result = $db->query("SELECT id, title FROM job_category WHERE id IN ({$d->category_list}) AND active = 1");
@@ -107,5 +114,9 @@ class Job {
 			case self::EFETIVO: 	return "Efetivo";
 			case self::VOLUNTARIO: 	return "Voluntário";
 		}
+	}
+
+	private static function checkIfFavorite($id) {
+		return $id !== NULL;
 	}
 }

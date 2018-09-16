@@ -24,7 +24,14 @@ class Vagas extends Controller {
 	public function favoritar() {
 		$response = new stdclass();
 		$response->success = Favorite::save($this->post->id, Favorite::JOB);
-		$response->msg = $response->success ? 'Vaga adicionada ao seus favoritos.' : 'Desculpe, ocorreu um erro. Tente novamente.';
+		$response->msg = $response->success ? "Vaga adicionada ao seus <a href='{$this->path['root']}/vagas/favoritos' title='Ver meus favoritos'>favoritos</a>." : "Desculpe, ocorreu um erro. Tente de novo.";
+		die(json_encode($response));
+	}
+
+	public function desfavoritar() {
+		$response = new stdclass();
+		$response->success = Favorite::delete($this->post->id, Favorite::JOB);
+		$response->msg = $response->success ? "Vaga removida dos <a href='{$this->path['root']}/vagas/favoritos' title='Ver meus favoritos'>favoritos</a>." : "Desculpe, ocorreu um erro. Tente de novo.";
 		die(json_encode($response));
 	}
 }

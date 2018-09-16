@@ -4,17 +4,19 @@
 		<article data-job="{{ job.id }}">
 			<div class="job-card">
 				<p class="alert alert-info" style="display:none;">
-					<span class="fa fa-star"></span>Vaga adicionada aos seus <a href="{{ path.root }}/vagas/favoritos" title="Ver meus favoritos">favoritos</a>.
+					<span class="fa fa-star"></span>
+					<span class="response-message"></span>
 					<span class="close">&times;</span>
 				</p>
 				<p class="alert alert-warning" style="display:none;">
-					<span class="fa fa-warning"></span>Desculpe, ocorreu um erro. Tente de novo.
+					<span class="fa fa-warning"></span>
+					<span class="response-message"></span>
 					<span class="close">&times;</span>
 				</p>
 				<div class="header">
 					<h2 class="title">{{ job.title }}</h2>
 					<div class="options">
-						<a href="#" class="favorite-job {{ job.favorited ? 'active' : '' }}" title="{{ job.favorited ? 'Desfavoritar' : 'Favoritar' }} vaga">
+						<a href="#" class="favorite-job {{ job.is_favorite ? 'active' : '' }}" title="{{ job.is_favorite ? 'Desfavoritar' : 'Favoritar' }} vaga">
 							<span class="fa fa-bookmark"></span>
 						</a>
 						<a href="#">
