@@ -65,7 +65,13 @@
 				{% endif %}
 				<h3>
 					<span class="fa fa-fw fa-rss"></span>
-					42 seguidores
+					{% if followers.total == 0 %}
+						Nenhum seguidor ainda. <a href="#">Seja o primeiro</a>
+					{% elseif followers.total == 1 %}
+						1 seguidor
+					{% else %}
+						{{ followers.total }} seguidores
+					{% endif %}
 				</h3>
 				<h3>
 					<span class="fa fa-fw fa-calendar"></span>

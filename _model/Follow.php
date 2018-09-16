@@ -1,20 +1,29 @@
 <?php
-class Favorite {
-	/**
-	 * (int) Type of favorite for [id_object] field at table
-	 * new values can be added for future updates
-	 */
-	const JOB = 1;
-	const USER = 2;
-
-	public static function save($id_object, $type) {
+class Follow {
+	public static function getAllFollowers($id_user) {
 		$db = new DBConn();
-		$id_user = Auth::id();
+		
+		$data = $db->query("
+			SELECT u.id, u.name, u.login, f.datetime_created
+			FROM follow f 
+			INNER JOIN user u ON u.id = f.id_follower AND f.active = 1
+			WHERE f.id_following = {$id_user} AND u.active = 1
+		", true);
 
-		// Check if it's already favorited
+		return array(
+			"data" => $data,
+			"total" => $db->rows()
+		);
+	}
+
+	public static function save($following_user_id) {
+		$db = new DBConn();
+		$follower_user_id = Auth::id();
+
+		// Check if it's already following
 		$result = $db->query("
 			SELECT id 
-			FROM favorite 
+			FROM follow 
 			WHERE id_user = {$id_user} AND id_object = {$id_object} AND type = {$type} AND active = 1
 		");
 
@@ -31,7 +40,7 @@ class Favorite {
 		$id_user = Auth::id();
 
 		return $db->update("
-			UPDATE favorite 
+			UPDATE follow 
 			SET active = 0 
 			WHERE id_user = {$id_user} AND id_object = {$id_object} AND type = {$type} AND active = 1
 		");
