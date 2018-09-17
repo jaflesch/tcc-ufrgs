@@ -14,4 +14,17 @@ class Feed extends Controller {
 	public function me() {
 		$this->render("feed/index");
 	}
+
+	// AJAX Calls
+	public function seguir() {
+		$response = new stdclass();
+		$response->result = Follow::save($this->post->id);
+		die(json_encode($response));
+	}
+
+	public function deixar_seguir() {
+		$response = new stdclass();
+		$response->result = Follow::delete($this->post->id);
+		die(json_encode($response));
+	}
 }

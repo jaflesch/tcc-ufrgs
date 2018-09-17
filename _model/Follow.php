@@ -24,25 +24,25 @@ class Follow {
 		$result = $db->query("
 			SELECT id 
 			FROM follow 
-			WHERE id_user = {$id_user} AND id_object = {$id_object} AND type = {$type} AND active = 1
+			WHERE id_follower = {$follower_user_id} AND  id_following = {$following_user_id} AND active = 1
 		");
 
 		if($result == NULL) {
 			return $db->insert("
-				INSERT INTO favorite (id_user, id_object, type) 
-				VALUES ({$id_user}, {$id_object}, {$type})
+				INSERT INTO follow (id_follower, id_following) 
+				VALUES ({$follower_user_id}, {$following_user_id})
 			");			
 		}
 	}
 
-	public static function delete($id_object, $type) {
+	public static function delete($following_user_id) {
 		$db = new DBConn();
-		$id_user = Auth::id();
+		$follower_user_id = Auth::id();
 
 		return $db->update("
 			UPDATE follow 
 			SET active = 0 
-			WHERE id_user = {$id_user} AND id_object = {$id_object} AND type = {$type} AND active = 1
+			WHERE id_follower = {$follower_user_id} AND  id_following = {$following_user_id} AND active = 1
 		");
 	}
 }
