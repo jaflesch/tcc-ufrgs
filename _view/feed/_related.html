@@ -1,4 +1,5 @@
 <section id="related-widget">
+	{% if profiles is not empty %}
 	<div class="suggest-box">
 		<h2>Aumente seu feed</h2>
 		<ul>
@@ -29,6 +30,7 @@
 			<a href="{{ path.root }}/pesquisar/usuarios" title="Ver todas as sugestões de usuários">Ver todas as sugestões</a>
 		</p>
 	</div>
+	{% endif %}
 	<div class="suggest-box">
 		<h2>Sugestões para você</h2>
 		<ul>

@@ -1,4 +1,5 @@
 <section id="related-widget">
+	{% if related_profiles is not empty %}
 	<div class="suggest-box">
 		<h2>Talvez você conheça</h2>
 		<ul>
@@ -29,4 +30,5 @@
 			<a href="{{ path.root }}/pesquisar/usuarios" title="Ver todas as sugestões de usuários">Ver todas as sugestões</a>
 		</p>
 	</div>
+	{% endif %}
 </section>
