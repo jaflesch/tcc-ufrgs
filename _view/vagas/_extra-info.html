@@ -1,0 +1,28 @@
+<section id="job-extra-info">
+	<h2>Informações complementares</h2>
+	<div class="row">
+		<div class="col-sm-6">
+			<h3><strong>Modalidade</strong> {{ job.modality_string }}</h3>
+			<h3><strong>Tipo de vaga</strong> {{ job.type_string }}</h3>
+			<h3>
+				<strong>Experiência</strong> 
+				{% if job.semester > 0 %}
+					a partir do {{ job.semester }}º semestre
+				{% elseif job.semester == -1 %}
+					Final do curso
+				{% else %}
+					Nenhuma
+				{% endif %}
+			</h3>
+			<h3><strong>Carga horária</strong> {{ job.workload  }}h semanais</h3>
+			<h3><strong>Turnos</strong> {{ job.schedule  }}</h3>
+		</div>
+		<div class="col-sm-6">
+			<h3><strong>Início em</strong> {{ job.date_start }}</h3>
+			<h3><strong>Duração</strong> {{ job.date_finish }}</h3>
+			<h3><strong>Exige Histórico</strong> {{ job.need_historic == 1 ? 'Sim' : 'Não' }}</h3>
+			<h3><strong>Exige Currículo</strong> {{ job.need_curriculum == 1 ? 'Sim' : 'Não' }}</h3>
+			<h3><strong>Benefício PRAE</strong> {{ job.is_prae == 1 ? 'Sim' : 'Não' }}</h3>
+		</div>
+	</div>
+</section>

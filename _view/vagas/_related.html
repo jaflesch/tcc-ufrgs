@@ -1,0 +1,21 @@
+<section id="related-widget">
+	<div class="suggest-box">
+		<h2>Vagas semelhantes</h2>
+		<ul>
+			{% for job in related_jobs %}
+			<li>
+				<div class="avatar">
+					<img src="">
+				</div>
+				<div class="user-info">
+					<h4><a href="{{ path.root }}/vagas/sobre/{{ job.id }}/{{ job.slug }}">{{ job. title }}</a></h4>
+					<h5>{{ job.location is empty ? job.location_city ~ ', ' ~ job.location_state : job.location }}</h5>
+				</div>
+			</li>
+			{% endfor %}
+		</ul>
+		<p>
+			<a href="{{ path.root }}/vagas" title="Ver todas as sugestões">Ver todas as sugestões</a>
+		</p>
+	</div>
+</section>

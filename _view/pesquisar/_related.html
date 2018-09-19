@@ -1,0 +1,36 @@
+<section id="related-widget-search">
+	<div class="suggest-box">
+		<h2>Mais procurados</h2>
+		<ul>
+			{# for search_item in related_searchs #}
+			<li>
+				<span class="fa fa-search"></span>
+				<a href="{{ path.root }}/pesquisar?search={{ search_item.slug }}" title="Pesquisar por {{ search_item.title }}">
+					teste
+				</a>
+			</li>
+			<li>
+				<span class="fa fa-search"></span>
+				<a href="{{ path.root }}/pesquisar?search={{ search_item.slug }}" title="Pesquisar por {{ search_item.title }}">
+					pesquisa 2
+				</a>
+			</li>
+			<li>
+				<span class="fa fa-search"></span>
+				<a href="{{ path.root }}/pesquisar?search={{ search_item.slug }}" title="Pesquisar por {{ search_item.title }}">
+					software
+				</a>
+			</li>
+			<li>
+				<span class="fa fa-search"></span>
+				<a href="{{ path.root }}/pesquisar?search={{ search_item.slug }}" title="Pesquisar por {{ search_item.title }}">
+					vagas ti
+				</a>
+			</li>
+			{# endfor #}
+		</ul>
+		<p>
+			<a href="{{ path.root }}/pesquisar" title="Ver todas as buscas">Ver todas as buscas</a>
+		</p>
+	</div>
+</section>

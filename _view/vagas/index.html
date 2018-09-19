@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+
+{% set page_title = 'Vagas' %}
+
+{% block main %}
+	<section id="jobs">
+		<div class="container">
+			{% include 'vagas/_list.html' %}			
+			{# include 'vagas/_related.html' #}
+		</div>
+	</section>
+{% endblock %}
+
+{% block styles %}
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="{{ path.js }}/base/favorite-job.js"></script>
+{% endblock %}

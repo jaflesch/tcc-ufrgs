@@ -1,0 +1,38 @@
+<aside id="menu-sidebar">
+	<ul>
+		<li>
+			<a href="{{ path.root }}" title="Home">
+				<span class="fa fa-home fa-fw icon"></span>Home
+			</a>
+		</li>
+		<li>
+			<a href="{{ path.root }}/feed/me" title="Meu perfil">
+				<span class="fa fa-user-o fa-fw icon"></span>Meu perfil
+			</a>
+		</li>
+		<li>
+			<a href="{{ path.root }}/vagas" title="Vagas">
+				<span class="fa fa-briefcase fa-fw icon"></span>Vagas
+			</a>
+		</li>
+		<li>
+			<a href="{{ path.root }}/vagas/favoritos" title="Favoritos">
+				<span class="fa fa-star fa-fw icon"></span>Favoritos
+			</a>
+		</li>
+		
+		{% if user.is('adm') %}
+		<li>
+			<a href="{{ path.root }}/_admin/" title="">
+				<span class="fa fa-gear fa-fw icon"></span>Painel de administração
+			</a>
+		</li>
+		{% endif %}
+
+		<li>
+			<a href="{{ path.root }}/login/leave" title="Logout">
+				<span class="fa fa-sign-out fa-fw icon"></span>Logout
+			</a>
+		</li>
+	</ul>
+</aside>

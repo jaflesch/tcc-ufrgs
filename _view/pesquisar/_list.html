@@ -1,0 +1,47 @@
+<section id="search-list">
+	{% if app.get.search is not empty %}
+	<div class="group">
+		<h2>Resultados para a pesquisa <strong>{{ app.get.search }}</strong></h2>
+		<hr/>
+		<div class="filter">
+			<ul>
+				<li class="active">Tudo</li>
+				<li>Pessoas</li>
+				<li>Vagas</li>
+			</ul>
+		</div>
+	</div>
+	{% endif %}
+	<div class="group">
+		<p class="results">{{ search|length > 0 ? 'Exibindo '~ search|length ~' resultados' : 'Nenhum resultado encontrado' }}</p>
+		<ul>
+			{% for item in search %}
+				{% if item.category == 'job' %}
+				<li>
+					<span class="circle">
+						<span class="fa fa-briefcase"></span>
+					</span>
+					<div class="text">
+						<a href="{{ path.root }}/vagas/sobre/{{ item.id }}">{{ item.title }}</a>
+						<span class="complement">
+							INF, Campus do Vale - Porto Alegre, Rio Grande do Sul
+						</span>
+					</div>
+				</li>
+				{% else %}
+				<li>
+					<span class="circle">
+						<span class="fa fa-user-o"></span>
+					</span>
+					<div class="text">
+						<a href="{{ path.root }}/feed/usuario/{{ item.login }}">{{ item.title }}</a>
+						<span class="complement">
+							UFRGS
+						</span>
+					</div>
+				</li>
+				{% endif %}
+			{% endfor %}
+		</ul>
+	</div>
+</section>

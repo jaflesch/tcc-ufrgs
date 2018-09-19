@@ -44,3 +44,19 @@
 @import '_pages/profile/profile';
 @import '_pages/profile/user';
 @import '_pages/profile/related';
+
+// Jobs
+@import '_pages/vagas/jobs';
+@import '_pages/vagas/filter';
+@import '_pages/vagas/result';
+
+// Job
+@import '_pages/vaga/job';
+@import '_pages/vaga/info';
+@import '_pages/vaga/extra-info';
+@import '_pages/vaga/skill';
+
+// Search
+@import '_pages/pesquisar/search';
+@import '_pages/pesquisar/list';
+@import '_pages/pesquisar/related';

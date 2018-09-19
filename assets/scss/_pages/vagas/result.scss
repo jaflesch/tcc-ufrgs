@@ -1,0 +1,175 @@
+#job-result {
+	.row {
+		display: flex;
+		align-items: start;
+		margin: 0 -10px;
+		flex-wrap: wrap;
+	}
+
+	article {
+		flex: 0 0 33.3333%;
+		margin-bottom: 20px;
+	}	
+	.job-card { 
+		background: #fff;
+		padding: 15px;
+		margin: 0 10px; 
+	}
+
+	.alert { 
+		font-size: 13px;
+		position: relative;
+		padding: 5px 25px 5px 10px; 
+		margin: 0 0 10px;
+
+		> .fa { margin-right: 7px; }
+
+		> .close { 
+			@include va-middle();
+			color: inherit;
+			position: absolute;
+			right: 10px;
+			text-shadow: none;
+			opacity: .5;
+
+			&:hover { opacity: 1; }
+		}
+	}
+
+	.header {
+		display: flex;
+		align-items: center;
+		margin-bottom: 10px;
+	}
+	.title {
+		font: {
+			size: 18px;
+		}
+		color: #000;
+		margin: 0;
+		flex-grow: 10;
+	}
+	.options {
+		$size: 28px;
+		font-size: 14px;
+		
+		a {
+			@include disp-ib();
+			@include elipse();
+			@include size($size, $size);
+			color: #555;
+			line-height: $size;
+			text-align: center;
+			cursor: pointer;
+
+			&:hover { @include colors(#ddd, #333); }
+			&:focus { @include colors($primary-color, #fff !important); }
+
+			&.active { color: $primary-color; }
+		}		
+	}
+
+	.upper-body { margin: 0 0 20px; }
+
+	.location h3 {
+		font-size: 14px;
+		color: #999;
+		margin: 0 0 20px;
+	}
+	.category {
+		font-size: 0;
+		margin: 0 -5px;
+		padding: 0 2.5px;
+
+		span { 
+			@include disp-ib();
+			@include colors(transparent, #555);
+			@include border-radius(2px);
+			@include transition();
+			font-size: 13px;
+			padding: 4px 8px;
+			margin: 0 2.5px;
+			border: 1px solid #555;
+
+			&:hover { 
+				color: $primary-color;
+				border: 1px solid $primary-color;
+			}
+		}
+	}	
+	.description {
+		display: -webkit-box;
+		-webkit-line-clamp: 3;
+  		-webkit-box-orient: vertical;  
+		margin: 10px 0 30px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		text-align: justify;
+		font-size: 13px;
+		min-height: 40px;
+	}
+	
+	.lower-body {
+		display: flex;
+		align-items: center;
+		padding-bottom: 10px;
+		border-bottom: 1px solid #e7e7e7;
+	}
+	.salary {
+		font: {
+			size: 16px;
+			weight: bold;
+		}
+		color: #2b2b2b;
+		width: 50%;
+		margin: 0;
+	}
+	.schedule { 
+		font: {
+			size: 16px;
+			weight: lighter;
+		}
+		color: #999;
+		text-align: right;
+		width: 50%;
+		margin: 0;
+
+		.fa { margin-right: 5px;}
+	}
+
+	.bottom { 
+		display: flex;
+		margin-top: 10px;	
+	}
+	button, a.cta {
+		@include disp-ib();
+		@include transition();
+		font-size: 14px;
+		width: 50%;
+		padding: 6px 15px;
+		text: {
+			align: center;
+			decoration: none !important;
+		}
+
+		+ button { margin-left: 3px; }
+	}
+	.apply {
+		@include colors($primary-color, #fff);		
+		border: 1px solid $primary-color;
+
+		&:hover, &:active, &:focus {
+			background: darken($primary-color, 10%);
+			border: 1px solid darken($primary-color, 10%);
+		}
+	}
+	.recommend {
+		@include colors(transparent, $primary-color);		
+		border: 1px solid $primary-color;	
+
+		&:hover, &:active, &:focus {
+			color: darken($primary-color, 10%);
+			border: 1px solid darken($primary-color, 10%);
+		}
+	}
+}

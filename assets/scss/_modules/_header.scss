@@ -51,16 +51,17 @@ header nav.navbar {
 		}
 	}
 
-	.navbar-expand {
+	.sidebar-control {
 		background: transparent;
 		padding: 0;
 		border: 0 !important;
 		box-shadow: none !important;
 
 		.bar { 
+			@include size(28px, 1px);
+			@include transition();
 			display: block;
 			background: #fff;
-			@include size(28px, 1px);
 
 			+ .bar { margin-top: 7px; }
 		}
@@ -68,6 +69,25 @@ header nav.navbar {
 		&:hover, &:focus, &:active {
 			box-shadow: none;
 			outline: none;
+		}
+
+		&.active {
+			.bar {
+				position: relative;
+				background: #ddd;
+
+				&:first-child {
+					transform: rotateZ(45deg);
+					top: 8px;
+				}
+				&:last-child {
+					transform: rotateZ(-45deg);
+					top: -8px;
+				}
+				&:nth-child(2) { width: 0; }
+			}
+
+			&:hover .bar { background: #fff; }
 		}
 	}
 }

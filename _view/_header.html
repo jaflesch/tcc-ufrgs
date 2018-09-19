@@ -6,13 +6,15 @@
 			</a>
 		</div>
 		<div class="navbar-search">
-			<input type="search" name="search" placeholder="Encontre pessoas ou vagas">
-			<button class="button-search">
-				<span class="fa fa-search"></span>
-			</button>
+			<form action="{{ path.root }}/pesquisar" method="GET">
+				<input type="search" name="search" placeholder="Encontre pessoas ou vagas" value="{{ app.get.search }}">
+				<button class="button-search">
+					<span class="fa fa-search"></span>
+				</button>
+			</form>
 		</div>
 		<div class="navbar-options">
-			<button type="button" class="navbar-expand">
+			<button type="button" class="sidebar-control">
 				<span class="bar"></span>
 				<span class="bar"></span>
 				<span class="bar"></span> 

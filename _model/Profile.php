@@ -1,28 +1,24 @@
 <?php
-class Profile {
-	/*
-		type (int): 
-			0	- monitoria
-			1	- bolsa ads
-			2	- bolsa ic
-			3	- estágio
-			4 	- trainee
-			5 	- clt
-	*/
+require MODEL_PATH.'Skill.php';
 
+class Profile {
 	public static function getAllFeedRelated() {
 		$db = new DBConn();
 		$user_id = Auth::id();
 
 		return $db->query("
 			SELECT 
-				u.name, u.id, u.born_in_city, u.born_in_state, u.live_in_city, u.live_in_state,
+				u.name, u.login, u.id, u.born_in_city, u.born_in_state, u.live_in_city, u.live_in_state,
 				uj.title job_title, 
 				ue.title education_title
 			FROM user u
 			LEFT JOIN user_job uj ON u.id = uj.id_user AND uj.selected = 1
 			LEFT JOIN user_education ue ON u.id = ue.id_user AND ue.selected = 1
-			WHERE u.active = 1 AND u.id <> {$user_id}
+			WHERE u.active = 1 AND u.id <> {$user_id} AND u.id NOT IN (
+				SELECT f.id_following 
+				FROM follow f
+				WHERE f.id_follower = {$user_id} AND f.active = 1
+			)
 			ORDER BY name
 			LIMIT 3
 		", true);
@@ -34,13 +30,17 @@ class Profile {
 
 		return $db->query("
 			SELECT 
-				u.name, u.id, u.born_in_city, u.born_in_state, u.live_in_city, u.live_in_state,
+				u.name, u.login, u.id, u.born_in_city, u.born_in_state, u.live_in_city, u.live_in_state,
 				uj.title job_title, 
 				ue.title education_title
 			FROM user u
 			LEFT JOIN user_job uj ON u.id = uj.id_user AND uj.selected = 1
 			LEFT JOIN user_education ue ON u.id = ue.id_user AND ue.selected = 1
-			WHERE u.active = 1 AND u.id <> {$user_id} AND u.login <> '{$login}'
+			WHERE u.active = 1 AND u.id <> {$user_id} AND u.login <> '{$login}' AND u.id NOT IN (
+				SELECT f.id_following 
+				FROM follow f
+				WHERE f.id_follower = {$user_id} AND f.active = 1
+			)
 			ORDER BY name
 			LIMIT 10
 		", true);
@@ -87,6 +87,22 @@ class Profile {
 			ORDER BY level DESC, title
 		", true);
 
+		// Format data
+		$data = explode(" ", $user->datetime_joined);
+		$data = explode("-", $data[0]);
+		$user->date_joined = Data::getMonth($data[1])." de ".$data[0];
+
+		if($user->live_in_city != "" && $user->live_in_state != "") {
+			$user->live_in_string = $user->live_in_city.", ".$user->live_in_state;
+		}
+
+		if($skills !== NULL) {
+			foreach ($skills as $skill) {
+				$skill->level_string = Skill::getString($skill->level);
+			}			
+		}
+
+		// Return all
 		return array(
 			"user" => $user,
 			"jobs" => $jobs,
