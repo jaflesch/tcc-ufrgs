@@ -13,7 +13,7 @@
 			</div>
 			<div class="user-information">
 				<h3 class="user-title"><a href="{{ path.root }}/feed/usuario/{{ post.author_login }}" title="Ver perfil de {{ post.author }}">{{ post.author }}</a></h3>
-				{% if post.user_job_title is empty and post.user_education_title is empty %}
+				{% if post.user_job_title is not empty or post.user_education_title is not empty %}
 				<h4 class="user-subtitle">
 					{% if post.user_job_title is not empty %} 
 						{{ post.user_job_title }}
