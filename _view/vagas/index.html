@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 
-{% set page_title = 'Vagas' %}
+{% set page_title = route[1] == 'favoritos' ? 'Minhas vagas favoritas' : 'Vagas' %}
 
 {% block main %}
 	<section id="jobs">

@@ -1,6 +1,6 @@
 <section id="job-filter">
 	<div class="header">
-		<h1> Vagas <span id="title-filter"></span></h1>
+		<h1> {{ route[1] == 'favoritos' ? 'Minhas vagas favoritas' : 'Vagas' }} <span id="title-filter"></span></h1>
 		<button class="show-filter">Expandir filtro</button>
 	</div>
 
