@@ -85,7 +85,11 @@
 	<hr class="custom-line">
 
 	<div class="order-limit">
-		<p>Exibindo 3 de 5 vagas encontradas</p>
+		{% if jobs|length > 0 %}
+			<p>Exibindo {{ jobs|length > 9 ? '9' : jobs|length }} de {{ jobs|length }} vagas encontradas.</p>
+		{% else %}
+			<p>Nenhuma vaga encontrada</p>
+		{% endif %}
 		<select name="order_criteria" class="form-data">
 			<option>Melhores avaliados</option>
 			<option>Mais relevantes</option>

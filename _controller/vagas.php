@@ -11,6 +11,13 @@ class Vagas extends Controller {
 		$this->render("vagas/index", $bag);
 	}
 
+	public function favoritos() {
+		$bag['jobs'] = Job::getAllFavorites();
+		$bag['related_profiles'] = Profile::getAllFeedRelated();
+		
+		$this->render("vagas/index", $bag);
+	}
+
 	public function sobre() {
 		$id = (int)$this->route[PARAM_INDEX];
 

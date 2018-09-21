@@ -23,12 +23,31 @@ class Job {
 				f.active = 1 AND
 				f.id_user = {$id_user}
 			WHERE j.active = 1
-			ORDER BY j.date_start, title
+			ORDER BY j.date_start, f.datetime DESC, title
 		", true);
 
 		$result = self::formatData($result);
 
 		return $result;
+	}
+
+	public static function getAllFavorites() {
+		$db = new DBConn();
+		$id_user = Auth::id();
+
+		$result = $db->query("
+			SELECT j.*, f.id favorite_id 
+			FROM job j
+			INNER JOIN 
+				favorite f ON j.id = f.id_object AND
+				f.type = 1 AND
+				f.active = 1 AND
+				f.id_user = {$id_user}
+			WHERE j.active = 1
+			ORDER BY j.date_start, f.datetime DESC, title
+		", true);
+
+		return $result !== NULL ? self::formatData($result) : NULL;
 	}
 
 	public static function getById($id) {
