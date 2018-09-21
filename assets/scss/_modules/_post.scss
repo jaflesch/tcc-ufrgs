@@ -27,8 +27,9 @@
 			size: 14px;
 			weight: bold;
 		}
-		color: #000;
 		margin: 0 0 5px;
+		
+		a { color: #000 !important; }
 	}
 	.user-subtitle {
 		font-size: 13px;

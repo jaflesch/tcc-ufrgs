@@ -16,6 +16,22 @@ class Follow {
 		);
 	}
 
+	public static function getAllFollowing($id_follower) {
+		$db = new DBConn();
+
+		$data = $db->query("
+			SELECT u.id, u.name, u.login, f.datetime_created
+			FROM follow f 
+			INNER JOIN user u ON u.id = f.id_following AND f.active = 1
+			WHERE f.id_follower = {$id_follower} AND u.active = 1
+		", true);
+
+		return array(
+			"data" => $data,
+			"total" => $db->rows()
+		);
+	}
+
 	public static function save($following_user_id) {
 		$db = new DBConn();
 		$follower_user_id = Auth::id();

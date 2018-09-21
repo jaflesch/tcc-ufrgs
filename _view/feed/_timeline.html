@@ -5,39 +5,52 @@
 		<br>
 		<a href="{{ path.root }}/login/leave">Logout</a>
 	</article>
+	{% for post in posts %}
 	<article class="post">
 		<div class="post-header">
 			<div class="avatar">
 				<img src="">
 			</div>
 			<div class="user-information">
-				<h3 class="user-title">Nome do usuário</h3>
-				<h4 class="user-subtitle">Escolaridade ou local de trabalho</h4>
-				<span class="post-time">9h</span>
-				<span class="fa fa-globe post-privacy"></span>
+				<h3 class="user-title"><a href="{{ path.root }}/feed/usuario/{{ post.author_login }}" title="Ver perfil de {{ post.author }}">{{ post.author }}</a></h3>
+				{% if post.user_job_title is empty and post.user_education_title is empty %}
+				<h4 class="user-subtitle">
+					{% if post.user_job_title is not empty %} 
+						{{ post.user_job_title }}
+					{% else %}
+						{{ post.user_education_title }}
+					{% endif %}
+				</h4>
+				{% endif %}
+				<span class="post-time">{{ post.date_diff }}</span>
+				<span class="fa post-privacy {{ post.privacy == 1 ? 'fa-lock' : 'fa-globe' }}"></span>
 			</div>
 			<div class="post-more-options">
 				<img src="{{ path.img }}/icons/ellipsis.png">
 			</div>
 		</div>
 		<div class="post-body">
-			<p>Exemplo de post</p>
-			<p>Com conteúdo</p>
+			{{ post.text|raw }}
 		</div>
 		<div class="post-footer">
 			<div class="current-status">
-				<span class="likes-count">7 curtidas</span>
+				{% if post.likes > 0 %}
+				<span class="likes-count">{{ post.likes }} curtida{{ post.likes > 1 ? 's' : '' }}</span>
 				<span class="separator">•</span>
+				{% endif %}
 				<span class="comments-count">2 comentários</span>
 			</div>
 			<div class="post-options">
 				<div class="likes">
 					<span class="fa fa-thumbs-up"></span> Curtir
 				</div>
+				{% if post.allow_comments %}
 				<div class="comments">
 					<span class="fa fa-comments comments"></span> Comentar
 				</div>
+				{% endif %}
 			</div>
 		</div>
 	</article>
+	{% endfor %}
 </section>

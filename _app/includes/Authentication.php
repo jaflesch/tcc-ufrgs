@@ -12,7 +12,7 @@ class Auth {
 	
 	public static function id() {
 		@session_start();
-		return $_SESSION[SESSION_NAME]['user']->getId();
+		return isset($_SESSION[SESSION_NAME]['user']) ? $_SESSION[SESSION_NAME]['user']->getId() : NULL;
 	}
 
 	public static function user() {
