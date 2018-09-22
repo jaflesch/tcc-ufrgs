@@ -11,32 +11,44 @@
 			<button role="button" class="btn-options">Bloquear perfil</button>
 			{% endif %}
 		</div>		
-		<div class="avatar-box">
-			{% if profile.user.avatar is empty %}
-				{% if profile.user.gender == 0 %}
-					{% set avatar = 'default-male-profile-avatar.png' %}
+		<div class="top-content">
+			<div class="avatar-box">
+				{% if profile.user.avatar is empty %}
+					{% if profile.user.gender == 0 %}
+						{% set avatar = 'default-male-profile-avatar.png' %}
+					{% else %}
+						{% set avatar = 'default-female-profile-avatar.png' %}
+					{% endif %}
+					<img src="{{ path.img }}/profile/{{ avatar }}" alt="Foto de {{ profile.user.name }}" title="Foto de {{ profile.user.name }}" class="default-avatar">
 				{% else %}
-					{% set avatar = 'default-female-profile-avatar.png' %}
+				<img src="{{ path.root }}/public/user/{{ profile.user.id }}/{{ profile.user.avatar }}" alt="Foto de {{ profile.user.name }}" title="Foto de {{ profile.user.name }}" class="img-responsive">
 				{% endif %}
-				<img src="{{ path.img }}/profile/{{ avatar }}" alt="Foto de {{ profile.user.name }}" title="Foto de {{ profile.user.name }}" class="default-avatar">
-			{% else %}
-			<img src="{{ path.root }}/public/user/{{ profile.user.id }}/{{ profile.user.avatar }}" alt="Foto de {{ profile.user.name }}" title="Foto de {{ profile.user.name }}" class="img-responsive">
-			{% endif %}
+			</div>
+			
+			<div class="name-box">
+				<h1>{{ profile.user.name }}</h1>
+				<h2>
+					{% if profile.jobs is not empty %}
+						emprego
+						{{ profile.user.getJobTitle() }}
+					{% elseif user.getEducationTitle() %}
+						educação
+						{{ profile.user.getEducationTitle() }}
+					{% else %}
+						local
+						{{ profile.user.getLocation().live_in_string }}
+					{% endif %}
+				</h2>
+			</div>
+			<div class="more-options-box">
+				<button data-toggle="dropdown" class="dropdown-toggle">
+					<span class="fa fa-ellipsis-v" ></span>
+				</button>
+				<ul class="dropdown-menu">
+					<li><a href="#">Bloquear usuário</a></li>
+				</ul>
+			</div>
 		</div>
-		
-		<h1>{{ profile.user.name }}</h1>
-		<h2>
-			{% if profile.jobs is not empty %}
-				emprego
-				{{ profile.user.getJobTitle() }}
-			{% elseif user.getEducationTitle() %}
-				educação
-				{{ profile.user.getEducationTitle() }}
-			{% else %}
-				local
-				{{ profile.user.getLocation().live_in_string }}
-			{% endif %}
-		</h2>
 		<hr>
 		<div class="resume-grid">
 			<div class="about-box">

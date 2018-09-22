@@ -52,20 +52,50 @@
 		}
 	}
 
+	.top-content { display: flex; }
+
+	.name-box {
+		padding-left: 170px;
+		flex-grow: 10;
+	}
 	h1 {
 		font: {
 			size: 24px;
 			weight: bold;
 		}
 		color: #000 !important;
-		padding-left: 170px; 
 		margin: 0;
 	}
 	h2 {
 		font-size: 16px;
 		color: #777;
 		margin: 10px 0 25px;
-		padding-left: 170px;
+	}
+
+	.more-options-box {
+		position: relative;
+		align-self: flex-start;
+
+		button {
+			$size: 28px;
+			@include disp-ib();
+			@include elipse();
+			@include size($size, $size);
+			@include colors(#fff, #555);
+			font-size: 14px;
+			line-height: $size;
+			text-align: center;
+			cursor: pointer;
+			border: 0;
+
+			&:hover, &:focus, &:active { @include colors(#ddd, #333); }
+			&:focus { 
+				outline: none;
+				box-shadow: none; 
+			}
+		}
+
+		.dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover { @include colors($secondary-color, #fff); }
 	}
 
 	.avatar-box {
