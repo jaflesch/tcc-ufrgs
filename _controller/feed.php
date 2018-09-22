@@ -1,6 +1,7 @@
 <?php
 require MODEL_PATH.'Profile.php';
 require MODEL_PATH.'Follow.php';
+require MODEL_PATH.'Block.php';
 
 class Feed extends Controller {
 	public function usuario() {
@@ -25,6 +26,19 @@ class Feed extends Controller {
 	public function deixar_seguir() {
 		$response = new stdclass();
 		$response->result = Follow::delete($this->post->id);
+		die(json_encode($response));
+	}
+
+	// AJAX Calls
+	public function bloquear() {
+		$response = new stdclass();
+		$response->result = Block::add($this->post->id);
+		die(json_encode($response));
+	}
+
+	public function desbloquear() {
+		$response = new stdclass();
+		$response->result = Block::remove($this->post->id);
 		die(json_encode($response));
 	}
 }

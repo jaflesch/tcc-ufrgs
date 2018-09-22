@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	// Follow system
 	$('.follow-user').click(function() {
 		var id = $(this).data("user");
 		var follow = false;
@@ -35,4 +36,24 @@ $(document).ready(function() {
 			data: { id: id }
 		});
 	})
+
+	// Block system
+	$('.more-options-box .dropdown-menu li a').click(function(e) {
+		e.preventDefault();
+		var el = $(this);
+		var id = el.data("user");
+		var block = el.text() == "Bloquear" ? true : false;
+
+		$.ajax({
+			url: block ? '../../feed/bloquear' : '../../feed/desbloquear',
+			method: 'POST',
+			dataType: 'json',
+			data: { id: id },
+			success: function(json) {
+				if(json.result) {
+					block ? el.text("Desbloquear") : el.text("Bloquear");
+				}
+			}
+		});
+	});
 });

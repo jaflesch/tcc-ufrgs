@@ -93,6 +93,11 @@ class Profile {
 			FROM follow 
 			WHERE id_follower = {$my_id} AND id_following = {$user->id} AND active = 1
 		");
+		$block = $db->query("
+			SELECT id 
+			FROM block 
+			WHERE id_blocker = {$my_id} AND id_blocked = {$user->id} AND active = 1
+		");
 
 		// Format data
 		$data = explode(" ", $user->datetime_joined);
@@ -116,7 +121,8 @@ class Profile {
 			"educations" => $educations,
 			"skills" => $skills,
 			"languages" => $langs,
-			"follow" => $follow !== NULL ? true : false
+			"follow" => $follow !== NULL ? true : false,
+			"block" => $block !== NULL ? true : false
 		);
 	}
 }
