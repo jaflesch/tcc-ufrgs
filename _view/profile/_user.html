@@ -2,11 +2,13 @@
 	<section id="basic-info">
 		<div class="banner">
 			{% if user.getId() == profile.user.id %}
-			<a href="#" class="btn-edit">Editar perfil</a>
+			<button role="button" class="btn-edit">Editar perfil</button>
+			{% else %}
+			<button role="button" class="btn-edit follow-user" data-user="{{ profile.user.id }}">{{ profile.follow ? 'Seguindo' : 'Seguir' }}</button>
 			{% endif %}
 			
 			{% if user.is('adm') and user.getId() != profile.user.id%}
-			<a href="#" class="btn-options">Bloquear perfil</a>
+			<button role="button" class="btn-options">Bloquear perfil</button>
 			{% endif %}
 		</div>		
 		<div class="avatar-box">
@@ -66,11 +68,11 @@
 				<h3>
 					<span class="fa fa-fw fa-rss"></span>
 					{% if followers.total == 0 %}
-						Nenhum seguidor ainda. <a href="#">Seja o primeiro</a>
+						<span class="follower-qty"></span> <span class="follower-text">Nenhum seguidor ainda<span class="follower-text">
 					{% elseif followers.total == 1 %}
-						1 seguidor
+						<span class="follower-qty">1</span> <span class="follower-text">seguidor</span>
 					{% else %}
-						{{ followers.total }} seguidores
+						<span class="follower-qty">{{ followers.total }}</span> <span class="follower-text">seguidores</span>
 					{% endif %}
 				</h3>
 				<h3>

@@ -87,6 +87,13 @@ class Profile {
 			ORDER BY level DESC, title
 		", true);
 
+		$my_id = Auth::id();
+		$follow = $db->query("
+			SELECT id 
+			FROM follow 
+			WHERE id_follower = {$my_id} AND id_following = {$user->id} AND active = 1
+		");
+
 		// Format data
 		$data = explode(" ", $user->datetime_joined);
 		$data = explode("-", $data[0]);
@@ -108,7 +115,8 @@ class Profile {
 			"jobs" => $jobs,
 			"educations" => $educations,
 			"skills" => $skills,
-			"languages" => $langs
+			"languages" => $langs,
+			"follow" => $follow !== NULL ? true : false
 		);
 	}
 }

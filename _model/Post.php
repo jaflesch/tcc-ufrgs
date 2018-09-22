@@ -11,7 +11,7 @@ class Post {
 		$followers = implode(",", $id_list);
 		
 		$posts = $db->query("
-			SELECT p.*, u.name author, uj.title user_job_title, ue.title user_education_title, COUNT(pl.id) likes
+			SELECT p.*, u.name author, u.login author_login, uj.title user_job_title, ue.title user_education_title, COUNT(pl.id) likes
 			FROM post p 
 			INNER JOIN user u ON u.id = p.id_author
 			LEFT JOIN user_job uj ON uj.id_user = u.id AND uj.selected = 1
