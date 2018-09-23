@@ -61,6 +61,24 @@ class Post {
 			}
 
 			$p->date_diff = $date_diff;
+			
+			$p->likes_list = $db->query("
+				SELECT u.name, u.login, u.id
+				FROM user u
+				LEFT JOIN post_like pl ON pl.id_user = u.id
+				WHERE pl.id_post = {$p->id} AND pl.active = 1
+				ORDER BY pl.datetime DESC
+			", true);
+			
+			$p->i_liked = false;
+			if(is_array($p->likes_list)) {
+				foreach ($p->likes_list as $l) {
+					if($l->id == Auth::id()) {
+						$p->i_liked = true;
+						break;
+					}
+				}				
+			}
 		}
 		
 		return $posts;

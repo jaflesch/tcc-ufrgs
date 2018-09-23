@@ -26,7 +26,12 @@
 			</div>
 			
 			<div class="name-box">
-				<h1>{{ profile.user.name }}</h1>
+				<h1>
+					{{ profile.user.name }}
+					{% if profile.block %}
+					<span style="font-size: 18px;margin-left:5px" class="fa fa-lock" title="Usuário bloqueado"></span>
+					{% endif %}
+				</h1>
 				<h2>
 					{% if profile.jobs is not empty %}
 						emprego

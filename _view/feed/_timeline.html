@@ -35,7 +35,7 @@
 		<div class="post-footer">
 			<div class="current-status">
 				{% if post.likes > 0 %}
-				<span class="likes-count">{{ post.likes }} curtida{{ post.likes > 1 ? 's' : '' }}</span>
+				<span class="likes-count {{ post.i_liked ? 'user-liked' : '' }}">{{ post.likes }} curtida{{ post.likes > 1 ? 's' : '' }}</span>
 				<span class="separator">•</span>
 				{% endif %}
 				<span class="comments-count">2 comentários</span>
