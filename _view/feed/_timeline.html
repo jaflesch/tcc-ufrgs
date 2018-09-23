@@ -6,7 +6,7 @@
 		<a href="{{ path.root }}/login/leave">Logout</a>
 	</article>
 	{% for post in posts %}
-	<article class="post">
+	<article class="post" data-post="{{ post.id }}">
 		<div class="post-header">
 			<div class="avatar">
 				<img src="">
@@ -34,15 +34,15 @@
 		</div>
 		<div class="post-footer">
 			<div class="current-status">
-				{% if post.likes > 0 %}
-				<span class="likes-count {{ post.i_liked ? 'user-liked' : '' }}">{{ post.likes }} curtida{{ post.likes > 1 ? 's' : '' }}</span>
+				<span class="likes-count" style="display:{{ post.likes > 0 ? '' : 'none' }};">
+					<span class="count">{{ post.likes }}</span> <span class="text">curtida{{ post.likes > 1 ? 's' : '' }}</span>
+				</span>
 				<span class="separator">•</span>
-				{% endif %}
 				<span class="comments-count">2 comentários</span>
 			</div>
 			<div class="post-options">
-				<div class="likes">
-					<span class="fa fa-thumbs-up"></span> Curtir
+				<div class="likes {{ post.i_liked ? 'user-liked' : '' }}">
+					<span class="fa fa-thumbs-up"></span> <span class="like-text">{{ post.i_liked ? 'Curtido por você' : 'Curtir' }}</span>
 				</div>
 				{% if post.allow_comments %}
 				<div class="comments">

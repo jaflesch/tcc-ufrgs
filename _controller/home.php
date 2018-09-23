@@ -13,4 +13,17 @@ class Home extends Controller {
 
 		$this->render("feed/index", $bag);
 	}
+
+	// AJAX Calls
+	public function like() {
+		$response = new stdclass();
+		$response->result = Post::like($this->post->id);
+		die(json_encode($response));
+	}
+
+	public function unlike() {
+		$response = new stdclass();
+		$response->result = Post::unlike($this->post->id);
+		die(json_encode($response));
+	}
 }

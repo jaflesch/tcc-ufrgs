@@ -83,4 +83,34 @@ class Post {
 		
 		return $posts;
 	}
+
+	public static function like($id_post) {
+		$db = new DBConn();
+		$id_user_liked = Auth::id();
+
+		// Check if it's already following
+		$result = $db->query("
+			SELECT id 
+			FROM post_like 
+			WHERE id_user = {$id_user_liked} AND  id_post = {$id_post} AND active = 1
+		");
+
+		if($result == NULL) {
+			return $db->insert("
+				INSERT INTO post_like (id_user, id_post) 
+				VALUES ({$id_user_liked}, {$id_post})
+			");			
+		}
+	}
+
+	public static function unlike($id_post) {
+		$db = new DBConn();
+		$id_user_liked = Auth::id();
+
+		return $db->update("
+			UPDATE post_like 
+			SET active = 0 
+			WHERE id_user = {$id_user_liked} AND  id_post = {$id_post} AND active = 1
+		");
+	}
 }

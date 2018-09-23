@@ -9,6 +9,19 @@
 		margin-bottom: 10px;
 	}
 
+	.likes-count{
+		&:hover, &:focus { 
+			text-decoration: underline; 
+			cursor: pointer;
+		}
+	}
+	.post-options .likes {
+		&:hover, &:focus { 
+			text-decoration: underline; 
+			cursor: pointer;
+		}
+	}
+
 	.user-liked {
 		color: $primary-color;
 		font-weight: bold;
