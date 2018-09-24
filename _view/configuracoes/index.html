@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+
+{% set page_title = 'Configurações da conta' %}
+
+{% block main %}
+	<section id="configuracoes">
+		<div class="container">
+			{% include 'configuracoes/_list.html' %}
+			{% include 'configuracoes/_settings-geral.html' %}
+		</div>
+	</section>
+{% endblock %}
+
+{% block styles %}
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="{{ path.js }}/base/follow-user.js"></script>
+<script type="text/javascript" src="{{ path.js }}/base/timeline.js"></script>
+{% endblock %}

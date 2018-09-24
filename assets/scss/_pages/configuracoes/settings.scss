@@ -1,0 +1,41 @@
+#settings-box {
+	@include border-radius(2px);
+	background: #fff;
+	padding: 20px;
+	flex-grow: 100;
+
+	h1 {
+		font: {
+			size: 24px;
+			weight: bold;
+		}
+		color: #000;
+		margin: 0;
+	}
+	h2 {
+		font-size: 14px;
+		color: #777;
+		margin: 0;
+	}
+	hr { 
+		margin: 20px 0 40px; 
+		border-top: 1px solid #ededed; 
+	}
+	form {
+		max-width: 400px;
+	}
+
+	.submit {
+		@include border-radius(2px);
+		@include colors($primary-color, #fff);
+		@include transition();
+		padding: 8px 20px;
+		margin-top: 20px;
+		border: 1px solid $primary-color;
+
+		&:hover, &:focus, &:active {
+			@include colors($secondary-color, #fff);
+			border-color: $secondary-color;
+		}
+	}
+}

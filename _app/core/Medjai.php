@@ -117,7 +117,7 @@ abstract class Medjai {
 			$vars['app'] = array(
 				"get"		=> $this->get,
 				"post"		=> $this->post,
-				"action" 	=> $this->controller,
+				"action" 	=> $this->action,
 				"cms_path" 	=> $this->controller,
 				"base_path" => $this->base_path,
 				"url" 		=> $this->url,

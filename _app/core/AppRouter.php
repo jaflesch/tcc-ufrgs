@@ -73,7 +73,7 @@ class AppRouter {
 		$app->request_uri = $this->request_uri;
 		$app->route = $this->route;
 		$app->path = $this->path;
-
+		
 		return $app;
 	}
 

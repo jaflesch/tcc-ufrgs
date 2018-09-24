@@ -1,0 +1,43 @@
+#settings-list-widget {
+	background: #fff;
+	padding: 20px;
+	margin-right: 20px;
+	width: 300px;
+
+	.suggest-box {
+		@include border-radius(2px);
+		background: #fff;
+		padding: 20px;
+		margin-bottom: 10px;
+	}
+	
+	ul {
+		list-style: none;
+	}
+
+	li {
+		@include border-radius(2px);
+
+		> a {
+			display: block;
+			padding: 5px;
+			text-decoration: none !important;
+			color: #555;
+
+			&:hover, &:focus {
+				@include colors(#f4f4f4, #000);
+			}
+		}
+
+		&.active > a {
+			font-weight: bold;
+			text-decoration: underline !important;
+			color: $primary-color !important;
+			background: #fff !important;
+		}
+
+		&:last-child { margin-bottom: 0; }
+	}
+
+	.icon { margin-right: 7px; }
+}
