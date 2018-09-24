@@ -1,5 +1,6 @@
 <?php
 class Job {
+	// Types
 	const MONITORIA = 0;
 	const BOLSA_ADS = 1;
 	const BOLSA_IC = 2;
@@ -7,8 +8,15 @@ class Job {
 	const TRAINEE = 4;
 	const EFETIVO = 5;
 	const VOLUNTARIO = 6;
+
+	// Modalities
 	const PRESENCIAL = 0;
 	const DISTANCIA = 1;
+
+	// Shifts
+	const MANHA = 1;
+	const TARDE = 2;
+	const NOITE = 3;
 	
 	public static function getAll() {
 		$db = new DBConn();
@@ -27,8 +35,12 @@ class Job {
 		", true);
 
 		$result = self::formatData($result);
+		$filter = self::getFilters($result);
 
-		return $result;
+		return array(
+			"jobs" => $result,
+			"filters" => $filter
+		);
 	}
 
 	public static function getAllFavorites() {
@@ -111,6 +123,63 @@ class Job {
 		return $mixed;
 	}
 
+	private static function getFilters($jobs) {
+		$prae = array();
+		$salary = array();
+		$workload = array();
+		$shift = array();
+
+		foreach ($jobs as $job) {
+			$type[] = $job->type;
+			$salary[] = $job->salary;
+			$workload[] = $job->workload;
+			$shift[] = $job->shift;
+
+			$list = explode(",", $job->category_list);
+			foreach ($list as $l) {
+				$category[] = $l;
+			}
+		}
+		
+		// Categories found array
+		$category_list = implode(",", array_unique($category));
+		$db = new DBConn();
+		$category = $db->query("SELECT id, title FROM job_category WHERE id IN ({$category_list}) AND active = 1", true);
+
+		// Job types found array
+		$type = array_unique($type);
+		foreach ($type as $t) {
+			$unique_type[] = array(
+				"value" => $t,
+				"label" => self::getType($t)
+			);
+		}
+		// Job shifts found array
+		sort($shift);
+		$shift = array_unique($shift);
+		foreach ($shift as $s) {
+			$unique_shift[] = array(
+				"value" => $s,
+				"label" => self::getShift($s)
+			);
+		}
+		// Min / max salaries found
+		$salary_min = min($salary).",00";
+		$salary_max = max($salary).",00";
+
+		$workload = array_unique($workload);
+
+		return array(
+			"type" => $unique_type,
+			"salary_min" => $salary_min,
+			"salary_max" => $salary_max,
+			"workload" => $workload,
+			"category" => $category,
+			"shift" => $unique_shift,
+		);
+		// debug($salary);
+	}
+
 	private static function setSlug($string) {
 		return linkfy(strtolower(trim($string)));
 	}
@@ -119,6 +188,15 @@ class Job {
 		switch ($int) {
 			case self::PRESENCIAL: 	return "Presencial";
 			case self::DISTANCIA: 	return "À distância";
+			default: return "Indefinido";
+		}
+	}
+
+	private static function getShift($int) {
+		switch ($int) {
+			case self::MANHA: 	return "Manhã";
+			case self::TARDE: 	return "Tarde";
+			case self::NOITE: 	return "Noite";
 			default: return "Indefinido";
 		}
 	}

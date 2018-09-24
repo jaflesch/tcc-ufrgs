@@ -1,86 +1,112 @@
 <section id="job-filter">
 	<div class="header">
 		<h1> {{ route[1] == 'favoritos' ? 'Minhas vagas favoritas' : 'Vagas' }} <span id="title-filter"></span></h1>
-		<button class="show-filter">Expandir filtro</button>
+		<button class="show-filter">Expandir filtros</button>
 	</div>
 
 	<div class="filter-box" style="display:none;">
-		<div class="form-box">
-			<input type="text" class="form-data" name="title" placeholder="Palava ou texto no título e descrição">
-			<input type="text" class="form-data" name="location" placeholder="Localidade"><br/>
-		</div>
+		<form action="" method="GET">
+			<div class="form-box">
+				<input type="text" class="form-data" name="title" placeholder="Palava ou texto no título e descrição">
+				<input type="text" class="form-data" name="location" placeholder="Localidade"><br/>
+			</div>
 
-		<h2>Tipo de vaga</h2>
-		<input type="checkbox" name="type" value="0">Voluntária<br/>
-		<input type="checkbox" name="type" value="0">Monitoria<br/>
-		<input type="checkbox" name="type" value="0">Administrativa<br/>
-		<input type="checkbox" name="type" value="0">Iniciação científica<br/>
-		<input type="checkbox" name="type" value="0">Estágio<br/>
-		<input type="checkbox" name="type" value="0">Trainee<br/>
-		<input type="checkbox" name="type" value="0">Efetivo<br/>
+			<div class="form-box">
+				<div style="width: 50%; margin-right: 15px;">
+					<h2>Tipo de vaga</h2>
+					{% for type in filters.type %}
+						<input type="checkbox" name="modality" value="{{ type.value }}">{{ type.label }}<br/>
+					{% endfor %}
+					<!-- <input type="checkbox" name="type" value="0">Monitoria<br/>
+					<input type="checkbox" name="type" value="0">Administrativa<br/>
+					<input type="checkbox" name="type" value="0">Iniciação científica<br/>
+					<input type="checkbox" name="type" value="0">Estágio<br/>
+					<input type="checkbox" name="type" value="0">Trainee<br/>
+					<input type="checkbox" name="type" value="0">Efetivo<br/> -->
 
-		<h2>Benefício PRAE</h2>
-		<input type="radio" name="is_prae" value="-1">Todas <br/>
-		<input type="radio" name="is_prae" value="0">Sem benefício PRAE <br/>
-		<input type="radio" name="is_prae" value="1">Com benefício PRAE <br/>
+					<h2>Área de atuação</h2>
+					{% for category in filters.category %}
+						<input type="checkbox" name="category" value="{{ category.id }}">{{ category.title }}<br/>
+					{% endfor %}
+					<!-- <input type="checkbox" name="category" value="0">Artes<br/>
+					<input type="checkbox" name="category" value="0">Gestão<br/>
+					<input type="checkbox" name="category" value="0">Tecnologia<br/>
+					<input type="checkbox" name="category" value="0">Exatas<br/>
+					<input type="checkbox" name="category" value="0">Saúde<br/>
+					<input type="checkbox" name="category" value="0">Humanas<br/> -->
+					
+					<h2>Carga Horária</h2>
+					{% for workload in filters.workload %}
+						<input type="checkbox" name="workload" value="{{ workload }}">Até {{ workload }}h<br/>
+					{% endfor %}
+					<!-- <input type="checkbox" name="schedule" value="0">Até 20h<br/>
+					<input type="checkbox" name="schedule" value="0">Até 30h<br/>
+					<input type="checkbox" name="type" value="0">Até 40h<br/>
+					<input type="checkbox" name="type" value="0">À combinar<br/> -->
+					
+					<h2>Modalidade</h2>
+					<input type="radio" name="type" value="0">À distância<br/>
+					<input type="radio" name="type" value="0">Presencial<br/>
+				</div>
+				<div>
+					<h2>Turnos</h2>
+					{% for shift in filters.shift %}
+						<input type="checkbox" name="shift" value="{{ shift.value }}">{{ shift.label }}<br/>
+					{% endfor %}
+					
+					<h2>Currículo</h2>
+					<input type="radio" name="need_cv" value="-1">Todos<br/>
+					<input type="radio" name="need_cv" value="0">Não exige<br/>
+					<input type="radio" name="need_cv" value="1">Exige<br/>
 
-		<h2>Área de atuação</h2>
-		<input type="checkbox" name="category" value="0">Artes<br/>
-		<input type="checkbox" name="category" value="0">Gestão<br/>
-		<input type="checkbox" name="category" value="0">Tecnologia<br/>
-		<input type="checkbox" name="category" value="0">Exatas<br/>
-		<input type="checkbox" name="category" value="0">Saúde<br/>
-		<input type="checkbox" name="category" value="0">Humanas<br/>
+					<h2>Histórico Escolar</h2>
+					<input type="radio" name="need_historic" value="-1">Todos<br/>
+					<input type="radio" name="need_historic" value="0">Não exige<br/>
+					<input type="radio" name="need_historic" value="1">Exige<br/>
 
-		<h2>Carga Horária</h2>
-		<input type="radio" name="schedule" value="0">Todas<br/>
-		<input type="radio" name="schedule" value="0">Até 20h<br/>
-		<input type="radio" name="schedule" value="0">Até 30h<br/>
-		<input type="radio" name="type" value="0">Até 40h<br/>
-		<input type="radio" name="type" value="0">À combinar<br/>
+					<h2>Benefício PRAE</h2>
+					<input type="radio" name="is_prae" value="-1">Todas <br/>
+					<input type="radio" name="is_prae" value="0">Sem benefício PRAE <br/>
+					<input type="radio" name="is_prae" value="1">Com benefício PRAE <br/>
+				</div>
+			</div>
+			
+			<h2>Requisitos</h2>
+			<div class="requisit-field form-data" contenteditable="true"></div>
 
-		<h2>Modalidade</h2>
-		<input type="radio" name="type" value="0">À distância<br/>
-		<input type="radio" name="type" value="0">Presencial<br/>
-
-		<h2>Turnos</h2>
-		<input type="checkbox" name="turn" value="0">Manhã<br/>
-		<input type="checkbox" name="turn" value="0">Tarde<br/>
-		<input type="checkbox" name="turn" value="0">Noite<br/>
-
-		<h2>Currículo</h2>
-		<input type="radio" name="type" value="0">Não exige<br/>
-		<input type="radio" name="type" value="0">Exige<br/>
-
-		<h2>Histórico Escolar</h2>
-		<input type="radio" name="type" value="0">Não exige<br/>
-		<input type="radio" name="type" value="0">Exige<br/>
-
-		<h2>Requisitos</h2>
-		<div class="requisit-field form-data" contenteditable="true"></div>
-
-		<h2>Remuneração</h2>
-		<div class="form-box">
-			<input type="text"  class="form-data" name="turn" placeholder="De R$">
-			<input type="text"  class="form-data" name="turn" placeholder="Até R$">
-		</div>
+			<h2>Remuneração</h2>
+			<div class="form-box">
+				<input type="text" class="form-data" name="salary_from" placeholder="De R$" value="{{ filters.salary_min }}">
+				<input type="text" class="form-data" name="salary_to" placeholder="Até R$" value="{{ filters.salary_max }}">
+			</div>
+		</form>
 		<hr>
-		<button class="hide-filter">Esconder filtros</button>
+		<div class="row">
+			<div class="col-xs-6">
+				<button type="submit">Pesquisar</button>
+			</div>
+			<div class="col-xs-6 text-right">
+				<button class="hide-filter">Esconder filtros</button>
+			</div>
+		</div>
 	</div>
 
 	<div class="filter-list">
-		<span class="item">
-			<span class="title">Área</span>
-			<span class="value">Tecnologia</span>
-			<span class="remove-item">&times;</span>
+		<span class="list">
+			<span class="item">
+				<span class="title">Área</span>
+				<span class="value">Tecnologia</span>
+				<span class="remove-item">&times;</span>
+			</span>
+			<span class="item">
+				<span class="title">Modalidade</span>
+				<span class="value">Presencial</span>
+				<span class="remove-item">&times;</span>
+			</span>
 		</span>
-		<span class="item">
-			<span class="title">Modalidade</span>
-			<span class="value">Presencial</span>
-			<span class="remove-item">&times;</span>
+		<span>
+			<button class="clear-search">Limpar todos</button>
 		</span>
-
-		<button>Limpar todos</button>
 	</div>
 	<hr class="custom-line">
 

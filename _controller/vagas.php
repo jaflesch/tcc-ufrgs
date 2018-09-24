@@ -5,7 +5,9 @@ require MODEL_PATH.'Favorite.php';
 
 class Vagas extends Controller {
 	public function index() {
-		$bag['jobs'] = Job::getAll();
+		$fetch = Job::getAll();
+		$bag['jobs'] = $fetch['jobs'];
+		$bag['filters'] = $fetch['filters'];
 		$bag['related_profiles'] = Profile::getAllFeedRelated();
 		
 		$this->render("vagas/index", $bag);

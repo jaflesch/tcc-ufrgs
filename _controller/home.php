@@ -6,7 +6,7 @@ require MODEL_PATH.'Post.php';
 
 class Home extends Controller {
 	public function index() {
-		$bag['jobs'] = Job::getAllFeedRelated();
+		$bag['jobs'] = Job::getAllFeedRelated()['jobs'];
 		$bag['profiles'] = Profile::getAllFeedRelated();
 		$bag['followers'] = Follow::getAllFollowers(Auth::id());
 		$bag['posts'] = Post::getAllFeed(Auth::id());

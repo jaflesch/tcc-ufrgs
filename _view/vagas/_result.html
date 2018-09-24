@@ -2,7 +2,12 @@
 	<div class="row">
 		{% if jobs is not empty %}
 			{% for job in jobs %}
-			<article data-job="{{ job.id }}">
+			<article 
+				data-job = "{{ job.id }}"
+				data-job-title = "{{ job.title }}"
+				data-job-location = "{{ job.location }}"
+				data-job-workload = "{{ job.workload }}"
+			>
 				<div class="job-card">
 					<p class="alert alert-info" style="display:none;">
 						<span class="fa fa-star"></span>
