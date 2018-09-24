@@ -1,51 +1,24 @@
 <section id="settings-box">
-	<div class="avatar-box">
-		{% if user.avatar is empty %}
-			{% if user.gender == 'masculino' %}
-				{% set avatar = 'default-male-profile-avatar.png' %}
-			{% else %}
-				{% set avatar = 'default-female-profile-avatar.png' %}
-			{% endif %}
-			<img src="{{ path.img }}/profile/{{ avatar }}" alt="Foto de {{ user.name }}" title="Foto de {{ user.name }}" class="default-avatar">
-		{% else %}
-		<img src="{{ path.root }}/public/user/{{ user.id }}/{{ user.avatar }}" alt="Foto de {{ user.name }}" title="Foto de {{ user.name }}" class="img-responsive">
-		{% endif %}
-	</div>
-	
-	<h1><a href="{{ path.root }}/feed/usuario/{{ user.login }}">{{ user.name }}</a></h1>
-	<h2>
-		{% if user.getJobTitle() is not empty %}
-			{{ user.getJobTitle() }}
-		{% elseif user.getEducationTitle() %}
-			{{ user.getEducationTitle() }}
-		{% else %}
-			{{ user.getLocation().live_in_string }}
-		{% endif %}
-	</h2>
+	<h1> Configurações de bloqueio</h1>
 	<hr>
-	
-	<h3>
-		<span class="fa fa-fw fa-map-marker"></span>
-		{{ user.getLocation().live_in_string == ', ' ? 'Definir meu endereço' : user.getLocation().live_in_string }}
-	</h3>
-	{% if user.getPersonalLink() %}
-	<h3>
-		<span class="fa fa-fw fa-link"></span>
-		<a href="{{ user.getPersonalLink() }}" target="_blank">{{ user.getPersonalLink() }}</a>
-	</h3>
-	{% endif %}
-	<h3>
-		<span class="fa fa-fw fa-rss"></span>
-		{% if followers.total == 0 %}
-			Nenhum seguidor ainda. <a href="#">Seja o primeiro</a>
-		{% elseif followers.total == 1 %}
-			1 seguidor
-		{% else %}
-			{{ followers.total }} seguidores
-		{% endif %}
-	</h3>
-	<h3>
-		<span class="fa fa-fw fa-calendar"></span>
-		{{ user.gender == 'masculino' ? 'Ativo' : 'Ativa' }} desde {{ user.getJoinedDatetime().str }}
-	</h3>
+	<p class="alert alert-info">
+		<span class="fa fa-info-circle"></span>Texto informando sobre consequências de bloqueio aos usuários.
+	</p>
+
+	{% for user in banned_users %}
+	<form action="" method="POST">
+		<ul>
+			<li data-user="{{ user.id }}">
+				<a href="{{ path.root }}/feed/usuario/{{ user.login }}" title="Ver perfil de {{ user.name }}">{{ user.name }}</a>
+				<button type="submit">Desbanir</button>
+			</li>
+		</ul>
+	</form>
+	{% endfor %}
+	<ul>
+		<li><a href="" title="Ver perfil de ">lista</a><button type="submit">Desbanir</button></li>
+		<li><a href="" title="Ver perfil de ">de</a><button type="submit">Desbanir</button></li>
+		<li><a href="" title="Ver perfil de ">usuarios</a><button type="submit">Desbanir</button></li>
+		<li><a href="" title="Ver perfil de ">banidos</a><button type="submit">Desbanir</button></li>
+	</ul>
 </section>
