@@ -100,7 +100,7 @@ class Job {
 				$d->is_favorite = self::checkIfFavorite($d->favorite_id);
 
 				if($d->category_list != "") {
-					$result = $db->query("SELECT id, title FROM job_category WHERE id IN ({$d->category_list}) AND active = 1");
+					$result = $db->query("SELECT id, title FROM job_category WHERE id IN ({$d->category_list}) AND active = 1", true);
 					$d->category_list_array = $result;
 					$d->skill_array = explode(",", $d->skills);
 					$d->type_string = self::getType($d->type);

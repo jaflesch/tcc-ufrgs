@@ -15,7 +15,7 @@
 				<div style="width: 50%; margin-right: 15px;">
 					<h2>Tipo de vaga</h2>
 					{% for type in filters.type %}
-						<input type="checkbox" name="modality" value="{{ type.value }}">{{ type.label }}<br/>
+						<input type="checkbox" name="type" value="{{ type.value }}" data-label="{{ type.label }}">{{ type.label }}<br/>
 					{% endfor %}
 					<!-- <input type="checkbox" name="type" value="0">Monitoria<br/>
 					<input type="checkbox" name="type" value="0">Administrativa<br/>
@@ -26,7 +26,7 @@
 
 					<h2>Área de atuação</h2>
 					{% for category in filters.category %}
-						<input type="checkbox" name="category" value="{{ category.id }}">{{ category.title }}<br/>
+						<input type="checkbox" name="category" value="{{ category.id }}" data-label="{{ category.title }}">{{ category.title }}<br/>
 					{% endfor %}
 					<!-- <input type="checkbox" name="category" value="0">Artes<br/>
 					<input type="checkbox" name="category" value="0">Gestão<br/>
@@ -45,8 +45,8 @@
 					<input type="checkbox" name="type" value="0">À combinar<br/> -->
 					
 					<h2>Modalidade</h2>
-					<input type="radio" name="type" value="0">À distância<br/>
-					<input type="radio" name="type" value="0">Presencial<br/>
+					<input type="radio" name="modality" value="0">À distância<br/>
+					<input type="radio" name="modality" value="0">Presencial<br/>
 				</div>
 				<div>
 					<h2>Turnos</h2>
@@ -91,19 +91,8 @@
 		</div>
 	</div>
 
-	<div class="filter-list">
-		<span class="list">
-			<span class="item">
-				<span class="title">Área</span>
-				<span class="value">Tecnologia</span>
-				<span class="remove-item">&times;</span>
-			</span>
-			<span class="item">
-				<span class="title">Modalidade</span>
-				<span class="value">Presencial</span>
-				<span class="remove-item">&times;</span>
-			</span>
-		</span>
+	<div class="filter-list" style="display: none;">
+		<span class="list"></span>
 		<span>
 			<button class="clear-search">Limpar todos</button>
 		</span>
@@ -112,7 +101,7 @@
 
 	<div class="order-limit">
 		{% if jobs|length > 0 %}
-			<p>Exibindo {{ jobs|length > 9 ? '9' : jobs|length }} de {{ jobs|length }} vagas encontradas.</p>
+			<p>Exibindo <span id="jobs-count">{{ jobs|length > 9 ? '9' : jobs|length }}</span> de {{ jobs|length }} vagas encontradas.</p>
 		{% else %}
 			<p>Nenhuma vaga encontrada</p>
 		{% endif %}
