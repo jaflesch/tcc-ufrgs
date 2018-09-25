@@ -1,5 +1,5 @@
-config.php
-assets/scss/.sass-cache
-assets/scss/.map
-assets/css/style.css
-assets/css/*.map
+src/config.php
+src/assets/scss/.sass-cache
+src/assets/scss/.map
+src/assets/css/style.css
+src/assets/css/*.map
