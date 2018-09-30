@@ -7,7 +7,16 @@ $(document).ready(function() {
 	$('.unfollow-post').click(function(e){
 		e.preventDefault();
 		var id = $(this).data("user");
-		console.log(id);
+		
+		$.ajax({
+			url: './feed/deixar-seguir',
+			method: 'POST',
+			dataType: 'json',
+			data: { id: id },
+			success: function(response) {
+				if(response.result) location.reload();
+			}
+		});
 	});
 
 	$('.delete-post').click(function(e) {
