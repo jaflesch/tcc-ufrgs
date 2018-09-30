@@ -123,4 +123,17 @@ class Post {
 			VALUES ({$id_user}, '{$post->post_text}', NOW(), NOW(), {$post->privacy}, 1)
 		");			
 	}
+
+	public static function delete($id) {
+		$db = new DBConn();
+		$id_user = Auth::id();
+
+		return $db->update("
+			UPDATE post 
+			SET 
+				active = 0,
+				datetime_last_edit = NOW()
+			WHERE id = {$id} AND active = 1 AND id_author = {$id_user}
+		");			
+	}
 }

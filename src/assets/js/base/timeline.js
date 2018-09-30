@@ -4,6 +4,20 @@ $(document).ready(function() {
 		console.log('modal abre..');
 	})
 
+	$('.unfollow-post').click(function(e){
+		e.preventDefault();
+		var id = $(this).data("user");
+		console.log(id);
+	});
+
+	$('.delete-post').click(function(e) {
+		e.preventDefault();
+		var post_id = $(this).data("post");
+		
+		$('[name="delete_post_id"]').val(post_id);
+		$('#modalDeletePost').modal("show");
+	})
+
 	// Like system
 	$('.post-options .likes').click(function() {
 		var el = $(this);
@@ -111,7 +125,22 @@ $(document).ready(function() {
 			dataType: 'json',
 			data: form.serializeArray(),
 			success: function(response) {
-				if(response.success) location.reload();
+				if(response.result) location.reload();
+			}
+		})
+	});
+
+	$('#formDeletePost').unbind('submit').bind('submit', function(e) {
+		e.preventDefault();
+		var form = $(this);
+
+		$.ajax({
+			url: form.attr("action"),
+			method: 'POST',
+			dataType: 'json',
+			data: form.serializeArray(),
+			success: function(response) {
+				if(response.result) location.reload();
 			}
 		})
 	})

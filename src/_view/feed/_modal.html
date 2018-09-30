@@ -1,0 +1,23 @@
+<div id="modalDeletePost" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Excluir post</h4>
+      </div>
+      <div class="modal-body">
+        <p>Você tem certeza que deseja excluir este post?</p>
+      </div>
+      <div class="modal-footer">
+      	<form id="formDeletePost" action="{{ path.root }}/feed/delete-post" method="POST">
+      		<input type="hidden" name="delete_post_id" value="">
+	        <a href="#" class="" data-dismiss="modal">Cancelar</a>
+	        <button type="submit" class="btn btn-default">Excluir</button>      		
+      	</form>
+      </div>
+    </div>
+
+  </div>
+</div>

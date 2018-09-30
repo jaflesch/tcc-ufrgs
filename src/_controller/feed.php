@@ -48,4 +48,10 @@ class Feed extends Controller {
 		$response->result = Post::add($this->post);
 		die(json_encode($response));
 	}
+
+	public function delete_post() {
+		$response = new stdclass();
+		$response->result = Post::delete($this->post->delete_post_id);
+		die(json_encode($response));
+	}
 }

@@ -69,9 +69,9 @@
 				</a>
 				<ul class="dropdown-menu">
 					{% if user.id == post.id_author %}
-					<li><a href="#" id="delete-post" data-post="{{ post.id }}">Excluir postagem</a></li>
+					<li><a href="#" class="delete-post" data-post="{{ post.id }}">Excluir postagem</a></li>
 					{% else %}
-					<li><a href="#" id="unfollow-post" data-user="{{ post.id_author }}">Deixar de seguir {{ post.author }}</a></li>
+					<li><a href="#" class="unfollow-post" data-user="{{ post.id_author }}">Deixar de seguir {{ post.author }}</a></li>
 					{% endif %}
 				</ul>
 			</div>
