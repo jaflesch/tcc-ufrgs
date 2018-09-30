@@ -6,7 +6,7 @@ class Follow {
 		$data = $db->query("
 			SELECT u.id, u.name, u.login, f.datetime_created
 			FROM follow f 
-			INNER JOIN user u ON u.id = f.id_follower AND f.active = 1
+			LEFT JOIN user u ON u.id = f.id_follower AND f.active = 1
 			WHERE f.id_following = {$id_user} AND u.active = 1
 		", true);
 
@@ -22,7 +22,7 @@ class Follow {
 		$data = $db->query("
 			SELECT u.id, u.name, u.login, f.datetime_created
 			FROM follow f 
-			INNER JOIN user u ON u.id = f.id_following AND f.active = 1
+			LEFT JOIN user u ON u.id = f.id_following AND f.active = 1
 			WHERE f.id_follower = {$id_follower} AND u.active = 1
 		", true);
 
