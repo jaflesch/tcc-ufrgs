@@ -2,6 +2,7 @@
 require MODEL_PATH.'Job.php';
 require MODEL_PATH.'Profile.php';
 require MODEL_PATH.'Favorite.php';
+require MODEL_PATH.'RecommendJob.php';
 
 class Vagas extends Controller {
 	public function index() {
@@ -24,6 +25,7 @@ class Vagas extends Controller {
 		$id = (int)$this->route[PARAM_INDEX];
 
 		$bag['job'] = Job::getById($id);
+		$bag['recomendations'] = RecommendJob::getAllFromJobId($id);
 		$bag['related_jobs'] = Job::getRelated($id);
 
 		$this->render("vagas/sobre", $bag);
@@ -41,6 +43,12 @@ class Vagas extends Controller {
 		$response = new stdclass();
 		$response->success = Favorite::delete($this->post->id, Favorite::JOB);
 		$response->msg = $response->success ? "Vaga removida dos <a href='{$this->path['root']}/vagas/favoritos' title='Ver meus favoritos'>favoritos</a>." : "Desculpe, ocorreu um erro. Tente de novo.";
+		die(json_encode($response));
+	}
+
+	public function recomendar() {
+		$response = new stdclass();
+		$response->result = RecommendJob::add($this->post);
 		die(json_encode($response));
 	}
 }

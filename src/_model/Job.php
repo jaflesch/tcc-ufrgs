@@ -77,7 +77,7 @@ class Job {
 	}
 
 	public static function getRelated($id) {
-		$jobs = self::getAll();
+		$jobs = self::getAll()['jobs'];
 
 		for($i = 0; $i < count($jobs); $i++) {
 			if($jobs[$i]->id == $id) unset($jobs[$i]);
