@@ -112,7 +112,7 @@
 
 		img { max-width: 100%; }
 	}
-	.default-avatar {
+	.profile-default-avatar {
 		@include ha-middle();
 		position: absolute;
 		bottom: -35px;
@@ -255,5 +255,42 @@
 		}
 		color: #cacaca;
 		margin: 0;
+	}
+
+	#recomendations {
+		a { 
+			font-weight: bold;
+			color: $primary-color;
+		}
+
+		textarea {
+			min-height: 160px;
+			max-width: 100%;
+			min-width: 100%;
+			margin-bottom: 5px;
+		}
+
+		.recommend-box {
+			margin-top: 30px;
+		}
+
+		.add-recomendation {
+			@include colors($primary-color, #fff);
+			@include border-radius(2px);
+			@include size(120px, 36px);
+			@include transition();
+			border: 1px solid $primary-color;
+
+			&:hover, &:focus {
+				@include colors($secondary-color, #fff);
+				border-color: $secondary-color;
+			}
+		}
+	}
+
+	.recomendation-card {
+		background: #fff;
+		padding: 20px;
+		margin-bottom: 20px;
 	}
 }

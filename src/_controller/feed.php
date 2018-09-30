@@ -3,6 +3,7 @@ require MODEL_PATH.'Profile.php';
 require MODEL_PATH.'Follow.php';
 require MODEL_PATH.'Block.php';
 require MODEL_PATH.'Post.php';
+require MODEL_PATH.'RecommendUser.php';
 
 class Feed extends Controller {
 	public function usuario() {
@@ -10,6 +11,7 @@ class Feed extends Controller {
 		$bag['profile'] = Profile::getByLogin($login);
 		$bag['related_profiles'] = Profile::getAllFeedRelatedExceptBy($login);
 		$bag['followers'] = Follow::getAllFollowers($bag['profile']['user']->id);
+		$bag['recomendations'] = RecommendUser::getAllFromUserId($bag['profile']['user']->id);
 		
 		$this->render("profile/index", $bag);
 	}
@@ -52,6 +54,12 @@ class Feed extends Controller {
 	public function delete_post() {
 		$response = new stdclass();
 		$response->result = Post::delete($this->post->delete_post_id);
+		die(json_encode($response));
+	}
+
+	public function recomendar() {
+		$response = new stdclass();
+		$response->result = RecommendUser::add($this->post);
 		die(json_encode($response));
 	}
 }

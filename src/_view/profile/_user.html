@@ -19,7 +19,7 @@
 					{% else %}
 						{% set avatar = 'default-female-profile-avatar.png' %}
 					{% endif %}
-					<img src="{{ path.img }}/profile/{{ avatar }}" alt="Foto de {{ profile.user.name }}" title="Foto de {{ profile.user.name }}" class="default-avatar">
+					<img src="{{ path.img }}/profile/{{ avatar }}" alt="Foto de {{ profile.user.name }}" title="Foto de {{ profile.user.name }}" class="profile-default-avatar">
 				{% else %}
 				<img src="{{ path.root }}/public/user/{{ profile.user.id }}/{{ profile.user.avatar }}" alt="Foto de {{ profile.user.name }}" title="Foto de {{ profile.user.name }}" class="img-responsive">
 				{% endif %}
@@ -213,4 +213,147 @@
 		<p class="no-info">Não há idiomas para exibir</p>
 		{% endif %}
 	</section>
+
+	{% if recomendations is empty %}
+	<section id="recomendations" class="box-experience">
+		<h2>Recomendações</h2>
+
+		{% if profile.user.id == user.id %}
+		<p> Você ainda não possui ainda nenhuma recomendação. </p>
+		{% else %}
+			<p> {{ profile.user.name }} ainda não possui ainda nenhuma recomendação. 
+				<a href="#" class="recomendar-usuario" title="Recomendar vaga">Seja o primeiro a {{ profile.user.gender == 0 ? 'recomendá-lo' : 'recomendá-la'}}</a></p>
+			<div class="recommend-box" style="display: none">
+				<div class="post-header" style="margin-bottom: 10px;">
+					<div class="avatar">
+						{% if user.avatar is empty %}
+							{% if user.gender == 'masculino' %}
+								{% set avatar = 'default-male-profile-avatar.png' %}
+							{% else %}
+								{% set avatar = 'default-female-profile-avatar.png' %}
+							{% endif %}
+							<img src="{{ path.img }}/profile/{{ avatar }}" alt="Foto de {{ user.name }}" title="Foto de {{ user.name }}" class="default-avatar">
+						{% else %}
+						<img src="{{ path.root }}/public/user/{{ user.id }}/{{ user.avatar }}" alt="Foto de {{ user.name }}" title="Foto de {{ user.name }}" class="img-responsive">
+						{% endif %}
+					</div>
+					<div class="user-information">
+						<h3 class="user-title">
+							<a href="{{ path.root }}/feed/usuario/{{ user.login }}" title="Ver perfil de {{ user.name }}">{{ user.name }}</a>
+						</h3>
+						
+						{% if user.getJobTitle() is not empty or user.getEducationTitle() is not empty %}
+						<h4 class="user-subtitle">
+							{% if user.getJobTitle() is not empty %}
+								{{ user.getJobTitle() }}
+							{% elseif user.getEducationTitle() %}
+								{{ user.getEducationTitle() }}
+							{% else %}
+								{{ user.getLocation().live_in_string }}
+							{% endif %}
+						</h4>
+						{% endif %}
+						<span class="post-time">Público</span>
+						<span class="fa post-privacy {{ profile.privacy == 1 ? 'fa-lock' : 'fa-globe' }}"></span>
+					</div>
+				</div>	
+				<form id="formRecomendar" action="{{ path.root }}/feed/recomendar">
+					<input type="hidden" value="{{ profile.user.id }}" name="user_id">
+					<textarea name="text" class="form-data" placeholder="Por que você recomenda {{ profile.user.name }}?" required=""></textarea>
+
+					<button type="submit" class="add-recomendation">Recomendar</button>
+				</form>
+			</div>
+		{% endif %}
+	</section>
+	{% else %}
+		{% if profile.user.id != user.id %}
+		<section id="recomendations" class="box-experience">
+			<h2>Recomendações</h2>
+			<div class="recommend-box">
+				<div class="post-header" style="margin-bottom: 10px;">
+					<div class="avatar">
+						{% if user.avatar is empty %}
+							{% if user.gender == 'masculino' %}
+								{% set avatar = 'default-male-profile-avatar.png' %}
+							{% else %}
+								{% set avatar = 'default-female-profile-avatar.png' %}
+							{% endif %}
+							<img src="{{ path.img }}/profile/{{ avatar }}" alt="Foto de {{ user.name }}" title="Foto de {{ user.name }}" class="default-avatar">
+						{% else %}
+						<img src="{{ path.root }}/public/user/{{ user.id }}/{{ user.avatar }}" alt="Foto de {{ user.name }}" title="Foto de {{ user.name }}" class="img-responsive">
+						{% endif %}
+					</div>
+					<div class="user-information">
+						<h3 class="user-title">
+							<a href="{{ path.root }}/feed/usuario/{{ user.login }}" title="Ver perfil de {{ user.name }}">{{ user.name }}</a>
+						</h3>
+						
+						{% if user.getJobTitle() is not empty or user.getEducationTitle() is not empty %}
+						<h4 class="user-subtitle">
+							{% if user.getJobTitle() is not empty %}
+								{{ user.getJobTitle() }}
+							{% elseif user.getEducationTitle() %}
+								{{ user.getEducationTitle() }}
+							{% else %}
+								{{ user.getLocation().live_in_string }}
+							{% endif %}
+						</h4>
+						{% endif %}
+						<span class="post-time">Público</span>
+						<span class="fa post-privacy {{ profile.privacy == 1 ? 'fa-lock' : 'fa-globe' }}"></span>
+					</div>
+				</div>	
+				<form id="formRecomendar" action="{{ path.root }}/feed/recomendar">
+					<input type="hidden" value="{{ profile.user.id }}" name="user_id">
+					<textarea name="text" class="form-data" placeholder="Por que você recomenda {{ profile.user.name }}?" required=""></textarea>
+					
+					<button type="submit" class="add-recomendation">Recomendar</button>
+				</form>
+			</div>
+		</section>
+		{% endif %}
+		{% for recomendation in recomendations %}
+			<article class="recomendation-card">
+				{% if profile.user.id == user.id and loop.index == 1 %}
+				<h2> Recomendações </h2>
+				{% endif %}
+
+				<div class="post-header" style="margin-bottom: 10px;">
+					<div class="avatar">
+						{% if recomendation.user_avatar is empty %}
+							{% if recomendation.user_gender == 0 %}
+								{% set avatar = 'default-male-profile-avatar.png' %}
+							{% else %}
+								{% set avatar = 'default-female-profile-avatar.png' %}
+							{% endif %}
+							<img src="{{ path.img }}/profile/{{ avatar }}" alt="Foto de {{ recomendation.user_name }}" title="Foto de {{ recomendation.user_name }}" class="default-avatar">
+						{% else %}
+						<img src="{{ path.root }}/public/user/{{ recomendation.userid }}/{{ recomendation.user_avatar }}" alt="Foto de {{ recomendation.user_name }}" title="Foto de {{ recomendation.username }}" class="img-responsive">
+						{% endif %}
+					</div>
+					<div class="user-information">
+						<h3 class="user-title">
+							<a href="{{ path.root }}/feed/usuario/{{ recomendation.user_login }}" title="Ver perfil de {{ recomendation.user_name }}">{{ recomendation.user_name }}</a>
+						</h3>
+						
+						{% if recomendation.user_job_title is not empty or recomendation.user_education_title is not empty %}
+						<h4 class="user-subtitle">
+							{% if recomendation.user_job_title is not empty %}
+								{{ recomendation.user_job_title }}
+							{% elseif recomendation.user_education_title %}
+								{{ recomendation.user_education_title }}
+							{% else %}
+								{{ recomendation.user_live_in_city }}, {{ recomendation.user_live_in_state }}
+							{% endif %}
+						</h4>
+						{% endif %}
+					</div>
+				</div>	
+				<div class="recomendation-text">
+					{{ recomendation.text|nl2br }}
+				</div>		
+			</article>	
+		{% endfor %}
+	{% endif %}
 </section>
