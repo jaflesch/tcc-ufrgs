@@ -2,6 +2,7 @@
 require MODEL_PATH.'Profile.php';
 require MODEL_PATH.'Follow.php';
 require MODEL_PATH.'Block.php';
+require MODEL_PATH.'Post.php';
 
 class Feed extends Controller {
 	public function usuario() {
@@ -9,7 +10,7 @@ class Feed extends Controller {
 		$bag['profile'] = Profile::getByLogin($login);
 		$bag['related_profiles'] = Profile::getAllFeedRelatedExceptBy($login);
 		$bag['followers'] = Follow::getAllFollowers($bag['profile']['user']->id);
-
+		
 		$this->render("profile/index", $bag);
 	}
 	public function me() {
@@ -39,6 +40,12 @@ class Feed extends Controller {
 	public function desbloquear() {
 		$response = new stdclass();
 		$response->result = Block::remove($this->post->id);
+		die(json_encode($response));
+	}
+
+	public function new_post() {
+		$response = new stdclass();
+		$response->result = Post::add($this->post);
 		die(json_encode($response));
 	}
 }

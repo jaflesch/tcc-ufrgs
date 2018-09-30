@@ -1,9 +1,47 @@
 <section id="timeline">
-	<article>
-		<h1>Olá, {{ user.name }}!</h1>
-		<p>Atualmente você ocupa a posição de {{ user.role.title }} no sistema. </p>
-		<br>
-		<a href="{{ path.root }}/login/leave">Logout</a>
+	<article class="post-box">
+		<form id="formNewPost" action="{{ path.root }}/feed/new-post" method="POST">
+			<div class="post-header" style="margin-bottom: 10px;">
+				<div class="avatar">
+					{% if user.avatar is empty %}
+						{% if user.gender == 'masculino' %}
+							{% set avatar = 'default-male-profile-avatar.png' %}
+						{% else %}
+							{% set avatar = 'default-female-profile-avatar.png' %}
+						{% endif %}
+						<img src="{{ path.img }}/profile/{{ avatar }}" alt="Foto de {{ user.name }}" title="Foto de {{ user.name }}" class="default-avatar">
+					{% else %}
+					<img src="{{ path.root }}/public/user/{{ user.id }}/{{ user.avatar }}" alt="Foto de {{ user.name }}" title="Foto de {{ user.name }}" class="img-responsive">
+					{% endif %}
+				</div>
+				<div class="user-information">
+					<h3 class="user-title">
+						<a href="{{ path.root }}/feed/usuario/{{ user.login }}" title="Ver perfil de {{ user.name }}">{{ user.name }}</a>
+					</h3>
+					
+					{% if profile.user_job_title is not empty or profile.user_education_title is not empty %}
+					<h4 class="user-subtitle">
+						{% if user.getJobTitle() is not empty %}
+							{{ user.getJobTitle() }}
+						{% elseif user.getEducationTitle() %}
+							{{ user.getEducationTitle() }}
+						{% else %}
+							{{ user.getLocation().live_in_string }}
+						{% endif %}
+					</h4>
+					{% endif %}
+					<span class="post-time">{{ profile.privacy == 1 ? 'Privado' : 'Público' }}</span>
+					<span class="fa post-privacy {{ profile.privacy == 1 ? 'fa-lock' : 'fa-globe' }}"></span>
+				</div>
+			</div>			
+			<textarea id="new-post" name="post_text" placeholder="Conhece uma boa oportunidade de bolsa ou estágio? Divulgue-a!"></textarea>
+			<hr>
+			<select name="privacy" class="">
+				<option value="0">Público</option>
+				<option value="1">Privado</option>				
+			</select>
+			<button type="submit" class="add-post"> Publicar </button>
+		</form>
 	</article>
 	{% for post in posts %}
 	<article class="post" data-post="{{ post.id }}">
@@ -26,7 +64,16 @@
 				<span class="fa post-privacy {{ post.privacy == 1 ? 'fa-lock' : 'fa-globe' }}"></span>
 			</div>
 			<div class="post-more-options">
-				<img src="{{ path.img }}/icons/ellipsis.png">
+				<a href="#" data-toggle="dropdown" class="dropdown-toggle btn-more-options">
+					<img src="{{ path.img }}/icons/ellipsis.png">
+				</a>
+				<ul class="dropdown-menu">
+					{% if user.id == post.id_author %}
+					<li><a href="#" id="delete-post" data-post="{{ post.id }}">Excluir postagem</a></li>
+					{% else %}
+					<li><a href="#" id="unfollow-post" data-user="{{ post.id_author }}">Deixar de seguir {{ post.author }}</a></li>
+					{% endif %}
+				</ul>
 			</div>
 		</div>
 		<div class="post-body">

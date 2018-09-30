@@ -80,7 +80,7 @@ class Post {
 				}				
 			}
 		}
-		
+
 		return $posts;
 	}
 
@@ -112,5 +112,15 @@ class Post {
 			SET active = 0 
 			WHERE id_user = {$id_user_liked} AND  id_post = {$id_post} AND active = 1
 		");
+	}
+
+	public static function add($post) {
+		$db = new DBConn();
+		$id_user = Auth::id();
+
+		return $db->insert("
+			INSERT INTO post (id_author, text, datetime_published, datetime_last_edit, privacy, allow_comments) 
+			VALUES ({$id_user}, '{$post->post_text}', NOW(), NOW(), {$post->privacy}, 1)
+		");			
 	}
 }

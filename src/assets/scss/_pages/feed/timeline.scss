@@ -22,8 +22,59 @@
 		}
 	}
 
+	.post-more-options { position: relative; }
+	
 	.user-liked {
 		color: $primary-color;
 		font-weight: bold;
+	}
+
+	.post-box {
+		.jodit_container {
+			.jodit_workplace { border: 0; }
+
+			.jodit_workplace .jodit_wysiwyg {
+				@include border-radius(2px);
+				margin-top: 10px;
+				border: 1px solid #d1d5da;
+			}
+		}
+		.jodit_toolbar{
+			box-shadow: none;
+			border:	1px solid #d1d5da;
+			background: #f6f8fa;
+
+			>li {
+				// @include size(auto, 40px);
+				// line-height: 40px;
+			}
+			
+			>li.jodit_toolbar_btn-separator {
+				// display:none;
+				// height: 40px;
+			}
+		}
+		.jodit_placeholder {
+			padding-top: 20px;
+		}
+
+		hr { margin: 10px auto; }
+
+		select {
+			@include size(120px, 36px);
+			padding: 6px 12px;
+		}
+		.add-post {
+			@include colors($primary-color, #fff);
+			@include border-radius(2px);
+			@include size(120px, 36px);
+			@include transition();
+			border: 1px solid $primary-color;
+
+			&:hover, &:focus {
+				@include colors($secondary-color, #fff);
+				border-color: $secondary-color;
+			}
+		}
 	}
 }

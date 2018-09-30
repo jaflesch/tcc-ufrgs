@@ -83,4 +83,36 @@ $(document).ready(function() {
 			}
 		});
 	});
+
+	// Post system
+	try { var editor = new Jodit('#new-post'); }
+	catch(err){}
+	$('#formNewPost select').change(function() {
+		var value = $(this).find(":selected").val();
+		var text = $(this).find(":selected").text();
+
+		console.log(value, value == 0);
+		if(value == 0) {
+			$('.post-box .post-privacy').removeClass('fa-lock').addClass('fa-globe');
+		}
+		else {
+			$('.post-box .post-privacy').removeClass('fa-globe').addClass('fa-lock');	
+		}
+		$('.post-box .post-time').text(text);
+	});
+
+	$('#formNewPost').unbind('submit').bind('submit', function(e) {
+		e.preventDefault();
+		var form = $(this);
+
+		$.ajax({
+			url: form.attr("action"),
+			method: 'POST',
+			dataType: 'json',
+			data: form.serializeArray(),
+			success: function(response) {
+				if(response.success) location.reload();
+			}
+		})
+	})
 });
