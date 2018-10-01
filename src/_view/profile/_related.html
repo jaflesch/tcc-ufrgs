@@ -10,6 +10,7 @@
 				</div>
 				<div class="user-info">
 					<h4><a href="{{ path.root }}/feed/usuario/{{ profile.login }}" title="Ver perfil de {{ profile.name }}">{{ profile.name }}</a></h4>
+					{% if profile.job_title is not empty or profile.education_title is not empty or (profile.live_in_city is not empty and profile.live_in_state is not empty) %}
 					<h5>
 						{% if profile.job_title is not empty %}
 							{{ profile.job_title }}
@@ -19,6 +20,7 @@
 							{{ profile.live_in_city }}, {{ profile.live_in_state }}
 						{% endif %}
 					</h5>
+					{% endif %}
 				</div>
 				<div class="follow">
 					<a href="" class="btn-follow"> Seguir </a>
