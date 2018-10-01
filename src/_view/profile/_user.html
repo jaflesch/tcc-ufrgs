@@ -201,7 +201,7 @@
 		{% for language in profile.languages %}
 			<li>
 				<div class="languages-flag">
-					<img src="{{ path.img }}/icons/flags/32/Brazil.png">
+					<img src="{{ path.img }}/icons/flags/32/{{ language.flag }}.png">
 				</div>
 				<div class="text">
 					<h4>{{ language.title }} <span class="separator">·</span> {{ language.level }} </h4>

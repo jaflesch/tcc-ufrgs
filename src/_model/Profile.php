@@ -1,5 +1,6 @@
 <?php
 require MODEL_PATH.'Skill.php';
+require MODEL_PATH.'Language.php';
 
 class Profile {
 	public static function getAllFeedRelated() {
@@ -128,6 +129,12 @@ class Profile {
 				$skill->level_string = Skill::getString($skill->level);
 			}			
 		}
+		if($langs !== NULL) {
+			foreach ($langs as $lang) {
+				$lang->flag = Language::getFlag($lang->title);
+			}			
+		}
+
 
 		// Return all
 		return array(
