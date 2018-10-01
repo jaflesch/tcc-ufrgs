@@ -132,6 +132,7 @@ class Profile {
 		if($langs !== NULL) {
 			foreach ($langs as $lang) {
 				$lang->flag = Language::getFlag($lang->title);
+				$lang->level_str = Language::getLevelString($lang->level);
 			}			
 		}
 
