@@ -13,7 +13,7 @@ class Feed extends Controller {
 		$bag['followers'] = Follow::getAllFollowers($bag['profile']['user']->id);
 		$bag['recomendations'] = RecommendUser::getAllFromUserId($bag['profile']['user']->id);
 		
-		$this->render("profile/index", $bag);
+		$this->render("feed/index", $bag);
 	}
 	public function me() {
 		$this->render("feed/index");

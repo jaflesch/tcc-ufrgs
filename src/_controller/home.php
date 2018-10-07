@@ -11,7 +11,7 @@ class Home extends Controller {
 		$bag['followers'] = Follow::getAllFollowers(Auth::id());
 		$bag['posts'] = Post::getAllFeed(Auth::id());
 
-		$this->render("feed/index", $bag);
+		$this->render("home/index", $bag);
 	}
 
 	// AJAX Calls

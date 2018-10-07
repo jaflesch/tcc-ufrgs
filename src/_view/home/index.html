@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{% set page_title = 'Feed' %}
+
+{% block main %}
+	<section id="feed">
+		<div class="container">
+			{% include 'home/_user.html' %}
+			{% include 'home/_timeline.html' %}
+			{% include 'home/_related.html' %}
+			{% include 'home/_modal.html' %}
+		</div>
+	</section>
+{% endblock %}
+
+{% block styles %}
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="{{ path.js }}/base/admin/jodit.min.js"></script>
+<script type="text/javascript" src="{{ path.js }}/base/follow-user.js"></script>
+<script type="text/javascript" src="{{ path.js }}/base/timeline.js"></script>
+{% endblock %}

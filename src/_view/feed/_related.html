@@ -1,9 +1,9 @@
 <section id="related-widget">
-	{% if profiles is not empty %}
+	{% if related_profiles is not empty %}
 	<div class="suggest-box">
-		<h2>Aumente seu feed</h2>
+		<h2>Talvez você conheça</h2>
 		<ul>
-			{% for profile in profiles %}
+			{% for profile in related_profiles %}
 			<li>
 				<div class="avatar">
 					<img src="">
@@ -23,7 +23,7 @@
 					{% endif %}
 				</div>
 				<div class="follow">
-					<button class="btn-follow" data-id="{{ profile.id }}"> Seguir </button>
+					<a href="" class="btn-follow"> Seguir </a>
 				</div>
 			</li>
 			{% endfor %}
@@ -33,23 +33,4 @@
 		</p>
 	</div>
 	{% endif %}
-	<div class="suggest-box">
-		<h2>Sugestões para você</h2>
-		<ul>
-			{% for job in jobs %}
-			<li>
-				<div class="avatar">
-					<img src="">
-				</div>
-				<div class="user-info">
-					<h4><a href="{{ path.root }}/vagas/sobre/{{ job.id }}/{{ job.slug }}">{{ job. title }}</a></h4>
-					<h5>{{ job.location is empty ? job.location_city ~ ', ' ~ job.location_state : job.location }}</h5>
-				</div>
-			</li>
-			{% endfor %}
-		</ul>
-		<p>
-			<a href="{{ path.root }}/vagas" title="Ver todas as sugestões de vagas">Ver todas as sugestões</a>
-		</p>
-	</div>
 </section>

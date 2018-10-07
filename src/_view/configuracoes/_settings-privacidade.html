@@ -1,26 +1,56 @@
 <section id="settings-box">
 	<h1> Configurações de privacidade</h1>
 	<hr>
-	<form action="" method="POST">
+	<form id="formConfig" action="{{ path.root }}/configuracoes/atualizar-privacidade" method="POST">
 		<label>Quem pode ver minhas postagens</label><br/>
-		<input type="radio" name="post_privacy" value="1" checked="">Todos
-		<input type="radio" name="post_privacy" value="0">Apenas seguidores<br/>
+		<label class="custom-radio">Todos
+			<input type="radio" name="post_privacy"	{{ config.post_privacy == 1 ? 'checked' : '' }} value="1">
+			<span class="checkmark"></span>
+		</label>
+		<label class="custom-radio">Apenas seguidores
+			<input type="radio" name="post_privacy"	{{ config.post_privacy == 0 ? 'checked' : '' }} value="0">
+			<span class="checkmark"></span>
+		</label>
 		<br/>
 		<label>Exibir meu histórico escolar</label><br/>
-		<input type="radio" name="allow_historic" value="0">Não
-		<input type="radio" name="allow_historic" value="1" checked="">Sim<br/>
+		<label class="custom-radio">Não
+			<input type="radio" name="show_schollar_info"	{{ config.show_schollar_info == 0 ? 'checked' : '' }} value="0">
+			<span class="checkmark"></span>
+		</label>
+		<label class="custom-radio">Sim
+			<input type="radio" name="show_schollar_info"	{{ config.show_schollar_info == 1 ? 'checked' : '' }} value="1">
+			<span class="checkmark"></span>
+		</label>
 		<br/>
 		<label>Exibir meu currículo</label><br/>
-		<input type="radio" name="allow_curriculum" value="0">Não
-		<input type="radio" name="allow_curriculum" value="1" checked="">Sim<br/>
+		<label class="custom-radio">Não
+			<input type="radio" name="show_curriculum"	{{ config.show_curriculum == 0 ? 'checked' : '' }} value="0">
+			<span class="checkmark"></span>
+		</label>
+		<label class="custom-radio">Sim
+			<input type="radio" name="show_curriculum"	{{ config.show_curriculum == 1 ? 'checked' : '' }} value="1">
+			<span class="checkmark"></span>
+		</label>
 		<br/>
 		<label>Quem pode ver minha lista de seguidores</label><br/>
-		<input type="radio" name="post_privacy" value="1" checked="">Todos
-		<input type="radio" name="post_privacy" value="0">Apenas seguidores<br/>
+		<label class="custom-radio">Todos
+			<input type="radio" name="follower_privacy"	{{ config.follower_privacy == 1 ? 'checked' : '' }} value="1">
+			<span class="checkmark"></span>
+		</label>
+		<label class="custom-radio">Apenas seguidores
+			<input type="radio" name="follower_privacy"	{{ config.follower_privacy == 0 ? 'checked' : '' }} value="0">
+			<span class="checkmark"></span>
+		</label>
 		<br/>
 		<label>Quem pode ver a lista de pessoas que sigo</label><br/>
-		<input type="radio" name="post_privacy" value="1" checked="">Todos
-		<input type="radio" name="post_privacy" value="0">Apenas seguidores<br/>
+		<label class="custom-radio">Todos
+			<input type="radio" name="following_privacy"	{{ config.following_privacy == 1 ? 'checked' : '' }} value="1">
+			<span class="checkmark"></span>
+		</label>
+		<label class="custom-radio">Apenas seguidores
+			<input type="radio" name="following_privacy"	{{ config.following_privacy == 0 ? 'checked' : '' }} value="0">
+			<span class="checkmark"></span>
+		</label>
 
 		<button type="submit" class="submit">Atualizar</button>
 	</form>

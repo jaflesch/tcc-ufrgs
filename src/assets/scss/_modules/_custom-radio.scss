@@ -1,0 +1,46 @@
+label.custom-radio {
+	display:block;
+	position: relative;
+	padding-left: 20px;
+	margin: 0 0 10px;
+	cursor: pointer;
+	font: {
+		size: 13px;
+		weight: normal;
+	}
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	
+	input {
+		position: absolute;
+		opacity: 0;
+		cursor: pointer;
+
+		&:checked ~ .checkmark { border: 1px solid $primary-color; }
+		&:checked ~ .checkmark:after { display: block; }
+	}
+
+	.checkmark {
+		@include size(14px, 14px);
+		@include border-radius(50%);
+		position: absolute;
+		top: 3px;
+		left: 0;
+		background-color: #fff;
+		border: 1px solid #ddd;
+
+		&:after {
+			@include border-radius(50%);
+			content: "";
+			position: absolute;
+			display: none;
+			top: 2px;
+			left: 2px;
+			width: 8px;
+			height: 8px;
+			background: $primary-color;
+		}
+	}
+}

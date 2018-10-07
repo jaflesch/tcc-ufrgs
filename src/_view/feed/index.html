@@ -1,14 +1,12 @@
 {% extends 'layout.html' %}
 
-{% set page_title = 'Feed' %}
+{% set page_title = profile.user.name ~ ' | Perfil' %}
 
 {% block main %}
-	<section id="feed">
+	<section id="profile">
 		<div class="container">
 			{% include 'feed/_user.html' %}
-			{% include 'feed/_timeline.html' %}
 			{% include 'feed/_related.html' %}
-			{% include 'feed/_modal.html' %}
 		</div>
 	</section>
 {% endblock %}
@@ -17,7 +15,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script type="text/javascript" src="{{ path.js }}/base/admin/jodit.min.js"></script>
-<script type="text/javascript" src="{{ path.js }}/base/follow-user.js"></script>
-<script type="text/javascript" src="{{ path.js }}/base/timeline.js"></script>
+<script type="text/javascript" src="{{ path.js }}/base/profile.js"></script>
 {% endblock %}
