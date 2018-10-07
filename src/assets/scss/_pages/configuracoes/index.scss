@@ -3,4 +3,99 @@
 		display: flex;
 		align-items: flex-start;
 	}	
+
+	.default-list {
+		list-style: none;
+
+		ul {
+			list-style: none;
+		}
+
+		li {
+			display: flex;
+			align-items: center;
+			margin-bottom: 15px;
+			padding: 5px 15px;
+
+
+			&:nth-child(even) { background: #f6f6f6; }
+
+			&:last-child { margin-bottom: 0; }
+		}
+
+		.avatar {
+			$avatar-size: 48px;
+			@include size($avatar-size, $avatar-size);
+			@include elipse();
+			display: inline-block;
+			background: #ddd;
+			margin-right: 10px;
+			overflow: hidden;
+
+			img { max-width: 100%; }
+		}
+	
+
+		.btn-unblock {
+			@include colors($primary-color, #fff);
+			@include border-radius(2px);
+			@include transition();
+			display: inline-block;
+			font-size: 13px; 
+			padding: 2px 15px;
+			border: 1px solid $primary-color;
+
+			&:hover {
+				@include colors(transparent, $primary-color);
+				text-decoration: none;
+			}
+			&:focus {
+				outline: none;
+				box-shadow: none;
+			}
+
+			&.following {
+				@include colors(transparent !important, $primary-color !important);
+				text-decoration: none;
+			}
+		}
+
+		h3 {
+			font: {
+				size: 14px;
+				weight: bold;
+			}
+			margin: 0 0 5px;
+			flex-grow:10;
+
+			a { color: #2b2b2b; }
+		}
+	}
+
+	.table.alert {
+		@include colors(#fff, #555);
+		@include border-radius(2px);
+		display: block;
+		padding: 0;
+		border-color: $secondary-color;
+		
+		td { 
+			vertical-align: middle;
+			border-color: $secondary-color; 
+			border: 0;
+		}
+
+		.icon {
+			font-size: 24px;
+			width: 60px;
+			text-align: center;
+			@include colors($secondary-color, #fff);
+		}
+
+		.text { 
+			text-align: justify;
+			line-height: 160%;
+			padding: 15px; 
+		}
+	}
 }

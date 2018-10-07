@@ -1,24 +1,32 @@
 <section id="settings-box">
 	<h1> Configurações de bloqueio</h1>
 	<hr>
-	<p class="alert alert-info">
-		<span class="fa fa-info-circle"></span>Texto informando sobre consequências de bloqueio aos usuários.
-	</p>
-
-	{% for user in banned_users %}
-	<form action="" method="POST">
-		<ul>
-			<li data-user="{{ user.id }}">
-				<a href="{{ path.root }}/feed/usuario/{{ user.login }}" title="Ver perfil de {{ user.name }}">{{ user.name }}</a>
-				<button type="submit">Desbanir</button>
-			</li>
-		</ul>
-	</form>
-	{% endfor %}
-	<ul>
-		<li><a href="" title="Ver perfil de ">lista</a><button type="submit">Desbanir</button></li>
-		<li><a href="" title="Ver perfil de ">de</a><button type="submit">Desbanir</button></li>
-		<li><a href="" title="Ver perfil de ">usuarios</a><button type="submit">Desbanir</button></li>
-		<li><a href="" title="Ver perfil de ">banidos</a><button type="submit">Desbanir</button></li>
-	</ul>
+	<table class="table alert alert-info">
+		<tr>
+			<td class="icon">
+				<span class="fa fa-info-circle"></span>
+			</td>
+			<td class="text">
+				Quando você adiciona um usuário à sua lista de Bloqueados, ele não aparecerá na lista de sugestões de usuários para você seguir; você não poderá olhar suas publicações, comentar em posts criados por ele nem recomendar vagas que ele publicar. Ele ainda poderá ter acesso às informações que você compartilhar com nível Público. O Portal de Vagas não notificará os usuários que forem adicionados à sua lista de Bloqueados.
+			</td>
+		</tr>
+	</table>
+	<hr style="margin-bottom: 20px">
+	{% if banned_users is empty %}
+	<p>Sua lista de usuários bloqueados está vazia.</p>
+	{% else %}
+		<form id="formBanList" action="{{ path.root }}/configuracoes/atualizar-bloqueio" method="POST" style="max-width: none">
+			<ul class="default-list">
+			{% for user in banned_users %}
+				<li data-user="{{ user.id }}">
+					<img src="{{ path.root }}/public/usuario/{{ user.login }}/{{ user.avatar }}" alt="{{ user.name }}" title="{{ user.name }}" class="avatar">
+					<h3>
+						<a href="{{ path.root }}/feed/usuario/{{ user.login }}" title="Ver perfil de {{ user.name }}">{{ user.name }}</a>
+					</h3>
+					<button class="btn-unblock">Desbanir</button>
+				</li>
+			{% endfor %}
+			</ul>
+		</form>
+	{% endif %}
 </section>

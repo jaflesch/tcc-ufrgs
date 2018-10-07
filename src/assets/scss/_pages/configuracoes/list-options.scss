@@ -3,6 +3,7 @@
 	padding: 20px;
 	margin-right: 20px;
 	width: 300px;
+	flex-shrink: 0;
 
 	.suggest-box {
 		@include border-radius(2px);

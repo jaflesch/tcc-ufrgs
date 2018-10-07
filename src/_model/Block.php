@@ -1,5 +1,18 @@
 <?php
 class Block {
+	public static function getAll() {
+		$db = new DBConn();
+		$blocker_user_id = Auth::id();
+
+		// Check if it's already following
+		return $db->query("
+			SELECT u.id , u.name, u.login, u.gender
+			FROM block b 
+			INNER JOIN user u ON u.id = b.id_blocked
+			WHERE u.active = 1 and b.active = 1 AND b.id_blocker = {$blocker_user_id}
+		", true);
+	}
+
 	public static function add($blocked_user_id) {
 		$db = new DBConn();
 		$blocker_user_id = Auth::id();

@@ -1,6 +1,7 @@
 <?php
 require MODEL_PATH.'Profile.php';
 require MODEL_PATH.'Preference.php';
+require MODEL_PATH.'Block.php';
 
 class Configuracoes extends Controller {
 	public function index() {
@@ -39,9 +40,7 @@ class Configuracoes extends Controller {
 	}
 
 	public function bloqueio() {
-		$bag['jobs'] = Job::getAllFeedRelated();
-		$bag['profiles'] = Profile::getAllFeedRelated();
-		$bag['followers'] = Follow::getAllFollowers(Auth::id());
+		$bag['banned_users'] = Block::getAll();
 
 		$this->render("configuracoes/bloqueio", $bag);
 	}
@@ -81,6 +80,12 @@ class Configuracoes extends Controller {
 		$response = new stdclass();
 		$response->success = $result;
 		$response->message = "Configurações gerais alteradas com sucesso!";
+		die(json_encode($response));
+	}
+
+	public function atualizar_bloqueio() {
+		$response = new stdclass();
+		$response->success = Block::remove($this->post->id);
 		die(json_encode($response));
 	}
 }
