@@ -4,17 +4,13 @@ require MODEL_PATH.'Preference.php';
 
 class Configuracoes extends Controller {
 	public function index() {
-		$bag['jobs'] = Job::getAllFeedRelated();
-		$bag['profiles'] = Profile::getAllFeedRelated();
-		$bag['followers'] = Follow::getAllFollowers(Auth::id());
+		$bag['config'] = Preference::getGeneral();
 		
 		$this->render("configuracoes/index", $bag);
 	}
 
 	public function geral() {
-		$bag['jobs'] = Job::getAllFeedRelated();
-		$bag['profiles'] = Profile::getAllFeedRelated();
-		$bag['followers'] = Follow::getAllFollowers(Auth::id());
+		$bag['config'] = Preference::getGeneral();
 
 		$this->render("configuracoes/index", $bag);
 	}
@@ -67,6 +63,24 @@ class Configuracoes extends Controller {
 		$response = new stdclass();
 		$response->success = $result;
 		$response->message = "Configurações de privacidade alteradas com sucesso!";
+		die(json_encode($response));
+	}
+
+	public function atualizar_geral() {
+		$id = Auth::id();
+		
+		$db = new DBConn();
+		$result = $db->update(
+			"UPDATE user
+			SET 
+				name = '{$this->post->name}',
+				email = '{$this->post->email}',
+			    phone = '{$this->post->phone}'
+		   WHERE id = {$id} AND active = 1
+		");
+		$response = new stdclass();
+		$response->success = $result;
+		$response->message = "Configurações gerais alteradas com sucesso!";
 		die(json_encode($response));
 	}
 }

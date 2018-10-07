@@ -1,12 +1,15 @@
 <section id="settings-box">
 	<h1> Configurações gerais da conta</h1>
 	<hr>
-	<form action="" method="POST">
+	<form id="formConfig" action="{{ path.root }}/configuracoes/atualizar-geral" method="POST">
 		<label>Nome completo</label>
-		<input type="text" name="name" placeholder="" class="form-data">
+		<input type="text" name="name" placeholder="Seu nome*" class="form-data" required="" value="{{ config.name }}">
 
 		<label>E-mail</label>
-		<input type="text" name="name" placeholder="" class="form-data">
+		<input type="text" name="email" placeholder="Seu e-mail de contato" class="form-data" required="" value="{{ config.email }}">
+
+		<label>Telefone</label>
+		<input type="tel" name="phone" placeholder="Seu telefone (99) 99999-9999" class="form-data mask-phone" required="" value="{{ config.phone }}">
 
 		<label>Idioma</label>
 		<select name="language" class="form-data">
