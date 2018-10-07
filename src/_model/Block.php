@@ -13,6 +13,21 @@ class Block {
 		", true);
 	}
 
+	public static function isUserInMyBlockedList($login) {
+		$db = new DBConn();
+		$blocker_user_id = Auth::id();
+
+		// Check if it's already following
+		$data = $db->query("
+			SELECT u.id
+			FROM block b 
+			INNER JOIN user u ON u.id = b.id_blocked
+			WHERE b.active = 1 AND b.id_blocker = {$blocker_user_id} AND u.login = '{$login}'
+		");
+		
+		return $data != NULL ? true : false;
+	}
+
 	public static function add($blocked_user_id) {
 		$db = new DBConn();
 		$blocker_user_id = Auth::id();

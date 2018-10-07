@@ -257,12 +257,18 @@
 						<span class="fa post-privacy {{ profile.privacy == 1 ? 'fa-lock' : 'fa-globe' }}"></span>
 					</div>
 				</div>	
+				{% if user_is_blocked_by_me %}
+				<p class="alert alert-warning">
+					<span class="fa fa-warning" style="margin-right: 5px"></span> Você não pode recomendar {{ profile.name }} enquanto ele estiver em sua <a href="{{ path.root }}/configuracoes/bloqueio" title="Ver lista de usuários bloqueados">lista de usuários bloqueados</a>.
+				</p>
+				{% else %}
 				<form id="formRecomendar" action="{{ path.root }}/feed/recomendar">
 					<input type="hidden" value="{{ profile.user.id }}" name="user_id">
 					<textarea name="text" class="form-data" placeholder="Por que você recomenda {{ profile.user.name }}?" required=""></textarea>
 
 					<button type="submit" class="add-recomendation">Recomendar</button>
 				</form>
+				{% endif %}
 			</div>
 		{% endif %}
 	</section>
@@ -304,12 +310,19 @@
 						<span class="fa post-privacy {{ profile.privacy == 1 ? 'fa-lock' : 'fa-globe' }}"></span>
 					</div>
 				</div>	
+
+				{% if user_is_blocked_by_me %}
+				<p>
+					Você não pode recomendar {{ profile.name }} enquanto ele estiver em sua <a href="{{ path.root }}/configuracoes/bloqueio" title="Ver lista de usuários bloqueados">lista de usuários bloqueados</a>.
+				</p>
+				{% else %}
 				<form id="formRecomendar" action="{{ path.root }}/feed/recomendar">
 					<input type="hidden" value="{{ profile.user.id }}" name="user_id">
 					<textarea name="text" class="form-data" placeholder="Por que você recomenda {{ profile.user.name }}?" required=""></textarea>
 					
 					<button type="submit" class="add-recomendation">Recomendar</button>
 				</form>
+				{% endif %}
 			</div>
 		</section>
 		{% endif %}

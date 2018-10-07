@@ -12,7 +12,8 @@ class Feed extends Controller {
 		$bag['related_profiles'] = Profile::getAllFeedRelatedExceptBy($login);
 		$bag['followers'] = Follow::getAllFollowers($bag['profile']['user']->id);
 		$bag['recomendations'] = RecommendUser::getAllFromUserId($bag['profile']['user']->id);
-
+		$bag['user_is_blocked_by_me'] = Block::isUserInMyBlockedList($login);
+		
 		$this->render("feed/index", $bag);
 	}
 	public function me() {
