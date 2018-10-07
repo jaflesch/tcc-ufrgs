@@ -1,0 +1,30 @@
+<section id="settings-box">
+	<h1> Sua lista de seguidores</h1>
+	<hr>
+	<table class="table alert alert-info">
+		<tr>
+			<td class="icon">
+				<span class="fa fa-info-circle"></span>
+			</td>
+			<td class="text">
+				Atualmente, sua lista de seguidores está <strong>{{ config.follower_privacy == 0 ? 'privada' : 'pública' }}</strong>. É possível alterar suas <a href="{{ path.root }}/configuracoes/privacidade" title="Alterar minhas configurações de privacidade">configurações de privacidade</a>. <br/>
+				Quando sua lista está privada, apenas seus seguidores tem acesso a essa informação.
+			</td>
+		</tr>
+	</table>
+	<hr style="margin-bottom: 20px">
+	{% if followers is empty %}
+	<p>Você ainda não possui nenhum seguidor.</p>
+	{% else %}
+		<ul class="default-list">
+		{% for user in followers %}
+			<li data-user="{{ user.id }}">
+				<img src="{{ path.root }}/public/usuario/{{ user.login }}/{{ user.avatar }}" alt="{{ user.name }}" title="{{ user.name }}" class="avatar">
+				<h3>
+					<a href="{{ path.root }}/feed/usuario/{{ user.login }}" title="Ver perfil de {{ user.name }}">{{ user.name }}</a>
+				</h3>
+			</li>
+		{% endfor %}
+		</ul>
+	{% endif %}
+</section>

@@ -1,6 +1,6 @@
 <?php
 class Block {
-	public static function getAll() {
+	public static function getAllBlockedUsersFromMyList() {
 		$db = new DBConn();
 		$blocker_user_id = Auth::id();
 

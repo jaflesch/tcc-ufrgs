@@ -2,6 +2,7 @@
 require MODEL_PATH.'Profile.php';
 require MODEL_PATH.'Preference.php';
 require MODEL_PATH.'Block.php';
+require MODEL_PATH.'Follow.php';
 
 class Configuracoes extends Controller {
 	public function index() {
@@ -40,9 +41,16 @@ class Configuracoes extends Controller {
 	}
 
 	public function bloqueio() {
-		$bag['banned_users'] = Block::getAll();
+		$bag['banned_users'] = Block::getAllBlockedUsersFromMyList();
 
 		$this->render("configuracoes/bloqueio", $bag);
+	}
+
+	public function seguidores() {
+		$bag['followers'] = Follow::getAllFollowers(Auth::id())['data'];
+		$bag['config'] = Preference::getPrivacy();
+		
+		$this->render("configuracoes/seguidores", $bag);
 	}
 
 	public function atualizar_privacidade() {

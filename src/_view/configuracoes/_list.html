@@ -11,6 +11,11 @@
 					<span class="fa fa-user-o fa-fw icon"></span>Meu perfil
 				</a>
 			</li>
+			<li class="{{ app.action == 'seguidores' ? 'active': '' }}">
+				<a href="{{ path.root }}/configuracoes/seguidores" title="Ver seus seguidores">
+					<span class="fa fa-rss fa-fw icon"></span>Seguidores
+				</a>
+			</li>
 			<li class="{{ app.action ==  'registro-atividades' ? 'active': '' }}">
 				<a href="{{ path.root }}/configuracoes/registro-atividades" title="Editar registro de atividades">
 					<span class="fa fa-file-text-o fa-fw icon"></span>Registro de atividades
