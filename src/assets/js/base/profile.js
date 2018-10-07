@@ -78,4 +78,10 @@ $(document).ready(function() {
 			}
 		})
 	})
+
+	$('#see-followers').click(function() {
+		if(parseInt($('.follower-qty').text()) > 0) {
+			$('#modalShowFollowers').modal("show");
+		}
+	});
 });

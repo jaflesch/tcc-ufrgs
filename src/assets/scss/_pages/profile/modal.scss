@@ -1,8 +1,12 @@
-#configuracoes {
-	> .container {
-		display: flex;
-		align-items: flex-start;
-	}	
+#modalShowFollowers {
+	.modal-title {
+		font: {
+			size: 20px;
+	    	weight: bold;
+	    }
+	    color: #2b2b2b;
+	    margin: 0;
+	}
 
 	.default-list {
 		list-style: none;
@@ -12,9 +16,6 @@
 			align-items: center;
 			margin-bottom: 15px;
 			padding: 5px 15px;
-
-
-			&:nth-child(even) { background: #f6f6f6; }
 
 			&:last-child { margin-bottom: 0; }
 		}
@@ -56,7 +57,7 @@
 			}
 		}
 
-		h3 {
+		h4 {
 			font: {
 				size: 14px;
 				weight: bold;
@@ -66,32 +67,5 @@
 
 			a { color: #2b2b2b; }
 		}
-	}
-
-	.table.alert {
-		@include colors(#fff, #555);
-		@include border-radius(2px);
-		display: block;
-		padding: 0;
-		border-color: $secondary-color;
-		
-		td { 
-			vertical-align: middle;
-			border-color: $secondary-color; 
-			border: 0;
-		}
-
-		.icon {
-			font-size: 24px;
-			width: 60px;
-			text-align: center;
-			@include colors($secondary-color, #fff);
-		}
-
-		.text { 
-			text-align: justify;
-			line-height: 160%;
-			padding: 15px; 
-		}
-	}
+	} 
 }

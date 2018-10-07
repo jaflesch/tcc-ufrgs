@@ -293,4 +293,13 @@
 		padding: 20px;
 		margin-bottom: 20px;
 	}
+
+	#see-followers {
+		color: $primary-color;
+		cursor: pointer;
+
+		&:hover, &:focus {
+			text-decoration: underline;
+		}
+	}
 }

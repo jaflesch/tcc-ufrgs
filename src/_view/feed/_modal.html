@@ -1,0 +1,24 @@
+<div id="modalShowFollowers" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+	<div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3 class="modal-title">Pessoas que seguem {{ profile.user.name }}</h3>
+      </div>
+      <div class="modal-body">
+      	<ul class="default-list">
+        {% for follower in followers.data %}
+        	<li>
+        		<img src="{{ path.root }}/public/usuario/{{ follower.login }}/{{ follower.avatar }}" class="avatar" title="{{ follower.name }}" alt="{{ follower.name }}">
+        		<h4><a href="{{ path.root }}/feed/usuario/{{ follower.login }}" title="Ver perfil de {{ follower.name }}">{{ follower.name }}</a></h4>
+        	</li>
+        {% endfor %}
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+
+  </div>
+</div>

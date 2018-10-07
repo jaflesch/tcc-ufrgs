@@ -82,7 +82,7 @@
 					<a href="{{ profile.user.getPersonalLink() }}" target="_blank">{{ profile.user.personal_link }}</a>
 				</h3>
 				{% endif %}
-				<h3>
+				<h3 id="{{ followers.total > 0 ? 'see-followers' : '' }}">
 					<span class="fa fa-fw fa-rss"></span>
 					{% if followers.total == 0 %}
 						<span class="follower-qty"></span> <span class="follower-text">Nenhum seguidor ainda<span class="follower-text">

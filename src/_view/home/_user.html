@@ -45,7 +45,7 @@
 		{% elseif followers.total == 1 %}
 			1 seguidor
 		{% else %}
-			{{ followers.total }} seguidores
+			<a href="{{ path.root }}/configuracoes/seguidores" title="Ver seus seguidores">{{ followers.total }} seguidores</a>
 		{% endif %}
 	</h3>
 	<h3>
