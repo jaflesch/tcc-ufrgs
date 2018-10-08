@@ -90,6 +90,40 @@ class Job {
 		return array_slice(self::getAll(), 0, 3);
 	}
 
+	public static function add($data) {
+		$db = new DBConn();
+
+		$id_user = Auth:: id();
+		$data->date_start = Data::str2date($data->date_start);
+		$data->date_finish = Data::str2date($data->date_finish);
+
+		return $db->insert(
+			"INSERT INTO user_job (id_user, title, company, resume, date_start, date_finish, location_city, location_state, selected)
+			VALUES(
+				{$id_user},
+				'{$data->title}',
+				'{$data->company}',
+				'{$data->resume}',
+				'{$data->date_start}',
+				'{$data->date_finish}',
+				'{$data->location_city}',
+				'{$data->location_state}',
+				0
+			)
+		");	
+	}
+
+	public static function remove($id_job) {
+		$db = new DBConn();
+		$id_user = Auth:: id();
+
+		return $db->update(
+			"UPDATE user_job 
+			SET active = 0 
+			WHERE id_user = {$id_user} AND id = {$id_job} AND active = 1
+		");	
+	}
+
 	// Helper
 	private static function formatData($mixed) {
 		$db = new DBConn();

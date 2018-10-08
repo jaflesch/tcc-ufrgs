@@ -114,19 +114,79 @@
 		{% if user.getId() == profile.user.id %}
 		<button class="btn-new"><span class="fa fa-plus"></span>Adicionar nova experiência</button>
 		<hr>
+		<form id="job-experiences-form" action="{{ path.root }}/configuracoes/atualizar-experiencia" method='POST' style="display:none">
+			<div class="row">
+				<div class="col-sm-6">
+					<input type="text" name="company" class="form-data" required="" maxlength="128" placeholder="Empresa">
+				</div>
+				<div class="col-sm-6">
+					<input type="text" name="title" class="form-data" required="" maxlength="128" placeholder="Cargo">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-6">
+					<input type="text" name="date_start" class="form-data mask-data" required="" placeholder="dd/mm/aaaa">
+				</div>
+				<div class="col-sm-6">
+					<input type="text" name="date_finish" class="form-data mask-data" required="" placeholder="dd/mm/aaaa">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-6">
+					<input type="text" name="location_city" class="form-data mask-data" required="" placeholder="Em qual cidade você trabalhou">
+				</div>
+				<div class="col-sm-6">
+					<select name="location_state" class="form-data">
+						<option value="AC">Acre</option>
+						<option value="AL">Alagoas</option>
+						<option value="AP">Amapá</option>
+						<option value="AM">Amazonas</option>
+						<option value="BA">Bahia</option>
+						<option value="CE">Ceará</option>
+						<option value="DF">Distrito Federal</option>
+						<option value="ES">Espírito Santo</option>
+						<option value="GO">Goiás</option>
+						<option value="MA">Maranhão</option>
+						<option value="MT">Mato Grosso</option>
+						<option value="MS">Mato Grosso do Sul</option>
+						<option value="MG">Minas Gerais</option>
+						<option value="PA">Pará</option>
+						<option value="PB">Paraíba</option>
+						<option value="PR">Paraná</option>
+						<option value="PE">Pernambuco</option>
+						<option value="PI">Piauí</option>
+						<option value="RJ">Rio de Janeiro</option>
+						<option value="RN">Rio Grande do Norte</option>
+						<option value="RS">Rio Grande do Sul</option>
+						<option value="RO">Rondônia</option>
+						<option value="RR">Roraima</option>
+						<option value="SC">Santa Catarina</option>
+						<option value="SP">São Paulo</option>
+						<option value="SE">Sergipe</option>
+						<option value="TO">Tocantis</option>
+					</select>
+				</div>
+			</div>
+			<textarea name="resume" class="form-data" placeholder="Fale um pouco sobre sua experiência neste trabalho" style="min-height:120px"></textarea>
+
+			<button type="submit" class="btn-add-to-list">Adicionar</button>
+			<a href="#" class="hide-form" style="color:#555;margin-left:10px;">Cancelar</a>
+			<hr style="margin: 0 auto 20px">
+		</form>
 		{% endif %}
 		
 		{% if profile.jobs is not empty %}
 		<ul>
 			{% for job in profile.jobs %}
-			<li>
+			<li data-id-job="{{ job.id }}">
 				<div class="avatar">
-					<img src="">
+					<span class="fa fa-briefcase"></span>
 				</div>
 				<div class="text">
-					<h3>{{ job.company }}UFRGS </h3>
-					<h4>{{ job.title }} <span class="separator">·</span> {{ job.date }} De 2017 até o momento <span class="separator">·</span> {{ job.location }} Porto Alegre, RS</h4>
+					<h3>{{ job.company }} </h3>
+					<h4>{{ job.title }} <span class="separator">·</span> {{ job.date }} De 2017 até o momento <span class="separator">·</span> {{ job.location_city }} , {{ job.location_state }}</h4>
 					</h4>
+					<div class="remove-item">&times;</div>
 				</div>
 			</li>
 			{% endfor %}

@@ -3,6 +3,7 @@ require MODEL_PATH.'Profile.php';
 require MODEL_PATH.'Preference.php';
 require MODEL_PATH.'Block.php';
 require MODEL_PATH.'Follow.php';
+require MODEL_PATH.'Job.php';
 
 class Configuracoes extends Controller {
 	public function index() {
@@ -16,7 +17,6 @@ class Configuracoes extends Controller {
 
 		$this->render("configuracoes/index", $bag);
 	}
-
 
 	public function meu_perfil() {
 		$bag['jobs'] = Job::getAllFeedRelated();
@@ -94,6 +94,18 @@ class Configuracoes extends Controller {
 	public function atualizar_bloqueio() {
 		$response = new stdclass();
 		$response->success = Block::remove($this->post->id);
+		die(json_encode($response));
+	}
+
+	public function atualizar_experiencia() {
+		$response = new stdclass();
+		$response->success = Job::add($this->post);
+		die(json_encode($response));
+	}
+
+	public function remover_experiencia() {
+		$response = new stdclass();
+		$response->success = Job::remove($this->post->id);
 		die(json_encode($response));
 	}
 }
