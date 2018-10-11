@@ -17,4 +17,32 @@ class Skill {
 			default:				return "Indefinido";
 		}
 	}
+
+	public static function add($data) {
+		$db = new DBConn();
+		$id_user = Auth:: id();
+
+		$data = $db->insert(
+			"INSERT INTO user_skill (id_user, title, level, time)
+			VALUES(
+				{$id_user},
+				'{$data->title}',
+				'{$data->level}',
+				'{$data->time}'
+			)
+		");	
+
+		return $db->last_id();
+	}
+
+	public static function remove($id_skill) {
+		$db = new DBConn();
+		$id_user = Auth::id();
+
+		return $db->update(
+			"UPDATE user_skill
+			SET active = 0 
+			WHERE id_user = {$id_user} AND id = {$id_skill} AND active = 1
+		");	
+	}
 }

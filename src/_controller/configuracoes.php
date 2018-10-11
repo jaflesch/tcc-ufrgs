@@ -1,9 +1,11 @@
 <?php
-require MODEL_PATH.'Profile.php';
-require MODEL_PATH.'Preference.php';
-require MODEL_PATH.'Block.php';
-require MODEL_PATH.'Follow.php';
-require MODEL_PATH.'Job.php';
+require_once MODEL_PATH.'Profile.php';
+require_once MODEL_PATH.'Preference.php';
+require_once MODEL_PATH.'Block.php';
+require_once MODEL_PATH.'Follow.php';
+require_once MODEL_PATH.'Job.php';
+require_once MODEL_PATH.'Education.php';
+require_once MODEL_PATH.'Skill.php';
 
 class Configuracoes extends Controller {
 	public function index() {
@@ -106,6 +108,31 @@ class Configuracoes extends Controller {
 	public function remover_experiencia() {
 		$response = new stdclass();
 		$response->success = Job::remove($this->post->id);
+		die(json_encode($response));
+	}
+
+	public function atualizar_educacao() {
+		$response = new stdclass();
+		$response->success = Education::add($this->post);
+		die(json_encode($response));
+	}
+
+	public function remover_educacao() {
+		$response = new stdclass();
+		$response->success = Education::remove($this->post->id);
+		die(json_encode($response));
+	}
+
+	public function atualizar_habilidade() {
+		$response = new stdclass();
+		$response->last_id = Skill::add($this->post);
+		$response->success = $response->last_id > 0;
+		die(json_encode($response));
+	}
+
+	public function remover_habilidade() {
+		$response = new stdclass();
+		$response->success = Skill::remove($this->post->id);
 		die(json_encode($response));
 	}
 }
