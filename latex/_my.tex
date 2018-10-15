@@ -227,13 +227,13 @@ Texto cap 2
 
 % ========== CAP 3 ==============
 \chapter{Metodologia de desenvolvimento}
-\label{cap_baseline}
+\label{metodologiaDesenvolvimento}
 Este capítulo apresenta a proposta e implementação de um protótipo de rede social para criação e divulgação de vagas em bolsas na universidade e estágios. Inicialmente é realizado um levantamento de requisitos da aplicação. Em seguida, são detalhados a arquitetura e o projeto de banco de dados utilizados como guias para o desenvolvimento da rede social. Na sequência, o processo de implementação do sistema é detalhado, exibindo tomadas de decisões baseadas em padrões de projeto em engenharia de software.
 
 \section{Visão Geral}
 O objetivo da rede social é apresentar de uma maneira mais centralizada, interativa, intuitiva e organizada listas de vagas disponíveis tanto em bolsas na universidade quanto em estágios dentro e fora do meio acadêmico. Com a centralização de informações, os usuários poderiam através do seu login do INF pesquisar, recomendar e candidatar-se a vagas ofertadas e dados pessoais, profissionais ou acadêmicos, como histórico escolar, solicitados na vaga já seriam encaminhados automaticamente. Ainda, por ser uma rede social, é possível explorar uma maior interação entre os usuários, promovendo um networking e facilitando indicações a vagas futuras.
 
-O ambiente implementado é um protótipo de aplicação Web baseado em uma arquitetura centralizada em dados \cite{pressman}, uma vez que é o padrão mais utilizado na Internet. A rede social pode ser acessada por navegadores Web mais modernos que possuem suporte às tecnologias HTML5 e CSS3. Em especial, todos os navegadores mais utilizados atualmente como Google Chrome, Mozilla Firefox, Opera, Safari e Edge.
+O ambiente implementado é um protótipo de aplicação Web baseado em uma arquitetura centralizada em dados \cite{pressman}, uma vez que é o padrão mais utilizado na Internet \cite{kurose}. A rede social pode ser acessada por navegadores Web mais modernos que possuem suporte às tecnologias HTML5 e CSS3. Em especial, todos os navegadores mais utilizados atualmente como Google Chrome, Mozilla Firefox, Opera, Safari e Edge.
 
 O desenvolvimento no lado servidor foi realizado utilizando o motor de template Twig para a linguagem PHP, pois fornece recursos que facilitam a implementação de uma arquitetura MVC, além de possuir uma sintaxe que aumenta a legibilidade do código, facilitando sua manutenção. Complementarmente, para a comunicação com o banco de dados, foi utilizado um modelo Entidade-Relacionamento e o banco de dados escolhido foi SGBD relacional MySQL por ser uma ferramenta livre, popular e robusta\cite{mysql}.
 
@@ -297,31 +297,109 @@ Os requisitos não-funcionais são restrições sobre os serviços ou as funçõ
 \end{itemize}
 
 \section{Arquitetura do sistema}
-\label{metodologiaArquitetura}
-A detecção de anomalia contextual é baseada em dois processos: a definição de perfis de sensores e a atribuição de cada valor de sensor a um perfil; e a comparação de uma nova leitura de sensor (já declarada anômala pelo detector pontual) com a média esperada pelo perfil correspondente ao sensor \cite{ContextualMichael2014}. A Seção~\ref{sensor_prof} detalha a construção dos perfis de sensores, enquanto a Seção~\ref{pred_multi} explica o Preditor Gaussiano Multivariado, componente utilizado na detecção contextual de anomalias.
+\label{arquiteturaSistema}
+O desenvolvimento da rede social foi projetado para ser uma aplicação na web. Foram escolhidas duas arquiteturas diferentes: uma para centralizada em dados para atender às requisições de serviços do lado do servidor; e outra MVC, utilizada para a implementação da lógica e das telas da plataforma.
+
+\subsection{Arquitetura centralizada em dados}
+\label{arquiteturaCentralizadaDados}
+A figura \ref{dataCenteredArchitecture} ilustra a arquitetura implementada. O ambiente do servidor, por residir em uma aplicação web receberá várias solicitações de usuários ao passo que ocorrem diversas interações no sistema \cite{kurose}, foi adotada uma configuração cliente-servidor (PRESSMAN) onde o banco de dados é centralizado no servidor que hospeda a rede social.
+
+A linguagem de programação utilizada no desenvolvimento desta arquitetura foi o PHP. Esta é amplamente utilizada em páginas da Internet\footnote{\url{https://w3techs.com/technologies/overview/programming_language/all} Acesso em outubro de 2018}~e, mesmo com o advento de tecnologias emergentes como Node.js\footnote{\url{https://insights.stackoverflow.com/survey/2016\#technology} Acesso em outubro de 2018}~, mantém-se firme no mercado especialmente em questões \textit{server-side}. Por ser uma linguagem de código aberto, apresenta uma grande e participativa comunidade que constantemente desenvolve \textit{plugins}, \textit{frameworks} e bibliotecas para atender diversas demandas de desenvolvedores \cite{phpPatternsArticle2016}
+
+\begin{figure}[ht]
+    \caption{Arquitetura centralizada em dados.}
+       	\begin{center}
+            \includegraphics[width=0.68\textwidth]{arquitetura-centralizada-dados.png}
+        \end{center}
+    \label{dataCenteredArchitecture}
+    \legend{Fonte: \cite{pressman}}
+\end{figure}
+
+\subsection{Arquitetura MVC}
+\label{arquiteturaMVC}
+
+Outra arquitetura de desenvolvimento de software adotada foi o MVC. Esta arquitetura desacopla a lógica da aplicação da interface do usuário, permitindo desenvolver, analisar e testar separadamente cada parte. O modelo engloba todo domínio específico à aplicação e seu processamento lógico como funcionalidades e acesso a dados externos e fontes de informação. A visão é responsável por exibir, na saída de dados, o conteúdo do modelo em um formato legível e requisitado pelo usuário final. O controlador coordena a comunicação entre o modelo e a visão de acordo com as requisições do usuário. A figura \ref{dataMVCArchitecture} ilustra a arquitetura implementada
+
+\begin{figure}[ht]
+    \caption{Arquitetura MVC.}
+       	\begin{center}
+            \includegraphics[width=0.68\textwidth]{arquitetura-mvc.png}
+        \end{center}
+    \label{dataMVCArchitecture}
+    \legend{Fonte: \cite{pressman}}
+\end{figure}
+
+A arquitetura foi desenvolvida através, novamente, da linguagem de programação PHP. Para auxiliar na abstração e no desacoplamento entre os três módulos da arquitetura MVC, foi utilizado o motor de template Twig\footnote{\url{https://twig.symfony.com/} Acesso em outubro de 2018}. A ferramenta Twig  permite escrever um código mais conciso, com \textit{templates} mais legíveis e amigáveis para \textit{web designers} e, em vários casos, mais poderosos que \textit{templates} padrões do PHP \cite{symfonyBook}.
+
+\begin{figure}[ht]
+    \caption{Exemplo de \textit{template} padrão em PHP.}
+       	\begin{center}
+            \includegraphics[width=0.68\textwidth]{twig-php.png}
+        \end{center}
+    \label{codeTemplatePHP}
+    \legend{Fonte: \cite{symfonySensioLabs}}
+\end{figure}
+
+\bigskip
+
+\begin{figure}[ht]
+    \caption{Exemplo de \textit{template} em Twig .}
+       	\begin{center}
+            \includegraphics[width=0.68\textwidth]{figuras/twig-symf.png}
+        \end{center}
+    \label{codeTemplateTwig}
+    \legend{Fonte: \cite{symfonySensioLabs}}
+\end{figure}
+
 
 \section{Projeto de Banco de dados}
-\label{metodologiaProjetoBD}
+\label{metodologiaBD}
+
+\subsection{Modelagem dos dados}
+\label{BDModelagem}
+
+\subsection{Criação do banco de dados}
+\label{BDCriacao}
 
 \section{Implementação}
 \label{metodologiaImplementação}
 
-\section{Implementação}
-\label{metodologiaImplementação}
+\subsection{Configuração do ambiente do trabalho}
+\label{implementacaoConfig}
+
+\subsection{SCRUM}
+\label{implementacaoSCRUM}
+
+\subsection{Versão inicial}
+\label{implementacaoIR}
+
+\subsection{Versão Alfa}
+\label{implementacaoAR}
+
+\subsection{Versão Beta}
+\label{implementacaoBR}
+
+\subsection{Versão Final}
+\label{implementacaoFR}
 
 % ========== CAP 4 ==============
-\chapter{Metodologia de desenvolvimento}
-\label{cap_baseline}
+\chapter{A rede social Portal de Vagas}
+\label{redeSocialPortal}
 
 % ========== CAP 5 ==============
-\chapter{A rede social Portal de Vagas}
-\label{cap_baseline}
-
-% ========== CAP 6 ==============
 \chapter{Avaliação com os usuários}
-\label{cap_baseline}
+\label{Avaliação}
 
-% ============== CAP 7 - CONCLUSÃO - =========================
+% ============== CAP 6 - CONCLUSÃO - =========================
 \chapter{Conclusões}
 \label{conclusao}
+
+
+
+
+% ============== NÃO MEXER =========================
+\bibliographystyle{abntex2-alf}
+\bibliography{biblio}
+% ============== NÃO MEXER =========================
+
 \end{document}
