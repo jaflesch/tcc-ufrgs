@@ -235,7 +235,7 @@ O objetivo da rede social é apresentar de uma maneira mais centralizada, intera
 
 O ambiente implementado é um protótipo de aplicação Web baseado em uma arquitetura centralizada em dados \cite{pressman}, uma vez que é o padrão mais utilizado na Internet \cite{kurose}. A rede social pode ser acessada por navegadores Web mais modernos que possuem suporte às tecnologias HTML5 e CSS3. Em especial, todos os navegadores mais utilizados atualmente como Google Chrome, Mozilla Firefox, Opera, Safari e Edge.
 
-O desenvolvimento no lado servidor foi realizado utilizando o motor de template Twig para a linguagem PHP, pois fornece recursos que facilitam a implementação de uma arquitetura MVC, além de possuir uma sintaxe que aumenta a legibilidade do código, facilitando sua manutenção. Complementarmente, para a comunicação com o banco de dados, foi utilizado um modelo Entidade-Relacionamento e o banco de dados escolhido foi SGBD relacional MySQL por ser uma ferramenta livre, popular e robusta\cite{mysql}.
+O desenvolvimento no lado servidor foi realizado utilizando o motor de template Twig para a linguagem PHP, pois fornece recursos que facilitam a implementação de uma arquitetura MVC, além de possuir uma sintaxe que aumenta a legibilidade do código, facilitando sua manutenção. Complementarmente, para a comunicação com o banco de dados, foi utilizado um modelo Entidade-Relacionamento e o banco de dados escolhido foi SGBD relacional MySQL por ser uma ferramenta livre, popular e robusta \cite{mysql}.
 
 O lado do cliente, por sua vez, foi constituído da união das tecnologias HTML5, CSS3, JavaScript e o framework jQuery. Este último é uma biblioteca de funções do JavaScript nativo que facilitam a prototipagem de aplicações e concedem suporte a diferentes tipos de browser, aumentando assim a portabilidade do sistema.
 
@@ -355,8 +355,26 @@ A arquitetura foi desenvolvida através, novamente, da linguagem de programaçã
 \section{Projeto de Banco de dados}
 \label{metodologiaBD}
 
-\subsection{Modelagem dos dados}
+O banco de dados utilizado na rede social foi o SGBD relacional MySQL. A ferramenta é livre, popular, robusta e amplamente utilizada em aplicações na Internet \footnote{\url{https://db-engines.com/en/ranking} Acesso em outubro de 2018}. O MySQL utiliza a linguagem SQL, \textit{Structured Query Language}, padrão dos bancos de dados relacionais para realizar consultas e atualizar informações nos dados armazenados pelo sistema \cite{sqlCompleteBook}.
+
+O projeto de um banco de dados dá-se em duas fases: a modelagem conceitual, onde é construído um diagrama de entidade-relacionamento \cite{peterChen1976} e são capturadas as necessidades da organização independente de implementação; e o projeto lógico, que objetiva transformar o modelo conceitual em um modelo lógico, isto é, o modo como o banco de dados será implementado em um SGBD específico \cite{heuser}.
+
+\subsection{Modelagem conceitual}
 \label{BDModelagem}
+
+A modelagem conceitual é utilizada para obter uma descrição abstrata, independente de implementação em computador, dos dados que serão armazenados no banco de dados. A técnica de modelagem de dados mais difundida e utilizada é a abordagem entidade-relacionamento (ER). \cite{heuser} Através dela, os modelos de dados são representados graficamente por um diagrama entidade-relacionamento (DER). A figura \ref{modelagemBDExemplol} apresenta um DER parcial presente na modelagem conceitual do sistema implementado.
+
+\begin{figure}[h]
+    \caption{Exemplo de modelagem conceitual.}
+       	\begin{center}
+            \includegraphics[width=0.68\textwidth]{figuras/twig-symf.png}
+        \end{center}
+    \label{modelagemBDExemplol}
+    %\legend{Fonte: Autor}%
+\end{figure}
+
+\subsection{Projeto lógico}
+\label{BDProjeto}
 
 \subsection{Criação do banco de dados}
 \label{BDCriacao}
