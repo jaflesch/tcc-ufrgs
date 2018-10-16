@@ -376,6 +376,36 @@ A modelagem conceitual é utilizada para obter uma descrição abstrata, indepen
 \subsection{Projeto lógico}
 \label{BDProjeto}
 
+O projeto lógico consiste na transformação de um modelo ER em um modelo lógico. Este implementa de forma concreta, a nível de SGBD relacional, os dados representados no modelo ER.
+
+Um determinado modelo ER pode ser implementado através de diversos modelos relacionais, que contém as informações especificadas pelo diagrama ER. Todos podem ser considerados uma implementação correta do modelo ER considerado. Entretanto, diferentes modelos relacionais podem resultar em diferentes performances do sistema construído sobre o banco de dados. 
+
+No processo de transformação do modelo ER para o modelo relacional, foram utilizadas as seguintes regras de transformação \cite{heuser} a fim de obter uma melhor performance do sistema: 
+
+\begin{itemize}
+    \item Obter um banco de dados que permita boa performance de instruções de consulta e alteração do banco de dados.
+    
+    \item Obter um banco de dados que simplifique o desenvolvimento e a manutenção de aplicações.
+    
+    \item Evitar junções.
+    
+    \item Diminuir o número de chaves primárias.
+    
+    \item Evitar campos opcionais.
+    
+\end{itemize}
+
+Os dois primeiros itens são alcançados naturalmente com as funcionalidades nativas do SGBD MySQL \cite{sqlCompleteBook}. As junções só ocorrem quando há uma relação 1:N entre duas entidades diferentes no sistema, minizando a quantidade de uso e consequente impacto dessas operações. Por fim, os dois últimos itens são respeitados com uma padronização de tabelas feitas para o projeto: todas possuem chave primária única e nenhum campo opcional. A figura \ref{modelagemBDLogicoExemplol} apresenta a transformação do modelo ER para o modelo relacional do exemplo apresentado na figura \ref{modelagemBDExemplol}.
+
+\begin{figure}[h]
+    \caption{Exemplo de modelagem relacional.}
+       	\begin{center}
+            \includegraphics[width=0.68\textwidth]{figuras/twig-symf.png}
+        \end{center}
+    \label{modelagemBDLogicoExemplol}
+    %\legend{Fonte: Autor}%
+\end{figure}
+
 \subsection{Criação do banco de dados}
 \label{BDCriacao}
 
