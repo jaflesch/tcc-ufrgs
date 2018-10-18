@@ -221,11 +221,16 @@ Portal de Vagas - implementation of a tool to promote scholarships and internshi
 Texto introdução
 
 % ========== CAP 2 ==============
-\chapter{Levantamento Bibliográfico}
+\chapter{Fundamentação teórica}
 
-Texto cap 2
+Texto fundação teórica....
 
 % ========== CAP 3 ==============
+\chapter{Trabalhos relacionados}
+
+Texto trabalhos relacionados...
+
+% ========== CAP 4 ==============
 \chapter{Metodologia de desenvolvimento}
 \label{metodologiaDesenvolvimento}
 Este capítulo apresenta a proposta e implementação de um protótipo de rede social para criação e divulgação de vagas em bolsas na universidade e estágios. Inicialmente é realizado um levantamento de requisitos da aplicação. Em seguida, são detalhados a arquitetura e o projeto de banco de dados utilizados como guias para o desenvolvimento da rede social. Na sequência, o processo de implementação do sistema é detalhado, exibindo tomadas de decisões baseadas em padrões de projeto em engenharia de software.
@@ -409,39 +414,97 @@ Os dois primeiros itens são alcançados naturalmente com as funcionalidades nat
 \subsection{Criação do banco de dados}
 \label{BDCriacao}
 
+A etapa final do projeto de banco de dados consiste na implementação do modelo lógico de acordo com as regras e definições do SGBD escolhido. Para a transcrição do modelo em tabelas MySQL, foi utilizado o módulo do phpmyadmin que faz parte dos softwares e recursos instalados junto à pilha XAMPP (ver seção \ref{implementacaoConfig}). Através dessa ferramenta, é possível realizar consultas e  operações no SGBD como criação, edição e remoção de tabelas e registros.
+
+\begin{figure}[h]
+    \begin{adjustwidth}{-1in}{-.8in}
+        \includegraphics[width=0.68\textwidth]{figuras/twig-symf.png}
+        \includegraphics[width=0.68\textwidth]{figuras/twig-symf.png}
+        \caption{Telas para criação do banco de dados e configuração da tabela [nome tabela].}
+        \label{projetoImagens}
+    \end{adjustwidth}
+\end{figure}
+
+Ao final deste processo, a implementação do banco de dados da rede social foi concluído com X tabelas, sendo elas:
+
+\begin{itemize}
+    \item \textbf{block}
+    \item \textbf{comment}
+    \item \textbf{favorite}
+    \item \textbf{follow}
+    \item \textbf{job}
+    \item \textbf{job\_apply}
+    \item \textbf{job\_category}
+    \item \textbf{log}
+    \item \textbf{post}
+    \item \textbf{post\_like}
+    \item \textbf{recommendation\_job}
+    \item \textbf{recommendation\_user}
+    \item \textbf{user}
+    \item \textbf{user\_education}
+    \item \textbf{user\_job}
+    \item \textbf{user\_language}
+    \item \textbf{user\_skill}
+    \item \textbf{user\_timeline}
+\end{itemize}
+
 \section{Implementação}
 \label{metodologiaImplementação}
+
+A ferramenta foi implementada utilizando os conceitos de metodologia ágil de desenvolvimento, em especial, o SCRUM. O desenvolvimento da aplicação foi dividido em cinco fases: construção do \textit{framework} e  as entregas Inicial, Alfa, Beta e Final. Para uma maior organização durante toda a realização deste projeto, foi criado um repositório no GitHub\footnote{\url{https://github.com/jaflesch/tcc-ufrgs} Acesso em novembro de 2018} e definidas várias \textit{issues}, que agrupadas em \textit{milestones}, representavam um \textit{sprint}, uma etapa de desenvolvimento específico.
 
 \subsection{Configuração do ambiente do trabalho}
 \label{implementacaoConfig}
 
+A construção do \textit{framework} focava em implementar conceitos abstratos da linguagem, arquitetura do sistema e funcionalidades básicas que seriam reaproveitadas nas etapas seguintes, como roteamento das páginas, configuração da conexão ao banco de dados e métodos genéricos.
+
+
 \subsection{SCRUM}
 \label{implementacaoSCRUM}
 
-\subsection{Versão inicial}
+\subsection{Versão Inicial}
 \label{implementacaoIR}
+
+A entrega inicial priorizou a elaboração das principais telas do sistema, como a página Home, Feed de usuários, Vaga, Pesquisa e Login. A funcionalidade de realizar autenticação no sistema também foi implementada nesta etapa junto com consultas ao banco de dados que exibiam informações parciais de entidades como usuário e vaga.
 
 \subsection{Versão Alfa}
 \label{implementacaoAR}
 
+A segunda etapa destinou-se à interação entre os usuários. Ao terminar da entrega alfa, já era possível seguir ou deixar de seguir um usuário, bloquear ou desbloquear um usuário, curtir ou descurtir um post e suas curtidas eram contabilizados dinamicamente, favoritar ou desfavoritar vaga, recomendar um usuário ou vaga. 
+
+Sobre os aspectos visuais, foram desenvolvidas as páginas restantes: Configurações Gerais, Configurações de Privacidade, Usuários bloqueados, Seguidores; a barra de menu lateral ficou funcional e com animações ao abrir e fechar. Melhorias na experiência de usuário foram aplicadas com o aumento da área de clique em botões e no uso de cores mais contrastantes.
+
 \subsection{Versão Beta}
 \label{implementacaoBR}
+
+A entrega Beta trouxe diversas melhorias às funcionalidades desenvolvidas. A pesquisa de vagas e de usuários ganharam novos filtros de modo a tornar a sua utilização mais inteligente, dinâmica e eficiente. Além disso, a interação quando um usuário manifestava interesse por vaga e a posterior gerência por parte de quem a divulgou foi finalizada. Por fim, a biblioteca de envio de e-mails para registrar e notificar ações importantes realizadas por usuários no sistema foi implementada.
+
+No \textit{frontend}, iniciaram-se os primeiros passos para tratar as questões de responsividade em aparelhos móveis.
 
 \subsection{Versão Final}
 \label{implementacaoFR}
 
-% ========== CAP 4 ==============
+documentação e visual
+aperfeiçoamento e otimização de funcionalidades
+
+
+% ========== CAP 5 ==============
 \chapter{A rede social Portal de Vagas}
 \label{redeSocialPortal}
 
-% ========== CAP 5 ==============
+Texto a rede social...
+
+% ========== CAP 6 ==============
 \chapter{Avaliação com os usuários}
 \label{Avaliação}
 
-% ============== CAP 6 - CONCLUSÃO - =========================
+Texto avaliação com usuários...
+
+% ============== CONCLUSÃO =========================
 \chapter{Conclusões}
 \label{conclusao}
 
+Texto conclusão...
 
 
 
