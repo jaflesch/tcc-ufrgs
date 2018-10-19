@@ -36,4 +36,31 @@ class Language {
 			default:					return "Indefinido";
 		}
 	}
+
+	public static function add($data) {
+		$db = new DBConn();
+		$id_user = Auth:: id();
+
+		$data = $db->insert(
+			"INSERT INTO user_language (id_user, title, level)
+			VALUES(
+				{$id_user},
+				'{$data->title}',
+				'{$data->level}'
+			)
+		");	
+
+		return $db->last_id();
+	}
+
+	public static function remove($id_skill) {
+		$db = new DBConn();
+		$id_user = Auth::id();
+
+		return $db->update(
+			"UPDATE user_language
+			SET active = 0 
+			WHERE id_user = {$id_user} AND id = {$id_skill} AND active = 1
+		");	
+	}
 }

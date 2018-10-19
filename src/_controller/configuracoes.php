@@ -59,8 +59,8 @@ class Configuracoes extends Controller {
 		$id = Auth::id();
 		
 		$db = new DBConn();
-		$result = $db->update(
-			"UPDATE user
+		$result = $db->update("
+			UPDATE user
 			SET 
 				post_privacy = {$this->post->post_privacy},
 				show_schollar_info = {$this->post->show_schollar_info},
@@ -133,6 +133,19 @@ class Configuracoes extends Controller {
 	public function remover_habilidade() {
 		$response = new stdclass();
 		$response->success = Skill::remove($this->post->id);
+		die(json_encode($response));
+	}
+
+	public function atualizar_idioma() {
+		$response = new stdclass();
+		$response->last_id = Language::add($this->post);
+		$response->success = $response->last_id > 0;
+		die(json_encode($response));
+	}
+
+	public function remover_idioma() {
+		$response = new stdclass();
+		$response->success = Language::remove($this->post->id);
 		die(json_encode($response));
 	}
 }

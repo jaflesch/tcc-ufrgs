@@ -270,4 +270,105 @@ $(document).ready(function() {
 			}
 		});
 	});
+
+	// Update LANGUAGE information
+	$('#languages .btn-new').click(function() {
+		$('#languages-form').slideDown();
+	});
+	$('#languages .hide-form').click(function(e) {
+		e.preventDefault();
+		$('#languages-form').slideUp();
+	});
+	$('#languages').on("click", '.remove-item', function() {
+		var el = $(this);
+		var id = el.parent().attr("data-id-language");
+		console.log(id);
+		$.ajax({
+			url: '../../configuracoes/remover-idioma',
+			method: 'POST',
+			dataType: 'json',
+			data: { id: id },
+			success: function(response) {
+				if(response.success) el.parent().remove();			
+			}
+		});		
+	});	
+	$('#languages form').on("submit", function(e) {
+		e.preventDefault();
+		var form = $(this);
+		
+		var title = $('#languages-form [name="title"]').find(":selected").text();
+		var level = $('#languages-form [name="level"]').find(":selected").text();
+
+		var flag = "";
+		switch(title) {
+			case 'Português':
+				flag = 'Brazil';
+				break;
+			case 'Inglês': 
+				flag = 'United-States';
+				break;
+			case 'Francês':
+				flag = 'France';
+				break;
+			case 'Alemão': 
+				flag = 'Germany';
+				break;
+			case 'Espanhol':
+				flag = 'Spain';
+				break;
+			case 'Japonês':
+				flag = 'Japan';
+				break;
+			case 'Chinês': 
+				flag = 'China';
+				break;
+			case 'Russo': 
+				flag = 'Russia';
+				break;
+			case 'Coreano':
+				flag = 'South-Korea';
+				break;
+			case 'Turco': 
+				flag = 'Turkey';
+				break;
+			case 'Polaco': 
+				flag = 'Poland';
+				break;
+			case 'Egípcio':
+				flag = 'Egypt';
+				break;
+			case 'Ucraniano':
+				flag = 'Ukraine';
+				break;
+			case 'Holandês':
+				flag = 'Netherlands';			
+				break;
+		}
+		
+		// AJAX call
+		$.ajax({
+			url: form.attr("action"),
+			method: 'POST',
+			dataType: 'json',
+			data: form.serializeArray(),
+			success: function(response) {
+				if(response.success) {
+					form[0].reset();	
+					var element = `
+						<li data-id-language="${response.last_id}">
+							<div class="languages-flag">
+								<img src="../../assets/img/icons/flags/32/${flag}.png">
+							</div>
+							<div class="text">
+								<h4>${title} <span class="separator">·</span> ${level}</h4>
+							</div>
+							<div class="remove-item">&times;</div>
+						</li>`;
+
+					$('#languages ul').append(element);
+				}
+			}
+		});
+	});
 });
