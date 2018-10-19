@@ -10,6 +10,7 @@ class Block {
 			FROM block b 
 			INNER JOIN user u ON u.id = b.id_blocked
 			WHERE u.active = 1 and b.active = 1 AND b.id_blocker = {$blocker_user_id}
+			ORDER BY datetime_created DESC
 		", true);
 	}
 

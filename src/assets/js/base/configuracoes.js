@@ -28,7 +28,7 @@ $(document).ready(function() {
 			data: { id: id },
 			success: function(response) {
 				if(response.success) {
-					if(el.parent().parent().length == 1) {
+					if(el.parent().parent().children().length == 1) {
 						el.parent().remove();
 						form.append(`<p>Sua lista de usuários bloqueados está vazia.</p>`);
 					}
