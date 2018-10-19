@@ -1,4 +1,6 @@
 <?php
+require 'Comment.php';
+
 class Post {
 	
 	public static function getAllFeed($id_user) {
@@ -31,7 +33,7 @@ class Post {
 		", true);
 
 		if(is_array($posts)) {
-				foreach ($posts as &$p) {
+			foreach ($posts as &$p) {
 				// $time = explode(" ", $p->datetime_published);
 				$diff = abs(strtotime($p->datetime_published) - strtotime(date('Y-m-d H:i:s')));
 				
@@ -86,6 +88,9 @@ class Post {
 						}
 					}				
 				}
+
+				$p->comments = Comment::getAllFromPost($p->id);
+				$p->total_comments = count($p->comments);
 			}
 		}
 		else $posts = NULL;

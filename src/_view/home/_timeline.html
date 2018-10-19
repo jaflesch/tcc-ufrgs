@@ -81,12 +81,16 @@
 			{{ post.text|raw }}
 		</div>
 		<div class="post-footer">
-			<div class="current-status">
+			<div class="current-status" style="display: {{ post.likes > 0 or post.total_comments > 0 ? '' : 'none' }}">
 				<span class="likes-count" style="display:{{ post.likes > 0 ? '' : 'none' }};">
 					<span class="count">{{ post.likes }}</span> <span class="text">curtida{{ post.likes > 1 ? 's' : '' }}</span>
 				</span>
-				<span class="separator">•</span>
-				<span class="comments-count">2 comentários</span>
+
+				<span class="separator" style="display: {{ post.likes > 0 and post.total_comments > 0 ? '' : 'none' }}">•</span>
+					
+				<span class="comments-count" style="display:{{ post.total_comments > 0 ? '' : 'none' }};">
+					{{  post.total_comments }} comentário{{ post.total_comments > 1 ? 's' : '' }}
+				</span>
 			</div>
 			<div class="post-options">
 				<div class="likes {{ post.i_liked ? 'user-liked' : '' }}">
