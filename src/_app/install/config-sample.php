@@ -24,6 +24,12 @@ define("PARAM_INDEX", 2);
 define("MAIL_CONTACT", "jean.flesch93@gmail.com.br");
 define("DEBUG", true);
 
+// E-mail provider SMTP config
+define("SMTP_HOST", "");
+define("SMTP_PORT", "");
+define("SMTP_EMAIL_ACCOUNT", "");
+define("SMTP_EMAIL_PASSWORD", "");
+
 // Paths
 define("APP_PATH", "_app/");
 define("CORE_PATH", "_app/core/");
