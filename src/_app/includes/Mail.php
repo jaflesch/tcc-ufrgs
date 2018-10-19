@@ -1,11 +1,11 @@
 <?php
 require_once("PHPmailer/PHPmailer.php");
 
-class CSMail {
+class Mail {
 	private $subject;
 	private $mailer;
 	
-	public function CSMail($subject) {
+	public function __construct($subject) {
 		$this->setSubject($subject);
 		$this->mailer = new PHPMailer();
 		
@@ -20,9 +20,18 @@ class CSMail {
 	 * Set initial configurations for PHP Mailer
 	 */
 	private function initialConfig() {
-		$this->mailer->FromName = "Contato";
-		$this->mailer->From = "contato@karenmunoz.com.br";
-		$this->mailer->Sender = "contato@karenmunoz.com.br";
+		$this->mailer->isHTML(TRUE);
+		$this->mailer->FromName = SMTP_FROM_NAME;
+		$this->mailer->From = SMTP_SENDER;
+		$this->mailer->Sender = SMTP_SENDER;
+
+		$this->mailer->IsSMTP();                           
+		$this->mailer->SMTPAuth   = TRUE;  
+		$this->mailer->SMTPSecure = SMTP_SECURE;                
+		$this->mailer->Host       = SMTP_HOST; 
+		$this->mailer->Port       = SMTP_PORT;                    
+		$this->mailer->Username   = SMTP_EMAIL_ACCOUNT; 
+		$this->mailer->Password   = SMTP_EMAIL_PASSWORD;        
 
 		//Subject
 		$this->mailer->Subject = $this->getSubject();

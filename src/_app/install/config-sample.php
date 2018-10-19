@@ -27,6 +27,9 @@ define("DEBUG", true);
 // E-mail provider SMTP config
 define("SMTP_HOST", "");
 define("SMTP_PORT", "");
+define("SMTP_SECURE", "");
+define("SMTP_SENDER", "");
+define("SMTP_FROM_NAME", "");
 define("SMTP_EMAIL_ACCOUNT", "");
 define("SMTP_EMAIL_PASSWORD", "");
 

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body style="margin:0;font-family:'Open Sans',sans-serif;font-size:14px;">
+	<div style="width:100%;background:#fff;margin:0;padding:0;">
+		<img src="{{ path.img }}/logo/logo-inf-ufrgs.png" style="display:block;margin: 15px auto;">
+	</div>
+	<div style="background:#f4f4f7;width:100%;margin:0;padding:0;">
+		<div style="padding: 15px;">
+			<p>Olá,</p>
+			<p>Recebemos um contato através de nosso portal Web. Seguem dados informados:<p>
+		
+			<div style="margin:30px; padding: 15px;background:#fff;border:1px solid #fcfcfc;">
+				<p>
+					<strong>Nome:</strong> <br />
+					{{ user_data.name }}
+				</p>
+				<p>
+					<strong>E-mail:</strong> <br />
+					{{ user_data.email }}
+				</p>
+				<p>
+					<strong>Assunto:</strong> <br />
+					{{ user_data.subject }}
+				</p>
+				<p>
+					<strong>Mensagem:</strong> <br />
+					{{ user_data.message|nl2br }}
+				</p>
+				<hr style='border:0;border-top:1px solid #ddd;margin: 20px 0;' />
+				<p>
+					<em>Formulário preenchido as {{ time }} de {{ date }}. </em>
+				</p>
+			</div>
+
+			<p> Obrigado!</p>
+
+			<hr style="border:0; border-top:2px solid #ddd;margin:30px auto 15px;width:60px;">
+
+			<div style="text-align:center;font-size:0;">
+				<a href="{{ social_media.facebook }}" title="Facebook - INF UFRGS" rel="nofollow" style="color:#c0c0c0;margin: 0 4px;" target="_blank">
+					<div style="display:inline-block;border:2px solid #c0c0c0;width:36px;height:36px;border-radius:6px;">
+						<img src="{{ path.img }}/mail-icons/facebook.png" style="width:16px;height:16px;margin-top:9px;">
+					</div>
+				</a>
+				<a href="{{ social_media.instagram }}" title="Instagram - INF UFRGS" rel="nofollow" style="color:#c0c0c0;margin: 0 4px;" target="_blank">
+					<div style="display:inline-block;border:2px solid #c0c0c0;width:36px;height:36px;border-radius:6px;">
+						<img src="{{ path.img }}/mail-icons/instagram.png" style="width:16px;height:16px;margin-top:9px;">
+					</div>
+				</a>
+				<a href="{{ social_media.instagram }}" title="Twitter - INF UFRGS" rel="nofollow" style="color:#c0c0c0;margin: 0 4px;" target="_blank">
+					<div style="display:inline-block;border:2px solid #c0c0c0;width:36px;height:36px;border-radius:6px;">
+						<img src="{{ path.img }}/mail-icons/twitter.png" style="width:16px;height:16px;margin-top:9px;">
+					</div>
+				</a>
+				<a href="{{ social_media.instagram }}" title="Youtube - INF UFRGS" rel="nofollow" style="color:#c0c0c0;margin: 0 4px;" target="_blank">
+					<div style="display:inline-block;border:2px solid #c0c0c0;width:36px;height:36px;border-radius:6px;">
+						<img src="{{ path.img }}/mail-icons/youtube.png" style="width:16px;height:16px;margin-top:9px;">
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>		
+</body>
+</html>
