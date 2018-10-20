@@ -179,13 +179,39 @@ $(document).ready(function() {
 		e.preventDefault();
 		var form = $(this);
 
+		var target = form.children('input[type="hidden"]').val();
+		var li_el = $(`.post-list li .options .dropdown-menu li [data-post="${target}"]`).parent().parent().parent().parent();
+		var $post_counter_element = li_el.parent().parent().siblings('.current-status').children('.comments-count');
+		console.log(li_el, $post_counter_element);
+		li_el.remove();
+
+		$('#modalDeleteComment').modal("hide");					
+
+		var post_count = parseInt($post_counter_element.children('.count').text()) - 1;
+
+		if(post_count == 1 ) {
+			$post_counter_element.children(".text").text("comentário");
+		}
+		else {
+			$post_counter_element.children(".text").text("comentários");	
+		}
+		
+		// No likes, then hide div
+		if(post_count == 0) {
+			$post_counter_element.siblings(".separator").hide();
+			$post_counter_element.hide();
+		}
+
+		$post_counter_element.children('.count').text(post_count);
+
+		return true;
 		$.ajax({
 			url: form.attr("action"),
 			method: 'POST',
 			dataType: 'json',
 			data: form.serializeArray(),
 			success: function(response) {
-				if(response.result) location.reload();
+				if(response.result) return true;
 			}
 		})
 	})
@@ -193,7 +219,24 @@ $(document).ready(function() {
 	$('.form-comment').unbind("submit").bind("submit", function(e) {
 		e.preventDefault();
 		var form = $(this);
+		var el = $(this).parent().parent().siblings('.current-status').children('.comments-count');
+		
+		var $post_counter_element = el;
+		var post_count = parseInt($post_counter_element.children('.count').text()) + 1;
 
+		if(post_count == 1 ) {
+			$post_counter_element.children(".text").text("comentário");
+		}
+		else {
+			$post_counter_element.children(".text").text("comentários");	
+		}
+
+		if(post_count == 1) {
+			$post_counter_element.siblings(".separator").show();
+			$post_counter_element.show();
+		}
+		$post_counter_element.children('.count').text(post_count);
+		
 		$.ajax({
 			url: form.attr("action"),
 			method: 'POST',
@@ -203,6 +246,7 @@ $(document).ready(function() {
 				text: form.children('input').val()
 			},
 			success: function(response) {
+				form[0].reset();
 				return true;
 			}
 		})
