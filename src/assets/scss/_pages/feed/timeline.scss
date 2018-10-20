@@ -15,10 +15,12 @@
 			cursor: pointer;
 		}
 	}
-	.post-options .likes {
-		&:hover, &:focus { 
-			text-decoration: underline; 
-			cursor: pointer;
+	.post-options {
+		.likes, .comments {
+			&:hover, &:focus { 
+				text-decoration: underline; 
+				cursor: pointer;
+			}
 		}
 	}
 
@@ -74,6 +76,37 @@
 			&:hover, &:focus {
 				@include colors($secondary-color, #fff);
 				border-color: $secondary-color;
+			}
+		}
+	}
+
+	.comment-area {
+		margin-top: 15px;
+		position: relative;
+		display: none;
+		
+		input {
+			@include border-radius(25px);
+			background: #fff;
+			border: 0;
+			padding-right: 50px;
+
+			&:focus ~ button { color: #777; }
+		}
+
+		button {
+			position: absolute;
+			background: transparent !important;
+			top: 5px;
+			right: 15px;
+			border: 0 !important;
+			color: #ccc;
+
+			&:focus, &:hover {
+				outline: none;
+				box-shadow: none;
+				border: 0;
+				color: #777;
 			}
 		}
 	}

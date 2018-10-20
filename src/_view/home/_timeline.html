@@ -89,7 +89,7 @@
 				<span class="separator" style="display: {{ post.likes > 0 and post.total_comments > 0 ? '' : 'none' }}">•</span>
 					
 				<span class="comments-count" style="display:{{ post.total_comments > 0 ? '' : 'none' }};">
-					{{  post.total_comments }} comentário{{ post.total_comments > 1 ? 's' : '' }}
+					<span class="count">{{  post.total_comments }}</span> <span class="text">comentário{{ post.total_comments > 1 ? 's' : '' }}</span>
 				</span>
 			</div>
 			<div class="post-options">
@@ -101,6 +101,12 @@
 					<span class="fa fa-comments comments"></span> Comentar
 				</div>
 				{% endif %}
+				<div class="comment-area">
+					<form class="form-comment" action="{{ path.root }}/home/new-comment" method="POST">
+						<input type="text" name="comment" class="form-data" placeholder="Escreva um comentário" required="">
+						<button><span class="fa fa-send"></span></button>
+					</form>
+				</div>
 			</div>
 		</div>
 	</article>

@@ -26,4 +26,10 @@ class Home extends Controller {
 		$response->result = Post::unlike($this->post->id);
 		die(json_encode($response));
 	}
+
+	public function new_comment() {
+		$response = new stdclass();
+		$response->result = Comment::add($this->post);
+		die(json_encode($response));
+	}
 }
