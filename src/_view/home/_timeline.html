@@ -101,6 +101,29 @@
 					<span class="fa fa-comments comments"></span> Comentar
 				</div>
 				{% endif %}
+				<ul class="post-list">
+					{% for comment in post.comments %}
+					<li>
+						<a href="{{ path.root }}/feed/usuario/{{ comment.author_login }}" title="Ver perfil de {{ comment.author_name }}">
+							<span class="avatar"></span></a>
+						<span class="text-content">
+							<a href="{{ path.root }}/feed/usuario/{{ comment.author_login }}" title="Ver perfil de {{ comment.author_name }}">{{ comment.author_name }}</a>
+							{{ comment.text }}
+						</span>
+						{% if user.id == comment.id_author %}
+						<span class="options">
+							<a href="#" data-toggle="dropdown" class="dropdown-toggle btn-more-options">
+								<img src="{{ path.img }}/icons/ellipsis.png" style="width:14px">
+							</a>
+							<ul class="dropdown-menu">
+								<li><a href="#" class="delete-comment" data-post="{{ comment.id }}">Editar</a></li>
+								<li><a href="#" class="delete-comment" data-post="{{ comment.id }}">Excluir</a></li>
+							</ul>
+						</span>
+						{% endif %}
+					</li>
+					{% endfor %}
+				</ul>
 				<div class="comment-area">
 					<form class="form-comment" action="{{ path.root }}/home/new-comment" method="POST">
 						<input type="text" name="comment" class="form-data" placeholder="Escreva um comentário" required="">

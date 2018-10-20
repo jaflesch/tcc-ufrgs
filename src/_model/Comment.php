@@ -5,11 +5,12 @@ class Comment {
 		$db = new DBConn();
 		
 		return $db->query("
-			SELECT *
-			FROM comment 
-			WHERE id_post = {$id_post} AND active = 1
-			ORDER BY datetime_published ASC
-		");
+			SELECT c.*, u.name author_name, u.login author_login
+			FROM comment c
+			INNER JOIN user u ON u.id = c.id_author
+			WHERE c.id_post = {$id_post} AND c.active = 1
+			ORDER BY c.datetime_published ASC
+		", TRUE);
 	}
 
 	public static function add($data) {
@@ -20,5 +21,16 @@ class Comment {
 			INSERT INTO comment (id_author, id_post, text) 
 			VALUES ({$id_author}, {$data->id}, '{$data->text}')
 		");			
+	}
+
+	public static function remove($id_comment) {
+		$db = new DBConn();
+		$id_author = Auth::id();
+		
+		return $db->update("
+			UPDATE comment 
+			SET active = 0 
+			WHERE id_author = {$id_author} AND id = {$id_comment} AND active = 1
+		");
 	}
 }

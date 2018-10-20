@@ -9,7 +9,7 @@
 		margin-bottom: 10px;
 	}
 
-	.likes-count{
+	.likes-count, .comments-count{
 		&:hover, &:focus { 
 			text-decoration: underline; 
 			cursor: pointer;
@@ -107,6 +107,56 @@
 				box-shadow: none;
 				border: 0;
 				color: #777;
+			}
+		}
+	}
+
+	.post-list {
+		$avatar-size: 24px;
+		display:none;
+		list-style: none;
+		margin-top: 20px;
+
+		li { 
+			margin-bottom: 10px;
+			position: relative;
+
+			&:last-child { margin: 0; }
+		}
+		.avatar {
+			@include disp-ib();
+			@include size($avatar-size, $avatar-size);
+			@include elipse();
+			background-color: #ddd;
+		}
+		.text-content {
+			@include disp-ib(top);
+			@include colors(#fff, #555);
+			@include border-radius(25px);
+			font-size: 13px;
+			width: calc(100% - #{$avatar-size} - 30px);
+			padding: 6px 12px;
+
+			a { 
+				display: inline;
+				font-weight: bold;
+				color: #000 !important; 
+			}
+		}
+		.options {
+			$size: 28px;
+			@include disp-ib();
+			@include size($size, $size);
+			@include elipse();
+			position: absolute;
+			right: -10px;
+			text-align: center;
+			line-height: $size;
+			cursor: pointer;
+			
+			&:hover, &:focus {
+				visibility: visible;
+				background: rgba(#000, .1);
 			}
 		}
 	}

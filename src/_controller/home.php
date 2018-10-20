@@ -32,4 +32,10 @@ class Home extends Controller {
 		$response->result = Comment::add($this->post);
 		die(json_encode($response));
 	}
+
+	public function delete_comment() {
+		$response = new stdclass();
+		$response->result = Comment::remove($this->post->delete_comment_id);
+		die(json_encode($response));
+	}
 }
