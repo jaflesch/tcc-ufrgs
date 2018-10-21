@@ -72,8 +72,12 @@
 						<h3 class="schedule"><span class="fa fa-clock-o"></span>{{ job.workload }}h semanais</h3>
 					</div>
 					<div class="bottom">
-						<a href="{{ path.root }}/vagas/sobre/{{ job.id }}/{{ job.slug }}" class="apply cta">Tenho interesse</a>
-						<button class="recommend">Recomendar</button>
+						{% if job.apply is not empty and user.id == job.apply_user %}
+						<a role="button" class="applied cta"><span class="fa fa-check-circle"></span> Tenho interesse!</a>
+						{% else %}
+						<a href="{{ path.root }}/vagas/interesse/" data-job="{{ job.id }}" class="apply cta">Mostrar interesse</a>
+						{% endif %}
+						<a href="{{ path.root }}/vagas/sobre/{{ job.id }}/{{ job.slug }}" class="recommend cta">Ver mais</a>
 					</div>
 				</div>
 			</article>

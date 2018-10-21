@@ -152,7 +152,7 @@
 			decoration: none !important;
 		}
 
-		+ button { margin-left: 3px; }
+		+ a { margin-left: 3px; }
 	}
 	.apply {
 		@include colors($primary-color, #fff);		
@@ -163,6 +163,14 @@
 			border: 1px solid darken($primary-color, 10%);
 		}
 	}
+	.applied {
+		@include colors(#7fb968 !important, #fff !important);		
+		border: 1px solid #7fb968 !important;
+
+		.fa { margin-right: 3px; }
+		// #579044
+	}
+
 	.recommend {
 		@include colors(transparent, $primary-color);		
 		border: 1px solid $primary-color;	

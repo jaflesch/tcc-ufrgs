@@ -130,4 +130,19 @@ $(document).ready(function() {
 				<span class="remove-item">&times;</span>
 		</span>`);
 	}
+
+	// Recommend & Interest
+	$('.apply.cta').click(function(e) {
+		e.preventDefault();
+		
+		var el = $(this);		
+		el.removeClass('apply').addClass('applied').html("<span class='fa fa-check-circle'></span> Tenho interesse!");
+
+		$.ajax({
+			url: el.attr("href"),
+			method: 'POST',
+			dataType: 'json',
+			data: { id : el.data("job") }
+		})
+	})
 });

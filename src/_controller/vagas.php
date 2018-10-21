@@ -51,4 +51,10 @@ class Vagas extends Controller {
 		$response->result = RecommendJob::add($this->post);
 		die(json_encode($response));
 	}
+
+	public function interesse() {
+		$response = new stdclass();
+		$response->result = Job::apply($this->post->id);
+		die(json_encode($response));
+	}
 }

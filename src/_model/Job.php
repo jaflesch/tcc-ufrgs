@@ -23,15 +23,16 @@ class Job {
 		$id_user = Auth::id();
 
 		$result = $db->query("
-			SELECT j.*, f.id favorite_id 
+			SELECT j.*, f.id favorite_id, ja.id apply, ja.id_user apply_user
 			FROM job j
 			LEFT JOIN 
 				favorite f ON j.id = f.id_object AND
 				f.type = 1 AND
 				f.active = 1 AND
 				f.id_user = {$id_user}
+			LEFT JOIN job_apply ja ON ja.id_job = j.id AND ja.id_user = {$id_user}
 			WHERE j.active = 1
-			ORDER BY j.date_start, f.datetime DESC, title
+			ORDER BY ja.datetime_created DESC, j.date_start, f.datetime DESC, title
 		", true);
 
 		$result = self::formatData($result);
@@ -115,13 +116,32 @@ class Job {
 
 	public static function remove($id_job) {
 		$db = new DBConn();
-		$id_user = Auth:: id();
+		$id_user = Auth::id();
 
-		return $db->update(
-			"UPDATE user_job 
+		return $db->update("
+			UPDATE user_job 
 			SET active = 0 
 			WHERE id_user = {$id_user} AND id = {$id_job} AND active = 1
 		");	
+	}
+
+	public static function apply($id_job) {
+		$db = new DBConn();
+		$id_user = Auth::id();
+
+		$r = $db->query("
+			SELECT id 
+			FROM job_apply 
+			WHERE id_user = {$id_user} AND id_job = {$id_job} AND active = 1
+		");
+
+		if($r == NULL) {
+			return $db->insert("
+				INSERT INTO job_apply (id_user, id_job)
+				VALUES ({$id_user}, {$id_job})
+			");			
+		}
+		else return false;
 	}
 
 	// Helper
