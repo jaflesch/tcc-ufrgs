@@ -30,7 +30,7 @@ class Job {
 				f.type = 1 AND
 				f.active = 1 AND
 				f.id_user = {$id_user}
-			LEFT JOIN job_apply ja ON ja.id_job = j.id AND ja.id_user = {$id_user}
+			LEFT JOIN job_apply ja ON ja.id_job = j.id AND ja.id_user = {$id_user} AND ja.active = 1
 			WHERE j.active = 1
 			ORDER BY ja.datetime_created DESC, j.date_start, f.datetime DESC, title
 		", true);
@@ -65,11 +65,27 @@ class Job {
 
 	public static function getById($id) {
 		$db = new DBConn();
+		$id_user = Auth::id();
 
 		$jobs = $db->query("
-			SELECT * 
-			FROM job
-			WHERE active = 1 AND id = {$id}
+			SELECT 
+				j.*, f.id favorite_id, ja.id apply, ja.id_user apply_user, 
+				u.name author_name, u.id author_id, u.login author_login,
+				u.born_in_city author_born_in_city, u.born_in_state author_born_in_state, 
+				u.live_in_city author_live_in_city, u.live_in_state author_live_in_state,
+				uj.title author_job_title, uj.company author_job_company, 
+				ue.title author_education_title, ue.subtitle author_education_subtitle
+			FROM job j
+			INNER JOIN user u ON u.id = j.id_author
+			LEFT JOIN 
+				favorite f ON j.id = f.id_object AND
+				f.type = 1 AND
+				f.active = 1 AND
+				f.id_user = {$id_user}
+			LEFT JOIN job_apply ja ON ja.id_job = j.id AND ja.id_user = {$id_user} AND ja.active = 1
+			LEFT JOIN user_job uj ON u.id = uj.id_user AND uj.selected = 1
+			LEFT JOIN user_education ue ON u.id = ue.id_user AND ue.selected = 1
+			WHERE j.active = 1 AND j.id = {$id}
 		");
 
 		$jobs = self::formatData($jobs);
@@ -164,6 +180,7 @@ class Job {
 		}
 		else {
 			$mixed->slug = self::setSlug($mixed->title);
+			$mixed->is_favorite = self::checkIfFavorite($mixed->favorite_id);
 
 			if($mixed->category_list != "") {
 				$result = $db->query("SELECT id, title FROM job_category WHERE id IN ({$mixed->category_list}) AND active = 1", true);

@@ -73,9 +73,9 @@
 					</div>
 					<div class="bottom">
 						{% if job.apply is not empty and user.id == job.apply_user %}
-						<a role="button" class="applied cta"><span class="fa fa-check-circle"></span> Tenho interesse!</a>
+						<a role="button" class="applied cta"><span class="fa fa-check-circle"></span> Candidatado!</a>
 						{% else %}
-						<a href="{{ path.root }}/vagas/interesse/" data-job="{{ job.id }}" class="apply cta">Mostrar interesse</a>
+						<a href="{{ path.root }}/vagas/candidatar/" data-job="{{ job.id }}" class="apply cta">Candidatar-se</a>
 						{% endif %}
 						<a href="{{ path.root }}/vagas/sobre/{{ job.id }}/{{ job.slug }}" class="recommend cta">Ver mais</a>
 					</div>

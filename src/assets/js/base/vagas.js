@@ -136,7 +136,7 @@ $(document).ready(function() {
 		e.preventDefault();
 		
 		var el = $(this);		
-		el.removeClass('apply').addClass('applied').html("<span class='fa fa-check-circle'></span> Tenho interesse!");
+		el.removeClass('apply').addClass('applied').html("<span class='fa fa-check-circle'></span> Candidatado!");
 
 		$.ajax({
 			url: el.attr("href"),

@@ -18,13 +18,28 @@
 		flex-grow: 10;
 	}
 	.options {
-		font-size: 24px;
+		font-size: 20px;
 		color: #555;
+		position: relative;
 
-		span + span { margin-left: 5px; }
+		$size: 32px;
+		> a {
+			@include disp-ib();
+			@include elipse();
+			@include size($size, $size);
+			color: #555;
+			line-height: $size;
+			text-align: center;
+			cursor: pointer;
+
+			&:hover { @include colors(#ddd, #333); }
+			&:focus { @include colors($primary-color, #fff !important); }
+
+			&.active { color: $primary-color; }
+		}
 	}
 
-	.body { margin: 0 0 20px; }
+	.body { margin: 0; }
 
 	.location h3 {
 		font: {
@@ -55,6 +70,36 @@
 			}
 		}
 	}	
+	.author {
+		margin-top: 20px;
+
+		.avatar {
+			$size: 48px;
+			@include size($size, $size);
+			@include elipse();
+			@include disp-ib();
+			background-color: #ddd;
+			margin-right: 3px;
+		}
+		.text {
+			@include disp-ib();
+		}
+		a {
+			color: #2b2b2b;
+			&:hover { color: #000; } 
+		}
+		h2 { 
+			font: {
+				size: 14px; 
+				weight: bold;
+			}
+			margin: 0 0 5px;
+		}
+		h3 { 
+			font-size: 14px; 
+			margin: 0;
+		}
+	}
 
 	hr { border-top: 2px solid #e7e7e7; }
 
@@ -65,6 +110,38 @@
 		p { 
 			margin-bottom: 20px; 
 			&:last-child { margin-bottom: 0; }
+		}
+	}
+
+	.job-apply {
+		button, a.cta {
+			@include disp-ib();
+			@include transition();
+			@include border-radius(2px);
+			font-size: 14px;
+			padding: 6px 15px;
+			text: {
+				align: center;
+				decoration: none !important;
+			}
+
+			+ a { margin-left: 3px; }
+		}
+		.apply {
+			@include colors($primary-color, #fff);		
+			border: 1px solid $primary-color;
+
+			&:hover, &:active, &:focus {
+				@include colors(#fff, $primary-color);
+				border-color: $primary-color;
+			}
+		}
+		.applied {
+			@include colors(#7fb968 !important, #fff !important);		
+			border: 1px solid #7fb968 !important;
+
+			.fa { margin-right: 3px; }
+			// #579044
 		}
 	}
 }

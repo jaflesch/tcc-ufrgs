@@ -52,7 +52,7 @@ class Vagas extends Controller {
 		die(json_encode($response));
 	}
 
-	public function interesse() {
+	public function candidatar() {
 		$response = new stdclass();
 		$response->result = Job::apply($this->post->id);
 		die(json_encode($response));
