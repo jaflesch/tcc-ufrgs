@@ -103,10 +103,30 @@ class Job {
 		return $jobs;
 	}
 
+	public static function getAllAppliedUsersByJobId($job_id) {
+		$db = new DBConn();
+		
+		return $db->query("
+			SELECT 
+				u.id, u.name, u.login,
+				u.born_in_city, u.born_in_state, 
+				u.live_in_city, u.live_in_state,
+				uj.title job_title, uj.company, 
+				ue.title education_title, ue.subtitle
+			FROM job j
+			INNER JOIN job_apply ja ON ja.id_job = j.id AND ja.active = 1
+			INNER JOIN user u ON u.id = ja.id_user
+			LEFT JOIN user_job uj ON u.id = uj.id_user AND uj.selected = 1
+			LEFT JOIN user_education ue ON u.id = ue.id_user AND ue.selected = 1
+			WHERE j.active = 1 AND j.id = {$job_id}
+		", true);
+	}
+
 	public static function getAllFeedRelated() {
 		return array_slice(self::getAll(), 0, 3);
 	}
 
+	// AJAX calls
 	public static function add($data) {
 		$db = new DBConn();
 

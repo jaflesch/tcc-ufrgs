@@ -1,0 +1,44 @@
+<section id="job-interests">
+	<article class="recomendation-card">
+		<h2>Manifestaram interesse</h2>
+		
+		{% for candidate in candidates %}
+		<div class="interested-user">
+			<div class="post-header" style="margin-bottom: 10px;">
+				<div class="avatar">
+					{% if candidate.avatar is empty %}
+						{% if candidate.gender == 0 %}
+							{% set avatar = 'default-male-profile-avatar.png' %}
+						{% else %}
+							{% set avatar = 'default-female-profile-avatar.png' %}
+						{% endif %}
+						<img src="{{ path.img }}/profile/{{ avatar }}" alt="Foto de {{ candidate.name }}" title="Foto de {{ candidate.name }}" class="default-avatar">
+					{% else %}
+					<img src="{{ path.root }}/public/user/{{ candidate.id }}/{{ candidate.avatar }}" alt="Foto de {{ candidate.name }}" title="Foto de {{ candidate.ame }}" class="img-responsive">
+					{% endif %}
+				</div>
+				<div class="user-information">
+					<h3 class="user-title">
+						<a href="{{ path.root }}/feed/usuario/{{ candidate.login }}" title="Ver perfil de {{ candidate.name }}">{{ candidate.name }}</a>
+					</h3>
+					
+					{% if candidate.job_title is not empty or candidate.education_title is not empty %}
+					<h4 class="user-subtitle">
+						{% if candidate.job_title is not empty %}
+							{{ candidate.job_title }}
+						{% elseif candidate.education_title %}
+							{{ candidate.education_title }}
+						{% else %}
+							{{ candidate.live_in_city }}, {{ candidate.live_in_state }}
+						{% endif %}
+					</h4>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</article>
+</section>
+<p class="text-right mgb30">
+	<small><em>Vaga publicada em {{ job.datetime_publication }}.</em></small>
+</p>

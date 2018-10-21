@@ -39,7 +39,7 @@
 		}
 	}
 
-	.body { margin: 0; }
+	.body { margin: 0 0 20px; }
 
 	.location h3 {
 		font: {
@@ -110,38 +110,6 @@
 		p { 
 			margin-bottom: 20px; 
 			&:last-child { margin-bottom: 0; }
-		}
-	}
-
-	.job-apply {
-		button, a.cta {
-			@include disp-ib();
-			@include transition();
-			@include border-radius(2px);
-			font-size: 14px;
-			padding: 6px 15px;
-			text: {
-				align: center;
-				decoration: none !important;
-			}
-
-			+ a { margin-left: 3px; }
-		}
-		.apply {
-			@include colors($primary-color, #fff);		
-			border: 1px solid $primary-color;
-
-			&:hover, &:active, &:focus {
-				@include colors(#fff, $primary-color);
-				border-color: $primary-color;
-			}
-		}
-		.applied {
-			@include colors(#7fb968 !important, #fff !important);		
-			border: 1px solid #7fb968 !important;
-
-			.fa { margin-right: 3px; }
-			// #579044
 		}
 	}
 }

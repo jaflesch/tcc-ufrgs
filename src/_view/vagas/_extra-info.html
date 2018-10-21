@@ -25,4 +25,12 @@
 			<h3><strong>Benefício PRAE</strong> {{ job.is_prae == 1 ? 'Sim' : 'Não' }}</h3>
 		</div>
 	</div>
+	<hr>
+	<div class="job-apply">
+		{% if job.apply is not empty and user.id == job.apply_user %}
+		<a role="button" class="applied cta"><span class="fa fa-check-circle"></span> Você se candidatou nesta vaga</a>
+		{% else %}
+		<a href="{{ path.root }}/vagas/candidatar/" data-job="{{ job.id }}" class="apply cta">Candidatar-se</a>
+		{% endif %}
+	</div>
 </section>
