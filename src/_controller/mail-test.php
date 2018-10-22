@@ -8,16 +8,13 @@ class MailTest extends Controller {
 
 	public function sendMail() {
 		// Initiate the mail
-		$mail = new Mail("Mensagem de Teste - Portal de Vagas");
-		
-		$mail->addAddress(MAIL_CONTACT, "Contato");
-
-		// $bag["user_data"] = $user_data;
 		$bag["time"] = date("H:i:s");
 		$bag["date"] = date('d/m/Y');
-
-		$mail->setBody(self::render("_mail/index", $bag, false));
 		
+		$mail = new Mail("Mensagem de Teste - Portal de Vagas", $this);
+		$mail->addAddress(MAIL_CONTACT, "Contato");
+		$mail->bind("index", $bag);
+
 		// Send the e-mail
 		return $mail->send();
 	}

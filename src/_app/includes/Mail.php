@@ -4,12 +4,21 @@ require_once("PHPmailer/PHPmailer.php");
 class Mail {
 	private $subject;
 	private $mailer;
-	
-	public function __construct($subject) {
+	private $template;
+	private $data;
+	private $controller;
+
+	public function __construct($subject, $controller) {
 		$this->setSubject($subject);
 		$this->mailer = new PHPMailer();
-		
+		$this->controller = $controller;
+
 		$this->initialConfig();
+	}
+
+	public function bind($template, $data) {
+		$this->template = $template;
+		$this->data = $data;
 	}
 	
 	public static function validateAddress($email_address) {
@@ -101,8 +110,14 @@ class Mail {
 	 * Send the e-mail
 	 * @return boolean
 	 */
-	public function send() {
-		return $this->mailer->Send();
+	public function send($echo = false) {
+		if(!$echo) {
+			$this->setBody($this->controller->render("_mail/".$this->template, $this->data, false) );
+			return $this->mailer->Send();
+		}
+		else {
+			$this->controller->render("_mail/".$this->template, $this->data, true);
+		}
 	}
 }
 ?>
