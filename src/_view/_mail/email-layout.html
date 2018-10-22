@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body style="margin:0;font-family:'Open Sans',sans-serif;font-size:14px;">
+	{% include '_mail/_header.html' %}
+	<div style="background:#f4f4f7;width:100%;margin:0;padding:0;">
+		<div style="padding: 15px;">
+			{% block content %}
+			{% endblock %}
+			
+			{% include '_mail/_footer.html' %}
+		</div>
+	</div>		
+</body>
+</html>

@@ -3,6 +3,7 @@ require MODEL_PATH.'Job.php';
 require MODEL_PATH.'Profile.php';
 require MODEL_PATH.'Favorite.php';
 require MODEL_PATH.'RecommendJob.php';
+require LIB_PATH.'Mail.php';
 
 class Vagas extends Controller {
 	public function index() {
@@ -60,6 +61,8 @@ class Vagas extends Controller {
 	}
 
 	public function aprovar_candidato() {
+		$this->sendEmail("Você foi aprovado na vaga X", "aprovar-candidato");
+		// needs to get info about Job
 		$response = new stdclass();
 		$response->result = Job::approveApply($this->post);
 		die(json_encode($response));
@@ -69,5 +72,18 @@ class Vagas extends Controller {
 		$response = new stdclass();
 		$response->result = Job::reproveApply($this->post);
 		die(json_encode($response));
+	}
+
+	private function sendEmail($title, $template) {
+		// Initiate the mail
+		$bag["time"] = date("H:i:s");
+		$bag["date"] = date('d/m/Y');
+		
+		$mail = new Mail("{$title} - Portal de Vagas", $this);
+		$mail->addAddress(MAIL_CONTACT, "Contato");
+		$mail->bind($template, $bag);
+
+		// Send the e-mail
+		return $mail->send();
 	}
 }
