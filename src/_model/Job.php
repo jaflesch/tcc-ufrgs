@@ -112,13 +112,15 @@ class Job {
 				u.born_in_city, u.born_in_state, 
 				u.live_in_city, u.live_in_state,
 				uj.title job_title, uj.company, 
-				ue.title education_title, ue.subtitle
+				ue.title education_title, ue.subtitle,
+				ja.accept
 			FROM job j
 			INNER JOIN job_apply ja ON ja.id_job = j.id AND ja.active = 1
 			INNER JOIN user u ON u.id = ja.id_user
 			LEFT JOIN user_job uj ON u.id = uj.id_user AND uj.selected = 1
 			LEFT JOIN user_education ue ON u.id = ue.id_user AND ue.selected = 1
 			WHERE j.active = 1 AND j.id = {$job_id}
+			ORDER BY ja.accept DESC, ja.datetime_created DESC, u.name ASC
 		", true);
 	}
 
@@ -175,6 +177,47 @@ class Job {
 			return $db->insert("
 				INSERT INTO job_apply (id_user, id_job)
 				VALUES ({$id_user}, {$id_job})
+			");			
+		}
+		else return false;
+	}
+
+	public static function approveApply($data) {
+		$db = new DBConn();
+		$id_user = Auth::id();
+
+		$r = $db->query("
+			SELECT id 
+			FROM job_apply 
+			WHERE id_user = {$data->candidate_id} AND id_job = {$data->job_id} AND active = 1 AND accept <> 1
+		");
+
+		if($r != NULL) {
+			return $db->update("
+				UPDATE job_apply
+				SET accept = 1
+				WHERE id_user = {$data->candidate_id} AND id_job = {$data->job_id} AND active = 1 AND accept <> 1
+			");			
+		}
+		else return false;
+	}
+
+	public static function reproveApply($data) {
+		$db = new DBConn();
+		$id_user = Auth::id();
+
+		$r = $db->query("
+			SELECT id 
+			FROM job_apply 
+			WHERE id_user = {$data->candidate_id} AND id_job = {$data->job_id} AND active = 1 AND accept <> -1
+		");
+		
+
+		if($r != NULL) {
+			return $db->update("
+				UPDATE job_apply
+				SET accept = -1
+				WHERE id_user = {$data->candidate_id} AND id_job = {$data->job_id} AND active = 1 AND accept <> -1
 			");			
 		}
 		else return false;

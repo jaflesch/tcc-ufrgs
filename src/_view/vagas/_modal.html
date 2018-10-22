@@ -1,0 +1,44 @@
+<div id="modalApproveCandidate" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Aprovar candidato</h4>
+      </div>
+      <div class="modal-body">
+        <p>Você tem certeza que deseja aprovar este candidato?</p>
+      </div>
+      <div class="modal-footer">
+      	<form id="formApproveCandidate" action="{{ path.root }}/vagas/aprovar-candidato" method="POST">
+      		<input type="hidden" name="candidate_id" value="">
+          <input type="hidden" name="job_id" value="{{ job.id }}">
+	        <a href="#" class="" data-dismiss="modal">Cancelar</a>
+	        <button type="submit" class="btn btn-default">Aprovar</button>      		
+      	</form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="modalReproveCandidate" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Reprovar candidato</h4>
+      </div>
+      <div class="modal-body">
+        <p>Você tem certeza que deseja reprovar este candidato?</p>
+      </div>
+      <div class="modal-footer">
+        <form id="formReproveCandidate" action="{{ path.root }}/vagas/reprovar-candidato" method="POST">
+          <input type="hidden" name="candidate_id" value="">
+          <input type="hidden" name="job_id" value="{{ job.id }}">
+          <a href="#" class="" data-dismiss="modal">Cancelar</a>
+          <button type="submit" class="btn btn-default">Reprovar</button>          
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

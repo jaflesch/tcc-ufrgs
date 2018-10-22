@@ -8,6 +8,7 @@
 		color: #2b2b2b;
 		text-align: left;
 		padding: 0;
+		margin-bottom: 30px;
 	}
 
 	h3 {
@@ -49,6 +50,41 @@
 
 			.fa { margin-right: 3px; }
 			// #579044
+		}
+	}
+
+	.user-actions {
+		.approve, .approved, .reprove, .reproved {
+			@include disp-ib();
+			@include border-radius(2px);
+			border: 1px solid;
+			padding: 4px 12px;
+		}
+		.approve {
+			@include colors(#fff, #7fb968);
+			border-color: #7fb968;
+
+			&:hover, &:focus, &:active {
+				color: darken(#7fb968, 15%);
+				border-color: darken(#7fb968, 15%);
+			}
+		}
+		.reprove {
+			@include colors(#fff, #9a9a9a);
+			border-color: #9a9a9a;
+
+			&:hover, &:focus, &:active {
+				color: darken(#da453a, 15%);
+				border-color: darken(#da453a, 15%);
+			}
+		}
+		.approved {
+			@include colors(#7fb968 !important, #fff !important);
+			border-color: #7fb968;
+		}
+		.reproved {
+			@include colors(#fff, #9a9a9a);
+			border-color: #9a9a9a;
 		}
 	}
 }

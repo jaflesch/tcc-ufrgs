@@ -28,7 +28,7 @@ class Vagas extends Controller {
 		$bag['recomendations'] = RecommendJob::getAllFromJobId($id);
 		$bag['related_jobs'] = Job::getRelated($id);
 		$bag['candidates'] = Job::getAllAppliedUsersByJobId($id);
-		
+
 		$this->render("vagas/sobre", $bag);
 	}
 
@@ -56,6 +56,18 @@ class Vagas extends Controller {
 	public function candidatar() {
 		$response = new stdclass();
 		$response->result = Job::apply($this->post->id);
+		die(json_encode($response));
+	}
+
+	public function aprovar_candidato() {
+		$response = new stdclass();
+		$response->result = Job::approveApply($this->post);
+		die(json_encode($response));
+	}
+
+	public function reprovar_candidato() {
+		$response = new stdclass();
+		$response->result = Job::reproveApply($this->post);
 		die(json_encode($response));
 	}
 }

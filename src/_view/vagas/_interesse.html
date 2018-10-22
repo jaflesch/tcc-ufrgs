@@ -1,9 +1,10 @@
+{% if job.id_author == user.id %}
 <section id="job-interests">
 	<article class="recomendation-card">
 		<h2>Manifestaram interesse</h2>
 		
 		{% for candidate in candidates %}
-		<div class="interested-user">
+		<div class="interested-user" data-user="{{ candidate.id }}">
 			<div class="post-header" style="margin-bottom: 10px;">
 				<div class="avatar">
 					{% if candidate.avatar is empty %}
@@ -19,7 +20,7 @@
 				</div>
 				<div class="user-information">
 					<h3 class="user-title">
-						<a href="{{ path.root }}/feed/usuario/{{ candidate.login }}" title="Ver perfil de {{ candidate.name }}">{{ candidate.name }}</a>
+						<a href="{{ path.root }}/feed/usuario/{{ candidate.login }}" title="Ver perfil de {{ candidate.name }}" target="_blank">{{ candidate.name }}</a>
 					</h3>
 					
 					{% if candidate.job_title is not empty or candidate.education_title is not empty %}
@@ -34,11 +35,22 @@
 					</h4>
 					{% endif %}
 				</div>
+				<div class="user-actions">
+					{% if candidate.accept == 0 %}
+					<button class="approve" data-toggle="modal" data-target="#modalApproveCandidate">Aprovar</button>
+					<button class="reprove" data-toggle="modal" data-target="#modalReproveCandidate">Reprovar</button>
+					{% elseif candidate.accept == -1 %}
+					<span class="reproved">Reprovado</span>
+					{% else %}
+					<span class="approved">Aprovado</span>
+					{% endif %}
+				</div>
 			</div>
 		</div>
 		{% endfor %}
 	</article>
 </section>
+{% endif %}
 <p class="text-right mgb30">
 	<small><em>Vaga publicada em {{ job.datetime_publication }}.</em></small>
 </p>
