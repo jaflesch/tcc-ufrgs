@@ -27,17 +27,20 @@
 			font: {
 				size: 14px;
 			}
-			color: #333;
 			padding: 10px 15px;
 			border-bottom: 3px solid #fff;
 			cursor: pointer;
 
 			&.active { 
 				color: #000;
-				border-bottom: 3px solid $primary-color; 
+				border-bottom: 3px solid $primary-color !important; 
+
+				a { color: $primary-color; }
 			}
 
 			&:last-child { border-bottom: 3px solid #fff; }
+			
+			a { color: #333; }
 		}
 	}
 	.results {

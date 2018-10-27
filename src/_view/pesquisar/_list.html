@@ -5,9 +5,15 @@
 		<hr/>
 		<div class="filter">
 			<ul>
-				<li class="active">Tudo</li>
-				<li>Pessoas</li>
-				<li>Vagas</li>
+				<li class="{{ app.get.area == '' ? 'active' : '' }}">
+					<a href="{{ path.root }}/pesquisar?search={{ app.get.search }}">Tudo</a>
+				</li>
+				<li class="{{ app.get.area == 'usuario' ? 'active' : '' }}">
+					<a href="{{ path.root }}/pesquisar?search={{ app.get.search }}&area=usuario">Pessoas</a>
+				</li>
+				<li class="{{ app.get.area == 'vaga' ? 'active' : '' }}">
+					<a href="{{ path.root }}/pesquisar?search={{ app.get.search }}&area=vaga">Vagas</a>
+				</li>
 			</ul>
 		</div>
 	</div>
