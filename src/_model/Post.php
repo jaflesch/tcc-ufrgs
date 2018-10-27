@@ -26,8 +26,25 @@ class Post {
 			LEFT JOIN user_education ue ON ue.id_user = u.id AND ue.selected = 1
 			LEFT JOIN post_like pl ON pl.id_post = p.id AND pl.active = 1
 			WHERE 
-				(p.id_author IN ({$followers}) AND p.privacy = 0) OR 
-				(p.id_author = {$id_user}) AND p.active = 1
+			(	
+				p.id_author IN ({$followers}) AND 
+				p.privacy = 0 AND
+				u.id NOT IN (
+					SELECT b.id_blocked 
+					FROM block b 
+					WHERE b.id_blocker = {$id_user} AND b.active = 1
+				) 
+			)
+			OR 
+			(
+				p.id_author = {$id_user} AND
+				p.active = 1 AND
+				u.id NOT IN (
+					SELECT b.id_blocked 
+					FROM block b 
+					WHERE b.id_blocker = {$id_user} AND b.active = 1
+				)
+			)
 			GROUP BY p.id
 			ORDER BY p.datetime_published DESC, pl.datetime DESC
 		", true);

@@ -136,7 +136,6 @@ class Profile {
 			}			
 		}
 
-
 		// Return all
 		return array(
 			"user" => $user,
