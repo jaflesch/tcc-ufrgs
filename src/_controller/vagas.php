@@ -61,10 +61,10 @@ class Vagas extends Controller {
 	}
 
 	public function aprovar_candidato() {
-		$this->sendEmail("Você foi aprovado na vaga X", "aprovar-candidato");
-		// needs to get info about Job
 		$response = new stdclass();
 		$response->result = Job::approveApply($this->post);
+		$this->sendEmail();		
+		
 		die(json_encode($response));
 	}
 
@@ -74,14 +74,12 @@ class Vagas extends Controller {
 		die(json_encode($response));
 	}
 
-	private function sendEmail($title, $template) {
-		// Initiate the mail
-		$bag["time"] = date("H:i:s");
-		$bag["date"] = date('d/m/Y');
-		
-		$mail = new Mail("{$title} - Portal de Vagas", $this);
-		$mail->addAddress(MAIL_CONTACT, "Contato");
-		$mail->bind($template, $bag);
+	private function sendEmail() {
+		$bag['job'] = Job::getInfoByApply($this->post);
+
+		$mail = new Mail("Você foi aprovado na vaga {$bag['job']['title']} - Portal de Vagas", $this);
+		$mail->addAddress($bag['job']->candidate_email, "Portal de Vagas - UFRGS");
+		$mail->bind("aprovar-candidato", $bag);
 
 		// Send the e-mail
 		return $mail->send();

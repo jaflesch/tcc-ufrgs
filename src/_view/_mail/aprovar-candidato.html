@@ -1,21 +1,18 @@
 {% extends '_mail/email-layout.html' %}
 
 {% block content %}
-	<p>Olá,</p>
-	<p>Recebemos um contato através de nosso portal Web. Seguem dados informados:<p>
-
-	<div style="margin:30px; padding: 15px;background:#fff;border:1px solid #fcfcfc;">
+	<p>Olá, {{ job.candidate_name }},</p>
+	
+	<div style="margin:30px 30px 15px; padding: 15px;background:#fff;border:1px solid #fcfcfc;">
 		<p>
-			Parabéns! Você foi selecionado por <strong>USER_NAME</strong> na seguinte vaga ofertada:
+			Parabéns! Você foi selecionado por <a href="{{ path.root }}/feed/usuario/{{ job.author_login }}" target="_blank" title="Ver perfil de {{ job.author_name }}" style="color:#1b98e0;font-weight:bold;">{{ job.author_name }}</a> na seguinte vaga ofertada:
 		</p>
 		<p>
-			<a href=""><strong>TITULO_VAGA</strong></a>
+			<a href="{{ path.root }}/vagas/sobre/{{ job.id }}/{{ job.slug }}" target="_blank" title="Ver vaga {{ job.title }}" style="color:#1b98e0;font-weight:bold;"><strong>{{ job.title }}</strong></a>
 		</p>
 		<hr style='border:0;border-top:1px solid #ddd;margin: 20px 0;' />
 		<p>
-			<em>Mensagem enviada as {{ time }} de {{ date }}. </em>
+			<em>Aprovação realizada às {{ job.time }} de {{ job.date }}. </em>
 		</p>
 	</div>
-
-	<p> Obrigado!</p>
 {% endblock %}

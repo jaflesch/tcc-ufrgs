@@ -223,6 +223,30 @@ class Job {
 		else return false;
 	}
 
+	public static function getInfoByApply($data) {
+		$db = new DBConn();
+		$id_user = Auth::id();
+
+		$r = $db->query("
+			SELECT 
+				u1.name author_name, u1.login author_login, u2.name candidate_name, u2.login candidate_login, u2.email candidate_email,
+				j.title, j.id,
+				ja.datetime_created
+			FROM job j 
+			INNER JOIN job_apply ja ON ja.id_job = j.id 
+			INNER JOIN user u1 ON u1.id = j.id_author
+			INNER JOIN user u2 ON u2.id = ja.id_user 
+			WHERE ja.id_user = {$data->candidate_id} AND j.id = {$data->job_id} AND ja.active = 1 AND accept = 0
+		");
+
+		$datetime = explode(" ", $r->datetime_created);
+		$r->date = Data::date2str($datetime[0]);
+		$r->time = $datetime[1];
+		$r->slug = linkfy(trim($r->title));
+
+		return $r;
+	}
+
 	// Helper
 	private static function formatData($mixed) {
 		$db = new DBConn();
