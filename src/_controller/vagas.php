@@ -57,14 +57,18 @@ class Vagas extends Controller {
 	public function candidatar() {
 		$response = new stdclass();
 		$response->result = Job::apply($this->post->id);
+
+		$this->sendApplyEmailAuthor();
+		$this->sendApplyEmailCandidate();
+		
 		die(json_encode($response));
 	}
 
 	public function aprovar_candidato() {
 		$response = new stdclass();
 		$response->result = Job::approveApply($this->post);
-		$this->sendEmail();		
-		
+		$this->sendApprovalEmail();		
+
 		die(json_encode($response));
 	}
 
@@ -74,11 +78,53 @@ class Vagas extends Controller {
 		die(json_encode($response));
 	}
 
-	private function sendEmail() {
-		$bag['job'] = Job::getInfoByApply($this->post);
+	// Emails
+	private function sendApplyEmailAuthor() {
+		$request = new stdclass();
+		$request->job_id = $this->post->id;
+		$request->candidate_id = Auth::id();
 
-		$mail = new Mail("Você foi aprovado na vaga {$bag['job']['title']} - Portal de Vagas", $this);
-		$mail->addAddress($bag['job']->candidate_email, "Portal de Vagas - UFRGS");
+		$job = Job::getInfoByApply($request);
+		$bag['job'] = $job;
+
+		$mail = new Mail("Nova inscrição em {$job->title} - Portal de Vagas", $this);
+		$mail->addAddress($job->author_email, "Portal de Vagas - UFRGS");
+		$mail->bind("interesse-vaga-autor", $bag);
+
+		// Anexa arquivos
+		if($job->need_curriculum) {
+			$mail->attachment(BASE_PATH.'/public/files/cv.pdf', utf8_decode("Currículo - {$job->candidate_name}.pdf"));
+		}
+		if($job->need_historic) {
+			$mail->attachment(BASE_PATH.'/public/files/historico.pdf', utf8_decode("Histórico - {$job->candidate_name}.pdf"));
+		}
+
+		// Send the e-mail
+		return $mail->send();
+	}
+
+	private function sendApplyEmailCandidate() {
+		$request = new stdclass();
+		$request->job_id = $this->post->id;
+		$request->candidate_id = Auth::id();
+
+		$job = Job::getInfoByApply($request);
+		$bag['job'] = $job;
+
+		$mail = new Mail("Inscrição realizada com sucesso - Portal de Vagas", $this);
+		$mail->addAddress($job->candidate_email, "Portal de Vagas - UFRGS");
+		$mail->bind("interesse-vaga-candidato", $bag);
+		
+		// Send the e-mail
+		return $mail->send();
+	}
+
+	private function sendApprovalEmail() {
+		$job = Job::getInfoByApply($this->post);
+		$bag['job'] = $job;
+
+		$mail = new Mail("Você foi aprovado na vaga {$job->title} - Portal de Vagas", $this);
+		$mail->addAddress($job->candidate_email, "Portal de Vagas - UFRGS");
 		$mail->bind("aprovar-candidato", $bag);
 
 		// Send the e-mail

@@ -1,0 +1,18 @@
+{% extends '_mail/email-layout.html' %}
+
+{% block content %}
+	<p>Olá, {{ job.candidate_name }},</p>
+	
+	<div style="margin:30px 30px 15px; padding: 15px;background:#fff;border:1px solid #fcfcfc;">
+		<p>
+			A sua candidatura à vaga <a href="{{ path.root }}/vagas/sobre/{{ job.id }}/{{ job.slug }}" target="_blank" title="Ver vaga {{ job.title }}" style="color:#1b98e0;font-weight:bold;"><strong>{{ job.title }}</strong></a> foi registrada em nosso sistema.
+
+		<p>
+		 	O autor da vaga receberá um e-mail com as informações requisitadas por esta automaticamente. Em caso de aprovação, você receberá outro e-mail avisando sobre sua situação e classicação.
+		</p>
+		<hr style='border:0;border-top:1px solid #ddd;margin: 20px 0;' />
+		<p>
+			<em>Candidatura realizada às {{ job.time }} de {{ job.date }}. </em>
+		</p>
+	</div>
+{% endblock %}

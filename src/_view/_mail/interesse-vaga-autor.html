@@ -1,0 +1,35 @@
+{% extends '_mail/email-layout.html' %}
+
+{% block content %}
+	<p>Olá, {{ job.author_name }},</p>
+	
+	<div style="margin:30px 30px 15px; padding: 15px;background:#fff;border:1px solid #fcfcfc;">
+		<p>
+			O usuário <a href="{{ path.root }}/feed/usuario" target="_blank" title="Ver perfil de {{ job.candidate_name }}" style="color:#1b98e0;font-weight:bold;"> {{ job.candidate_name }}</a> se candidatou à vaga <strong>{{ job.title }}</strong> pelo Portal de Vagas.
+		<p>
+		 	Para realizar a aprovação ou reprovação do candidato, acesse a <a href="{{ path.root }}/vagas/sobre/{{ job.id }}/{{ job.slug }}" target="_blank" title="Ver vaga {{ job.title }}" style="color:#1b98e0;font-weight:bold;">página da vaga</a> ou sua <a href="{{ path.root }}/vagas/candidaturas" target="_blank" title="Ver lista de candidaturas" style="color:#1b98e0;font-weight:bold;">lista de candidatos</a> com aprovação pendente.
+		</p>
+
+		{% if job.need_curriculum and job.need_historic %}
+		<p>
+			<br/>
+			O <em>curriculum vitae</em> e o histórico escolar estão anexados no final deste e-mail.
+		</p>
+		{% elseif job.need_curriculum %}
+		<p>
+			<br/>
+			O <em>curriculum vitae</em> está anexado no final deste e-mail.
+		</p>
+		{% elseif job.need_historic %}
+		<p>
+			<br/>
+			O histórico escolar está anexado no final deste e-mail.
+		</p>
+		{% endif %}
+
+		<hr style='border:0;border-top:1px solid #ddd;margin: 20px 0;' />
+		<p>
+			<em>Candidatura realizada às {{ job.time }} de {{ job.date }}. </em>
+		</p>
+	</div>
+{% endblock %}

@@ -102,7 +102,7 @@ class Mail {
 		$this->mailer->MsgHTML(utf8_decode($body));
 	}
 	
-	public function addAttachment($first, $second) {
+	public function attachment($first, $second) {
 		$this->mailer->AddAttachment($first, $second);
 	}
 	

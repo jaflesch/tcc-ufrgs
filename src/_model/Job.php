@@ -229,8 +229,9 @@ class Job {
 
 		$r = $db->query("
 			SELECT 
-				u1.name author_name, u1.login author_login, u2.name candidate_name, u2.login candidate_login, u2.email candidate_email,
-				j.title, j.id,
+				u1.name author_name, u1.login author_login, u1.email author_email,
+				u2.name candidate_name, u2.login candidate_login, u2.email candidate_email,
+				j.title, j.id, j.need_curriculum, j.need_historic,
 				ja.datetime_created
 			FROM job j 
 			INNER JOIN job_apply ja ON ja.id_job = j.id 
