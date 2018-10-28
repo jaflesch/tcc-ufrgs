@@ -16,33 +16,17 @@
 					<h2>Tipo de vaga</h2>
 					{% for type in filters.type %}
 						<input type="checkbox" name="type" value="{{ type.value }}" data-label="{{ type.label }}">{{ type.label }}<br/>
-					{% endfor %}
-					<!-- <input type="checkbox" name="type" value="0">Monitoria<br/>
-					<input type="checkbox" name="type" value="0">Administrativa<br/>
-					<input type="checkbox" name="type" value="0">Iniciação científica<br/>
-					<input type="checkbox" name="type" value="0">Estágio<br/>
-					<input type="checkbox" name="type" value="0">Trainee<br/>
-					<input type="checkbox" name="type" value="0">Efetivo<br/> -->
+					{% endfor %}					
 
 					<h2>Área de atuação</h2>
 					{% for category in filters.category %}
 						<input type="checkbox" name="category" value="{{ category.id }}" data-label="{{ category.title }}">{{ category.title }}<br/>
-					{% endfor %}
-					<!-- <input type="checkbox" name="category" value="0">Artes<br/>
-					<input type="checkbox" name="category" value="0">Gestão<br/>
-					<input type="checkbox" name="category" value="0">Tecnologia<br/>
-					<input type="checkbox" name="category" value="0">Exatas<br/>
-					<input type="checkbox" name="category" value="0">Saúde<br/>
-					<input type="checkbox" name="category" value="0">Humanas<br/> -->
+					{% endfor %}					
 					
 					<h2>Carga Horária</h2>
 					{% for workload in filters.workload %}
 						<input type="checkbox" name="workload" value="{{ workload }}">Até {{ workload }}h<br/>
 					{% endfor %}
-					<!-- <input type="checkbox" name="schedule" value="0">Até 20h<br/>
-					<input type="checkbox" name="schedule" value="0">Até 30h<br/>
-					<input type="checkbox" name="type" value="0">Até 40h<br/>
-					<input type="checkbox" name="type" value="0">À combinar<br/> -->
 					
 					<h2>Modalidade</h2>
 					<input type="radio" name="modality" value="0">À distância<br/>
@@ -71,9 +55,6 @@
 				</div>
 			</div>
 			
-			<!-- <h2>Requisitos</h2>
-			<div class="requisit-field form-data" contenteditable="true"></div> -->
-
 			<h2>Remuneração</h2>
 			<div class="form-box">
 				<input type="text" class="form-data" name="salary_from" placeholder="De R$" value="{{ filters.salary_min }}">

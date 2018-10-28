@@ -110,7 +110,6 @@ $(document).ready(function() {
 			}
 
 			if($.inArray(parseInt(el.attr("data-job-shift")), shift) > -1) {
-				console.log(el.attr("data-job-title"));
 				el.show();
 			}
 
