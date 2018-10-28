@@ -131,6 +131,22 @@ $(document).ready(function() {
 		</span>`);
 	}
 
+	// Ordering
+	$('[name="order_criteria"]').change(function() {
+		var el = $(this);
+		var val = el.find(":selected").val();
+
+		$.ajax({
+			url: el.data("action"),
+			method: 'POST',
+			dataType: 'html',
+			data: { order: val },
+			success: function(html) {
+				$('#job-result .row').html(html);
+			}
+		})
+	});
+
 	// Recommend & Interest
 	$('.apply.cta').click(function(e) {
 		e.preventDefault();

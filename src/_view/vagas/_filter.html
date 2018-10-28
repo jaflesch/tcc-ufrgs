@@ -105,10 +105,10 @@
 		{% else %}
 			<p>Nenhuma vaga encontrada</p>
 		{% endif %}
-		<select name="order_criteria" class="form-data">
-			<option>Melhores avaliados</option>
-			<option>Mais relevantes</option>
-			<option>Mais recentes</option>
-			<option>Mais antigos</option>
+		<select name="order_criteria" class="form-data" data-action="{{ path.root }}/vagas/ordenar">
+			<option value="1">Mais relevantes</option>
+			<option value="2">Melhores avaliados</option>
+			<option value="3">Mais recentes</option>
+			<option value="4">Mais antigos</option>
 		</select>
 </section>

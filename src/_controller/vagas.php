@@ -78,6 +78,27 @@ class Vagas extends Controller {
 		die(json_encode($response));
 	}
 
+	public function ordenar() {
+		$order = (int)$this->post->order;
+
+		switch($order) {
+			case 2:
+				$by = "_custom_most_rated";
+				break;
+			case 3:
+				$by = "j.date_start DESC";
+				break;
+			case 4:
+				$by = "j.date_start";
+				break;
+			case 1:
+			default:
+				$by = "";
+		}
+		
+		die($this->render("vagas/_result", Job::getAll($by)));
+	}
+
 	// Emails
 	private function sendApplyEmailAuthor() {
 		$request = new stdclass();

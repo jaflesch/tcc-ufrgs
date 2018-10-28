@@ -18,22 +18,41 @@ class Job {
 	const TARDE = 2;
 	const NOITE = 3;
 	
-	public static function getAll() {
+	public static function getAll($order = "") {
 		$db = new DBConn();
 		$id_user = Auth::id();
+		$order = $order == "" ? "favorite_id DESC, ja.datetime_created DESC, j.date_start, f.datetime DESC, title" : $order;
 
-		$result = $db->query("
-			SELECT j.*, f.id favorite_id, ja.id apply, ja.id_user apply_user
-			FROM job j
-			LEFT JOIN 
-				favorite f ON j.id = f.id_object AND
-				f.type = 1 AND
-				f.active = 1 AND
-				f.id_user = {$id_user}
-			LEFT JOIN job_apply ja ON ja.id_job = j.id AND ja.id_user = {$id_user} AND ja.active = 1
-			WHERE j.active = 1
-			ORDER BY ja.datetime_created DESC, j.date_start, f.datetime DESC, title
-		", true);
+		if($order == "_custom_most_rated") {
+			$result = $db->query("
+				SELECT count(rj.id_job) AS recommend_total, j.*, f.id favorite_id, ja.id apply, ja.id_user apply_user
+				FROM job j
+				LEFT JOIN recommendation_job rj ON rj.id_job = j.id AND rj.active = 1
+				LEFT JOIN 
+					favorite f ON j.id = f.id_object AND
+					f.type = 1 AND
+					f.active = 1 AND
+					f.id_user = {$id_user}
+				LEFT JOIN job_apply ja ON ja.id_job = j.id AND ja.id_user = {$id_user} AND ja.active = 1
+				WHERE j.active = 1
+				GROUP BY j.id
+				ORDER BY recommend_total DESC
+			", TRUE);
+		}
+		else {
+			$result = $db->query("
+				SELECT j.*, f.id favorite_id, ja.id apply, ja.id_user apply_user
+				FROM job j
+				LEFT JOIN 
+					favorite f ON j.id = f.id_object AND
+					f.type = 1 AND
+					f.active = 1 AND
+					f.id_user = {$id_user}
+				LEFT JOIN job_apply ja ON ja.id_job = j.id AND ja.id_user = {$id_user} AND ja.active = 1
+				WHERE j.active = 1
+				ORDER BY {$order}
+			", TRUE);			
+		}		
 
 		$result = self::formatData($result);
 		$filter = self::getFilters($result);
@@ -336,7 +355,6 @@ class Job {
 			"category" => $category,
 			"shift" => $unique_shift,
 		);
-		// debug($salary);
 	}
 
 	private static function setSlug($string) {
