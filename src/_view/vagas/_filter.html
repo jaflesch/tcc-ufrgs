@@ -46,33 +46,33 @@
 					
 					<h2>Modalidade</h2>
 					<input type="radio" name="modality" value="0">À distância<br/>
-					<input type="radio" name="modality" value="0">Presencial<br/>
+					<input type="radio" name="modality" value="0" checked="">Presencial<br/>
 				</div>
 				<div>
 					<h2>Turnos</h2>
 					{% for shift in filters.shift %}
-						<input type="checkbox" name="shift" value="{{ shift.value }}">{{ shift.label }}<br/>
+						<input type="checkbox" name="shift" value="{{ shift.value }}" data-label="{{ shift.label }}">{{ shift.label }}<br/>
 					{% endfor %}
 					
 					<h2>Currículo</h2>
-					<input type="radio" name="need_cv" value="-1">Todos<br/>
+					<input type="radio" name="need_cv" value="-1" checked="">Todos<br/>
 					<input type="radio" name="need_cv" value="0">Não exige<br/>
 					<input type="radio" name="need_cv" value="1">Exige<br/>
 
 					<h2>Histórico Escolar</h2>
-					<input type="radio" name="need_historic" value="-1">Todos<br/>
+					<input type="radio" name="need_historic" value="-1" checked="">Todos<br/>
 					<input type="radio" name="need_historic" value="0">Não exige<br/>
 					<input type="radio" name="need_historic" value="1">Exige<br/>
 
 					<h2>Benefício PRAE</h2>
-					<input type="radio" name="is_prae" value="-1">Todas <br/>
+					<input type="radio" name="is_prae" value="-1" checked="">Todas <br/>
 					<input type="radio" name="is_prae" value="0">Sem benefício PRAE <br/>
 					<input type="radio" name="is_prae" value="1">Com benefício PRAE <br/>
 				</div>
 			</div>
 			
-			<h2>Requisitos</h2>
-			<div class="requisit-field form-data" contenteditable="true"></div>
+			<!-- <h2>Requisitos</h2>
+			<div class="requisit-field form-data" contenteditable="true"></div> -->
 
 			<h2>Remuneração</h2>
 			<div class="form-box">
