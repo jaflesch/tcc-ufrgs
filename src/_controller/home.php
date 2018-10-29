@@ -27,6 +27,13 @@ class Home extends Controller {
 		die(json_encode($response));
 	}
 
+	public function get_likes() {
+		$response = new stdclass();
+		$response->data = Post::getAllUsersLiked($this->post->id_post);
+		$response->result = $response->data !== NULL;
+		die(json_encode($response));
+	}
+
 	public function new_comment() {
 		$response = new stdclass();
 		$response->result = Comment::add($this->post);

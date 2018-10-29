@@ -1,8 +1,40 @@
 $(document).ready(function() {
 	// Follow system
-	$('.likes-count').click(function() {
-		console.log('modal abre..');
-	})
+	$('.current-status .likes-count').click(function()  {
+		var modal = $('#modalLikeQtd');
+		var id = $(this).closest('article').data("post");
+		
+		$.ajax({
+			url: modal.attr("data-action"),
+			method: 'POST',
+			dataType: 'json',
+			data: { id_post: id },
+			success: function(json) {
+				var post_like = json.data;
+
+				// Reset
+				$('#modalLikeQtd .user-list').html("");
+
+				// Fill
+				var likes = post_like.length > 0 ? post_like.length : "Nenhum";
+				var likes_text = post_like.length > 1 ? "usuários curtiram" : "usuário curtiu"; 
+				$('#total-likes').text(likes);
+				$('#total-likes-text').text(likes_text);
+
+				for(var i = 0; i < post_like.length; i++) {
+					$('#modalLikeQtd .user-list').append(`
+						<li>
+							<a class='avatar' href='feed/usuarios/${post_like[i].login}' title='Ver perfil de ${post_like[i].name}'></a>
+							<a class='text' href='feed/usuarios/${post_like[i].login}' title='Ver perfil de ${post_like[i].name}'> 
+								${post_like[i].name}
+							</a>
+						</li>
+					`);
+				}
+				modal.modal("show");
+			}
+		})
+	});
 
 	$('.unfollow-post').click(function(e){
 		e.preventDefault();
