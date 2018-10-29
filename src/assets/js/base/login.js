@@ -7,6 +7,8 @@ $(document).ready(function() {
 			alert('Por favor, preencha ambos os campos do formulário!');
 		}
 		else {
+			$('#formLogin button').text("Enviando...").prop("disabled", true);
+
 			$.ajax({
 				url: form.attr('action'),
 				method: 'POST',
@@ -17,6 +19,9 @@ $(document).ready(function() {
 						document.location = "";
 					else 
 						alert(json.msg);
+				},
+				error: function(json) {
+					$('#formLogin button').text("Enviar").prop("disabled", false);
 				}
 			});
 		}

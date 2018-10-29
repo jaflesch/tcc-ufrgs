@@ -1,5 +1,5 @@
 #login {
-	background: $background-gray;
+	background: $background-body;
 	height: 100vh;
 	
 	>.container { 
@@ -15,7 +15,7 @@
 	.box {
 		@include border-radius(2px);
 		background: #fff;
-		border: 1px solid #e7e7e7;
+		border: 1px solid #d4d4d4;
 		padding: 15px;
 	}
 
@@ -23,7 +23,6 @@
 		font: {
 			family: $secondary-font;
 			size: 20px;
-			// weight: bold;
 			letter-spacing: -2px;
 		}
 		color: $text-color-dark;
