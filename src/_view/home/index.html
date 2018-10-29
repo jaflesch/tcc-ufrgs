@@ -11,15 +11,21 @@
 			{% include 'home/_modal.html' %}
 			{% include 'home/_modal-likes.html' %}
 			{% include 'home/_modal-comment.html' %}
+			{% include 'home/_modal-avatar.html' %}
 		</div>
 	</section>
 {% endblock %}
 
 {% block styles %}
+<link rel="stylesheet" type="text/css" href="{{ path.css }}/vendor/fileinput/fileinput.min.css">
 {% endblock %}
 
 {% block scripts %}
+<script type="text/javascript" src="{{ path.js }}/vendor/fileinput/plugins/canvas-to-blob.min.js"></script>
+<script type="text/javascript" src="{{ path.js }}/vendor/fileinput/fileinput.min.js"></script>
+<script type="text/javascript" src="{{ path.js }}/vendor/fileinput/fileinput_locale_pt-BR.js"></script>
 <script type="text/javascript" src="{{ path.js }}/base/admin/jodit.min.js"></script>
 <script type="text/javascript" src="{{ path.js }}/base/follow-user.js"></script>
 <script type="text/javascript" src="{{ path.js }}/base/timeline.js"></script>
+<script type="text/javascript" src="{{ path.js }}/base/avatar.js"></script>
 {% endblock %}

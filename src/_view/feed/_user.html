@@ -7,7 +7,7 @@
 			<button role="button" class="btn-edit follow-user" data-user="{{ profile.user.id }}">{{ profile.follow ? 'Seguindo' : 'Seguir' }}</button>
 			{% endif %}
 			
-			{% if user.is('adm') and user.getId() != profile.user.id%}
+			{% if user.is('adm') and user.getId() != profile.user.id %}
 			<button role="button" class="btn-options">Bloquear perfil</button>
 			{% endif %}
 		</div>		

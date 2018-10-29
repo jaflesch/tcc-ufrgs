@@ -44,6 +44,21 @@
 		padding: 30px 15px;
 
 		p { margin-bottom: 0;}
+
+		.btn-primary {
+			@include colors($primary-color, #fff);
+			@include border-radius(2px);
+			@include transition();
+			padding: 6px 24px; 
+			border: 1px solid $primary-color;
+
+			&:hover, &:focus {
+				@include colors($secondary-color, #fff);
+				border-color: $secondary-color;
+			}
+
+			.glyphicon { margin-right: 5px; }
+		}
 	}
 
 	.modal-footer {

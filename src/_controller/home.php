@@ -45,4 +45,56 @@ class Home extends Controller {
 		$response->result = Comment::remove($this->post->delete_comment_id);
 		die(json_encode($response));
 	}
+
+	public function upload_avatar() {
+		$file = (object)$_FILES['file_path'];
+		$id = Auth::id();
+		$dir = __DIR__."/../public/avatar/{$id}/";
+		$size = 1024 * 1024 * 1; // 3Mb
+    	$ext = array ('png', 'jpg', 'jpeg');
+
+    	$extensao = explode('.', $file->name);
+    	$extensao = strtolower($extensao[count($extensao)-1]);
+    	
+    	$json = new stdclass();
+
+		if (array_search($extensao, $ext) === false) {
+      		$json->success = false;
+      		$json->msg = "Por favor, envie arquivos com as seguintes extensões: .png ou .jpeg";
+      		die(json_encode($json));
+      	}      	
+      	if ($size < $file->size) {
+      		$json->success = false;
+      		$json->msg = "O arquivo enviado é muito grande, envie arquivos de até 1Mb.";
+      		die(json_encode($json));
+      	}
+      	$now = new Datetime();
+      	$file_name = base64_encode($now->getTimestamp().$id).".".$extensao;
+      	$path_name = $dir.$file_name;
+		
+		@mkdir($dir);
+		if (@move_uploaded_file($file->tmp_name, $path_name)) {
+			$this->insertImageDB($file_name, $id);
+			$json->success = true;
+      		$json->msg = "O arquivo foi enviado com sucesso.";
+      		
+      		die(json_encode($json));
+		} 
+		else {
+			$json->success = false;
+      		$json->msg = "Não foi possível enviar o arquivo, tente novamente.";
+      		die(json_encode($json));
+		}
+	}
+
+	// Helpers
+	private function insertImageDB($path, $id) {
+		$db = new DBConn();
+		
+		return $db->update("
+			UPDATE user 
+			SET avatar = '{$path}' 
+			WHERE id = {$id} AND active = 1
+		");
+	}
 }

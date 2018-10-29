@@ -27,8 +27,29 @@
 		background-color: #eee;
 		margin: 0 auto 20px;
 		overflow: hidden;
+		cursor: pointer;
 
 		img { max-width: 100%; }
+
+		&:hover {
+			&:before {
+				@include colors(rgba(#000, .7), #fff);
+				font: normal normal normal 24px/1 FontAwesome;
+				content: "\f030";
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				height: ($avatar-size / 2);
+				line-height: ($avatar-size / 2);
+				text-align: center;
+				z-index: 2;
+			}
+		}
+
+		> div {
+			@include bg($avatar-size);
+		}
 	}
 	.default-avatar {
 		@include ha-middle();
