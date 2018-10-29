@@ -38,4 +38,37 @@
 			border-color: $secondary-color;
 		}
 	}
+
+	ul.log-list {
+		list-style: none;
+
+		$size: 36px;
+		> li {
+			font-size: 0;
+			padding: 15px 0;
+			margin-left: ($size / 2);
+			border-left: 2px solid #ededed;
+		}
+
+		.log-icon {
+			@include size($size, $size);
+			@include colors(#e4e4e4, #333);
+			@include elipse();
+			@include disp-ib();
+			position: relative;
+			left: -($size / 2);
+			font-size: 14px;
+			text-align: center;
+			line-height: $size;
+		}
+		.log-text {
+			@include disp-ib();
+			width: calc(100% - #{$size});
+			font-size: 14px;
+		}
+
+		a {
+			color: $primary-color;
+		}
+	}
 }
