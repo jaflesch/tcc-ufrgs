@@ -72,6 +72,17 @@ class Search {
 		", true);
 	}
 
+	public static function getAllUsers() {
+		$db = new DBConn();
+
+		return $db->query("
+			SELECT id, name AS title, 'user' AS category, login
+			FROM user
+			WHERE active = 1
+			ORDER BY name
+		", true);
+	}
+
 	public static function getRelated() {
 		$db = new DBConn();
 

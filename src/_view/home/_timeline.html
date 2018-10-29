@@ -43,95 +43,104 @@
 			<button type="submit" class="add-post"> Publicar </button>
 		</form>
 	</article>
-	{% for post in posts %}
-	<article class="post" data-post="{{ post.id }}">
-		<div class="post-header">
-			<div class="avatar">
-				<img src="">
-			</div>
-			<div class="user-information">
-				<h3 class="user-title"><a href="{{ path.root }}/feed/usuario/{{ post.author_login }}" title="Ver perfil de {{ post.author }}">{{ post.author }}</a></h3>
-				{% if post.user_job_title is not empty or post.user_education_title is not empty %}
-				<h4 class="user-subtitle">
-					{% if post.user_job_title is not empty %} 
-						{{ post.user_job_title }}
-					{% else %}
-						{{ post.user_education_title }}
-					{% endif %}
-				</h4>
-				{% endif %}
-				<span class="post-time">{{ post.date_diff }}</span>
-				<span class="fa post-privacy {{ post.privacy == 1 ? 'fa-lock' : 'fa-globe' }}"></span>
-			</div>
-			<div class="post-more-options">
-				<a href="#" data-toggle="dropdown" class="dropdown-toggle btn-more-options">
-					<img src="{{ path.img }}/icons/ellipsis.png">
-				</a>
-				<ul class="dropdown-menu">
-					{% if user.id == post.id_author %}
-					<li><a href="#" class="delete-post" data-post="{{ post.id }}">Editar</a></li>
-					<li><a href="#" class="delete-post" data-post="{{ post.id }}">Excluir postagem</a></li>
-					{% else %}
-					<li><a href="#" class="unfollow-post" data-user="{{ post.id_author }}">Deixar de seguir {{ post.author }}</a></li>
-					{% endif %}
-				</ul>
-			</div>
-		</div>
-		<div class="post-body">
-			{{ post.text|raw }}
-		</div>
-		<div class="post-footer">
-			<div class="current-status" style="display: {{ post.likes > 0 or post.total_comments > 0 ? '' : 'none' }}">
-				<span class="likes-count" style="display:{{ post.likes > 0 ? '' : 'none' }};">
-					<span class="count">{{ post.likes }}</span> <span class="text">curtida{{ post.likes > 1 ? 's' : '' }}</span>
-				</span>
-
-				<span class="separator" style="display: {{ post.likes > 0 and post.total_comments > 0 ? '' : 'none' }}">•</span>
-					
-				<span class="comments-count" style="display:{{ post.total_comments > 0 ? '' : 'none' }};">
-					<span class="count">{{  post.total_comments }}</span> <span class="text">comentário{{ post.total_comments > 1 ? 's' : '' }}</span>
-				</span>
-			</div>
-			<div class="post-options">
-				<div class="likes {{ post.i_liked ? 'user-liked' : '' }}">
-					<span class="fa fa-thumbs-up"></span> <span class="like-text">{{ post.i_liked ? 'Curtido por você' : 'Curtir' }}</span>
-				</div>
-				{% if post.allow_comments %}
-				<div class="comments">
-					<span class="fa fa-comments comments"></span> Comentar
-				</div>
-				{% endif %}
-				<ul class="post-list">
-					{% for comment in post.comments %}
-					<li>
-						<a href="{{ path.root }}/feed/usuario/{{ comment.author_login }}" title="Ver perfil de {{ comment.author_name }}">
-							<span class="avatar"></span></a>
-						<span class="text-content">
-							<a href="{{ path.root }}/feed/usuario/{{ comment.author_login }}" title="Ver perfil de {{ comment.author_name }}">{{ comment.author_name }}</a>
-							{{ comment.text }}
-						</span>
-						{% if user.id == comment.id_author %}
-						<span class="options">
-							<a href="#" data-toggle="dropdown" class="dropdown-toggle btn-more-options">
-								<img src="{{ path.img }}/icons/ellipsis.png" style="width:14px">
-							</a>
-							<ul class="dropdown-menu">
-								<li><a href="#" class="delete-comment" data-post="{{ comment.id }}">Editar</a></li>
-								<li><a href="#" class="delete-comment" data-post="{{ comment.id }}">Excluir</a></li>
-							</ul>
-						</span>
-						{% endif %}
-					</li>
-					{% endfor %}
-				</ul>
-				<div class="comment-area">
-					<form class="form-comment" action="{{ path.root }}/home/new-comment" method="POST">
-						<input type="text" name="comment" class="form-data" placeholder="Escreva um comentário" required="">
-						<button><span class="fa fa-send"></span></button>
-					</form>
-				</div>
-			</div>
-		</div>
+	{% if posts is empty %}
+	<article class="post">
+			<h2 class="no-info">Nenhuma publicação para ser exibida</h2>
+			<p class="no-info">
+				Experimente <a href="#new-post-anchor">postar algo</a> ou <a href="{{ path.root }}/pesquisar/usuarios" title="Ver usuários sugeridos">seguir outros usuários</a>! 
+			</p>		
 	</article>
-	{% endfor %}
+	{% else %}
+		{% for post in posts %}
+		<article class="post" data-post="{{ post.id }}">
+			<div class="post-header">
+				<div class="avatar">
+					<img src="">
+				</div>
+				<div class="user-information">
+					<h3 class="user-title"><a href="{{ path.root }}/feed/usuario/{{ post.author_login }}" title="Ver perfil de {{ post.author }}">{{ post.author }}</a></h3>
+					{% if post.user_job_title is not empty or post.user_education_title is not empty %}
+					<h4 class="user-subtitle">
+						{% if post.user_job_title is not empty %} 
+							{{ post.user_job_title }}
+						{% else %}
+							{{ post.user_education_title }}
+						{% endif %}
+					</h4>
+					{% endif %}
+					<span class="post-time">{{ post.date_diff }}</span>
+					<span class="fa post-privacy {{ post.privacy == 1 ? 'fa-lock' : 'fa-globe' }}"></span>
+				</div>
+				<div class="post-more-options">
+					<a href="#" data-toggle="dropdown" class="dropdown-toggle btn-more-options">
+						<img src="{{ path.img }}/icons/ellipsis.png">
+					</a>
+					<ul class="dropdown-menu">
+						{% if user.id == post.id_author %}
+						<li><a href="#" class="delete-post" data-post="{{ post.id }}">Editar</a></li>
+						<li><a href="#" class="delete-post" data-post="{{ post.id }}">Excluir postagem</a></li>
+						{% else %}
+						<li><a href="#" class="unfollow-post" data-user="{{ post.id_author }}">Deixar de seguir {{ post.author }}</a></li>
+						{% endif %}
+					</ul>
+				</div>
+			</div>
+			<div class="post-body">
+				{{ post.text|raw }}
+			</div>
+			<div class="post-footer">
+				<div class="current-status" style="display: {{ post.likes > 0 or post.total_comments > 0 ? '' : 'none' }}">
+					<span class="likes-count" style="display:{{ post.likes > 0 ? '' : 'none' }};">
+						<span class="count">{{ post.likes }}</span> <span class="text">curtida{{ post.likes > 1 ? 's' : '' }}</span>
+					</span>
+
+					<span class="separator" style="display: {{ post.likes > 0 and post.total_comments > 0 ? '' : 'none' }}">•</span>
+						
+					<span class="comments-count" style="display:{{ post.total_comments > 0 ? '' : 'none' }};">
+						<span class="count">{{  post.total_comments }}</span> <span class="text">comentário{{ post.total_comments > 1 ? 's' : '' }}</span>
+					</span>
+				</div>
+				<div class="post-options">
+					<div class="likes {{ post.i_liked ? 'user-liked' : '' }}">
+						<span class="fa fa-thumbs-up"></span> <span class="like-text">{{ post.i_liked ? 'Curtido por você' : 'Curtir' }}</span>
+					</div>
+					{% if post.allow_comments %}
+					<div class="comments">
+						<span class="fa fa-comments comments"></span> Comentar
+					</div>
+					{% endif %}
+					<ul class="post-list">
+						{% for comment in post.comments %}
+						<li>
+							<a href="{{ path.root }}/feed/usuario/{{ comment.author_login }}" title="Ver perfil de {{ comment.author_name }}">
+								<span class="avatar"></span></a>
+							<span class="text-content">
+								<a href="{{ path.root }}/feed/usuario/{{ comment.author_login }}" title="Ver perfil de {{ comment.author_name }}">{{ comment.author_name }}</a>
+								{{ comment.text }}
+							</span>
+							{% if user.id == comment.id_author %}
+							<span class="options">
+								<a href="#" data-toggle="dropdown" class="dropdown-toggle btn-more-options">
+									<img src="{{ path.img }}/icons/ellipsis.png" style="width:14px">
+								</a>
+								<ul class="dropdown-menu">
+									<li><a href="#" class="delete-comment" data-post="{{ comment.id }}">Editar</a></li>
+									<li><a href="#" class="delete-comment" data-post="{{ comment.id }}">Excluir</a></li>
+								</ul>
+							</span>
+							{% endif %}
+						</li>
+						{% endfor %}
+					</ul>
+					<div class="comment-area">
+						<form class="form-comment" action="{{ path.root }}/home/new-comment" method="POST">
+							<input type="text" name="comment" class="form-data" placeholder="Escreva um comentário" required="">
+							<button><span class="fa fa-send"></span></button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</article>
+		{% endfor %}
+	{% endif %}
 </section>

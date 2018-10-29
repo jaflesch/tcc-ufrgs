@@ -9,6 +9,22 @@
 		margin-bottom: 10px;
 	}
 
+	h2.no-info {
+		font: {
+			size: 18px;
+			weight: bold;
+		}
+		color: #cacaca;
+		margin: 0 0 30px;
+	}
+	p.no-info {
+		a { 
+			font-weight: bold;
+			color: $primary-color !important;
+		}
+		margin: 0;
+	}
+
 	.likes-count, .comments-count{
 		&:hover, &:focus { 
 			text-decoration: underline; 

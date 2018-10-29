@@ -22,4 +22,12 @@ class Pesquisar extends Controller {
 		
 		$this->render("pesquisar/index", $bag);
 	}
+
+	public function usuarios() {
+		// Prepare bag
+		$bag['search'] = Search::getAllUsers();
+		$bag['related_searchs'] = Search::getRelated();
+		
+		$this->render("pesquisar/index", $bag);
+	}
 }
