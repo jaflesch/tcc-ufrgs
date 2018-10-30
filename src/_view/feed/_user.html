@@ -12,7 +12,12 @@
 			{% endif %}
 		</div>		
 		<div class="top-content">
-			<div class="avatar-box">
+			<div class="avatar-box {{ user.getId() == profile.user.id ? 'my-profile' : '' }}" 
+				{% if user.getId() == profile.user.id %}
+					data-toggle="modal"
+					data-target="#uploadAvatarModal"
+				{% endif %}
+			>
 				{% if profile.user.avatar is empty %}
 					{% if profile.user.gender == 0 %}
 						{% set avatar = 'default-male-profile-avatar.png' %}

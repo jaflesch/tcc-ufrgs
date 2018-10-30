@@ -8,13 +8,27 @@
 			{% include 'feed/_user.html' %}
 			{% include 'feed/_related.html' %}
 			{% include 'feed/_modal.html' %}
+
+			{% if user.getId() == profile.user.id %}
+				{% include 'feed/_modal-avatar.html' %}
+			{% endif %}
 		</div>
 	</section>
 {% endblock %}
 
 {% block styles %}
+	{% if user.getId() == profile.user.id %}
+	<link rel="stylesheet" type="text/css" href="{{ path.css }}/vendor/fileinput/fileinput.min.css">
+	{% endif %}
 {% endblock %}
 
 {% block scripts %}
-<script type="text/javascript" src="{{ path.js }}/base/profile.js"></script>
+	{% if user.getId() == profile.user.id %}
+	<script type="text/javascript" src="{{ path.js }}/vendor/fileinput/plugins/canvas-to-blob.min.js"></script>
+	<script type="text/javascript" src="{{ path.js }}/vendor/fileinput/fileinput.min.js"></script>
+	<script type="text/javascript" src="{{ path.js }}/vendor/fileinput/fileinput_locale_pt-BR.js"></script>
+	<script type="text/javascript" src="{{ path.js }}/base/avatar.js"></script>
+	{% endif %}
+
+	<script type="text/javascript" src="{{ path.js }}/base/profile.js"></script>
 {% endblock %}

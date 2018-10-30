@@ -115,6 +115,26 @@
 		> div {
 			@include bg($avatar-size);
 		}
+
+		&.my-profile{
+			cursor: pointer;
+
+			&:hover {
+				&:before {
+					@include colors(rgba(#000, .7), #fff);
+					font: normal normal normal 24px/1 FontAwesome;
+					content: "\f030";
+					position: absolute;
+					bottom: 0;
+					left: 0;
+					right: 0;
+					height: ($avatar-size / 2);
+					line-height: ($avatar-size / 2);
+					text-align: center;
+					z-index: 2;
+				}
+			}
+		}
 	}
 	.profile-default-avatar {
 		@include ha-middle();

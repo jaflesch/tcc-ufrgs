@@ -1,0 +1,27 @@
+<div id="uploadAvatarModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Alterar foto de perfil</h4>
+      </div>
+      <div class="modal-body">
+        <form id="formImage" action="{{ path.root }}/home/upload-avatar" method='POST' enctype="multipart/form-data">
+          <div class="row" id='file-input-box'>
+            <div class="form-group col-md-12">
+              <input type="file" name="file_path" id="fileUploader" />
+            </div>    
+          </div>    
+        </form>
+      </div>
+      <div class="modal-footer">
+      	<form id="formDeleteComment" action="{{ path.root }}/home/delete-comment" method="POST">
+      		<input type="hidden" name="delete_comment_id" value="">
+	        <a href="#" class="" data-dismiss="modal">Cancelar</a>     		
+      	</form>
+      </div>
+    </div>
+  </div>
+</div>
