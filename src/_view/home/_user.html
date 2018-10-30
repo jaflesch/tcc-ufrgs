@@ -43,9 +43,9 @@
 		{% if followers.total == 0 %}
 			Nenhum seguidor ainda
 		{% elseif followers.total == 1 %}
-			1 seguidor
+			<a href="#" data-toggle="modal" data-target="#modalShowFollowers" title="Ver seus seguidores">1 seguidor</a>
 		{% else %}
-			<a href="{{ path.root }}/configuracoes/seguidores" title="Ver seus seguidores">{{ followers.total }} seguidores</a>
+			<a href="#" data-toggle="modal" data-target="#modalShowFollowers" title="Ver seus seguidores">{{ followers.total }} seguidores</a>
 		{% endif %}
 	</h3>
 	<h3>

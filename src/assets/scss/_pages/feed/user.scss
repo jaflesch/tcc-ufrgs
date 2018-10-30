@@ -18,6 +18,13 @@
 		margin: 0;
 	}
 
+	h3 a { 
+		font-weight: bold;
+		color: $primary-color;
+		
+		&:hover { color: $secondary-color; }
+	}
+
 	.avatar-box {
 		$avatar-size: 128px;
 		@include size($avatar-size, $avatar-size);
