@@ -145,6 +145,33 @@ class Post {
 		");
 	}
 
+	public static function getAllUsersLiked($id_post) {
+		$db = new DBConn();
+		$id_user = Auth::id();
+
+		return $db->query("
+			SELECT 
+				u.id,
+				u.name,
+				u.login,
+				u.avatar,
+				f.id_following is_following,
+				pl.id_user like_author
+			FROM post_like pl
+			INNER JOIN user u ON u.id = pl.id_user AND pl.active = 1
+			LEFT JOIN follow f ON f.id_follower = {$id_user} AND u.id = f.id_following AND f.active = 1
+			WHERE 
+				pl.id_post = {$id_post} AND
+				u.id NOT IN (
+					SELECT b.id_blocked 
+					FROM block b 
+					WHERE b.id_blocker = u.id AND b.active = 1
+				) 
+			GROUP BY u.id
+			ORDER BY pl.datetime DESC
+		", TRUE);
+	}
+
 	public static function add($post) {
 		$db = new DBConn();
 		$id_user = Auth::id();

@@ -6,6 +6,7 @@ require_once MODEL_PATH.'Follow.php';
 require_once MODEL_PATH.'Job.php';
 require_once MODEL_PATH.'Education.php';
 require_once MODEL_PATH.'Skill.php';
+require_once MODEL_PATH.'Log.php';
 
 class Configuracoes extends Controller {
 	public function index() {
@@ -29,10 +30,8 @@ class Configuracoes extends Controller {
 	}
 
 	public function registro_atividades() {
-		$bag['jobs'] = Job::getAllFeedRelated();
-		$bag['profiles'] = Profile::getAllFeedRelated();
-		$bag['followers'] = Follow::getAllFollowers(Auth::id());
-
+		$bag['logs'] = Log::getAll();
+		
 		$this->render("configuracoes/registro-atividades", $bag);
 	}
 

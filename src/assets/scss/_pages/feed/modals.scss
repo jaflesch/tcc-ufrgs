@@ -1,0 +1,31 @@
+#modalLikeQtd {
+	.user-list {
+		list-style: none;
+		font-size: 0;
+		$size: 36px;
+
+		>li { padding: 10px 0; }
+		
+		.avatar {
+			@include disp-ib();
+			@include size($size, $size);
+			@include elipse();
+			@include bg($size);
+			background-color: #ddd;
+		}
+
+		.text {
+			@include disp-ib();
+			width: calc(100% - $size);
+			padding-left: 10px;
+
+			font: {
+				size: 14px;
+				weight: bold;
+			}
+			color: #333;
+
+			&:hover { color: #000; }
+		}
+	}  
+}

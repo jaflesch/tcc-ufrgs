@@ -1,0 +1,29 @@
+<section id="settings-box">
+	<h1>Registro de atividades</h1>
+	<hr>
+	<ul class="log-list">
+	{% for log in logs %}
+		<li>
+			<div class="log-icon">
+				<span class="fa fa-{{ log.icon }}"></span>
+			</div>
+			<div class="log-text">
+				Você {{ log.action_str }} 
+
+				{% if log.action == 17 %}
+					entrou no Portal de Vagas pela primeira vez
+				{% else %}
+					{% if log.type == 1 %}
+						{{ log.user_gender == 0 ? 'o usuário' : 'a usuária' }} 
+						<a href="{{ path.root }}/feed/usuario/{{ log.user_login }}" title="Ver perfil de {{ log.user_name }}">{{ log.user_name }}</a>
+					{% else %}
+						a vaga <a href="{{ path.root }}/vagas/sobre/{{ log.id_target }}/{{ log.job_slug }}" title="Ver mais sobre a vaga {{ log.job_title }}">{{ log.job_title }}</a>
+					{% endif %}
+				{% endif %}
+
+				em {{ log.data }}.
+			</div>
+		</li>
+	{% endfor %}
+	</ul>
+</section>

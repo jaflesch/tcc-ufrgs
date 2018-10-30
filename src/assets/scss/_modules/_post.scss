@@ -16,6 +16,10 @@
 		background: #ddd;
 		margin-right: 15px;
 		overflow: hidden;
+
+		> div {
+			@include bg($avatar-size);
+		}
 	}
 
 	img { 

@@ -11,7 +11,7 @@
 						{% endif %}
 						<img src="{{ path.img }}/profile/{{ avatar }}" alt="Foto de {{ user.name }}" title="Foto de {{ user.name }}" class="default-avatar">
 					{% else %}
-					<img src="{{ path.root }}/public/user/{{ user.id }}/{{ user.avatar }}" alt="Foto de {{ user.name }}" title="Foto de {{ user.name }}" class="img-responsive">
+					<div style="background-image:url('{{ path.root }}/public/avatar/{{ user.id }}/{{ user.avatar }}');"  alt="Foto de {{ user.name }}" title="Foto de {{ user.name }}"></div>
 					{% endif %}
 				</div>
 				<div class="user-information">
