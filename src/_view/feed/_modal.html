@@ -9,14 +9,25 @@
       	<ul class="default-list">
         {% for follower in followers.data %}
         	<li>
-        		<img src="{{ path.root }}/public/usuario/{{ follower.login }}/{{ follower.avatar }}" class="avatar" title="{{ follower.name }}" alt="{{ follower.name }}">
+            <div class="avatar">
+        		{% if follower.avatar is empty %}
+              {% if follower.gender == 0 %}
+                {% set avatar = 'default-male-profile-avatar.png' %}
+              {% else %}
+                {% set avatar = 'default-female-profile-avatar.png' %}
+              {% endif %}
+              <img src="{{ path.img }}/profile/{{ avatar }}" alt="Foto de {{ follower.name }}" title="Foto de {{ follower.name }}" class="profile-default-avatar">
+            {% else %}
+              <div style="background-image:url('{{ path.root }}/public/avatar/{{ follower.id }}/{{ follower.avatar }}');"  alt="Foto de {{ follower.author }}" title="Foto de {{ post.author }}"></div>
+            {% endif %}
+            </div>
         		<h4><a href="{{ path.root }}/feed/usuario/{{ follower.login }}" title="Ver perfil de {{ follower.name }}">{{ follower.name }}</a></h4>
         	</li>
         {% endfor %}
         </ul>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        <a href="#" type="button" data-dismiss="modal">Fechar</a>
       </div>
     </div>
 

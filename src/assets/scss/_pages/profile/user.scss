@@ -243,6 +243,10 @@
 			}
 
 			img { max-width: 100%; }
+
+			> div {
+				@include bg($avatar-size);
+			}
 		}
 		.text {
 			flex-grow: 3;
@@ -324,6 +328,7 @@
 		background: #fff;
 		padding: 20px;
 		margin-bottom: 20px;
+		margin-right: 20px;
 	}
 
 	#see-followers {

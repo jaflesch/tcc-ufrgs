@@ -6,7 +6,7 @@ class RecommendUser {
 		return $db->query("
 			SELECT 
 				ru.*, 
-				u.name user_name, u.login user_login, u.id user_id, 
+				u.name user_name, u.login user_login, u.id user_id, u.avatar user_avatar,
 				u.born_in_city user_born_in_city, u.born_in_state user_born_in_state, 
 				u.live_in_city user_live_in_city, u.live_in_state user_live_in_state,
 				uj.title user_job_title, 

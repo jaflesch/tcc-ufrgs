@@ -161,6 +161,7 @@ class Post {
 				u.name,
 				u.login,
 				u.avatar,
+				u.gender,
 				f.id_following is_following,
 				pl.id_user like_author
 			FROM post_like pl

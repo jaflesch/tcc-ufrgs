@@ -425,7 +425,7 @@
 							{% endif %}
 							<img src="{{ path.img }}/profile/{{ avatar }}" alt="Foto de {{ user.name }}" title="Foto de {{ user.name }}" class="default-avatar">
 						{% else %}
-						<img src="{{ path.root }}/public/user/{{ user.id }}/{{ user.avatar }}" alt="Foto de {{ user.name }}" title="Foto de {{ user.name }}" class="img-responsive">
+						<div style="background-image:url('{{ path.root }}/public/avatar/{{ user.id }}/{{ user.avatar }}');" alt="Foto de {{ user.name }}" title="Foto de {{ user.name }}" class="img-responsive"></div>
 						{% endif %}
 					</div>
 					<div class="user-information">
@@ -478,7 +478,7 @@
 							{% endif %}
 							<img src="{{ path.img }}/profile/{{ avatar }}" alt="Foto de {{ user.name }}" title="Foto de {{ user.name }}" class="default-avatar">
 						{% else %}
-						<img src="{{ path.root }}/public/user/{{ user.id }}/{{ user.avatar }}" alt="Foto de {{ user.name }}" title="Foto de {{ user.name }}" class="img-responsive">
+						<div style="background-image:url('{{ path.root }}/public/avatar/{{ user.id }}/{{ user.avatar }}');" alt="Foto de {{ user.name }}" title="Foto de {{ user.name }}"></div>
 						{% endif %}
 					</div>
 					<div class="user-information">
@@ -533,7 +533,7 @@
 							{% endif %}
 							<img src="{{ path.img }}/profile/{{ avatar }}" alt="Foto de {{ recomendation.user_name }}" title="Foto de {{ recomendation.user_name }}" class="default-avatar">
 						{% else %}
-						<img src="{{ path.root }}/public/user/{{ recomendation.userid }}/{{ recomendation.user_avatar }}" alt="Foto de {{ recomendation.user_name }}" title="Foto de {{ recomendation.username }}" class="img-responsive">
+						<div style="background-image:url('{{ path.root }}/public/avatar/{{ recomendation.user_id }}/{{ recomendation.user_avatar }}');" alt="Foto de {{ recomendation.user_name }}" title="Foto de {{ recomendation.username }}"></div>
 						{% endif %}
 					</div>
 					<div class="user-information">

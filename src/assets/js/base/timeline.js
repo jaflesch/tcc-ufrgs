@@ -22,14 +22,44 @@ $(document).ready(function() {
 				$('#total-likes-text').text(likes_text);
 
 				for(var i = 0; i < post_like.length; i++) {
-					$('#modalLikeQtd .user-list').append(`
-						<li>
-							<a class='avatar' href='feed/usuarios/${post_like[i].login}' title='Ver perfil de ${post_like[i].name}'></a>
-							<a class='text' href='feed/usuarios/${post_like[i].login}' title='Ver perfil de ${post_like[i].name}'> 
-								${post_like[i].name}
-							</a>
-						</li>
-					`);
+					if(post_like[i].avatar != "") {
+						$('#modalLikeQtd .user-list').append(`
+							<li>
+								<a class='avatar' href='feed/usuarios/${post_like[i].login}' title='Ver perfil de ${post_like[i].name}'>
+									<div style="background-image:url('public/avatar/${post_like[i].id}/${post_like[i].avatar}')"></div>
+								</a>
+								<a class='text' href='feed/usuarios/${post_like[i].login}' title='Ver perfil de ${post_like[i].name}'> 
+									${post_like[i].name}
+								</a>
+							</li>
+						`);						
+					}
+					else {
+						if(post_like[i].gender == 0) {
+							$('#modalLikeQtd .user-list').append(`
+								<li>
+									<a class='avatar' href='feed/usuarios/${post_like[i].login}' title='Ver perfil de ${post_like[i].name}'>
+										<img src="assets/img/profile/default-male-profile-avatar.png" alt="Foto de ${post_like[i].name}" title="Foto de ${post_like[i].name}" class="profile-default-avatar">
+									</a>
+									<a class='text' href='feed/usuarios/${post_like[i].login}' title='Ver perfil de ${post_like[i].name}'> 
+										${post_like[i].name}
+									</a>
+								</li>
+							`);	
+						}
+						else {
+							$('#modalLikeQtd .user-list').append(`
+								<li>
+									<a class='avatar' href='feed/usuarios/${post_like[i].login}' title='Ver perfil de ${post_like[i].name}'>
+										<img src="assets/img/profile/default-female-profile-avatar.png" alt="Foto de ${post_like[i].name}" title="Foto de ${post_like[i].name}" class="profile-default-avatar">
+									</a>
+									<a class='text' href='feed/usuarios/${post_like[i].login}' title='Ver perfil de ${post_like[i].name}'> 
+										${post_like[i].name}
+									</a>
+								</li>
+							`);	
+						}
+					}
 				}
 				modal.modal("show");
 			}

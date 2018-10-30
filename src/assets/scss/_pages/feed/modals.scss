@@ -2,7 +2,7 @@
 	.user-list {
 		list-style: none;
 		font-size: 0;
-		$size: 36px;
+		$size: 48px;
 
 		>li { padding: 10px 0; }
 		
@@ -12,6 +12,11 @@
 			@include elipse();
 			@include bg($size);
 			background-color: #ddd;
+			overflow: hidden;
+
+			> img { max-width: 100%; }
+
+			> div { @include bg($size); }
 		}
 
 		.text {
