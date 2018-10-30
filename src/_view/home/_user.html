@@ -6,7 +6,7 @@
 			{% else %}
 				{% set avatar = 'default-female-profile-avatar.png' %}
 			{% endif %}
-			<div src="{{ path.img }}/profile/{{ avatar }}" alt="Foto de {{ user.name }}" title="Foto de {{ user.name }}" class="default-avatar">
+			<img src="{{ path.img }}/profile/{{ avatar }}" alt="Foto de {{ user.name }}" title="Foto de {{ user.name }}" class="default-avatar">
 		{% else %}
 		<div style="background-image:url('{{ path.root }}/public/avatar/{{ user.id }}/{{ user.avatar }}');"  alt="Foto de {{ user.name }}" title="Foto de {{ user.name }}"></div>
 		{% endif %}

@@ -26,13 +26,13 @@ class Search {
 
 		$result = $db->query("
 			(
-				SELECT id, title, 'job' AS category, '' AS login
+				SELECT id, title, 'job' AS category, '' AS login, '' AS avatar
 				FROM job 
 				WHERE active = 1 AND (title LIKE '%{$value}%' OR resume LIKE '%{$value}%' OR text LIKE '%{$value}%')
 			)
 			UNION
 			(
-				SELECT id, name AS title, 'user' AS category, login
+				SELECT id, name AS title, 'user' AS category, login, avatar
 				FROM user
 				WHERE active = 1 AND (name LIKE '%{$value}%' OR login LIKE '%{$value}%')
 			)
@@ -65,7 +65,7 @@ class Search {
 		$db = new DBConn();
 
 		return $db->query("
-			SELECT id, name AS title, 'user' AS category, login
+			SELECT id, name AS title, 'user' AS category, login, avatar
 			FROM user
 			WHERE active = 1 AND (name LIKE '%{$value}%' OR login LIKE '%{$value}%')
 			ORDER BY name

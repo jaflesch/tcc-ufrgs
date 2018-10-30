@@ -89,7 +89,7 @@ class Job {
 		$jobs = $db->query("
 			SELECT 
 				j.*, f.id favorite_id, ja.id apply, ja.id_user apply_user, 
-				u.name author_name, u.id author_id, u.login author_login,
+				u.name author_name, u.id author_id, u.login author_login, u.avatar author_avatar,
 				u.born_in_city author_born_in_city, u.born_in_state author_born_in_state, 
 				u.live_in_city author_live_in_city, u.live_in_state author_live_in_state,
 				uj.title author_job_title, uj.company author_job_company, 

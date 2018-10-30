@@ -64,7 +64,18 @@
 				{% endfor %}
 			</div>
 			<div class="author">
-				<div class="avatar"></div>
+				<div class="avatar">
+					{% if job.author_avatar is empty %}
+						{% if job.author_gender == 0 %}
+							{% set avatar = 'default-male-profile-avatar.png' %}
+						{% else %}
+							{% set avatar = 'default-female-profile-avatar.png' %}
+						{% endif %}
+						<img src="{{ path.img }}/profile/{{ avatar }}" alt="Foto de {{ job.author_name }}" title="Foto de {{ job.author_name }}" class="profile-default-avatar">
+					{% else %}
+					<div style="background-image:url('{{ path.root }}/public/avatar/{{ job.author_id }}/{{ job.author_avatar }}');"  alt="Foto de {{ job.author }}" title="Foto de {{ post.author }}"></div>
+					{% endif %}
+				</div>
 				<div class="text">
 					<h2><a href="{{ path.root }}/feed/usuario/{{ job.author_login }}" title="Ver perfil de {{ job.author_name }}">{{ job.author_name }}</a></h2>
 					<h3>

@@ -59,6 +59,15 @@
 		line-height: $size;
 		text-align: center;
 		margin-right: 10px;
+		overflow: hidden;
+		
+		> img {
+			max-width: 100%;
+		}
+
+		> div {
+			@include bg($size);
+		}
 	}
 
 	ul { list-style: none; }

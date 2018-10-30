@@ -111,6 +111,10 @@
 		border: 5px solid #fff;
 
 		img { max-width: 100%; }
+
+		> div {
+			@include bg($avatar-size);
+		}
 	}
 	.profile-default-avatar {
 		@include ha-middle();

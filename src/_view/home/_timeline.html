@@ -55,7 +55,16 @@
 		<article class="post" data-post="{{ post.id }}">
 			<div class="post-header">
 				<div class="avatar">
-					<img src="">
+					{% if post.author_avatar is empty %}
+						{% if post.author_gender == 0 %}
+							{% set avatar = 'default-male-profile-avatar.png' %}
+						{% else %}
+							{% set avatar = 'default-female-profile-avatar.png' %}
+						{% endif %}
+						<img src="{{ path.img }}/profile/{{ avatar }}" alt="Foto de {{ post.author_name }}" title="Foto de {{ post.author_name }}" class="profile-default-avatar">
+					{% else %}
+					<div style="background-image:url('{{ path.root }}/public/avatar/{{ post.id_author }}/{{ post.author_avatar }}');"  alt="Foto de {{ post.author }}" title="Foto de {{ post.author }}"></div>
+					{% endif %}
 				</div>
 				<div class="user-information">
 					<h3 class="user-title"><a href="{{ path.root }}/feed/usuario/{{ post.author_login }}" title="Ver perfil de {{ post.author }}">{{ post.author }}</a></h3>

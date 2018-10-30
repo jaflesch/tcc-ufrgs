@@ -6,7 +6,16 @@
 			{% for profile in related_profiles %}
 			<li>
 				<div class="avatar">
-					<img src="">
+					{% if profile.avatar is empty %}
+						{% if profile.gender == 0 %}
+							{% set avatar = 'default-male-profile-avatar.png' %}
+						{% else %}
+							{% set avatar = 'default-female-profile-avatar.png' %}
+						{% endif %}
+						<img src="{{ path.img }}/profile/{{ avatar }}" alt="Foto de {{ profile.name }}" title="Foto de {{ profile.name }}" class="profile-default-avatar">
+					{% else %}
+					<div style="background-image:url('{{ path.root }}/public/avatar/{{ profile.id }}/{{ profile.avatar }}');"  alt="Foto de {{ profile.author }}" title="Foto de {{ profile.author }}"></div>
+					{% endif %}
 				</div>
 				<div class="user-info">
 					<h4><a href="{{ path.root }}/feed/usuario/{{ profile.login }}" title="Ver perfil de {{ profile.name }}">{{ profile.name }}</a></h4>

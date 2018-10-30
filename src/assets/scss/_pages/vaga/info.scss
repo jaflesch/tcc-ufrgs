@@ -80,6 +80,11 @@
 			@include disp-ib();
 			background-color: #ddd;
 			margin-right: 3px;
+			overflow: hidden;
+			
+			> div { @include bg($size); }
+
+			> img { max-width: 100%; }
 		}
 		.text {
 			@include disp-ib();

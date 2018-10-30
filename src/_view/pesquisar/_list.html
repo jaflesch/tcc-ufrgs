@@ -37,7 +37,16 @@
 				{% else %}
 				<li>
 					<span class="circle">
-						<span class="fa fa-user-o"></span>
+						{% if item.avatar is empty %}
+						{% if item.gender == 0 %}
+							{% set avatar = 'default-male-profile-avatar.png' %}
+						{% else %}
+							{% set avatar = 'default-female-profile-avatar.png' %}
+						{% endif %}
+							<img src="{{ path.img }}/profile/{{ avatar }}" alt="Foto de {{ item.name }}" title="Foto de {{ item.name }}" class="profile-default-avatar">
+						{% else %}
+						<div style="background-image:url('{{ path.root }}/public/avatar/{{ item.id }}/{{ item.avatar }}');"  alt="Foto de {{ item.author }}" title="Foto de {{ item.author }}"></div>
+						{% endif %}
 					</span>
 					<div class="text">
 						<a href="{{ path.root }}/feed/usuario/{{ item.login }}">{{ item.title }}</a>
