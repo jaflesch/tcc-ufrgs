@@ -255,7 +255,6 @@ $(document).ready(function() {
 	// New post link click focus
 	$("a[href='#new-post-anchor']").click(function(e) {
 		e.preventDefault();
-		console.log('a');
 		$('.jodit_wysiwyg').val("").focus();
 	})
 });
