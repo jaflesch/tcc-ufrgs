@@ -91,4 +91,9 @@
 			color: $primary-color;
 		}
 	}
+
+	@media(max-width: 991px) {
+		width: 100% !important;
+		margin: 0 0 30px;
+	}
 }
