@@ -180,4 +180,13 @@
 			border: 1px solid darken($primary-color, 10%);
 		}
 	}
-}
+
+
+	@media(max-width: 991px) {
+		article { flex: 0 0 50%; }
+	}
+
+	@media(max-width: 767px) {
+		article { flex: 0 0 100%; }
+	}
+}	
