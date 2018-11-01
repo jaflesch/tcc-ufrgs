@@ -21,6 +21,7 @@ define("LOG_FAVORITE", 14);
 define("LOG_UNFAVORITE", 15);
 define("LOG_COMMENT", 16);
 define("LOG_FIRST_LOGIN", 17);
+define("LOG_UPDATE_AVATAR", 18);
 
 class Log {
 	public static function getAll() {
@@ -107,6 +108,7 @@ class Log {
 			case LOG_UNFAVORITE:		return "star-o";
 			case LOG_COMMENT:			return "commenting-o";
 			case LOG_FIRST_LOGIN:		return "address-card-o";
+			case LOG_UPDATE_AVATAR:		return "picture-o";
 		}
 	}
 
@@ -129,6 +131,9 @@ class Log {
 			case LOG_FAVORITE:			return "adicionou aos favoritos";
 			case LOG_FAVORITE:			return "removeu dos favoritos";
 			case LOG_COMMENT:			return "comentou na publicação";
+
+			case LOG_FIRST_LOGIN:		return "realizou primeiro login";
+			case LOG_UPDATE_AVATAR:		return "atualizou a foto de perfil";
 		}
 	}
 
