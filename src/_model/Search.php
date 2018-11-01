@@ -2,8 +2,10 @@
 class Search {
 	
 	public static function store($value) {
-		$db = new DBConn();
+		if($value == "") return TRUE;
 		
+		$db = new DBConn();		
+
 		$r = $db->query("SELECT id FROM search WHERE text = '{$value}'");
 
 		if($r == NULL) {
