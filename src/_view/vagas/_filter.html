@@ -15,12 +15,18 @@
 				<div style="width: 50%; margin-right: 15px;">
 					<h2>Tipo de vaga</h2>
 					{% for type in filters.type %}
-						<input type="checkbox" name="type" value="{{ type.value }}" data-label="{{ type.label }}">{{ type.label }}<br/>
+					<label class="custom-checkbox">{{ type.label }}
+						<input type="checkbox" name="type" value="{{ type.value }}" data-label="{{ type.label }}">
+						<span class="checkmark"></span>
+					</label>
 					{% endfor %}					
 
 					<h2>Área de atuação</h2>
 					{% for category in filters.category %}
-						<input type="checkbox" name="category" value="{{ category.id }}" data-label="{{ category.title }}">{{ category.title }}<br/>
+					<label class="custom-checkbox">{{ category.title }}
+						<input type="checkbox" name="category" value="{{ category.id }}" data-label="{{ category.title }}"><br/>
+						<span class="checkmark"></span>
+					</label>
 					{% endfor %}					
 					
 					<h2>Carga Horária</h2>
