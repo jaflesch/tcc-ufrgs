@@ -21,6 +21,17 @@
 			&:hover, &:focus, &:active { color: $secondary-color; }
 		}
 	}
+
+	@media(max-width: 991px) {
+		> .container { display: block; }
+	}
 }
 
-#job-container { margin-right: 20px; }
+#job-container { 
+	margin-right: 20px; 
+
+	@media(max-width: 991px) { 
+		margin: 0 0 30px;
+		border-bottom: 1px solid #d7d7d7;
+	}
+}

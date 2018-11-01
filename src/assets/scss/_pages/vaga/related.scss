@@ -26,14 +26,20 @@
 		margin-bottom: 15px;
 
 		&:last-child { margin-bottom: 0; }
+
+		&:hover .avatar-job {
+			@include colors(#ddd, #000);
+		}
 	}
 
-	.avatar {
+	.avatar-job {
 		$avatar-size: 48px;
 		@include size($avatar-size, $avatar-size);
 		@include elipse();
 		display: inline-block;
-		background: #ddd;
+		font-size: 17px;
+		text-align: center;
+		line-height: $avatar-size;
 		margin-right: 10px;
 		overflow: hidden;
 
