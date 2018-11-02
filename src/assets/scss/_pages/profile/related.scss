@@ -1,7 +1,33 @@
-#related-widget.profile {
-	@media(max-width: 991px) {
-		padding-top: 20px;
-    	margin-top: 20px;
-    	border-top: 1px solid #d7d7d7;
+#related-widget {
+
+	&.profile {
+		@media(max-width: 991px) {
+			padding-top: 20px;
+	    	margin-top: 20px;
+	    	border-top: 1px solid #d7d7d7;
+		}
 	}
+	
+	li {
+		display: flex;
+		align-items: center;
+		margin-bottom: 15px;
+ 		&:last-child { margin-bottom: 0; }
+ 		&:hover .avatar-job {
+			@include colors(#ddd, #000);
+		}
+	}
+ 	
+ 	.avatar-job {
+		$avatar-size: 48px;
+		@include size($avatar-size, $avatar-size);
+		@include elipse();
+		@include colors(#e7e7e7, #555);
+		display: inline-block;
+		font-size: 17px;
+		text-align: center;
+		line-height: $avatar-size;
+		margin-right: 10px;
+		overflow: hidden;
+	}	
 }

@@ -33,6 +33,13 @@ class Vagas extends Controller {
 		$this->render("vagas/sobre", $bag);
 	}
 
+	public function inscricoes() {
+		$bag['applies'] = Job::getAllAppliesByMe();
+		$bag['related_jobs'] = Job::getRelated();
+
+		$this->render("vagas/inscricoes", $bag);
+	}
+
 	// AJAX calls
 	public function favoritar() {
 		$response = new stdclass();

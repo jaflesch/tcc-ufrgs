@@ -112,14 +112,19 @@ class Job {
 		return $jobs;
 	}
 
-	public static function getRelated($id) {
+	public static function getRelated($id = NULL) {
 		$jobs = self::getAll()['jobs'];
 
-		for($i = 0; $i < count($jobs); $i++) {
-			if($jobs[$i]->id == $id) unset($jobs[$i]);
+		if($id = NULL) {
+			return $jobs;
 		}
+		else {
+			for($i = 0; $i < count($jobs); $i++) {
+				if($jobs[$i]->id == $id) unset($jobs[$i]);
+			}
 
-		return $jobs;
+			return $jobs;			
+		}
 	}
 
 	public static function getAllAppliedUsersByJobId($job_id) {
@@ -141,6 +146,30 @@ class Job {
 			WHERE j.active = 1 AND j.id = {$job_id}
 			ORDER BY ja.accept DESC, ja.datetime_created DESC, u.name ASC
 		", true);
+	}
+
+	public static function getAllAppliesByMe() {
+		$db = new DBConn();
+		$id_user = Auth::id();
+
+		$data = $db->query("
+			SELECT 
+				j.*,
+				ja.accept
+			FROM job j
+			INNER JOIN job_apply ja ON ja.id_job = j.id AND ja.active = 1
+			INNER JOIN user u ON u.id = ja.id_user AND ja.id_user = {$id_user}
+			WHERE j.active = 1
+			ORDER BY ja.accept DESC, ja.datetime_created DESC
+		", TRUE);
+
+		if(is_array($data)) {
+			foreach ($data as &$d) {
+				$d->slug = trim(linkfy($d->title));
+			}
+		}
+
+		return $data;
 	}
 
 	public static function getAllFeedRelated() {

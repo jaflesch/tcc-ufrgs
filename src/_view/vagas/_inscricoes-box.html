@@ -1,0 +1,48 @@
+<article>
+	<h2>Você demonstrou interesse nas vagas abaixo</h2>
+		
+	{% if applies is empty %}
+	<h3 class="no-apply">
+		Nenhuma inscrição para ser exibida
+	</h3>
+	<p class="no-apply"> Pesquise novas <a href="{{ path.root }}/vagas" title="Ver vagas disponíveis">vagas disponíveis</a> no sistema. </p>
+	{% else %}
+		<form class="form-apply">
+			<label class="filter-label">Filtrar resultados</label>
+			<label class="custom-checkbox">Em avaliação
+				<input type="checkbox" name="apply_status"	checked="" value="0">
+				<span class="checkmark"></span>
+			</label>
+			<label class="custom-checkbox">Aprovado
+				<input type="checkbox" name="apply_status"	value="1">
+				<span class="checkmark"></span>
+			</label>
+			<label class="custom-checkbox">Reprovado
+				<input type="checkbox" name="apply_status" value="-1">
+				<span class="checkmark"></span>
+			</label>
+		</form>
+		{% for apply in applies %}
+		<ul>
+			<li data-apply="{{ apply.accept }}" style="display: {{ apply.accept != 0 ? 'none' : '' }}">
+				<div class="avatar-job">
+					<span class="fa fa-briefcase"></span>
+				</div>
+				<div class="text">
+					<a href="{{ path.root }}/vagas/sobre/{{ apply.id }}/{{ apply.slug }}" title="Ver mais sobre {{ apply.title }}">{{ apply.title }}</a>
+				</div>
+				<div class="user-actions">
+					{% if apply.accept == 0 %}
+					<span class="waiting">Em avaliação</span>
+					{% elseif apply.accept == -1 %}
+					<span class="reproved">Reprovado</span>
+					{% else %}
+					<span class="approved">Aprovado</span>
+					{% endif %}
+				</div>
+			</li>
+		</ul>
+		{% endfor %}
+		<p class="no-result" style="display:none">Nenhum resultado para o filtro aplicado.</p>
+	{% endif %}
+</article>
