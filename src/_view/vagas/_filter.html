@@ -31,33 +31,72 @@
 					
 					<h2>Carga Horária</h2>
 					{% for workload in filters.workload %}
-						<input type="checkbox" name="workload" value="{{ workload }}">Até {{ workload }}h<br/>
+						<label class="custom-checkbox">Até {{ workload }}h
+							<input type="checkbox" name="workload" value="{{ workload }}">
+							<span class="checkmark"></span>
+						</label>
 					{% endfor %}
 					
 					<h2>Modalidade</h2>
-					<input type="radio" name="modality" value="0">À distância<br/>
-					<input type="radio" name="modality" value="0" checked="">Presencial<br/>
+					<label class="custom-radio">À distância
+						<input type="radio" name="modality" value="0">
+						<span class="checkmark"></span>
+					</label>
+					<label class="custom-radio">Presencial
+						<input type="radio" name="modality" value="0" checked="">
+						<span class="checkmark"></span>
+					</label>
 				</div>
 				<div>
 					<h2>Turnos</h2>
 					{% for shift in filters.shift %}
-						<input type="checkbox" name="shift" value="{{ shift.value }}" data-label="{{ shift.label }}">{{ shift.label }}<br/>
+						<label class="custom-checkbox">{{ shift.label }}
+							<input type="checkbox" name="shift" value="{{ shift.value }}" data-label="{{ shift.label }}">
+							<span class="checkmark"></span>
+						</label>
 					{% endfor %}
 					
 					<h2>Currículo</h2>
-					<input type="radio" name="need_cv" value="-1" checked="">Todos<br/>
-					<input type="radio" name="need_cv" value="0">Não exige<br/>
-					<input type="radio" name="need_cv" value="1">Exige<br/>
+					<label class="custom-radio">Todos
+						<input type="radio" name="need_cv" value="-1" checked="">
+						<span class="checkmark"></span>
+					</label>
+					<label class="custom-radio">Não exige
+						<input type="radio" name="need_cv" value="0">
+						<span class="checkmark"></span>
+					</label>
+					<label class="custom-radio">Exige
+						<input type="radio" name="need_cv" value="1">
+						<span class="checkmark"></span>
+					</label>
 
 					<h2>Histórico Escolar</h2>
-					<input type="radio" name="need_historic" value="-1" checked="">Todos<br/>
-					<input type="radio" name="need_historic" value="0">Não exige<br/>
-					<input type="radio" name="need_historic" value="1">Exige<br/>
+					<label class="custom-radio">Todos
+						<input type="radio" name="need_historic" value="-1" checked="">
+						<span class="checkmark"></span>
+					</label>
+					<label class="custom-radio">Não exige
+						<input type="radio" name="need_historic" value="0">
+						<span class="checkmark"></span>
+					</label>
+					<label class="custom-radio">Exige
+						<input type="radio" name="need_historic" value="1">
+						<span class="checkmark"></span>
+					</label>
 
 					<h2>Benefício PRAE</h2>
-					<input type="radio" name="is_prae" value="-1" checked="">Todas <br/>
-					<input type="radio" name="is_prae" value="0">Sem benefício PRAE <br/>
-					<input type="radio" name="is_prae" value="1">Com benefício PRAE <br/>
+					<label class="custom-radio">Todas
+						<input type="radio" name="is_prae" value="-1" checked="">
+						<span class="checkmark"></span>
+					</label>
+					<label class="custom-radio">Sem benefício PRAE
+						<input type="radio" name="is_prae" value="0">
+						<span class="checkmark"></span>
+					</label>
+					<label class="custom-radio">Com benefício PRAE
+						<input type="radio" name="is_prae" value="1">
+						<span class="checkmark"></span>
+					</label>
 				</div>
 			</div>
 			

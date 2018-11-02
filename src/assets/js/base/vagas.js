@@ -138,8 +138,9 @@ $(document).ready(function() {
 			}
 			
 			// CV
+			console.log(parseInt(el.attr("data-job-cv")) == cv);
 			if(parseInt(el.attr("data-job-cv")) == cv) {
-				if(!has_append) {
+				if(!el.is(":visible")) {
 					el.show();
 					has_append = true;
 					skip = false;
