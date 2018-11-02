@@ -63,4 +63,10 @@ class Feed extends Controller {
 		$response->result = RecommendUser::add($this->post);
 		die(json_encode($response));
 	}
+
+	public function update_bio() {
+		$response = new stdclass();
+		$response->result = Profile::updateBio($this->post);
+		die(json_encode($response));
+	}
 }

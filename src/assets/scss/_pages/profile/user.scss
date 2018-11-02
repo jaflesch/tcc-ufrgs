@@ -54,7 +54,7 @@
 	}
 
 	.separator { margin: 0 3px; }
-	
+
 	.top-content { display: flex; }
 
 	.name-box {
@@ -187,6 +187,20 @@
 		}
 	}
 
+	.btn-new { 
+		@include colors(transparent, $primary-color);
+		@include transition();
+		padding: 4px 15px;
+		margin-bottom: 10px;
+		border: 1px dashed $primary-color; 
+
+		.fa { margin-right: 5px; }
+		
+		&:hover, &:active, &:focus {
+			@include colors(rgba($primary-color, .1), $primary-color);
+		}
+	}
+	
 	.box-experience {
 		h2 {
 			font-size: 18px;
@@ -195,19 +209,6 @@
 			padding: 0;
 		}
 
-		.btn-new { 
-			@include colors(transparent, $primary-color);
-			@include transition();
-			padding: 4px 15px;
-			margin-bottom: 10px;
-			border: 1px dashed $primary-color; 
-
-			.fa { margin-right: 5px; }
-			
-			&:hover, &:active, &:focus {
-				@include colors(rgba($primary-color, .1), $primary-color);
-			}
-		}
 
 		hr {
 			border-top: 1px solid #eee;

@@ -1,0 +1,25 @@
+<div id="modalBio" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <form id="formBio" action="{{ path.root }}/feed/update-bio" method='POST'>
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Alterar minha descrição</h4>
+        </div>
+        <div class="modal-body">
+            <div class="row" id='file-input-box'>
+              <div class="form-group col-md-12">
+                <textarea name="short_bio" class="form-data" placeholder="Conte um pouco sobre você: seu perfil, suas experiências e motivações" maxlength="800" required="" style="min-height: 240px;">{{ profile.user.short_bio }}</textarea>
+              </div>    
+            </div>    
+        </div>
+        <div class="modal-footer">
+          <a href="#" class="" data-dismiss="modal">Cancelar</a>
+          <button type="submit" class="btn btn-default">Atualizar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

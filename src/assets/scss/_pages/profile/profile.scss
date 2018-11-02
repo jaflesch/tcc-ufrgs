@@ -7,4 +7,6 @@
 	@media(max-width:991px) {
 		> .container { display: block; }
 	}
+
+	#profile-content { flex-grow: 10; }
 }

@@ -15,6 +15,10 @@
 		border: 1px solid #777;
 	}
 }
+textarea.form-data {
+	max-width: 100%;
+	min-width: 100%;
+}
 .btn-submit {
 	@include colors($primary-color, #fff);
 	width: 100%;

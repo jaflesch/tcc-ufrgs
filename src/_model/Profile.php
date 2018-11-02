@@ -147,4 +147,10 @@ class Profile {
 			"block" => $block !== NULL ? true : false
 		);
 	}
+
+	public static function updateBio($post) {
+		$db = new DBConn();
+		$id = Auth::id();
+		return $db->update("UPDATE user SET short_bio = '{$post->short_bio}' WHERE id = {$id}");
+	}
 }
