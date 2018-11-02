@@ -9,6 +9,7 @@
 		margin-bottom: 20px;
 		flex-grow: 2;
 		position: relative;
+		box-shadow: $box-shadow;
 	}
 
 	.banner {
@@ -329,9 +330,11 @@
 		padding: 20px;
 		margin-bottom: 20px;
 		margin-right: 20px;
+		box-shadow: $box-shadow;
 	}
 
 	#see-followers {
+		font-weight: bold;
 		color: $primary-color;
 		cursor: pointer;
 
@@ -370,6 +373,75 @@
 		
 		&:hover, &:active, &:focus {
 			@include colors($secondary-color, #fff);
+		}
+	}
+
+	@media(max-width:991px) {
+		> section { margin: 0 0 20px; }
+
+		.box-experience {
+			h2 {
+				font-size: 14px;
+			}
+
+			.avatar {
+				$avatar-size: 48px;
+				@include size($avatar-size, $avatar-size);
+				line-height: $avatar-size;
+				font-size: 18px;
+			}
+			.text {				
+				h3 { font-size: 14px; }
+				h4 { font-size: 14px; }
+			}
+		}
+
+		.avatar-box {
+			left: 50%;
+			transform: translateX(-50%);
+		}
+
+		.name-box {
+			padding: 75px 0 0;
+			margin: 0 0 -10px;
+			text-align: center;
+		}
+
+		.more-options-box {
+			position: absolute;
+			right: 20px;
+		}
+
+		h2 {
+			margin-bottom: 10px;
+		}
+
+		.dropdown-menu { 
+			right: 0; 
+			left: auto;
+		}
+
+		.banner .btn-edit { display: none; }
+
+		.resume-grid {
+			display: block;
+			margin-top: 0;
+		}
+
+		.about-box {
+			width: 100%;
+			padding: 20px 0;
+			border: 0;
+			border-bottom: 1px solid #eee;
+		}
+
+		.bio-box {
+			padding: 20px 0 0;
+			margin-bottom: -10px;
+		}
+
+		.recomendation-card {
+			margin: 0 0 10px;
 		}
 	}
 }
