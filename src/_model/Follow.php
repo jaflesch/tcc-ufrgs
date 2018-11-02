@@ -4,7 +4,7 @@ class Follow {
 		$db = new DBConn();
 		
 		$data = $db->query("
-			SELECT u.id, u.name, u.login, f.datetime_created
+			SELECT u.id, u.name, u.login, u.avatar, f.datetime_created
 			FROM follow f 
 			LEFT JOIN user u ON u.id = f.id_follower AND f.active = 1
 			WHERE f.id_following = {$id_user} AND u.active = 1

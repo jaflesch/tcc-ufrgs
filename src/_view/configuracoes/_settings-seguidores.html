@@ -19,7 +19,18 @@
 		<ul class="default-list">
 		{% for user in followers %}
 			<li data-user="{{ user.id }}">
-				<img src="{{ path.root }}/public/usuario/{{ user.login }}/{{ user.avatar }}" alt="{{ user.name }}" title="{{ user.name }}" class="avatar">
+				<div class="avatar">
+					{% if user.avatar is empty %}
+		              {% if user.gender == 0 %}
+		                {% set avatar = 'default-male-profile-avatar.png' %}
+		              {% else %}
+		                {% set avatar = 'default-female-profile-avatar.png' %}
+		              {% endif %}
+		              <img src="{{ path.img }}/profile/{{ avatar }}" alt="Foto de {{ user.name }}" title="Foto de {{ user.name }}" class="profile-default-avatar">
+		            {% else %}
+		              <div style="background-image:url('{{ path.root }}/public/avatar/{{ user.id }}/{{ user.avatar }}');"  alt="Foto de {{ user.author }}" title="Foto de {{ user.name }}"></div>
+		            {% endif %}
+		        </div>
 				<h3>
 					<a href="{{ path.root }}/feed/usuario/{{ user.login }}" title="Ver perfil de {{ user.name }}">{{ user.name }}</a>
 				</h3>

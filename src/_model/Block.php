@@ -6,7 +6,7 @@ class Block {
 
 		// Check if it's already following
 		return $db->query("
-			SELECT u.id , u.name, u.login, u.gender
+			SELECT u.id , u.name, u.login, u.gender, u.avatar
 			FROM block b 
 			INNER JOIN user u ON u.id = b.id_blocked
 			WHERE u.active = 1 and b.active = 1 AND b.id_blocker = {$blocker_user_id}

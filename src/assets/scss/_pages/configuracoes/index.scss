@@ -29,6 +29,8 @@
 			overflow: hidden;
 
 			img { max-width: 100%; }
+
+			> div { @include bg($avatar-size); }
 		}
 	
 
@@ -93,5 +95,9 @@
 			line-height: 160%;
 			padding: 15px; 
 		}
+	}
+
+	@media(max-width: 767px) {
+		> .container { display: block; }
 	}
 }

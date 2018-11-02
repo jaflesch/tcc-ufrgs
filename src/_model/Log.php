@@ -40,12 +40,14 @@ class Log {
 			ORDER BY datetime_created DESC
 		", TRUE);
 
-		foreach ($data as &$d) {
-			$d->icon = self::getIcon($d->type, $d->action);
-			$d->action_str = self::getActionString($d->action);
-			$d->job_slug = linkfy(trim($d->job_title));
-			$d->data = self::getData($d->datetime_created);
-		}		
+		if(is_array($data)) {
+			foreach ($data as &$d) {
+				$d->icon = self::getIcon($d->type, $d->action);
+				$d->action_str = self::getActionString($d->action);
+				$d->job_slug = linkfy(trim($d->job_title));
+				$d->data = self::getData($d->datetime_created);
+			}		
+		}
 		$data[] = self::getFirstLogin();
 		
 		return $data;
@@ -157,7 +159,7 @@ class Log {
 			case 12:	$d[1] = "Dez"; break;
 		}
 		$d[0] = date('Y') == $d[0] ? "" : " ".$d[0];
-
+		
 		return $d[2]." ".$d[1].$d[0];
 	}
 }
