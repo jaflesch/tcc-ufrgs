@@ -1,5 +1,6 @@
 #related-widget {
 	width: 320px;
+	flex-shrink: 0;
 	
 	.suggest-box {
 		@include border-radius(2px);
@@ -37,8 +38,11 @@
 		background: #ddd;
 		margin-right: 10px;
 		overflow: hidden;
+		flex-shrink: 0;
 
 		img { max-width: 100%; }
+
+		> div { @include bg($avatar-size); }
 	}
 
 	h4 {
