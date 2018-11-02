@@ -53,6 +53,8 @@
 		}
 	}
 
+	.separator { margin: 0 3px; }
+	
 	.top-content { display: flex; }
 
 	.name-box {
@@ -68,7 +70,7 @@
 		margin: 0;
 	}
 	h2 {
-		font-size: 16px;
+		font-size: 14px;
 		color: #777;
 		margin: 10px 0 25px;
 	}
@@ -254,7 +256,7 @@
 
 			h3 {
 				font: {
-					size: 16px;
+					size: 14px;
 					weight: bold;
 				}
 				color: #2b2b2b;
@@ -265,7 +267,6 @@
 				font-size: 14px;
 				margin: 0;
 			}
-			.separator { margin: 0 3px; }
 		}
 
 		.skill-title {
@@ -391,7 +392,6 @@
 				font-size: 18px;
 			}
 			.text {				
-				h3 { font-size: 14px; }
 				h4 { font-size: 14px; }
 			}
 		}

@@ -39,14 +39,11 @@
 				</h1>
 				<h2>
 					{% if profile.jobs is not empty %}
-						emprego
-						{{ profile.user.getJobTitle() }}
-					{% elseif user.getEducationTitle() %}
-						educação
-						{{ profile.user.getEducationTitle() }}
-					{% else %}
-						local
-						{{ profile.user.getLocation().live_in_string }}
+						{{ profile.jobs[0].title }} <span class="separator">·</span> {{ profile.jobs[0].company }}
+					{% elseif profile.educations %}
+						{{ profile.educations[0].title }} <span class="separator">·</span> {{ profile.educations[0].subtitle }}
+					{% elseif profile.user.live_in_city is not empty and profile.user.live_in_state is not empty %}
+						{{ profile.user.live_in_city }}, {{ profile.user.live_in_state }} 
 					{% endif %}
 				</h2>
 			</div>
