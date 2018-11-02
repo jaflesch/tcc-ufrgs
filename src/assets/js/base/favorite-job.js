@@ -2,6 +2,7 @@ $(document).ready(function() {
 	$(".favorite-job").click(function(e) {
 		var el = $(this);
 		var id = $(this).closest("article").data("job");
+		e.preventDefault();
 		
 		$.ajax({
 			url: el.hasClass('active') ? './vagas/desfavoritar' : './vagas/favoritar',

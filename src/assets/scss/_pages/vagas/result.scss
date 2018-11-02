@@ -11,9 +11,15 @@
 		margin-bottom: 20px;
 	}	
 	.job-card { 
+		@include transition();
 		background: #fff;
 		padding: 15px;
 		margin: 0 10px; 
+		box-shadow: $box-shadow;
+
+		&:hover {
+			box-shadow: 0 2px 15px rgba(#000, .2);
+		}
 	}
 
 	.alert { 
@@ -183,6 +189,9 @@
 
 
 	@media(max-width: 991px) {
+		padding-top: 20px;
+		border-top: 1px solid #d7d7d7;
+		
 		article { flex: 0 0 50%; }
 	}
 
