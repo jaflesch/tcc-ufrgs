@@ -82,8 +82,8 @@ $(document).ready(function() {
 		for(var i = 0; i < $('[name="category"]').length; i++) {
 			if($($('[name="category"]')[i]).is(":checked")) {
 				var val = $($('[name="category"]')[i]).val();
-				var label = $($('[name="category"]')[i]).data("label");
-				category.push(val);
+				var label = $($('[name="category"]')[i]).attr("data-label");
+				category.push(parseInt(val));
 				appendFilter("Área", label, "category", val);
 				has_append = true;
 			}
@@ -93,7 +93,7 @@ $(document).ready(function() {
 		for(var i = 0; i < $('[name="type"]').length; i++) {
 			if($($('[name="type"]')[i]).is(":checked")) {
 				var val = $($('[name="type"]')[i]).val();
-				var label = $($('[name="type"]')[i]).data("label");
+				var label = $($('[name="type"]')[i]).attr("data-label");
 				type.push(parseInt(val));
 				appendFilter("Tipo", label, "type", val);
 				has_append = true;
@@ -109,6 +109,7 @@ $(document).ready(function() {
 				el.show();
 			}
 
+			//  Shift
 			if($.inArray(parseInt(el.attr("data-job-shift")), shift) > -1) {
 				el.show();
 			}
@@ -117,8 +118,9 @@ $(document).ready(function() {
 			var all_job_categories = (el.attr("data-job-category") + '').split(',');
 			for(var i = 0; i < all_job_categories.length; i ++) {
 				for(var j = 0; j < category.length; j++) {
-					if(all_job_categories[i] == category[j])
+					if(all_job_categories[i] == category[j]) {
 						el.show();
+					}
 				}
 			}
 			
@@ -134,14 +136,8 @@ $(document).ready(function() {
 			else if(parseInt(el.attr("data-job-salary")) > max_sal) {
 				el.hide();
 			}
-			else {
-				el.show();
-				has_append = true;
-			}
 			
 			// CV
-			if(cv == -1 || historic == -1 || prae == -1)
-
 			if(parseInt(el.attr("data-job-cv")) == cv) {
 				if(!has_append) {
 					el.show();
@@ -193,7 +189,7 @@ $(document).ready(function() {
 		}
 		else {
 			// Nenhum resultado para os filtros.. então exibe todos
-			$('[data-job]').show();
+			$('article[data-job]').show();
 		}
 
 		// Update results count
@@ -215,7 +211,7 @@ $(document).ready(function() {
 		var val = el.find(":selected").val();
 
 		$.ajax({
-			url: el.data("action"),
+			url: el.attr("data-action"),
 			method: 'POST',
 			dataType: 'html',
 			data: { order: val },
@@ -237,7 +233,7 @@ $(document).ready(function() {
 			url: el.attr("href"),
 			method: 'POST',
 			dataType: 'json',
-			data: { id : el.data("job") }
+			data: { id : el.attr("data-job") }
 		})
 	})
 });
