@@ -31,7 +31,15 @@ $(document).ready(function() {
 		var name = $(this).parent().attr("data-name");
 		var val = $(this).parent().attr("data-val");
 		
-		$(`[name="${name}"][value="${val}"]`).prop("checked", false);
+		if($(`[name="${name}"]`).attr("type") == "radio") {
+			// Default radio button behaviour
+			$(`[name="${name}"][value="-1"]`).prop("checked", true);	
+		}
+		else {
+			// Default checkbox button behaviour
+			$(`[name="${name}"][value="${val}"]`).prop("checked", false);			
+		}
+
 		$(this).parent().remove();
 		
 		updateResults();
@@ -100,18 +108,60 @@ $(document).ready(function() {
 			}
 		}
 
+		// CV
+		if(cv != -1) {
+			if(cv == 1) {
+				var val = 1;
+				var label = "Exige";
+				appendFilter("Currículo", label, "need_cv", val);
+			}
+			else {
+				var val = 0;
+				var label = "Não exige";
+				appendFilter("Currículo", label, "need_cv", val);
+			}
+		}
+
+		// Historic
+		if(historic != -1) {
+			if(historic == 1) {
+				var val = 1;
+				var label = "Exige";
+				appendFilter("Histórico", label, "need_historic", val);
+			}
+			else {
+				var val = 0;
+				var label = "Não exige";
+				appendFilter("Histórico", label, "need_historic", val);
+			}
+		}
+
+		// PRAE
+		if(prae != -1) {
+			if(prae == 1) {
+				var val = 1;
+				var label = "Sim";
+				appendFilter("PRAE", label, "is_prae", val);
+			}
+			else {
+				var val = 0;
+				var label = "Não";
+				appendFilter("PRAE", label, "is_prae", val);
+			}
+		}
+
 		$('article[data-job]').hide();
 		$('article[data-job]').each(function() {
 			var el = $(this);
 
 			// Workload
 			if($.inArray(parseInt(el.attr("data-job-workload")), workload) > -1) {
-				el.show();
+				if(!el.is(":visible")) el.show();
 			}
 
 			//  Shift
 			if($.inArray(parseInt(el.attr("data-job-shift")), shift) > -1) {
-				el.show();
+				if(!el.is(":visible")) el.show();
 			}
 
 			// Category
@@ -119,14 +169,14 @@ $(document).ready(function() {
 			for(var i = 0; i < all_job_categories.length; i ++) {
 				for(var j = 0; j < category.length; j++) {
 					if(all_job_categories[i] == category[j]) {
-						el.show();
+						if(!el.is(":visible")) el.show();
 					}
 				}
 			}
 			
 			// Type
 			if($.inArray(parseInt(el.attr("data-job-type")), type) > -1) {
-				el.show();
+				if(!el.is(":visible")) el.show();
 			}
 
 			// Salary
@@ -138,7 +188,6 @@ $(document).ready(function() {
 			}
 			
 			// CV
-			console.log(parseInt(el.attr("data-job-cv")) == cv);
 			if(parseInt(el.attr("data-job-cv")) == cv) {
 				if(!el.is(":visible")) {
 					el.show();
