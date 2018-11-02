@@ -1,12 +1,14 @@
 #timeline {
 	flex-grow: 2;
 	margin-right: 20px;
-
+	margin-bottom: 40px;
+	
 	article {
 		@include border-radius(2px);
 		background: #fff;
 		padding: 20px;
 		margin-bottom: 10px;
+		box-shadow: $box-shadow;
 	}
 
 	h2.no-info {

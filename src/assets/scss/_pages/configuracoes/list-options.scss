@@ -4,7 +4,8 @@
 	margin-right: 20px;
 	width: 300px;
 	flex-shrink: 0;
-
+	box-shadow: $box-shadow;
+	
 	.suggest-box {
 		@include border-radius(2px);
 		background: #fff;

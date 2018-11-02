@@ -2,8 +2,10 @@
 	@include border-radius(2px);
 	background: #fff;
 	padding: 20px;
+	margin-bottom: 20px;
 	flex-grow: 100;
-
+	box-shadow: $box-shadow;
+	
 	h1 {
 		font: {
 			size: 24px;
