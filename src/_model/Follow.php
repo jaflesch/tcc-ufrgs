@@ -47,7 +47,7 @@ class Follow {
 			return $db->insert("
 				INSERT INTO follow (id_follower, id_following) 
 				VALUES ({$follower_user_id}, {$following_user_id})
-			");			
+			");	
 		}
 	}
 

@@ -37,13 +37,15 @@ class RecommendJob {
 			");			
 		}
 		else {
-			return $db->insert("
+			$db->insert("
 				UPDATE recommendation_job 
 				SET 
 					text = '{$post->text}',
 					datetime_last_edit = NOW()
 				WHERE id_user = {$id_user} AND id_job = {$post->job_id} AND active = 1
-			");				
+			");	
+
+			return $db->last_id();			
 		}
 	}
 

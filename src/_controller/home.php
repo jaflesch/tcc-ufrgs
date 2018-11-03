@@ -3,6 +3,7 @@ require MODEL_PATH.'Profile.php';
 require MODEL_PATH.'Job.php';
 require MODEL_PATH.'Follow.php';
 require MODEL_PATH.'Post.php';
+require MODEL_PATH.'Log.php';
 
 class Home extends Controller {
 	public function index() {
@@ -18,6 +19,8 @@ class Home extends Controller {
 	public function like() {
 		$response = new stdclass();
 		$response->result = Post::like($this->post->id);
+		Log::add($this->post->id, LOG_TYPE_USER, LOG_LIKE);
+
 		die(json_encode($response));
 	}
 
@@ -36,7 +39,10 @@ class Home extends Controller {
 
 	public function new_comment() {
 		$response = new stdclass();
-		$response->result = Comment::add($this->post);
+		$response->last_id = Comment::add($this->post);
+		$response->success = $response->last_id > 0;
+		Log::add($response->last_id, LOG_TYPE_USER, LOG_COMMENT);
+
 		die(json_encode($response));
 	}
 
@@ -78,6 +84,8 @@ class Home extends Controller {
 			$json->success = true;
       		$json->msg = "O arquivo foi enviado com sucesso.";
       		
+      		Log::add(Auth::id(), LOG_TYPE_USER, LOG_UPDATE_AVATAR);
+
       		die(json_encode($json));
 		} 
 		else {

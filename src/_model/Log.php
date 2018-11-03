@@ -22,6 +22,7 @@ define("LOG_UNFAVORITE", 15);
 define("LOG_COMMENT", 16);
 define("LOG_FIRST_LOGIN", 17);
 define("LOG_UPDATE_AVATAR", 18);
+define("LOG_LIKE", 19);
 
 class Log {
 	public static function getAll() {
@@ -53,7 +54,7 @@ class Log {
 		return $data;
 	}
 
-	public static function add($target, $type, $action) {
+	public static function add($id_target, $type, $action) {
 		$db = new DBConn();
 		$id_user = Auth::id();
 
@@ -111,6 +112,7 @@ class Log {
 			case LOG_COMMENT:			return "commenting-o";
 			case LOG_FIRST_LOGIN:		return "address-card-o";
 			case LOG_UPDATE_AVATAR:		return "picture-o";
+			case LOG_LIKE:				return "thumbs-up";
 		}
 	}
 
@@ -131,11 +133,12 @@ class Log {
 			case LOG_RECOMMEND_JOB:		return "recomendou";
 			case LOG_POST:				return "postou";
 			case LOG_FAVORITE:			return "adicionou aos favoritos";
-			case LOG_FAVORITE:			return "removeu dos favoritos";
+			case LOG_UNFAVORITE:		return "removeu dos favoritos";
 			case LOG_COMMENT:			return "comentou na publicação";
 
 			case LOG_FIRST_LOGIN:		return "realizou primeiro login";
 			case LOG_UPDATE_AVATAR:		return "atualizou a foto de perfil";
+			case LOG_LIKE:				return "curtiu";
 		}
 	}
 

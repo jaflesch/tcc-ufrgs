@@ -3,6 +3,7 @@ require MODEL_PATH.'Job.php';
 require MODEL_PATH.'Profile.php';
 require MODEL_PATH.'Favorite.php';
 require MODEL_PATH.'RecommendJob.php';
+require MODEL_PATH.'Log.php';
 require LIB_PATH.'Mail.php';
 
 class Vagas extends Controller {
@@ -47,6 +48,8 @@ class Vagas extends Controller {
 		$response = new stdclass();
 		$response->success = Favorite::save($this->post->id, Favorite::JOB);
 		$response->msg = $response->success ? "Vaga adicionada ao seus <a href='{$this->path['root']}/vagas/favoritos' title='Ver meus favoritos'>favoritos</a>." : "Desculpe, ocorreu um erro. Tente de novo.";
+
+		Log::add($this->post->id, LOG_TYPE_JOB, LOG_FAVORITE);
 		die(json_encode($response));
 	}
 
@@ -54,18 +57,23 @@ class Vagas extends Controller {
 		$response = new stdclass();
 		$response->success = Favorite::delete($this->post->id, Favorite::JOB);
 		$response->msg = $response->success ? "Vaga removida dos <a href='{$this->path['root']}/vagas/favoritos' title='Ver meus favoritos'>favoritos</a>." : "Desculpe, ocorreu um erro. Tente de novo.";
+
+		Log::add($this->post->id, LOG_TYPE_JOB, LOG_UNFAVORITE);
 		die(json_encode($response));
 	}
 
 	public function recomendar() {
 		$response = new stdclass();
 		$response->result = RecommendJob::add($this->post);
+		Log::add($this->post->job_id, LOG_TYPE_JOB, LOG_RECOMMEND_JOB);
+		
 		die(json_encode($response));
 	}
 
 	public function candidatar() {
 		$response = new stdclass();
 		$response->result = Job::apply($this->post->id);
+		Log::add($this->post->id, LOG_TYPE_JOB, LOG_APPLY);
 
 		$this->sendApplyEmailAuthor();
 		$this->sendApplyEmailCandidate();
@@ -76,6 +84,8 @@ class Vagas extends Controller {
 	public function aprovar_candidato() {
 		$response = new stdclass();
 		$response->result = Job::approveApply($this->post);
+		Log::add($this->post->candidate_id, LOG_TYPE_USER, LOG_APPLY_ACCEPT);
+
 		$this->sendApprovalEmail();		
 
 		die(json_encode($response));
@@ -84,6 +94,8 @@ class Vagas extends Controller {
 	public function reprovar_candidato() {
 		$response = new stdclass();
 		$response->result = Job::reproveApply($this->post);
+		Log::add($this->post->candidate_id, LOG_TYPE_USER, LOG_APPLY_REJECT);
+
 		die(json_encode($response));
 	}
 

@@ -183,10 +183,12 @@ class Post {
 		$db = new DBConn();
 		$id_user = Auth::id();
 
-		return $db->insert("
+		$db->insert("
 			INSERT INTO post (id_author, text, datetime_published, datetime_last_edit, privacy, allow_comments) 
 			VALUES ({$id_user}, '{$post->post_text}', NOW(), NOW(), {$post->privacy}, 1)
 		");			
+
+		return $db->last_id();
 	}
 
 	public static function delete($id) {
