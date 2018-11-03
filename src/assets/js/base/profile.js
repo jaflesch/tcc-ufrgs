@@ -232,7 +232,7 @@ $(document).ready(function() {
 	$('#skills').on("click", '.remove-item', function() {
 		var el = $(this);
 		var id = el.parent().attr("data-id-skill");
-		console.log(id);
+		
 		$.ajax({
 			url: '../../configuracoes/remover-habilidade',
 			method: 'POST',
@@ -292,7 +292,7 @@ $(document).ready(function() {
 	$('#languages').on("click", '.remove-item', function() {
 		var el = $(this);
 		var id = el.parent().attr("data-id-language");
-		console.log(id);
+		
 		$.ajax({
 			url: '../../configuracoes/remover-idioma',
 			method: 'POST',
@@ -400,7 +400,7 @@ $(document).ready(function() {
 				$('.bio-box p').text(text);
 
 				if($('.bio-box p').data("empty") == true) {
-					console.log('a');
+					
 					$('.bio-box p').data("empty") == false;
 					$('.bio-box .btn-new').html(`<span class="fa fa-plus"></span>Editar descrição`);
 				}
