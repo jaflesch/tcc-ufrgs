@@ -29,7 +29,8 @@ class Vagas extends Controller {
 		$bag['recomendations'] = RecommendJob::getAllFromJobId($id);
 		$bag['related_jobs'] = Job::getRelated($id);
 		$bag['candidates'] = Job::getAllAppliedUsersByJobId($id);
-
+		$bag['has_recommended'] = RecommendJob::hasRecommend($id);
+		
 		$this->render("vagas/sobre", $bag);
 	}
 

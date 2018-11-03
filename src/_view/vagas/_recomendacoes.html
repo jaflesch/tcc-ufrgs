@@ -1,7 +1,8 @@
 <section id="job-recomendations">
-	<article class="recomendation-card">
+	<article class="recomendation-card" style="display:{{ (user.id == job.id_author and recomendations is not empty) ? 'none' : '' }};">
 		<h2>Recomendações</h2>
 		{% if recomendations is empty %}
+			{% if user.id != job.id_author %}
 			<p> Esta vaga não possui ainda nenhuma recomendação. <a href="#" class="recomendar-vaga" title="Recomendar vaga">Seja o primeiro a recomendá-la</a></p>
 			<div class="recommend-box" style="display: none">
 				<div class="post-header" style="margin-bottom: 10px;">
@@ -44,8 +45,12 @@
 					<button type="submit" class="add-recomendation">Recomendar</button>
 				</form>
 			</div>
+			{% else %}
+			<p> Esta vaga não possui ainda nenhuma recomendação.</p>
+			{% endif %}
 		</article>
 		{% else %}
+			{% if user.id != job.id_author %}
 			<div class="recommend-box">
 				<div class="post-header" style="margin-bottom: 10px;">
 					<div class="avatar">
@@ -82,11 +87,14 @@
 				</div>	
 				<form id="formRecomendar" action="{{ path.root }}/vagas/recomendar">
 					<input type="hidden" value="{{ job.id }}" name="job_id">
-					<textarea name="text" class="form-data" placeholder="Por que você recomenda esta vaga?" required=""></textarea>
+					<textarea name="text" class="form-data" placeholder="Por que você recomenda esta vaga?" required="">{{ has_recommended.text }}</textarea>
 					
-					<button type="submit" class="add-recomendation">Recomendar</button>
+					<button type="submit" class="add-recomendation">{{ has_recommended.text == "" ? 'Recomendar' : 'Atualizar' }}</button>
 				</form>
 			</div>
+			{% else %}
+			<p>Os seguintes usuários recomendaram esta vaga</p>
+			{% endif %}
 	</article>
 			{% for recomendation in recomendations %}
 			<article class="recomendation-card">
