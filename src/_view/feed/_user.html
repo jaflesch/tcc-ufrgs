@@ -191,7 +191,9 @@
 					<h3>{{ job.company }} </h3>
 					<h4>{{ job.title }} <span class="separator">·</span> {{ job.date }} De 2017 até o momento <span class="separator">·</span> {{ job.location_city }} , {{ job.location_state }}</h4>
 					</h4>
+					{% if user.getId() == profile.user.id %}
 					<div class="remove-item">&times;</div>
+					{% endif %}
 				</div>
 			</li>
 			{% endfor %}
@@ -281,7 +283,9 @@
 					<h3>{{ education.title }} </h3>
 					<h4>{{ education.subtitle }} <span class="separator">·</span> De {{ education.date_start }} até {{ education.date_finish }} <span class="separator">·</span> {{ education.location_city }}, {{ education.location_state }}</h4>
 					</h4>
+					{% if user.getId() == profile.user.id %}
 					<div class="remove-item">&times;</div>
+					{% endif %}
 				</div>
 			</li>
 			{% endfor %}
@@ -330,9 +334,11 @@
 					<h3>{{ skill.title }} </h3>
 				</div>
 				<div class="text">
-					<h4>{{ skill.level_string }} <span class="separator">·</span> {{ skill.time }} anos</h4>
+					<h4>{{ skill.level_string }} <span class="separator">·</span> {{ skill.time == 0 ? 'Menos de 1 ano' : skill.time ~ ' anos' }}</h4>
 				</div>
+				{% if user.getId() == profile.user.id %}
 				<div class="remove-item">&times;</div>
+				{% endif %}
 			</li>
 		{% endfor %}
 		</ul>
@@ -397,7 +403,9 @@
 				<div class="text">
 					<h4>{{ language.title }} <span class="separator">·</span> {{ language.level_str }} </h4>
 				</div>
+				{% if user.getId() == profile.user.id %}
 				<div class="remove-item">&times;</div>
+				{% endif %}
 			</li>
 		{% endfor %}
 		<p class="no-info" style="display:none">Não há idiomas para exibir</p>
