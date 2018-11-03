@@ -211,7 +211,7 @@ class Job {
 		$data->date_start = Data::str2date($data->date_start);
 		$data->date_finish = Data::str2date($data->date_finish);
 
-		return $db->insert(
+		$db->insert(
 			"INSERT INTO user_job (id_user, title, company, resume, date_start, date_finish, location_city, location_state, selected)
 			VALUES(
 				{$id_user},
@@ -225,6 +225,8 @@ class Job {
 				0
 			)
 		");	
+
+		return $db->last_id();
 	}
 
 	public static function remove($id_job) {

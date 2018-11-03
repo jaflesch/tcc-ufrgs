@@ -103,7 +103,8 @@ $(document).ready(function() {
 			dataType: 'json',
 			data: { id: id },
 			success: function(response) {
-				if(response.success) el.parent().parent().remove();			
+				if(response.success) el.parent().parent().remove();		
+				if($('#job-experiences ul').children().length == 0) $('#job-experiences .no-info').show();	
 			}
 		});		
 	});	
@@ -120,24 +121,6 @@ $(document).ready(function() {
 		var textarea = $('#job-experiences [name="resume"]').val();
 		data_fim = (data_fim == "") ? "o momento" : data_fim = data_fim.split('/')[2];
 		
-		var element = `
-			<li>
-				<div class="avatar">
-					<span class="fa fa-briefcase"></span>
-				</div>
-				<div class="text">
-					<h3>${company}</h3>
-					<h4>
-						${title } <span class="separator">·</span> 
-						De ${data_inicio} até ${data_fim} <span class="separator">·</span> 
-						${location_city}, ${location_state}
-					</h4>
-					<div class="remove-item">&times;</div>
-				</div>
-			</li>`;
-
-		$('#job-experiences ul').append(element);
-
 		// AJAX call
 		$.ajax({
 			url: form.attr("action"),
@@ -146,6 +129,26 @@ $(document).ready(function() {
 			data: form.serializeArray(),
 			success: function(response) {
 				if(response.success) form[0].reset();				
+
+				var element = `
+					<li data-id-job="${response.last_id}">
+						<div class="avatar">
+							<span class="fa fa-briefcase"></span>
+						</div>
+						<div class="text">
+							<h3>${company}</h3>
+							<h4>
+								${title } <span class="separator">·</span> 
+								De ${data_inicio} até ${data_fim} <span class="separator">·</span> 
+								${location_city}, ${location_state}
+							</h4>
+							<div class="remove-item">&times;</div>
+						</div>
+					</li>`;
+
+				if($('#job-experiences ul').children().length == 0) $('#job-experiences .no-info').hide();
+				
+				$('#job-experiences ul').append(element);
 			}
 		});
 	});
@@ -168,7 +171,8 @@ $(document).ready(function() {
 			dataType: 'json',
 			data: { id: id },
 			success: function(response) {
-				if(response.success) el.parent().parent().remove();			
+				if(response.success) el.parent().parent().remove();		
+				if($('#education-experiences ul').children().length == 0) $('#education-experiences .no-info').show();	
 			}
 		});		
 	});	
@@ -185,24 +189,6 @@ $(document).ready(function() {
 		var textarea = $('#education-experiences [name="resume"]').val();
 		data_fim = (data_fim == "") ? "o momento" : data_fim = data_fim.split('/')[2];
 		
-		var element = `
-			<li>
-				<div class="avatar">
-					<span class="fa fa-graduation-cap"></span>
-				</div>
-				<div class="text">
-					<h3>${subtitle}</h3>
-					<h4>
-						${title } <span class="separator">·</span> 
-						De ${data_inicio} até ${data_fim} <span class="separator">·</span> 
-						${location_city}, ${location_state}
-					</h4>
-					<div class="remove-item">&times;</div>
-				</div>
-			</li>`;
-
-		$('#education-experiences ul').append(element);
-
 		// AJAX call
 		$.ajax({
 			url: form.attr("action"),
@@ -210,7 +196,27 @@ $(document).ready(function() {
 			dataType: 'json',
 			data: form.serializeArray(),
 			success: function(response) {
-				if(response.success) form[0].reset();				
+				if(response.success) form[0].reset();		
+
+				var element = `
+					<li data-id-education="${response.last_id}">
+						<div class="avatar">
+							<span class="fa fa-graduation-cap"></span>
+						</div>
+						<div class="text">
+							<h3>${subtitle}</h3>
+							<h4>
+								${title } <span class="separator">·</span> 
+								De ${data_inicio} até ${data_fim} <span class="separator">·</span> 
+								${location_city}, ${location_state}
+							</h4>
+							<div class="remove-item">&times;</div>
+						</div>
+					</li>`;
+
+				if($('#education-experiences ul').children().length == 0) $('#education-experiences .no-info').hide();
+				
+				$('#education-experiences ul').append(element);		
 			}
 		});
 	});
@@ -233,7 +239,8 @@ $(document).ready(function() {
 			dataType: 'json',
 			data: { id: id },
 			success: function(response) {
-				if(response.success) el.parent().remove();			
+				if(response.success) el.parent().remove();	
+				if($('#skills ul').children().length == 0) $('#skills .no-info').show();		
 			}
 		});		
 	});	
@@ -254,17 +261,20 @@ $(document).ready(function() {
 			success: function(response) {
 				if(response.success) {
 					form[0].reset();	
+					time = (time == 0) ? "Menos de 1 ano" : time + " anos";
+
 					var element = `
 						<li data-id-skill="${response.last_id}">
 							<div class="skill-title">
 								<h3>${title}</h3>
 							</div>
 							<div class="text">
-								<h4>${level} <span class="separator">·</span> ${time} anos</h4>
+								<h4>${level} <span class="separator">·</span> ${time}</h4>
 							</div>
 							<div class="remove-item">&times;</div>
 						</li>`;
 
+					if($('#skills ul').children().length == 0) $('#skills .no-info').hide();
 					$('#skills ul').append(element);
 				}
 			}
@@ -290,6 +300,7 @@ $(document).ready(function() {
 			data: { id: id },
 			success: function(response) {
 				if(response.success) el.parent().remove();			
+				if($('#languages ul').children().length == 0) $('#languages .no-info').show();
 			}
 		});		
 	});	
@@ -365,6 +376,8 @@ $(document).ready(function() {
 							</div>
 							<div class="remove-item">&times;</div>
 						</li>`;
+
+					if($('#languages ul').children().length == 0) $('#languages .no-info').hide();
 
 					$('#languages ul').append(element);
 				}

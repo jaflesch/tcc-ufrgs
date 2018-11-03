@@ -100,7 +100,8 @@ class Configuracoes extends Controller {
 
 	public function atualizar_experiencia() {
 		$response = new stdclass();
-		$response->success = Job::add($this->post);
+		$response->last_id = Job::add($this->post);
+		$response->success = $response->last_id > 0;
 		die(json_encode($response));
 	}
 
@@ -112,7 +113,8 @@ class Configuracoes extends Controller {
 
 	public function atualizar_educacao() {
 		$response = new stdclass();
-		$response->success = Education::add($this->post);
+		$response->last_id = Education::add($this->post);
+		$response->success = $response->last_id > 0;
 		die(json_encode($response));
 	}
 
