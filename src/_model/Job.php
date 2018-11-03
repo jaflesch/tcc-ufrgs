@@ -132,7 +132,7 @@ class Job {
 		
 		return $db->query("
 			SELECT 
-				u.id, u.name, u.login,
+				u.id, u.name, u.login, u.gender, u.avatar,
 				u.born_in_city, u.born_in_state, 
 				u.live_in_city, u.live_in_state,
 				uj.title job_title, uj.company, 
@@ -169,6 +169,33 @@ class Job {
 			}
 		}
 
+		return $data;
+	}
+
+	public static function getAllAppliedUsersByAuthorId() {
+		$db = new DBConn();
+		$id_user = Auth::id();
+
+		$data = $db->query("
+			SELECT 
+				u.id, u.name, u.login, u.avatar, u.gender,
+				j.title job_title,
+				ja.accept, ja.id_job
+			FROM job j
+			INNER JOIN job_apply ja ON ja.id_job = j.id AND ja.active = 1
+			INNER JOIN user u ON u.id = ja.id_user
+			LEFT JOIN user_job uj ON u.id = uj.id_user AND uj.selected = 1
+			LEFT JOIN user_education ue ON u.id = ue.id_user AND ue.selected = 1
+			WHERE j.active = 1 AND j.id_author = {$id_user}
+			ORDER BY ja.accept DESC, ja.datetime_created DESC, u.name ASC
+		", TRUE);
+
+		if(is_array($data)) {
+			foreach ($data as &$d) {
+				$d->job_slug = trim(linkfy($d->job_title));	
+			}
+		}
+		
 		return $data;
 	}
 
@@ -285,7 +312,7 @@ class Job {
 			INNER JOIN job_apply ja ON ja.id_job = j.id 
 			INNER JOIN user u1 ON u1.id = j.id_author
 			INNER JOIN user u2 ON u2.id = ja.id_user 
-			WHERE ja.id_user = {$data->candidate_id} AND j.id = {$data->job_id} AND ja.active = 1 AND accept = 0
+			WHERE ja.id_user = {$data->candidate_id} AND j.id = {$data->job_id} AND ja.active = 1 AND accept = {$data->apply_status}
 		");
 
 		$datetime = explode(" ", $r->datetime_created);

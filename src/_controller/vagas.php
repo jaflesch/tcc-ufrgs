@@ -35,6 +35,7 @@ class Vagas extends Controller {
 
 	public function inscricoes() {
 		$bag['applies'] = Job::getAllAppliesByMe();
+		$bag['candidates'] = Job::getAllAppliedUsersByAuthorId();
 		$bag['related_jobs'] = Job::getRelated();
 
 		$this->render("vagas/inscricoes", $bag);
@@ -111,6 +112,7 @@ class Vagas extends Controller {
 		$request = new stdclass();
 		$request->job_id = $this->post->id;
 		$request->candidate_id = Auth::id();
+		$request->apply_status = 0;
 
 		$job = Job::getInfoByApply($request);
 		$bag['job'] = $job;
@@ -135,6 +137,7 @@ class Vagas extends Controller {
 		$request = new stdclass();
 		$request->job_id = $this->post->id;
 		$request->candidate_id = Auth::id();
+		$request->apply_status = 0;
 
 		$job = Job::getInfoByApply($request);
 		$bag['job'] = $job;
@@ -148,6 +151,7 @@ class Vagas extends Controller {
 	}
 
 	private function sendApprovalEmail() {
+		$this->post->apply_status = 1;
 		$job = Job::getInfoByApply($this->post);
 		$bag['job'] = $job;
 

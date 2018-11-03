@@ -1,48 +1,120 @@
-<article>
-	<h2>Você demonstrou interesse nas vagas abaixo</h2>
-		
-	{% if applies is empty %}
-	<h3 class="no-apply">
-		Nenhuma inscrição para ser exibida
-	</h3>
-	<p class="no-apply"> Pesquise novas <a href="{{ path.root }}/vagas" title="Ver vagas disponíveis">vagas disponíveis</a> no sistema. </p>
-	{% else %}
-		<form class="form-apply">
-			<label class="filter-label">Filtrar resultados</label>
-			<label class="custom-checkbox">Em avaliação
-				<input type="checkbox" name="apply_status"	checked="" value="0">
-				<span class="checkmark"></span>
-			</label>
-			<label class="custom-checkbox">Aprovado
-				<input type="checkbox" name="apply_status"	value="1">
-				<span class="checkmark"></span>
-			</label>
-			<label class="custom-checkbox">Reprovado
-				<input type="checkbox" name="apply_status" value="-1">
-				<span class="checkmark"></span>
-			</label>
-		</form>
-		{% for apply in applies %}
-		<ul>
-			<li data-apply="{{ apply.accept }}" style="display: {{ apply.accept != 0 ? 'none' : '' }}">
-				<div class="avatar-job">
-					<span class="fa fa-briefcase"></span>
+{% if user.is('professor') or user.is('funcionario') or user.is('adm') %}
+	<article>
+		<h2>Os seguintes candidatos demonstraram interesse</h2>
+			
+		{% if candidates is empty %}
+		<h3 class="no-apply">
+			Nenhuma inscrição para ser exibida
+		</h3>
+		<p class="no-apply"> 
+			Aguarde novas inscrições de usuários no sistema. Assim que um usuário se candidatar a uma vaga de sua autoria, você será notificado por e-mail. 
+		</p>
+		{% else %}
+			<form class="form-apply">
+				<label class="filter-label">Filtrar resultados</label>
+				<label class="custom-checkbox">Avaliação pendente
+					<input type="checkbox" name="apply_status"	checked="" value="0">
+					<span class="checkmark"></span>
+				</label>
+				<label class="custom-checkbox">Aprovado
+					<input type="checkbox" name="apply_status"	value="1">
+					<span class="checkmark"></span>
+				</label>
+				<label class="custom-checkbox">Reprovado
+					<input type="checkbox" name="apply_status" value="-1">
+					<span class="checkmark"></span>
+				</label>
+			</form>
+			{% for candidate in candidates %}
+			<div class="interested-user" data-user="{{ candidate.id }}" data-apply="{{ candidate.accept }}" data-job="{{ candidate.id_job }}" style="display:{{ candidate.accept != 0 ? 'none' : '' }}">
+				<div class="post-header" style="margin-bottom: 10px;">
+					<div class="avatar">
+						{% if candidate.avatar is empty %}
+							{% if candidate.gender == 0 %}
+								{% set avatar = 'default-male-profile-avatar.png' %}
+							{% else %}
+								{% set avatar = 'default-female-profile-avatar.png' %}
+							{% endif %}
+							<img src="{{ path.img }}/profile/{{ avatar }}" alt="Foto de {{ candidate.name }}" title="Foto de {{ candidate.name }}" class="default-avatar">
+						{% else %}
+						<div style="background-image:url('{{ path.root }}/public/avatar/{{ candidate.id }}/{{ candidate.avatar }}');" alt="Foto de {{ candidate.name }}" title="Foto de {{ candidate.ame }}"></div>
+						{% endif %}
+					</div>
+					<div class="user-information">
+						<h3 class="user-title">
+							<a href="{{ path.root }}/feed/usuario/{{ candidate.login }}" title="Ver perfil de {{ candidate.name }}" target="_blank">{{ candidate.name }}</a>
+						</h3>
+						<h4 class="job-title">
+							<a href="{{ path.root }}/vagas/sobre/{{ candidate.id_job }}/{{ candidate.job_slug }}" target="_blank" title="Ver vaga {{ candidate.job_title }}">
+								<span class="fa fa-external-link"></span> {{ candidate.job_title }}
+							</a>	
+						</h4>
+					</div>
+					<div class="user-actions">
+						{% if candidate.accept == 0 %}
+						<button class="approve" data-toggle="modal" data-target="#modalApproveCandidate">Aprovar</button>
+						<button class="reprove" data-toggle="modal" data-target="#modalReproveCandidate">Reprovar</button>
+						{% elseif candidate.accept == -1 %}
+						<span class="reproved">Reprovado</span>
+						{% else %}
+						<span class="approved">Aprovado</span>
+						{% endif %}
+					</div>
 				</div>
-				<div class="text">
-					<a href="{{ path.root }}/vagas/sobre/{{ apply.id }}/{{ apply.slug }}" title="Ver mais sobre {{ apply.title }}">{{ apply.title }}</a>
-				</div>
-				<div class="user-actions">
-					{% if apply.accept == 0 %}
-					<span class="waiting">Em avaliação</span>
-					{% elseif apply.accept == -1 %}
-					<span class="reproved">Reprovado</span>
-					{% else %}
-					<span class="approved">Aprovado</span>
-					{% endif %}
-				</div>
-			</li>
-		</ul>
-		{% endfor %}
-		<p class="no-result" style="display:none">Nenhum resultado para o filtro aplicado.</p>
-	{% endif %}
-</article>
+			</div>
+			{% endfor %}
+			<p class="no-result" style="display:none">Nenhum resultado para o filtro aplicado.</p>
+		{% endif %}
+	</article>
+
+	{% include 'vagas/_modal.html' %}
+{% else %}
+	<article>
+		<h2>Você demonstrou interesse nas vagas abaixo</h2>
+			
+		{% if applies is empty %}
+		<h3 class="no-apply">
+			Nenhuma inscrição para ser exibida
+		</h3>
+		<p class="no-apply"> Pesquise novas <a href="{{ path.root }}/vagas" title="Ver vagas disponíveis">vagas disponíveis</a> no sistema. </p>
+		{% else %}
+			<form class="form-apply">
+				<label class="filter-label">Filtrar resultados</label>
+				<label class="custom-checkbox">Em avaliação
+					<input type="checkbox" name="apply_status"	checked="" value="0">
+					<span class="checkmark"></span>
+				</label>
+				<label class="custom-checkbox">Aprovado
+					<input type="checkbox" name="apply_status"	value="1">
+					<span class="checkmark"></span>
+				</label>
+				<label class="custom-checkbox">Reprovado
+					<input type="checkbox" name="apply_status" value="-1">
+					<span class="checkmark"></span>
+				</label>
+			</form>
+			{% for apply in applies %}
+			<ul>
+				<li data-apply="{{ apply.accept }}" style="display: {{ apply.accept != 0 ? 'none' : '' }}">
+					<div class="avatar-job">
+						<span class="fa fa-briefcase"></span>
+					</div>
+					<div class="text">
+						<a href="{{ path.root }}/vagas/sobre/{{ apply.id }}/{{ apply.slug }}" title="Ver mais sobre {{ apply.title }}">{{ apply.title }}</a>
+					</div>
+					<div class="user-actions">
+						{% if apply.accept == 0 %}
+						<span class="waiting">Em avaliação</span>
+						{% elseif apply.accept == -1 %}
+						<span class="reproved">Reprovado</span>
+						{% else %}
+						<span class="approved">Aprovado</span>
+						{% endif %}
+					</div>
+				</li>
+			</ul>
+			{% endfor %}
+			<p class="no-result" style="display:none">Nenhum resultado para o filtro aplicado.</p>
+		{% endif %}
+	</article>
+{% endif %}

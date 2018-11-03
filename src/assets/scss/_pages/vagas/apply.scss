@@ -2,7 +2,7 @@
 	> .container {
 		display: flex;
 		align-items: start;
-		flex-wrap: wrap;
+		flex-wrap: nowrap;
 	}
 }
 
@@ -102,7 +102,7 @@
 		}
 	}
 	.user-actions {
-		.waiting, .approved, .reproved {
+		.waiting, .approved, .reproved, .approve, .reprove {
 			@include disp-ib();
 			@include border-radius(2px);
 			border: 1px solid;
@@ -122,8 +122,32 @@
 			@include colors(#fff, $primary-color);
     		border: 1px dashed #1b98e0;
 		}
+		.approve {
+			@include colors(#fff, #7fb968);
+			border-color: #7fb968;
+
+			&:hover, &:focus, &:active {
+				color: darken(#7fb968, 15%);
+				border-color: darken(#7fb968, 15%);
+			}
+		}
+		.reprove {
+			@include colors(#fff, #9a9a9a);
+			border-color: #9a9a9a;
+
+			&:hover, &:focus, &:active {
+				color: darken(#da453a, 15%);
+				border-color: darken(#da453a, 15%);
+			}
+		}
 	}
 
+	.job-title {
+		font-size: 14px;
+		margin: 0;
+
+		> a { color: $primary-color; }
+	}
 
 	@media(max-width: 991px) {
 		padding-top: 20px;
