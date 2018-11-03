@@ -513,9 +513,9 @@
 				{% else %}
 				<form id="formRecomendar" action="{{ path.root }}/feed/recomendar">
 					<input type="hidden" value="{{ profile.user.id }}" name="user_id">
-					<textarea name="text" class="form-data" placeholder="Por que você recomenda {{ profile.user.name }}?" required=""></textarea>
+					<textarea name="text" class="form-data" placeholder="Por que você recomenda {{ profile.user.name }}?" required="">{{ has_recommended.text }}</textarea>
 					
-					<button type="submit" class="add-recomendation">Recomendar</button>
+					<button type="submit" class="add-recomendation">{{ has_recommended.text == '' ? 'Recomendar' : 'Atualizar' }}</button>
 				</form>
 				{% endif %}
 			</div>
