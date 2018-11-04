@@ -130,6 +130,12 @@ class Configuracoes extends Controller {
 		die(json_encode($response));
 	}
 
+	public function update_educacao() {
+		$response = new stdclass();
+		$response->success = Education::update($this->post);
+		die(json_encode($response));
+	}
+
 	public function atualizar_habilidade() {
 		$response = new stdclass();
 		$response->last_id = Skill::add($this->post);

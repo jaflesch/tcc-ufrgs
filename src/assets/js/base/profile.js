@@ -196,6 +196,8 @@ $(document).ready(function() {
 		var subtitle = $('#education-experiences [name="subtitle"]').val();
 		var data_inicio = $('#education-experiences [name="date_start"]').val().split("/")[2];
 		var data_fim = $('#education-experiences [name="date_finish"]').val();
+		var date_start = $('#education-experiences [name="date_start"]').val()
+		var date_finish = $('#education-experiences [name="date_finish"]').val();
 		var location_city = $('#education-experiences [name="location_city"]').val();
 		var location_state = $('#education-experiences [name="location_state"]').find(":selected").val();
 		var textarea = $('#education-experiences [name="resume"]').val();
@@ -211,7 +213,16 @@ $(document).ready(function() {
 				if(response.success) form[0].reset();		
 
 				var element = `
-					<li data-id-education="${response.last_id}">
+					<li 
+						data-id-education="${response.last_id}"
+						data-education-title="${title}"
+						data-education-subtitle="${subtitle}"
+						data-education-location_city="${location_city}"
+						data-education-location_state="${location_state}"
+						data-education-date_start="${date_start}"
+						data-education-date_finish="${date_finish}"
+						data-education-resume="${textarea}"
+					>
 						<div class="avatar">
 							<span class="fa fa-graduation-cap"></span>
 						</div>

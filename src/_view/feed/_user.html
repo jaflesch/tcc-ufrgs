@@ -232,10 +232,10 @@
 			</div>
 			<div class="row">
 				<div class="col-sm-6">
-					<input type="text" name="date_start" class="form-data mask-data" required="" placeholder="dd/mm/aaaa">
+					<input type="text" name="date_start" class="form-data mask-data" required="" placeholder="Data de início">
 				</div>
 				<div class="col-sm-6">
-					<input type="text" name="date_finish" class="form-data mask-data" required="" placeholder="dd/mm/aaaa">
+					<input type="text" name="date_finish" class="form-data mask-data" placeholder="Data de fim (deixe em branco se ativo)">
 				</div>
 			</div>
 			<div class="row">
@@ -285,13 +285,22 @@
 		{% if profile.educations is not empty %}
 		<ul>
 			{% for education in profile.educations %}
-			<li data-id-education="{{ education.id }}">
+			<li 
+				data-id-education="{{ education.id }}"
+				data-education-title="{{ education.title }}"
+				data-education-subtitle="{{ education.subtitle }}"
+				data-education-date_start="{{ education.date_start_formatted }}"
+				data-education-date_finish="{{ education.date_finish_formatted }}"
+				data-education-location_city="{{ education.location_city }}"
+				data-education-location_state="{{ education.location_state }}"
+				data-education-resume="{{ education.resume }}"
+			>
 				<div class="avatar">
 					<span class="fa fa-graduation-cap"></span>
 				</div>
 				<div class="text">
 					<h3>{{ education.title }} </h3>
-					<h4>{{ education.subtitle }} <span class="separator">·</span> De {{ education.date_start }} até {{ education.date_finish }} <span class="separator">·</span> {{ education.location_city }}, {{ education.location_state }}</h4>
+					<h4>{{ education.subtitle }} <span class="separator">·</span> De {{ education.date_start }} até {{ education.date_finish == '0000-00-00' ? 'o momento' : education.date_finish }} <span class="separator">·</span> {{ education.location_city }}, {{ education.location_state }}</h4>
 					</h4>
 					{% if user.getId() == profile.user.id %}
 					<div class="edit-item"><span class="fa fa-edit"></span></div>
