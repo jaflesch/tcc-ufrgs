@@ -191,3 +191,33 @@
 		border-bottom: 1px solid #d7d7d7;
 	}
 }
+
+#updatePost {
+	.jodit_container {
+		.jodit_workplace { border: 0; }
+
+		.jodit_workplace .jodit_wysiwyg {
+			@include border-radius(2px);
+			margin-top: 5px;
+			border: 1px solid #d1d5da;
+		}
+	}
+	.jodit_toolbar{
+		box-shadow: none;
+		border:	1px solid #d1d5da;
+		background: #f6f8fa;
+
+		>li {
+			// @include size(auto, 40px);
+			// line-height: 40px;
+		}
+		
+		>li.jodit_toolbar_btn-separator {
+			// display:none;
+			// height: 40px;
+		}
+	}
+	.jodit_placeholder {
+		padding-top: 20px;
+	}
+}

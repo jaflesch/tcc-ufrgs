@@ -86,7 +86,7 @@
 					</a>
 					<ul class="dropdown-menu">
 						{% if user.id == post.id_author %}
-						<li><a href="#" class="delete-post" data-post="{{ post.id }}">Editar</a></li>
+						<li><a href="#" class="update-post" data-post="{{ post.id }}">Editar</a></li>
 						<li><a href="#" class="delete-post" data-post="{{ post.id }}">Excluir postagem</a></li>
 						{% else %}
 						<li><a href="#" class="unfollow-post" data-user="{{ post.id_author }}">Deixar de seguir {{ post.author }}</a></li>
@@ -137,17 +137,6 @@
 								<a href="{{ path.root }}/feed/usuario/{{ comment.author_login }}" title="Ver perfil de {{ comment.author_name }}">{{ comment.author_name }}</a>
 								{{ comment.text }}
 							</span>
-							{% if user.id == comment.id_author %}
-							<span class="options">
-								<a href="#" data-toggle="dropdown" class="dropdown-toggle btn-more-options">
-									<img src="{{ path.img }}/icons/ellipsis.png" style="width:14px">
-								</a>
-								<ul class="dropdown-menu">
-									<li><a href="#" class="delete-comment" data-post="{{ comment.id }}">Editar</a></li>
-									<li><a href="#" class="delete-comment" data-post="{{ comment.id }}">Excluir</a></li>
-								</ul>
-							</span>
-							{% endif %}
 						</li>
 						{% endfor %}
 					</ul>

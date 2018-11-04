@@ -89,6 +89,17 @@ $(document).ready(function() {
 		$('#modalDeletePost').modal("show");
 	})
 
+	$('.update-post').click(function(e) {
+		e.preventDefault();
+		var post_id = $(this).data("post");
+		var text = $(`article.post[data-post="${post_id}"] .post-body`).html();
+		
+		$('#updatePost .jodit_wysiwyg').html(text);
+		$('#updatePost .jodit_placeholder').hide();
+		$('#updatePost [name="post_id"]').val(post_id);
+		$('#modalUpdatePost').modal("show");
+	})
+
 	// Like system
 	$('.post-options .likes').click(function() {
 		var el = $(this);
@@ -170,13 +181,15 @@ $(document).ready(function() {
 	});
 
 	// Post system
-	try { var editor = new Jodit('#new-post'); }
+	try { 
+		var editor = new Jodit('#new-post'); 
+	 	var editor2 = new Jodit('#update-post'); 
+	}
 	catch(err){}
 	$('#formNewPost select').change(function() {
 		var value = $(this).find(":selected").val();
 		var text = $(this).find(":selected").text();
 
-		console.log(value, value == 0);
 		if(value == 0) {
 			$('.post-box .post-privacy').removeClass('fa-lock').addClass('fa-globe');
 		}
@@ -201,10 +214,28 @@ $(document).ready(function() {
 		})
 	});
 
+	$('#updatePost').unbind('submit').bind('submit', function(e) {
+		e.preventDefault();
+		var form = $(this);
+
+		$('#updatePost button').text("Atualizando...");
+		$.ajax({
+			url: form.attr("action"),
+			method: 'POST',
+			dataType: 'json',
+			data: form.serializeArray(),
+			success: function(response) {
+				if(response.result) location.reload();
+			}
+		})
+	});
+
+
 	$('#formDeletePost').unbind('submit').bind('submit', function(e) {
 		e.preventDefault();
 		var form = $(this);
 
+		$('#updatePost button').text("Excluindo...");
 		$.ajax({
 			url: form.attr("action"),
 			method: 'POST',

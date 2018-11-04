@@ -1,0 +1,20 @@
+<div id="modalUpdatePost" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <form action="{{ path.root }}/home/update-post" method="POST" id="updatePost">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"> Editar postagem </h4>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" name="post_id">
+          <textarea name="text" placeholder="Conhece uma boa oportunidade de estágio? Divulgue-a!" id="update-post" required=""></textarea>
+        </div>
+        <div class="modal-footer">
+          <a href="#" class="" data-dismiss="modal">Fechar</a>
+          <button type="submit" class="btn btn-default">Atualizar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

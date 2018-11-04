@@ -95,6 +95,11 @@ class Home extends Controller {
 		}
 	}
 
+	public function update_post() {
+		$response = new stdclass();
+		$response->result = Post::update($this->post);
+		die(json_encode($response));
+	}
 	// Helpers
 	private function insertImageDB($path, $id) {
 		$db = new DBConn();

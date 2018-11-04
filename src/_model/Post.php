@@ -191,6 +191,19 @@ class Post {
 		return $db->last_id();
 	}
 
+	public static function update($post) {
+		$db = new DBConn();
+		$id_user = Auth::id();
+
+		return $db->insert("
+			UPDATE post
+			SET
+				text = '{$post->text}',
+				datetime_last_edit = NOW()
+			WHERE id_author = {$id_user} AND active = 1 AND id = {$post->post_id}
+		");
+	}
+
 	public static function delete($id) {
 		$db = new DBConn();
 		$id_user = Auth::id();
