@@ -77,7 +77,7 @@ class Profile {
 			INNER JOIN user u ON u.id = uj.id_user
 			WHERE uj.active = 1 AND u.id = {$user->id}
 			ORDER BY selected DESC, date_start DESC, title
-		", true);
+		", TRUE);
 
 		$educations = $db->query("
 			SELECT ue.* 
@@ -85,7 +85,7 @@ class Profile {
 			INNER JOIN user u ON u.id = ue.id_user
 			WHERE ue.active = 1 AND u.id = {$user->id}
 			ORDER BY selected DESC, date_start DESC, title
-		", true);
+		", TRUE);
 
 		$skills = $db->query("
 			SELECT us.* 
@@ -93,7 +93,7 @@ class Profile {
 			INNER JOIN user u ON u.id = us.id_user
 			WHERE us.active = 1 AND u.id = {$user->id}
 			ORDER BY level DESC, time DESC, title
-		", true);
+		", TRUE);
 
 		$langs = $db->query("
 			SELECT ul.* 
@@ -101,7 +101,7 @@ class Profile {
 			INNER JOIN user u ON u.id = ul.id_user
 			WHERE ul.active = 1 AND u.id = {$user->id}
 			ORDER BY level DESC, title
-		", true);
+		", TRUE);
 
 		$my_id = Auth::id();
 		$follow = $db->query("
@@ -124,6 +124,12 @@ class Profile {
 			$user->live_in_string = $user->live_in_city.", ".$user->live_in_state;
 		}
 
+		if($jobs !== NULL) {
+			foreach ($jobs as $job) {
+				$job->date_start_formatted = Data::date2str($job->date_start);
+				$job->date_finish_formatted = Data::date2str($job->date_finish);
+			}			
+		}
 		if($skills !== NULL) {
 			foreach ($skills as $skill) {
 				$skill->level_string = Skill::getString($skill->level);

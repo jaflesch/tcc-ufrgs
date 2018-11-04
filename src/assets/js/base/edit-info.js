@@ -1,70 +1,28 @@
 $(document).ready(function() {
 	// Update JOB information
-	$('#job-experiences .btn-new').click(function() {
-		$('#job-experiences-form').slideDown();
-	});
-	$('#job-experiences .hide-form').click(function(e) {
-		e.preventDefault();
-		$('#job-experiences-form').slideUp();
-	});
-	$('#job-experiences').on("click", '.remove-item', function() {
+	$('#job-experiences').on("click", '.edit-item', function() {
 		var el = $(this);
 		var id = el.parent().parent().attr("data-id-job");
+		var company = el.parent().parent().attr("data-job-company");
+		var title = el.parent().parent().attr("data-job-title");
+		var data_inicio = el.parent().parent().attr("data-job-date_start");
+		var data_fim = el.parent().parent().attr("data-job-date_finish");
+		var location_city = el.parent().parent().attr("data-job-location_city");
+		var location_state = el.parent().parent().attr("data-job-location_state");
+		var textarea = el.parent().parent().attr("data-job-resume");
+		location_state = location_state == "" ? 'AC' : location_state;
 
-		$.ajax({
-			url: '../../configuracoes/remover-experiencia',
-			method: 'POST',
-			dataType: 'json',
-			data: { id: id },
-			success: function(response) {
-				if(response.success) el.parent().parent().remove();		
-				if($('#job-experiences ul').children().length == 0) $('#job-experiences .no-info').show();	
-			}
-		});		
-	});	
-	$('#job-experiences form').on("submit", function(e) {
-		e.preventDefault();
-		var form = $(this);
-		
-		var company = $('#job-experiences [name="company"]').val();
-		var title = $('#job-experiences [name="title"]').val();
-		var data_inicio = $('#job-experiences [name="date_start"]').val().split("/")[2];
-		var data_fim = $('#job-experiences [name="date_finish"]').val();
-		var location_city = $('#job-experiences [name="location_city"]').val();
-		var location_state = $('#job-experiences [name="location_state"]').find(":selected").val();
-		var textarea = $('#job-experiences [name="resume"]').val();
-		data_fim = (data_fim == "") ? "o momento" : data_fim = data_fim.split('/')[2];
-		
-		// AJAX call
-		$.ajax({
-			url: form.attr("action"),
-			method: 'POST',
-			dataType: 'json',
-			data: form.serializeArray(),
-			success: function(response) {
-				if(response.success) form[0].reset();				
-
-				var element = `
-					<li data-id-job="${response.last_id}">
-						<div class="avatar">
-							<span class="fa fa-briefcase"></span>
-						</div>
-						<div class="text">
-							<h3>${company}</h3>
-							<h4>
-								${title } <span class="separator">·</span> 
-								De ${data_inicio} até ${data_fim} <span class="separator">·</span> 
-								${location_city}, ${location_state}
-							</h4>
-							<div class="remove-item">&times;</div>
-						</div>
-					</li>`;
-
-				if($('#job-experiences ul').children().length == 0) $('#job-experiences .no-info').hide();
+		$('#updateJobForm [name="content_id"]').val(id);
+		$('#updateJobForm [name="title"]').val(title);
+		$('#updateJobForm [name="company"]').val(company);
+		$('#updateJobForm [name="title"]').val(title);
+		$('#updateJobForm [name="date_start"]').val(data_inicio);
+		$('#updateJobForm [name="date_finish"]').val(data_fim);
+		$('#updateJobForm [name="location_city"]').val(location_city);
+		$('#updateJobForm [name="location_state"]').val(location_state);
+		$('#updateJobForm [name="resume"]').val(textarea);
 				
-				$('#job-experiences ul').append(element);
-			}
-		});
+		$('#modalJob').modal("show");
 	});
 
 	// Update EDUCATION information
@@ -151,24 +109,6 @@ $(document).ready(function() {
 		$('#modalSkill').modal("show");
 	});
 	
-	$('.profile-update-info').on("submit", function(e) {
-		e.preventDefault();
-		var form = $(this);
-		
-		// AJAX call
-		$.ajax({
-			url: form.attr("action"),
-			method: 'POST',
-			dataType: 'json',
-			data: form.serializeArray(),
-			success: function(response) {
-				if(response.success) {
-					location.reload();
-				}
-			}
-		});
-	});
-
 	// Update LANGUAGE information
 	$('#languages').on("click", '.edit-item', function() {
 		var el = $(this);

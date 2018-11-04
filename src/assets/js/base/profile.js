@@ -116,6 +116,8 @@ $(document).ready(function() {
 		var title = $('#job-experiences [name="title"]').val();
 		var data_inicio = $('#job-experiences [name="date_start"]').val().split("/")[2];
 		var data_fim = $('#job-experiences [name="date_finish"]').val();
+		var date_start = $('#job-experiences [name="date_start"]').val()
+		var date_finish = $('#job-experiences [name="date_finish"]').val();
 		var location_city = $('#job-experiences [name="location_city"]').val();
 		var location_state = $('#job-experiences [name="location_state"]').find(":selected").val();
 		var textarea = $('#job-experiences [name="resume"]').val();
@@ -131,7 +133,16 @@ $(document).ready(function() {
 				if(response.success) form[0].reset();				
 
 				var element = `
-					<li data-id-job="${response.last_id}">
+					<li 
+						data-id-job="${response.last_id}"
+						data-job-company="${company}"
+						data-job-title="${title}"
+						data-job-location_city="${location_city}"
+						data-job-location_state="${location_state}"
+						data-job-date_start="${date_start}"
+						data-job-date_finish="${date_finish}"
+						data-job-resume="${textarea}"
+					>
 						<div class="avatar">
 							<span class="fa fa-briefcase"></span>
 						</div>

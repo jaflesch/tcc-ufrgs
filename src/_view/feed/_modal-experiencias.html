@@ -1,35 +1,72 @@
-<div id="modalShowFollowers" class="modal fade" role="dialog">
+<div id="modalJob" class="modal fade" role="dialog">
   <div class="modal-dialog">
-	<div class="modal-content">
+  <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h3 class="modal-title">Pessoas que seguem {{ profile.user.name }}</h3>
+        <h3 class="modal-title">Atualizar informações de experiências profissionais</h3>
       </div>
-      <div class="modal-body">
-      	<ul class="default-list">
-        {% for follower in followers.data %}
-        	<li>
-            <div class="avatar">
-        		{% if follower.avatar is empty %}
-              {% if follower.gender == 0 %}
-                {% set avatar = 'default-male-profile-avatar.png' %}
-              {% else %}
-                {% set avatar = 'default-female-profile-avatar.png' %}
-              {% endif %}
-              <img src="{{ path.img }}/profile/{{ avatar }}" alt="Foto de {{ follower.name }}" title="Foto de {{ follower.name }}" class="profile-default-avatar">
-            {% else %}
-              <div style="background-image:url('{{ path.root }}/public/avatar/{{ follower.id }}/{{ follower.avatar }}');"  alt="Foto de {{ follower.author }}" title="Foto de {{ post.author }}"></div>
-            {% endif %}
+      <form id="updateJobForm" class="profile-update-info" action="{{ path.root }}/configuracoes/update-experiencia" method='POST'>
+        <input type="hidden" name="content_id">
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-sm-6">
+              <input type="text" name="company" class="form-data" required="" maxlength="128" placeholder="Empresa">
             </div>
-        		<h4><a href="{{ path.root }}/feed/usuario/{{ follower.login }}" title="Ver perfil de {{ follower.name }}">{{ follower.name }}</a></h4>
-        	</li>
-        {% endfor %}
-        </ul>
-      </div>
-      <div class="modal-footer">
-        <a href="#" type="button" data-dismiss="modal">Fechar</a>
-      </div>
+            <div class="col-sm-6">
+              <input type="text" name="title" class="form-data" required="" maxlength="128" placeholder="Cargo">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <input type="text" name="date_start" class="form-data mask-data" required="" placeholder="Data de início">
+            </div>
+            <div class="col-sm-6">
+              <input type="text" name="date_finish" class="form-data mask-data" placeholder="Data de fim (deixe em branco caso ativo)">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <input type="text" name="location_city" class="form-data" required="" placeholder="Em qual cidade você trabalhou">
+            </div>
+            <div class="col-sm-6">
+              <select name="location_state" class="form-data">
+                <option value="AC">Acre</option>
+                <option value="AL">Alagoas</option>
+                <option value="AP">Amapá</option>
+                <option value="AM">Amazonas</option>
+                <option value="BA">Bahia</option>
+                <option value="CE">Ceará</option>
+                <option value="DF">Distrito Federal</option>
+                <option value="ES">Espírito Santo</option>
+                <option value="GO">Goiás</option>
+                <option value="MA">Maranhão</option>
+                <option value="MT">Mato Grosso</option>
+                <option value="MS">Mato Grosso do Sul</option>
+                <option value="MG">Minas Gerais</option>
+                <option value="PA">Pará</option>
+                <option value="PB">Paraíba</option>
+                <option value="PR">Paraná</option>
+                <option value="PE">Pernambuco</option>
+                <option value="PI">Piauí</option>
+                <option value="RJ">Rio de Janeiro</option>
+                <option value="RN">Rio Grande do Norte</option>
+                <option value="RS">Rio Grande do Sul</option>
+                <option value="RO">Rondônia</option>
+                <option value="RR">Roraima</option>
+                <option value="SC">Santa Catarina</option>
+                <option value="SP">São Paulo</option>
+                <option value="SE">Sergipe</option>
+                <option value="TO">Tocantis</option>
+              </select>
+            </div>
+          </div>
+          <textarea name="resume" class="form-data" placeholder="Fale um pouco sobre sua experiência neste trabalho" style="min-height:120px"></textarea>
+        </div>
+        <div class="modal-footer">
+          <a href="#" type="button" data-dismiss="modal">Fechar</a>
+          <button type="submit" class="btn-add-to-list">Atualizar</button>
+        </div>
+      </form>
     </div>
-
   </div>
 </div>

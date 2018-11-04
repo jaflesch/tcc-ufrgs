@@ -111,6 +111,12 @@ class Configuracoes extends Controller {
 		die(json_encode($response));
 	}
 
+	public function update_experiencia() {
+		$response = new stdclass();
+		$response->success = Job::update($this->post);
+		die(json_encode($response));
+	}
+
 	public function atualizar_educacao() {
 		$response = new stdclass();
 		$response->last_id = Education::add($this->post);
