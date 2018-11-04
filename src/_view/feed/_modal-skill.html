@@ -1,34 +1,35 @@
-<div id="modalShowFollowers" class="modal fade" role="dialog">
+<div id="modalSkill" class="modal fade" role="dialog">
   <div class="modal-dialog">
-	<div class="modal-content">
+  <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h3 class="modal-title">Pessoas que seguem {{ profile.user.name }}</h3>
+        <h3 class="modal-title">Atualizar informações de habilidades</h3>
       </div>
-      <div class="modal-body">
-      	<ul class="default-list">
-        {% for follower in followers.data %}
-        	<li>
-            <div class="avatar">
-        		{% if follower.avatar is empty %}
-              {% if follower.gender == 0 %}
-                {% set avatar = 'default-male-profile-avatar.png' %}
-              {% else %}
-                {% set avatar = 'default-female-profile-avatar.png' %}
-              {% endif %}
-              <img src="{{ path.img }}/profile/{{ avatar }}" alt="Foto de {{ follower.name }}" title="Foto de {{ follower.name }}" class="profile-default-avatar">
-            {% else %}
-              <div style="background-image:url('{{ path.root }}/public/avatar/{{ follower.id }}/{{ follower.avatar }}');"  alt="Foto de {{ follower.author }}" title="Foto de {{ post.author }}"></div>
-            {% endif %}
+      <form id="updateSkillForm" class="profile-update-info" action="{{ path.root }}/configuracoes/update-habilidade" method='POST'>
+        <input type="hidden" name="content_id">
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-sm-6">
+              <input type="text" name="title" class="form-data" required="" maxlength="128" placeholder="Sua habilidade">
+
+              <select name="level" class="form-data" required="">
+                <option value="">Selecione seu nível</option>
+                <option value="1">Iniciante</option>
+                <option value="2">Amador</option>
+                <option value="3">Júnior</option>
+                <option value="4">Pleno</option>
+                <option value="5">Sênior</option>
+              </select>
+
+              <input type="text" name="time" class="form-data" required="" placeholder="Tempo (em anos)">
             </div>
-        		<h4><a href="{{ path.root }}/feed/usuario/{{ follower.login }}" title="Ver perfil de {{ follower.name }}">{{ follower.name }}</a></h4>
-        	</li>
-        {% endfor %}
-        </ul>
-      </div>
-      <div class="modal-footer">
-        <a href="#" type="button" data-dismiss="modal">Fechar</a>
-      </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a href="#" type="button" data-dismiss="modal">Fechar</a>
+          <button type="submit" class="btn-add-to-list">Atualizar</button>
+        </div>
+      </form>
     </div>
 
   </div>

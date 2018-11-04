@@ -142,6 +142,7 @@ $(document).ready(function() {
 								De ${data_inicio} até ${data_fim} <span class="separator">·</span> 
 								${location_city}, ${location_state}
 							</h4>
+							<div class="edit-item"><span class='fa fa-edit'></span></div>
 							<div class="remove-item">&times;</div>
 						</div>
 					</li>`;
@@ -210,6 +211,7 @@ $(document).ready(function() {
 								De ${data_inicio} até ${data_fim} <span class="separator">·</span> 
 								${location_city}, ${location_state}
 							</h4>
+							<div class="edit-item"><span class='fa fa-edit'></span></div>
 							<div class="remove-item">&times;</div>
 						</div>
 					</li>`;
@@ -250,6 +252,7 @@ $(document).ready(function() {
 		
 		var title = $('#skills-form [name="title"]').val();
 		var level = $('#skills-form [name="level"]').find(":selected").text();
+		var level_int = $('#skills-form [name="level"]').find(":selected").val();
 		var time = $('#skills-form [name="time"]').val();
 		
 		// AJAX call
@@ -261,16 +264,17 @@ $(document).ready(function() {
 			success: function(response) {
 				if(response.success) {
 					form[0].reset();	
-					time = (time == 0) ? "Menos de 1 ano" : time + " anos";
+					var time_str = (time == 0) ? "Menos de 1 ano" : time + " anos";
 
 					var element = `
-						<li data-id-skill="${response.last_id}">
+						<li data-id-skill="${response.last_id}" data-skill-title="${title}" data-skill-time="${time}" data-skill-level="${level_int}">
 							<div class="skill-title">
 								<h3>${title}</h3>
 							</div>
 							<div class="text">
-								<h4>${level} <span class="separator">·</span> ${time}</h4>
+								<h4>${level} <span class="separator">·</span> ${time_str}</h4>
 							</div>
+							<div class="edit-item"><span class='fa fa-edit'></span></div>
 							<div class="remove-item">&times;</div>
 						</li>`;
 

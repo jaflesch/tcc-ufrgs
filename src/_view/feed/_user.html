@@ -331,7 +331,7 @@
 		{% if profile.skills is not empty %}
 		<ul>
 		{% for skill in profile.skills %}
-			<li data-id-skill="{{ skill.id }}">
+			<li data-id-skill="{{ skill.id }}" data-skill-title=" {{ skill.title }}" data-skill-level="{{ skill.level }}" data-skill-time="{{ skill.time }}">
 				<div class="skill-title">
 					<h3>{{ skill.title }} </h3>
 				</div>

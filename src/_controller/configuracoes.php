@@ -137,6 +137,12 @@ class Configuracoes extends Controller {
 		die(json_encode($response));
 	}
 
+	public function update_habilidade() {
+		$response = new stdclass();
+		$response->success = Skill::update($this->post);
+		die(json_encode($response));
+	}
+
 	public function atualizar_idioma() {
 		$response = new stdclass();
 		$response->last_id = Language::add($this->post);

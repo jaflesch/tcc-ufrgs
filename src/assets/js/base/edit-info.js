@@ -136,35 +136,24 @@ $(document).ready(function() {
 	});
 
 	// Update SKILL information
-	$('#skills .btn-new').click(function() {
-		$('#skills-form').slideDown();
-	});
-	$('#skills .hide-form').click(function(e) {
-		e.preventDefault();
-		$('#skills-form').slideUp();
-	});
-	$('#skills').on("click", '.remove-item', function() {
+	$('#skills').on("click", '.edit-item', function() {
 		var el = $(this);
 		var id = el.parent().attr("data-id-skill");
+		var title = el.parent().attr("data-skill-title");
+		var level = el.parent().attr("data-skill-level");
+		var time = el.parent().attr("data-skill-time");
+
+		$('#updateSkillForm [name="content_id"]').val(id);
+		$('#updateSkillForm [name="title"]').val(title);
+		$('#updateSkillForm [name="level"]').val(level);
+		$('#updateSkillForm [name="time"]').val(time);
 		
-		$.ajax({
-			url: '../../configuracoes/remover-habilidade',
-			method: 'POST',
-			dataType: 'json',
-			data: { id: id },
-			success: function(response) {
-				if(response.success) el.parent().remove();	
-				if($('#skills ul').children().length == 0) $('#skills .no-info').show();		
-			}
-		});		
-	});	
-	$('#skills form').on("submit", function(e) {
+		$('#modalSkill').modal("show");
+	});
+	
+	$('.profile-update-info').on("submit", function(e) {
 		e.preventDefault();
 		var form = $(this);
-		
-		var title = $('#skills-form [name="title"]').val();
-		var level = $('#skills-form [name="level"]').find(":selected").text();
-		var time = $('#skills-form [name="time"]').val();
 		
 		// AJAX call
 		$.ajax({
@@ -174,22 +163,7 @@ $(document).ready(function() {
 			data: form.serializeArray(),
 			success: function(response) {
 				if(response.success) {
-					form[0].reset();	
-					time = (time == 0) ? "Menos de 1 ano" : time + " anos";
-
-					var element = `
-						<li data-id-skill="${response.last_id}">
-							<div class="skill-title">
-								<h3>${title}</h3>
-							</div>
-							<div class="text">
-								<h4>${level} <span class="separator">·</span> ${time}</h4>
-							</div>
-							<div class="remove-item">&times;</div>
-						</li>`;
-
-					if($('#skills ul').children().length == 0) $('#skills .no-info').hide();
-					$('#skills ul').append(element);
+					location.reload();
 				}
 			}
 		});

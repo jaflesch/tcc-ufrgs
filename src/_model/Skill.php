@@ -35,6 +35,21 @@ class Skill {
 		return $db->last_id();
 	}
 
+	public static function update($data) {
+		$db = new DBConn();
+		$id_user = Auth:: id();
+
+		return $db->update(
+			"
+			UPDATE user_skill
+			SET 
+				title = '{$data->title}',
+				level = {$data->level},
+				time = {$data->time}
+			WHERE id_user = {$id_user} AND id = {$data->content_id}
+		");	
+	}
+
 	public static function remove($id_skill) {
 		$db = new DBConn();
 		$id_user = Auth::id();
