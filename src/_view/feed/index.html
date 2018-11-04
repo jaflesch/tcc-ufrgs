@@ -12,6 +12,10 @@
 			{% if user.getId() == profile.user.id %}
 				{% include 'feed/_modal-avatar.html' %}
 				{% include 'feed/_modal-bio.html' %}
+				{% include 'feed/_modal-educacao.html' %}
+				{% include 'feed/_modal-experiencias.html' %}
+				{% include 'feed/_modal-skill.html' %}
+				{% include 'feed/_modal-idioma.html' %}
 			{% endif %}
 		</div>
 	</section>
@@ -29,6 +33,7 @@
 	<script type="text/javascript" src="{{ path.js }}/vendor/fileinput/fileinput.min.js"></script>
 	<script type="text/javascript" src="{{ path.js }}/vendor/fileinput/fileinput_locale_pt-BR.js"></script>
 	<script type="text/javascript" src="{{ path.js }}/base/avatar.js"></script>
+	<script type="text/javascript" src="{{ path.js }}/base/edit-info.js"></script>
 	{% endif %}
 
 	<script type="text/javascript" src="{{ path.js }}/base/profile.js"></script>

@@ -345,7 +345,7 @@
 		}
 	}
 
-	.remove-item {
+	.remove-item, .edit-item {
 		$size: 32px;
 		@include size($size, $size);
 		@include va-middle();
@@ -361,6 +361,11 @@
 		&:hover, &:focus {
 			@include colors(#e7e7e7, #000);
 		}
+	}
+
+	.edit-item { 
+		right: 50px; 
+		font-size: 14px;
 	}
 
 	.btn-add-to-list {

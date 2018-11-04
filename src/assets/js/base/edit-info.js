@@ -1,90 +1,4 @@
 $(document).ready(function() {
-	// Follow system
-	$('.follow-user').click(function() {
-		var id = $(this).data("user");
-		var follow = false;
-		var followers = $('.follower-qty').text() == "" ? 0 : parseInt($('.follower-qty').text());
-
-		if($(this).text() == "Seguir") {
-			$(this).text("Seguindo");	
-			$('.follower-qty').text(followers + 1);
-			$('.follower-text').text($('.follower-qty').text() == "1" ? "seguidor" : "seguidores");
-			follow = true;	
-		}
-		else {
-			$(this).text("Seguir");
-			follow = false;
-
-			if(followers - 1 > 1) {
-				$('.follower-text').text("seguidores");
-				$('.follower-qty').text(followers - 1);
-			}
-			else if(followers - 1 == 1){
-				$('.follower-text').text("seguidor");
-				$('.follower-qty').text(followers - 1);
-			}
-			else {
-				$('.follower-qty').text("");
-				$('.follower-text').text("Nenhum seguidor ainda");
-			}
-		}
-
-		$.ajax({
-			url: follow ? '../../feed/seguir' : '../../feed/deixar-seguir',
-			method: 'POST',
-			dataType: 'json',
-			data: { id: id }
-		});
-	})
-
-	// Block system
-	$('.more-options-box .dropdown-menu li a').click(function(e) {
-		e.preventDefault();
-		var el = $(this);
-		var id = el.data("user");
-		var block = el.text() == "Bloquear" ? true : false;
-
-		$.ajax({
-			url: block ? '../../feed/bloquear' : '../../feed/desbloquear',
-			method: 'POST',
-			dataType: 'json',
-			data: { id: id },
-			success: function(json) {
-				if(json.result) {
-					block ? el.text("Desbloquear") : el.text("Bloquear");
-				}
-			}
-		});
-	});
-
-	// Recommend system
-	$('.recomendar-usuario').click(function(e) {
-		e.preventDefault();
-		$('.recommend-box').slideDown();
-		$('.recommend-box textarea').scrollThere(-$('nav').outerHeight() )
-	});
-
-	$('#formRecomendar').unbind('submit').bind('submit', function(e) {
-		e.preventDefault();
-		var form = $(this);
-
-		$.ajax({
-			url: form.attr("action"),
-			method: 'POST',
-			dataType: 'json',
-			data: form.serializeArray(),
-			success: function(json) {
-				if(json.result) location.reload();	
-			}
-		})
-	})
-
-	$('#see-followers').click(function() {
-		if(parseInt($('.follower-qty').text()) > 0) {
-			$('#modalShowFollowers').modal("show");
-		}
-	});
-
 	// Update JOB information
 	$('#job-experiences .btn-new').click(function() {
 		$('#job-experiences-form').slideDown();
@@ -282,81 +196,22 @@ $(document).ready(function() {
 	});
 
 	// Update LANGUAGE information
-	$('#languages .btn-new').click(function() {
-		$('#languages-form').slideDown();
-	});
-	$('#languages .hide-form').click(function(e) {
-		e.preventDefault();
-		$('#languages-form').slideUp();
-	});
-	$('#languages').on("click", '.remove-item', function() {
+	$('#languages').on("click", '.edit-item', function() {
 		var el = $(this);
 		var id = el.parent().attr("data-id-language");
+		var title = el.parent().attr("data-language-title");
+		var level = el.parent().attr("data-language-level");
+
+		$('#updateLanguageForm [name="content_id"]').val(id);
+		$('#updateLanguageForm [name="title"]').val(title);
+		$('#updateLanguageForm [name="level"]').val(level);
 		
-		$.ajax({
-			url: '../../configuracoes/remover-idioma',
-			method: 'POST',
-			dataType: 'json',
-			data: { id: id },
-			success: function(response) {
-				if(response.success) el.parent().remove();			
-				if($('#languages ul').children().length == 0) $('#languages .no-info').show();
-			}
-		});		
-	});	
-	$('#languages form').on("submit", function(e) {
+		$('#modalLanguage').modal("show");
+	});
+	
+	$('.profile-update-info').on("submit", function(e) {
 		e.preventDefault();
 		var form = $(this);
-		
-		var title = $('#languages-form [name="title"]').find(":selected").text();
-		var level = $('#languages-form [name="level"]').find(":selected").text();
-		var level_int = $('#languages-form [name="level"]').find(":selected").val();
-
-		var flag = "";
-		switch(title) {
-			case 'Português':
-				flag = 'Brazil';
-				break;
-			case 'Inglês': 
-				flag = 'United-States';
-				break;
-			case 'Francês':
-				flag = 'France';
-				break;
-			case 'Alemão': 
-				flag = 'Germany';
-				break;
-			case 'Espanhol':
-				flag = 'Spain';
-				break;
-			case 'Japonês':
-				flag = 'Japan';
-				break;
-			case 'Chinês': 
-				flag = 'China';
-				break;
-			case 'Russo': 
-				flag = 'Russia';
-				break;
-			case 'Coreano':
-				flag = 'South-Korea';
-				break;
-			case 'Turco': 
-				flag = 'Turkey';
-				break;
-			case 'Polaco': 
-				flag = 'Poland';
-				break;
-			case 'Egípcio':
-				flag = 'Egypt';
-				break;
-			case 'Ucraniano':
-				flag = 'Ukraine';
-				break;
-			case 'Holandês':
-				flag = 'Netherlands';			
-				break;
-		}
 		
 		// AJAX call
 		$.ajax({
@@ -366,71 +221,9 @@ $(document).ready(function() {
 			data: form.serializeArray(),
 			success: function(response) {
 				if(response.success) {
-					form[0].reset();	
-					var element = `
-						<li data-id-language="${response.last_id}" data-language-title="${title}" data-language-level="${level_int}">
-							<div class="languages-flag">
-								<img src="../../assets/img/icons/flags/32/${flag}.png">
-							</div>
-							<div class="text">
-								<h4>${title} <span class="separator">·</span> ${level}</h4>
-							</div>
-							<div class="edit-item"><span class='fa fa-edit'></span></div>
-							<div class="remove-item">&times;</div>
-						</li>`;
-
-					if($('#languages ul').children().length == 0) $('#languages .no-info').hide();
-
-					$('#languages ul').append(element);
+					location.reload();
 				}
 			}
-		});
-	});
-
-	// Update bio
-	$('#formBio').unbind("submit").bind("submit", function(e) {
-		e.preventDefault();
-		var form = $(this);
-
-		$.ajax({
-			url: form.attr("action"),
-			method: 'POST',
-			dataType: 'json',
-			data: form.serializeArray(),
-			success: function(json) {
-				var text = $('textarea[name="short_bio"]').val();
-				$('.bio-box p').text(text);
-
-				if($('.bio-box p').data("empty") == true) {
-					
-					$('.bio-box p').data("empty") == false;
-					$('.bio-box .btn-new').html(`<span class="fa fa-plus"></span>Editar descrição`);
-				}
-
-				$('#modalBio').modal("hide");
-			}
-		});
-	});
-
-	// Follow
-	$(".btn-follow").click(function(e) {
-		var el = $(this);
-		var id = $(this).data("id");
-		
-		if(el.hasClass('following')) {
-			el.text('Seguir');
-			el.removeClass('following');
-		}
-		else {
-			el.text('Seguindo');
-			el.addClass('following');	
-		}
-
-		$.ajax({
-			url: !el.hasClass('following') ? './../../feed/deixar-seguir' : './../../feed/seguir',
-			method: 'POST',
-			dataType: 'json',
-			data: { id: id }
 		});
 	});
 });

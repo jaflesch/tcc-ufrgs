@@ -192,6 +192,7 @@
 					<h4>{{ job.title }} <span class="separator">·</span> {{ job.date }} De 2017 até o momento <span class="separator">·</span> {{ job.location_city }} , {{ job.location_state }}</h4>
 					</h4>
 					{% if user.getId() == profile.user.id %}
+					<div class="edit-item"><span class="fa fa-edit"></span></div>
 					<div class="remove-item">&times;</div>
 					{% endif %}
 				</div>
@@ -284,6 +285,7 @@
 					<h4>{{ education.subtitle }} <span class="separator">·</span> De {{ education.date_start }} até {{ education.date_finish }} <span class="separator">·</span> {{ education.location_city }}, {{ education.location_state }}</h4>
 					</h4>
 					{% if user.getId() == profile.user.id %}
+					<div class="edit-item"><span class="fa fa-edit"></span></div>
 					<div class="remove-item">&times;</div>
 					{% endif %}
 				</div>
@@ -337,6 +339,7 @@
 					<h4>{{ skill.level_string }} <span class="separator">·</span> {{ skill.time == 0 ? 'Menos de 1 ano' : skill.time ~ ' anos' }}</h4>
 				</div>
 				{% if user.getId() == profile.user.id %}
+				<div class="edit-item"><span class="fa fa-edit"></span></div>
 				<div class="remove-item">&times;</div>
 				{% endif %}
 			</li>
@@ -396,7 +399,7 @@
 		{% if profile.languages is not empty %}
 		<ul>
 		{% for language in profile.languages %}
-			<li data-id-language="{{ language.id }}">
+			<li data-id-language="{{ language.id }}" data-language-title="{{ language.title }}" data-language-level="{{ language.level }}">
 				<div class="languages-flag">
 					<img src="{{ path.img }}/icons/flags/32/{{ language.flag }}.png">
 				</div>
@@ -404,6 +407,7 @@
 					<h4>{{ language.title }} <span class="separator">·</span> {{ language.level_str }} </h4>
 				</div>
 				{% if user.getId() == profile.user.id %}
+				<div class="edit-item"><span class="fa fa-edit"></span></div>
 				<div class="remove-item">&times;</div>
 				{% endif %}
 			</li>

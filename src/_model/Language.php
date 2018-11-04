@@ -53,6 +53,20 @@ class Language {
 		return $db->last_id();
 	}
 
+	public static function update($data) {
+		$db = new DBConn();
+		$id_user = Auth:: id();
+
+		return $db->update(
+			"
+			UPDATE user_language 
+			SET 
+				title = '{$data->title}',
+				level = {$data->level}
+			WHERE id_user = {$id_user} AND id = {$data->content_id}
+		");	
+	}
+
 	public static function remove($id_skill) {
 		$db = new DBConn();
 		$id_user = Auth::id();

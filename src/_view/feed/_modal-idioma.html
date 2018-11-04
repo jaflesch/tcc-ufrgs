@@ -1,0 +1,51 @@
+<div id="modalLanguage" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+	<div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3 class="modal-title">Atualizar informações de idioma</h3>
+      </div>
+    	<form id="updateLanguageForm" class="profile-update-info" action="{{ path.root }}/configuracoes/update-idioma" method='POST'>
+        <input type="hidden" name="content_id">
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-sm-6">
+              <select name="title" class="form-data" required="">
+                <option value="">Selecione seu idioma</option>
+                <option value="Português">Português</option>
+                <option value="Inglês">Inglês</option>
+                <option value="Francês">Francês</option>
+                <option value="Alemão">Alemão</option>
+                <option value="Espanhol">Espanhol</option>
+                <option value="Japonês">Japonês</option>
+                <option value="Chinês">Chinês</option>
+                <option value="Russo">Russo</option>
+                <option value="Coreano">Coreano</option>
+                <option value="Turco">Turco</option>
+                <option value="Polaco">Polaco</option>
+                <option value="Egípcio">Egípcio</option>
+                <option value="Ucraniano">Ucraniano</option>
+                <option value="Holandês">Holandês</option>
+              </select>
+            </div>
+            <div class="col-sm-6">
+              <select name="level" class="form-data" required="">
+                <option value="">Selecione seu nível</option>
+                <option value="1">Básico</option>
+                <option value="2">Intermediário</option>
+                <option value="3">Avançado</option>
+                <option value="4">Fluente</option>
+                <option value="5">Nativo</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a href="#" type="button" data-dismiss="modal">Fechar</a>
+          <button type="submit" class="btn-add-to-list">Atualizar</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>

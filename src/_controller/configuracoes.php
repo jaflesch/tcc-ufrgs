@@ -149,4 +149,10 @@ class Configuracoes extends Controller {
 		$response->success = Language::remove($this->post->id);
 		die(json_encode($response));
 	}
+
+	public function update_idioma() {
+		$response = new stdclass();
+		$response->success = Language::update($this->post);
+		die(json_encode($response));
+	}
 }
