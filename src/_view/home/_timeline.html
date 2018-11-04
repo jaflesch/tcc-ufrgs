@@ -121,8 +121,18 @@
 					<ul class="post-list">
 						{% for comment in post.comments %}
 						<li>
-							<a href="{{ path.root }}/feed/usuario/{{ comment.author_login }}" title="Ver perfil de {{ comment.author_name }}">
-								<span class="avatar"></span></a>
+							<a href="{{ path.root }}/feed/usuario/{{ comment.author_login }}" title="Ver perfil de {{ comment.author_name }}"><span class="avatar">
+									{% if comment.author_avatar is empty %}
+										{% if comment.author_gender == 0 %}
+											{% set avatar = 'default-male-profile-avatar.png' %}
+										{% else %}
+											{% set avatar = 'default-female-profile-avatar.png' %}
+										{% endif %}
+										<img src="{{ path.img }}/profile/{{ avatar }}" alt="Foto de {{ comment.author_name }}" title="Foto de {{ comment.author_name }}" class="profile-default-avatar">
+									{% else %}
+									<div style="background-image:url('{{ path.root }}/public/avatar/{{ comment.id_author }}/{{ comment.author_avatar }}');"  alt="Foto de {{ comment.author }}" title="Foto de {{ comment.author }}"></div>
+									{% endif %}
+								</span></a>
 							<span class="text-content">
 								<a href="{{ path.root }}/feed/usuario/{{ comment.author_login }}" title="Ver perfil de {{ comment.author_name }}">{{ comment.author_name }}</a>
 								{{ comment.text }}

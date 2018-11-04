@@ -5,7 +5,7 @@ class Comment {
 		$db = new DBConn();
 		
 		return $db->query("
-			SELECT c.*, u.name author_name, u.login author_login
+			SELECT c.*, u.name author_name, u.login author_login, u.gender author_gender, u.avatar author_avatar
 			FROM comment c
 			INNER JOIN user u ON u.id = c.id_author
 			WHERE c.id_post = {$id_post} AND c.active = 1

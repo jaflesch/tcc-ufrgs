@@ -130,7 +130,7 @@
 	}
 
 	.post-list {
-		$avatar-size: 24px;
+		$avatar-size: 32px;
 		display:none;
 		list-style: none;
 		margin-top: 20px;
@@ -146,6 +146,11 @@
 			@include size($avatar-size, $avatar-size);
 			@include elipse();
 			background-color: #ddd;
+			overflow: hidden;
+
+			> img { max-width: 100%; }
+
+			> div { @include bg($avatar-size); }
 		}
 		.text-content {
 			@include disp-ib(top);

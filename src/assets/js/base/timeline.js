@@ -222,11 +222,13 @@ $(document).ready(function() {
 		var el = $(this);
 
 		el.siblings('.comment-area').show();
+		el.parent().children('.post-list').show();
 	});
 	$('.comments-count .text').click(function() {
 		var el = $(this);
 
 		el.parent().parent().siblings('.post-options').children('.post-list').show();
+		el.parent().parent().siblings('.post-options').children('.comment-area').show();
 	});
 
 	$('.delete-comment').click(function(e) {
@@ -281,35 +283,21 @@ $(document).ready(function() {
 	$('.form-comment').unbind("submit").bind("submit", function(e) {
 		e.preventDefault();
 		var form = $(this);
-		var el = $(this).parent().parent().siblings('.current-status').children('.comments-count');
-		
-		var $post_counter_element = el;
-		var post_count = parseInt($post_counter_element.children('.count').text()) + 1;
+		var id = form.closest('article.post').attr("data-post");
+		var text = form.children('input').val();
 
-		if(post_count == 1 ) {
-			$post_counter_element.children(".text").text("comentário");
-		}
-		else {
-			$post_counter_element.children(".text").text("comentários");	
-		}
+		form.children('input').val('Postando...');
 
-		if(post_count == 1) {
-			$post_counter_element.siblings(".separator").show();
-			$post_counter_element.show();
-		}
-		$post_counter_element.children('.count').text(post_count);
-		
 		$.ajax({
 			url: form.attr("action"),
 			method: 'POST',
 			dataType: 'json',
 			data: {
-				id: form.closest('article.post').attr("data-post"),
-				text: form.children('input').val()
+				id: id, 
+				text: text
 			},
 			success: function(response) {
-				form[0].reset();
-				return true;
+				location.reload();
 			}
 		})
 	})
