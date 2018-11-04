@@ -130,6 +130,12 @@ class Profile {
 				$job->date_finish_formatted = Data::date2str($job->date_finish);
 			}			
 		}
+		if($educations !== NULL) {
+			foreach ($educations as $education) {
+				$education->date_start_formatted = Data::date2str($education->date_start);
+				$education->date_finish_formatted = Data::date2str($education->date_finish);
+			}			
+		}
 		if($skills !== NULL) {
 			foreach ($skills as $skill) {
 				$skill->level_string = Skill::getString($skill->level);

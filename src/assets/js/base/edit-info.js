@@ -81,11 +81,11 @@ $(document).ready(function() {
 		$('#modalLanguage').modal("show");
 	});
 	
+	// AJAX call
 	$('.profile-update-info').on("submit", function(e) {
 		e.preventDefault();
 		var form = $(this);
 		
-		// AJAX call
 		$.ajax({
 			url: form.attr("action"),
 			method: 'POST',

@@ -459,4 +459,14 @@ $(document).ready(function() {
 			data: { id: id }
 		});
 	});
+
+	$('body').on("click", '.show-more-item', function() {
+		var el = $(this);
+		
+		if(!el.siblings('.item-resume').is(":animated")) {
+			el.siblings('.item-resume').slideToggle();
+			el.children().toggleClass('fa-minus-circle');
+			el.children().toggleClass('fa-plus-circle');
+		}
+	});
 });

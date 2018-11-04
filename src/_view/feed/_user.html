@@ -58,7 +58,7 @@
 		</div>
 		<hr>
 		<div class="resume-grid">
-			<div class="about-box">
+			<div class="about-box" style="{{ profile.user.short_bio is empty ? 'border:0;' : ''}};">
 				{% if profile.jobs is not empty %}
 				<h3>
 					<span class="fa fa-fw fa-briefcase"></span>
@@ -181,7 +181,7 @@
 		{% endif %}
 		
 		{% if profile.jobs is not empty %}
-		<ul>
+		<ul class="{{ user.getId() == profile.user.id ? 'user-profile' : ''}}">
 			{% for job in profile.jobs %}
 			<li 
 				data-id-job="{{ job.id }}"
@@ -200,6 +200,10 @@
 					<h3>{{ job.company }} </h3>
 					<h4>{{ job.title }} <span class="separator">·</span> {{ job.date }} De 2017 até o momento <span class="separator">·</span> {{ job.location_city }} , {{ job.location_state }}</h4>
 					</h4>
+					
+					<p class="item-resume">{{ job.resume }}</p>
+
+					<div class="show-more-item"><span class="fa fa-plus-circle"></span></div>
 					{% if user.getId() == profile.user.id %}
 					<div class="edit-item"><span class="fa fa-edit"></span></div>
 					<div class="remove-item">&times;</div>
@@ -283,7 +287,7 @@
 		{% endif %}
 
 		{% if profile.educations is not empty %}
-		<ul>
+		<ul class="{{ user.getId() == profile.user.id ? 'user-profile' : ''}}">
 			{% for education in profile.educations %}
 			<li 
 				data-id-education="{{ education.id }}"
@@ -302,6 +306,10 @@
 					<h3>{{ education.title }} </h3>
 					<h4>{{ education.subtitle }} <span class="separator">·</span> De {{ education.date_start }} até {{ education.date_finish == '0000-00-00' ? 'o momento' : education.date_finish }} <span class="separator">·</span> {{ education.location_city }}, {{ education.location_state }}</h4>
 					</h4>
+
+					<p class="item-resume">{{ education.resume }}</p>
+					
+					<div class="show-more-item"><span class="fa fa-plus-circle"></span></div>
 					{% if user.getId() == profile.user.id %}
 					<div class="edit-item"><span class="fa fa-edit"></span></div>
 					<div class="remove-item">&times;</div>
@@ -356,6 +364,7 @@
 				<div class="text">
 					<h4>{{ skill.level_string }} <span class="separator">·</span> {{ skill.time == 0 ? 'Menos de 1 ano' : skill.time ~ ' anos' }}</h4>
 				</div>
+				
 				{% if user.getId() == profile.user.id %}
 				<div class="edit-item"><span class="fa fa-edit"></span></div>
 				<div class="remove-item">&times;</div>
@@ -424,6 +433,7 @@
 				<div class="text">
 					<h4>{{ language.title }} <span class="separator">·</span> {{ language.level_str }} </h4>
 				</div>
+				
 				{% if user.getId() == profile.user.id %}
 				<div class="edit-item"><span class="fa fa-edit"></span></div>
 				<div class="remove-item">&times;</div>

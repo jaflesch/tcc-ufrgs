@@ -235,13 +235,14 @@
 			@include size($avatar-size, $avatar-size);
 			@include elipse();
 			@include colors(#eee, #555);
+		    flex-shrink: 0;
 			display: block;
 			margin-right: 10px;
 			overflow: hidden;
 			line-height: $avatar-size;
 			text-align: center;
 		    font-size: 24px;
-		    
+
 			&.active {
 				@include colors($primary-color, #fff);
 			}
@@ -254,6 +255,7 @@
 		}
 		.text {
 			flex-grow: 3;
+			padding-right: 35px;
 
 			h3 {
 				font: {
@@ -268,6 +270,15 @@
 				font-size: 14px;
 				margin: 0;
 			}
+
+		}
+		.item-resume {
+			@include colors(#f9f9f9, #333);
+			font-size: 13px;
+			padding: 10px;
+			margin-top: 10px;
+			text-align: justify;
+			display: none;
 		}
 
 		.skill-title {
@@ -345,14 +356,14 @@
 		}
 	}
 
-	.remove-item, .edit-item {
+	.remove-item, .edit-item, .show-more-item {
 		$size: 32px;
 		@include size($size, $size);
 		@include va-middle();
 		@include elipse();
 		@include colors(#fff, #999);
 		position: absolute;
-		right: 15px;
+		right: 0;
 		font-size: 24px;
 		line-height: $size;
 		text-align: center;
@@ -364,8 +375,17 @@
 	}
 
 	.edit-item { 
-		right: 50px; 
+		right: 35px; 
 		font-size: 14px;
+	}
+	.show-more-item { 
+		right: 0; 
+		font-size: 14px;
+	}
+
+	.user-profile {
+		.show-more-item { right: 70px; }
+		.text { padding-right: 105px; }
 	}
 
 	.btn-add-to-list {
