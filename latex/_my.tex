@@ -218,12 +218,37 @@ Portal de Vagas - implementation of a tool to promote scholarships and internshi
 % ========== CAP 1 ==============
 \chapter{Introdução}
 
-Texto introdução
+\section{Motivação}
+\label{introducaoMotivacao}
+
+Vivemos em uma época onde a informação está ao nosso alcance e muitas vezes não sabemos como utilizar todas as possibilidades que as tecnologias nos oferecem \cite{anotherNodeArticle} \cite{impactInternetArticle}. Na universidade, não é incomum conhecer alunos que desejam colocar em prática os conhecimentos adquiridos ao longo das disciplinas cursadas na graduação, mas que apresentam dificuldades para encontrar alguma bolsa -seja de iniciação científica ou não-,
+estágio ou até vagas no mercado de trabalho para suas áreas de interesse \cite{internetLibDesArticle}. Para tal, possibilitar ferramentas e recursos para que alunos consigam trabalhar desenvolvendo e/ou pesquisando é fundamental para o crescimento profissional e acadêmico de qualquer graduando \cite{teachMediaArticle}. Entretanto, às vezes, mesmo com o alcance da informação, não existe uma organização nem um local onde todos os conteúdos relevantes para um nicho específico de usuários se concentrem, fazendo com que seja necessária uma busca exaustiva, navegando até um local de interesse, geralmente escondidos e, consequentemente, levando-nos ao problema inicialmente abordado \cite{socConnectArticle}.
+
+Atualmente, a única ferramenta que se aproxima da solução ideal é o Mural de Bolsas, que passou por uma releitura recente. Este apenas lista e possibilita alguns filtros de pesquisa para os alunos interessados em vagas ofertadas de bolsa. Não existe comunicação direta na plataforma e as interações se resumem apenas a pesquisar opções. Não há registro nem histórico das ações de alunos, tampouco resolve o problema de múltiplas informações descentralizadas \cite{socialChallengeArticle}.
+
+A proposta é criação de uma plataforma que agrupe diversas ferramentas que a UFRGS já oferece aos seus alunos, como o Moodle e o Portal do Aluno por exemplo, e realize uma integração entre estas, de forma a centralizar todas as informações úteis e relevantes sobre os alunos em um ambiente \cite{socConnectArticle}, tornando possível pesquisar vagas de bolsas e também uma interação entre alunos e professores para que possam conversar, trocar ideias e recomendar uns aos outros através de buscas mais refinadas \cite{UXLinkedinArticle} \cite{agileCareerArticle}. 
+
+Um cenário interessante e que ainda não é possível de ser feito com os recursos atuais é a possibilidade de ofertar uma bolsa para todos os alunos matriculados em uma disciplina, àqueles que dominem determinada tecnologia, que possuam um histórico escolar qualificado entre outros \cite{designCurriculumArticle} \cite{minigLinkedinInbook}. Dessa forma, as bolsas podem ser preenchidas por alunos mais
+qualificados e que realmente estejam dispostos a aprender, pois uma má conduta (que infelizmente acontece) ficaria registrada no sistema e os próximos professores poderiam se valer dessa informação antes de oferecem uma nova bolsa ao mesmo aluno \cite{academicAchievmentArticle}, evitando que
+outro colega mais determinado perca essa oportunidade \cite{futureITLinkedinArticle}. 
+
+Além disso, por ser uma rede social, outra grande vantagem é o estabelecimento de \textit{networkings}. Alunos e professores podem manter contato mesmo após a graduação e também ajudar o aluno caso este planeje um mestrado e/ou doutorado \cite{alumniInbook}. Alunos também podem interagir entre si, divulgando vagas de emprego onde trabalham e recomendando outros colegas \cite{recommendPeopleInbook}, caso optem seguir um lado mais empreendedor \cite{SNsEntrepreunersInbook} ou fora do meio acadêmico \cite{globalParticipationInbook}.
+
+
+\section{Objetivos}
+\label{introducaoObjetivos}
+Este trabalho foi produzido com a proposta de explorar, através da implementação de um protótipo de rede social, novas alternativas para a divulgação de vagas em bolsas e estágios ofertados pela UFRGS. Acredita-se que, com uma ferramenta capaz de promover interação entre os usuários, oferecendo critérios de busca e classificação refinados de candidatos a vagas e, ainda, integração com outras plataformas da própria Universidade, aumentaria a atratividade e o público-alvo do sistema final.
+
+
+\section{Organização do texto}
+\label{introducaoOrganizacao}
+O restante do texto apresenta-se dividido em 6 capítulos. O Capítulo 2, de fundamentação teórica, apresenta as definições relevantes ao desenvolvimento deste trabalho. O Capítulo 3 abrange trabalhos relacionados disponíveis academicamente e no mercado. O Capítulo 4 apresenta a metodologia de desenvolvimento utilizada para a implementação da solução proposta. O Capítulo 5 explora as principais funcionalidades da rede social Portal de Vagas. O Capítulo 6 descreve o experimento realizado com os usuários e apresenta os resultados obtidos, assim como uma análise destes. No Capítulo 7, por fim, é realizada uma síntese do trabalho desenvolvido, elencando o que foi alcançado e quais direções para trabalhos futuros.
 
 % ========== CAP 2 ==============
 \chapter{Fundamentação teórica}
 
-Texto fundação teórica....
+\section{Requisitos}
+\label{metodologiaRequisitos}
 
 % ========== CAP 3 ==============
 \chapter{Trabalhos relacionados}
@@ -236,6 +261,7 @@ Texto trabalhos relacionados...
 Este capítulo apresenta a proposta e implementação de um protótipo de rede social para criação e divulgação de vagas em bolsas na universidade e estágios. Inicialmente é realizado um levantamento de requisitos da aplicação. Em seguida, são detalhados a arquitetura e o projeto de banco de dados utilizados como guias para o desenvolvimento da rede social. Na sequência, o processo de implementação do sistema é detalhado, exibindo tomadas de decisões baseadas em padrões de projeto em engenharia de software.
 
 \section{Visão Geral}
+\label{metodologiaVisaoGeral}
 O objetivo da rede social é apresentar de uma maneira mais centralizada, interativa, intuitiva e organizada listas de vagas disponíveis tanto em bolsas na universidade quanto em estágios dentro e fora do meio acadêmico. Com a centralização de informações, os usuários poderiam através do seu login do INF pesquisar, recomendar e candidatar-se a vagas ofertadas e dados pessoais, profissionais ou acadêmicos, como histórico escolar, solicitados na vaga já seriam encaminhados automaticamente. Ainda, por ser uma rede social, é possível explorar uma maior interação entre os usuários, promovendo um networking e facilitando indicações a vagas futuras.
 
 O ambiente implementado é um protótipo de aplicação Web baseado em uma arquitetura centralizada em dados \cite{pressman}, uma vez que é o padrão mais utilizado na Internet \cite{kurose}. A rede social pode ser acessada por navegadores Web mais modernos que possuem suporte às tecnologias HTML5 e CSS3. Em especial, todos os navegadores mais utilizados atualmente como Google Chrome, Mozilla Firefox, Opera, Safari e Edge.
