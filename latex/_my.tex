@@ -34,7 +34,7 @@
 \usepackage{times}            % pacote para usar fonte Adobe Times
 % \usepackage{palatino}
 % \usepackage{mathptmx}       % p/ usar fonte Adobe Times nas fórmulas
-\usepackage[alf,abnt-emphasize=bf, abnt-etal-list=0, abnt-etal-cite=2]{abntex2cite} % pacote para usar citações abnt
+\usepackage[alf,abnt-emphasize=bf, abnt-etal-list=0, abnt-etal-cite=2]{abntex2cite}	% pacote para usar citações abnt
 \usepackage{verbatim}
 \usepackage{amsmath}
 \usepackage{algorithm}
@@ -162,7 +162,7 @@
 
 % resumo na língua do documento
 \begin{abstract}
-    É durante a graduação que geralmente ocorrem as primeiras experiências profissionais dos alunos, sejam elas provenientes de bolsas ofertadas pela própria universidade ou de estágios em empresas do mercado de trabalho. Para ajudar na divulgação de vagas em ambas as modalidades, a UFRGS disponibiliza ferramentas de acesso à informação aos seus discentes como o e-mail de graduação e o site do Mural de Bolsas.
+	É durante a graduação que geralmente ocorrem as primeiras experiências profissionais dos alunos, sejam elas provenientes de bolsas ofertadas pela própria universidade ou de estágios em empresas do mercado de trabalho. Para ajudar na divulgação de vagas em ambas as modalidades, a UFRGS disponibiliza ferramentas de acesso à informação aos seus discentes como o e-mail de graduação e o site do Mural de Bolsas.
     
     Este  trabalho  objetiva realizar  uma  releitura  do atual Mural  de  Bolsas, desenvolvendo  uma rede social que aproxime ainda mais alunos e professores, possibilite interações mais dinâmicas e forneça um canal de comunicação para os usuários, tudo isto centralizado em uma única ferramenta. Desta forma, é possível desenvolver soluções mais eficientes e precisas no gerenciamento das vagas ofertadas, utilizando pesquisas mais refinadas e complexas como as baseadas no desempenho acadêmico do aluno, por exemplo.
     
@@ -177,7 +177,7 @@
 % na outra língua, separadas por vírgulas
 \begin{englishabstract}{
 Portal de Vagas - implementation of a tool to promote scholarships and internships to students}{Social network.  Web application. Professional experience. User Experience}
-    It is during the graduation that usually the first professional experiences of the students occur, whether they come from scholarships offered by the university itself or from internships in companies of the labor market. To help publicize vacancies in both modalities, UFRGS provides tools for accessing information to its students, such as the graduation e-mail and the Bolsa Mural website.
+	It is during the graduation that usually the first professional experiences of the students occur, whether they come from scholarships offered by the university itself or from internships in companies of the labor market. To help publicize vacancies in both modalities, UFRGS provides tools for accessing information to its students, such as the graduation e-mail and the Bolsa Mural website.
     
     This work aims to re-read the current Mural of Scholarships, developing a social network that brings even more students and teachers, enables more dynamic interactions and provides a channel of communication for users, all centralized in a single tool. In this way, it is possible to develop more efficient and precise solutions in the management of offered vacancies, using more refined and complex researches such as those based on the academic performance of the student, for example.
 
@@ -339,7 +339,7 @@ A linguagem de programação utilizada no desenvolvimento desta arquitetura foi 
 
 \begin{figure}[ht]
     \caption{Arquitetura centralizada em dados.}
-        \begin{center}
+       	\begin{center}
             \includegraphics[width=0.68\textwidth]{arquitetura-centralizada-dados.png}
         \end{center}
     \label{dataCenteredArchitecture}
@@ -353,7 +353,7 @@ Outra arquitetura de desenvolvimento de software adotada foi o MVC. Esta arquite
 
 \begin{figure}[ht]
     \caption{Arquitetura MVC.}
-        \begin{center}
+       	\begin{center}
             \includegraphics[width=0.68\textwidth]{arquitetura-mvc.png}
         \end{center}
     \label{dataMVCArchitecture}
@@ -364,7 +364,7 @@ A arquitetura foi desenvolvida através, novamente, da linguagem de programaçã
 
 \begin{figure}[ht]
     \caption{Exemplo de \textit{template} padrão em PHP.}
-        \begin{center}
+       	\begin{center}
             \includegraphics[width=0.68\textwidth]{twig-php.png}
         \end{center}
     \label{codeTemplatePHP}
@@ -375,7 +375,7 @@ A arquitetura foi desenvolvida através, novamente, da linguagem de programaçã
 
 \begin{figure}[ht]
     \caption{Exemplo de \textit{template} em Twig .}
-        \begin{center}
+       	\begin{center}
             \includegraphics[width=0.68\textwidth]{figuras/twig-symf.png}
         \end{center}
     \label{codeTemplateTwig}
@@ -397,7 +397,7 @@ A modelagem conceitual é utilizada para obter uma descrição abstrata, indepen
 
 \begin{figure}[h]
     \caption{Exemplo de modelagem conceitual.}
-        \begin{center}
+       	\begin{center}
             \includegraphics[width=0.68\textwidth]{figuras/twig-symf.png}
         \end{center}
     \label{modelagemBDExemplol}
@@ -430,7 +430,7 @@ Os dois primeiros itens são alcançados naturalmente com as funcionalidades nat
 
 \begin{figure}[h]
     \caption{Exemplo de modelagem relacional.}
-        \begin{center}
+       	\begin{center}
             \includegraphics[width=0.68\textwidth]{figuras/twig-symf.png}
         \end{center}
     \label{modelagemBDLogicoExemplol}
@@ -544,13 +544,39 @@ Texto a rede social...
 \chapter{Avaliação com os usuários}
 \label{Avaliação}
 
-Texto avaliação com usuários...
+\section{Ambiente dos experimentos}
+\label{avaliacaoAmbiente}
+
+\section{Perfil dos usuários}
+\label{avaliacaoPefil}
+
+\section{Protocolo de testes}
+\label{avaliacaoProtocolo}
+
+\section{Resultados obtidos}
+\label{avaliacaoResultados}
+
+\section{Análise geral dos resultados}
+\label{avaliacaoAnalise}
+
 
 % ============== CONCLUSÃO =========================
 \chapter{Conclusões}
 \label{conclusao}
 
-Texto conclusão...
+Neste trabalho foi apresentado o Portal de Vagas, um protótipo de rede social desenvolvido para explorar novas alternativas para a divulgação de bolsas e estágios na universidade. Além disso, a plataforma também simulou a integração com outras ferramentas já utilizadas pela UFRGS, como o Moodle, o Portal do Aluno e o Webmail em um ambiente de dados centralizado.
+
+O trabalho começou com um estudo de trabalhos relacionados, em especial o Mural de Bolsas, onde foram detectadas funcionalidades essenciais para a rede social, que serviram de base para a análise de requisitos. Posteriormente, foi definida a metodologia ágil para o desenvolvimento da aplicação, dividida em quatro sprints baseadas em critérios de prioridade. 
+
+A primeira entrega priorizou a funcionalidade de login e a construção das páginas básicas da rede social. A segunda, focou nas interações entre usuários como curtir, postar, seguir e bloquear e filtros padrões na busca de vagas. A terceira, finalizou as demais interações de usuário e complementou os filtros de busca. A quarta e última etapa, adicionou responsividade ao visual do sistema, aumentando a experiência de usuários provenientes de \textit{smartphones} e \textit{tablets}; ainda, otimizações de consulta ao banco e documentação apropriado para trabalhos futuros na plataforma.
+
+Ao final das etapas de desenvolvimento, foi elaborado um experimento com usuários. Este consistia em um teste de usabilidade que comparou a realização de uma sequência de atividades pré-determinadas de usuário entre as ferramentas do Portal de Vagas e do Mural de Bolsas. A análise dos resultados obtidos com o experimento trouxe resultados interessantes.
+
+<… complementar após os testes… >
+
+
+Para trabalhos futuros, a primeira tarefa a ser realizada é a integração da ferramenta com as outras plataformas já utilizadas na UFRGS. Dessa forma, todos os usuários poderão usufruir das possibilidades ofertadas neste protótipo e em diversas outras que seriam criadas. Por exemplo, a integração com o Portal do Aluno poderia enviar o histórico escolar de um candidato ao autor de uma vaga durante sua candidatura. Outro cenário interessante seria o filtro de vagas incluir uma lista das disciplinas que o aluno está matriculado no Moodle e relacioná-las com os requisitos exigidos por cada vaga. Além disso, sugere-se também a inclusão de funcionalidades comuns em redes sociais que foram preteridas neste protótipo como compartilhar um post ou uma vaga, curtir comentários e recomendações.
+
 
 
 
