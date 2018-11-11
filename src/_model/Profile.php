@@ -11,8 +11,10 @@ class Profile {
 			SELECT 
 				u.name, u.login, u.id, u.born_in_city, u.born_in_state, u.live_in_city, u.live_in_state, u.avatar, u.gender,
 				uj.title job_title, 
-				ue.title education_title
+				ue.title education_title,
+				COUNT(ru.id) AS total
 			FROM user u
+			LEFT JOIN recommendation_user ru ON ru.id_target = u.id AND ru.active = 1
 			LEFT JOIN user_job uj ON u.id = uj.id_user AND uj.selected = 1
 			LEFT JOIN user_education ue ON u.id = ue.id_user AND ue.selected = 1
 			WHERE 
@@ -27,8 +29,9 @@ class Profile {
 					FROM block b 
 					WHERE b.id_blocker = {$user_id} AND b.active = 1
 				)
-			ORDER BY name
-			LIMIT 3
+			GROUP BY u.id
+			ORDER BY total DESC, name
+			LIMIT 5
 		", true);
 	}
 

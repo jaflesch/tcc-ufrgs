@@ -121,7 +121,7 @@ class User {
 		unset($pieces);
 		$pieces = explode("-", $date);
 
-		$string = Data::getMonth($pieces[1])." de ".$pieces[0];
+		$string =  substr(ucfirst(Data::getMonth($pieces[1])), 0, 3).", ".$pieces[0];
 
 		return array(
 			"raw" => $this->datetime_joined,

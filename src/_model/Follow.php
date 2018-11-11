@@ -8,6 +8,7 @@ class Follow {
 			FROM follow f 
 			LEFT JOIN user u ON u.id = f.id_follower AND f.active = 1
 			WHERE f.id_following = {$id_user} AND u.active = 1
+			ORDER BY datetime_created DESC
 		", true);
 
 		return array(

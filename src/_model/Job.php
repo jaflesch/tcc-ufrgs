@@ -113,7 +113,7 @@ class Job {
 	}
 
 	public static function getRelated($id = NULL) {
-		$jobs = self::getAll()['jobs'];
+		$jobs = self::getAll("_custom_most_rated")['jobs'];
 
 		if($id = NULL) {
 			return $jobs;

@@ -29,7 +29,7 @@
 		{% if user.getLocation().live_in_string == ', ' %}
 			<a href="{{ path.root }}/configuracoes/meu-perfil" title="Definir endereço">Definir meu endereço</a>
 		{% else %}
-			user.getLocation().live_in_string 
+			{{ user.getLocation().live_in_string  }}
 		{% endif %}
 	</h3>
 	{% if user.getPersonalLink() %}
