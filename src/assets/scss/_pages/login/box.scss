@@ -1,6 +1,6 @@
 #login {
 	background: $background-body;
-	height: 100vh;
+	height: calc(100vh - 76px);
 	
 	>.container { 
 		@include va-middle(); 
@@ -19,15 +19,31 @@
 		padding: 15px;
 	}
 
-	h1 {
+	h1, h2 {
 		font: {
-			family: $secondary-font;
+			// family: $secondary-font;
 			size: 20px;
+			weight: bold;
 			letter-spacing: -2px;
 		}
-		color: $text-color-dark;
+		color: $secondary-color;
 		text-align: center;
-		margin: 15px 0 15px;
+		margin: 10px 0;
+	}
+
+	hr {
+		border-top: 2px solid $primary-color;
+		width: 40px;
+		margin: 10px auto;
+	}
+
+	h2 {
+		font:{
+			size: 14px;
+			weight: normal;
+		}
+		color: $text-color-dark;
+		margin: 20px 0;
 	}
 
 	p {
