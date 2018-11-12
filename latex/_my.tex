@@ -256,7 +256,7 @@ O restante do texto apresenta-se dividido em 6 capítulos. O Capítulo 2, de fun
 \label{fundArqMVC}
 
 \section{Banco de dados}
-\label{fundArquietura}
+\label{fundBD}
 
 \subsection{Modelagem conceitual}
 \label{fundBDModelagem}
@@ -589,7 +589,7 @@ A Figura \ref{telaLoginImg} apresenta a página de \textit{login} com os campos 
 \begin{figure}[h]
     \caption{Tela de \textit{login} do Portal de Vagas.}
         \begin{center}
-            \includegraphics[width=0.68\textwidth]{figuras/tela_login.png}
+            \includegraphics[width=0.85\textwidth]{figuras/tela_login.png}
         \end{center}
     \label{telaLoginImg}
     \legend{Fonte: Autor}
@@ -600,6 +600,19 @@ A Figura \ref{telaLoginImg} apresenta a página de \textit{login} com os campos 
 
 \subsection{Página de pesquisa}
 \label{PDVFunPesquisa}
+
+Sempre que o usuário sentir necessidade de procurar por usuários ou vagas de um modo mais genérico, ele pode realizar a consulta digitando um termo de interesse no campo de pesquisa no cabeçalho de todas as páginas. Assim, ele será direcionado para a página de Pesquisa que exibe todos resultados encontrados tanto nas vagas quanto em usuários cadastrados no sistema. A Figura \ref{PDVPesquisaTela} mostra a tela de resultados encontrados na págia de Pesquisa.
+
+A página ainda fornece ao usuário a possibilidade filtrar os resultados por "pessoas" ou "vagas". Além disso, no canto direito, existe um painel listando os 10 termos mais recentes e pesquisados na rede social, ordenados do maior para o menor.
+
+\begin{figure}[ht]
+    \caption{Página de Pesquisa: exemplo de tela com os resultados para a pesquisa pelo termo "lsa". }
+        \begin{center}
+            \includegraphics[width=0.68\textwidth]{arquitetura-centralizada-dados.png}
+        \end{center}
+    \label{PDVPesquisaTela}
+    \legend{Fonte: Autor}
+\end{figure}
 
 \subsection{Páginas de preferências do usuário}
 \label{PDVFunConfiguracoes}
@@ -614,9 +627,9 @@ Por padrão, a primeira tela é sempre a de Configurações gerais. Ao lado esqu
 A tela de Configurações gerais apresenta um formulário com quatro campos. O primeiro é o nome de exibição do usuário no sistema. O campo de \textit{e-mail} serve como complemento aos já fornecidos pelo INF e UFRGS. Neste caso, a ideia é o usuário ter a possibilidade de cadastrar um e-mail em uma plataforma que ele utilize com maior frequência, pois facilitaria o recebimento de notificações enviadas pelo Portal de Vagas. O telefone é um campo não obrigatório e só é exibido para o autor de uma vaga ofertada caso o usuário demonstre interesse por esta. Por fim, há o campo de idioma onde o usuário pode alternar entre as diferentes linguagens ofertadas pela rede social (para o protótipo apenas a lingua portuguesa está disponível). A Figura \ref{telaConfigGeral} apresenta a tela de Configurações gerais.
 
 \begin{figure}[ht]
-    \caption{Tela de Configurações gerais do Portal de Vagas.}
+    \caption{Tela de Configurações gerais.}
         \begin{center}
-            \includegraphics[width=0.68\textwidth]{figuras/config_01.png}
+            \includegraphics[width=1\textwidth]{figuras/config_01.png}
         \end{center}
     \label{telaConfigGeral}
     \legend{Fonte: Autor}
@@ -624,6 +637,17 @@ A tela de Configurações gerais apresenta um formulário com quatro campos. O p
 
 \subsubsection{Lista de seguidores}
 \label{PDVFunConfiguracoesListaSeguidores}
+
+A página de Lista de seguidores exibe todos os seguidores do usuário, de maneira ordenada, do mais recente ao mais antigo. Existem duas seções na página: a primeira é um parágrafo informativo sobre como as configurações de privacidade afetam na exibição da lista de seguidores para outros usuários do sistema; a segunda é, de fato, a lista de usuários seguidores. Cada registro possui um link direto para o perfil do seguidor. A Figura \ref{telaConfigSeguidores} exibe a página da Lista de seguidores.
+
+\begin{figure}[ht]
+    \caption{Tela de seguidores do usuário.}
+        \begin{center}
+            \includegraphics[width=1\textwidth]{figuras/config_05.png}
+        \end{center}
+    \label{telaConfigSeguidores}
+    \legend{Fonte: Autor}
+\end{figure}
 
 \subsubsection{Registro de atividades}
 \label{PDVFunConfiguracoesLog}
@@ -647,9 +671,9 @@ Os seguintes eventos são considerados ações significativas e, consequentement
 \end{itemize}
 
 \begin{figure}[h]
-    \caption{Tela de Registro de atividades do Portal de Vagas.}
+    \caption{Tela de Registro de atividades do usuário.}
         \begin{center}
-            \includegraphics[width=0.68\textwidth]{figuras/config_03.png}
+            \includegraphics[width=1\textwidth]{figuras/config_03.png}
         \end{center}
     \label{telaConfigLog}
     \legend{Fonte: Autor}
@@ -658,8 +682,22 @@ Os seguintes eventos são considerados ações significativas e, consequentement
 \subsubsection{Configurações de privacidade}
 \label{PDVFunConfiguracoesPrivacidade}
 
-\begin{figure}[h]
-    \caption{Tela de Configurações de privacidade do Portal de Vagas.}
+A página de Configurações de privacidade fornece flexibilidade ao usuário para que ele possa controlar o quais informações são visíveis às demais pessoas da rede social. Para este protótipo, foram propostas as seguintes opções de privacidade:
+
+\begin{itemize}
+    \item \textbf{Visibilidade das publicações:} todos os usuários têm acesso (público) ou apenas seguidores (privado);
+    
+    \item \textbf{Histórico escolar:} se o usuário deixar visível, outras pessoas poderão ver os conceitos deste em sua página de perfil. Caso contrário, a informação é oculta. Independentemente da escolha do usuário nesta opção, quando ele se candidata a uma vaga que exige histórico escolar, seus dados são enviados ao autor da vaga.
+    
+    \item \textbf{Currículo:} o funcionamento é o mesmo que na opção de histórico escolar: o usuário pode ocultar ou não a informação em seu perfil, mas se ele se candidata a uma vaga que exige currículo, a informação é enviada automaticamente ao autor da vaga.
+    
+    \item \textbf{Visibilidade da lista de seguidores:} todos os usuários têm acesso (público) ou apenas seguidores (privado);
+    
+    \item \textbf{Visibilidade da lista de seguidos:} todos os usuários têm acesso (público) ou apenas seguidores (privado)
+\end{itemize}
+
+\begin{figure}[ht]
+    \caption{Tela de Configurações de privacidade.}
         \begin{center}
             \includegraphics[width=0.68\textwidth]{figuras/config_02.png}
         \end{center}
@@ -668,6 +706,20 @@ Os seguintes eventos são considerados ações significativas e, consequentement
 \end{figure}
 
 \subsubsection{Lista de bloqueados}
+\label{PDVFunConfiguracoesBloq}
+
+Assim como a Lista de seguidores, a página com a Lista de bloqueados é uma funcionalidade que prioriza uma melhor experiência de usuário. Nesta situação, a página apresenta também duas seções: a primeira informa ao usuário as consequências de adicionar outra pessoa na sua lista de bloqueados; a segunda, é a lista de todos os usuários bloqueados.
+
+As principais consequências de bloquear um usuário são: ele não aparecerá na lista de sugestões de usuários para seguir; as publicações dele ficam ocultas, não é possível comentar em posts criados por ele nem recomendar vagas que ele publicar. Entretanto, o bloqueio não é bidirecional, isto é, ele ainda poderá ter acesso a quaisquer informações compartilhadas publicamente. A Figura \ref{telaConfigBloq} exibe o visual da página de usuários bloqueados.
+
+\begin{figure}[ht]
+    \caption{Tela de usuário bloqueados.}
+        \begin{center}
+            \includegraphics[width=0.95\textwidth]{figuras/config_04.png}
+        \end{center}
+    \label{telaConfigBloq}
+    \legend{Fonte: Autor}
+\end{figure}
 
 \subsection{Página de perfil de usuário}
 \label{PDVFunProfile}
@@ -675,11 +727,62 @@ Os seguintes eventos são considerados ações significativas e, consequentement
 \subsection{Página de vagas disponíveis}
 \label{PDVFunVagas}
 
+A Página de vagas fornece ao usuário uma lista de todas as vagas disponíveis no sistema, sejam elas bolsa de monitoria, iniciação científica, estágio, ou até mesmo de efetivo. Uma das propostas do Portal de Vagas é uma releitura da página de vagas ofertadas no Mural de Bolsas.A estrutura da página é composta por duas seções principais: a área de filtros de pesquisa e a lista de vagas disponíveis.
+
+A área de filtros foi expandida em relação ao Mural de Bolsas. Agora é possível filtrar por localidade e também incorporar as funcionalidades integradas de vagas que exigem currículos e/ou histórico escolar. Além disso, é possível selecionar o método de ordenação: mais relevantes, melhores avaliados, mais recentes e mais antigos. No MB a listagem era ordenada pelas vagas mais recentes primeiro. Por padrão, a lista de filtros é oculta e, se o usuário sentir necessidade, pode expandi-la e aplicar os filtros desejados. A Figura \ref{telaFiltros} exibe a seção em formato expandido com todos os campos possíveis.
+
+\begin{figure}[ht]
+    \caption{Lista de filtros expandidos.}
+        \begin{center}
+            \includegraphics[width=1\textwidth]{figuras/arquitetura-centralizada-dados.png}
+        \end{center}
+    \label{telaFiltros}
+    \legend{Fonte: Autor}
+\end{figure}
+
+A lista de vagas é apresentada em uma visão de \textit{cards}, onde cada cartão apresenta as conjunto de informações compacto com "título", "localização", "áreas de atuação", "resumo", "remuneração" e "carga horária". Além disso, possui um botão para salvar a vaga na lista de favoritos do usuário; o botão "Candidatar-se" para se inscrever numa vaga disponível (ver seção \ref{redeInscricao}) e o botão "Ver mais" que abre a página da vaga selecionada com todas suas informações e recomendações. A Figura \ref{telaVagasLista} apresenta a visualização de vagas disponíveis.
+
+\begin{figure}[ht]
+    \caption{Lista de vagas disponíveis em formato de \textit{card}.}
+        \begin{center}
+            \includegraphics[width=1\textwidth]{figuras/arquitetura-centralizada-dados.png}
+        \end{center}
+    \label{telaVagasLista}
+    \legend{Fonte: Autor}
+\end{figure}
+
 \subsection{Página de vaga específica}
 \label{PDVFunVaga}
 
+A Página de vaga específica é uma versão completa dos \textit{cards} apresentados na página de Lista de vagas. Essa página apresenta três seções: a área de informação de vaga, o painel com lista de vagas relacionadas e a área de recomendações. Se o usuário que acessa a página é o próprio autor da vaga, existe ainda uma quarta seção: a de candidatos inscritos. A Figura \ref{telaVagaCompleta} exibe a página da Vaga de maneira completa com todas as seções disponíveis.
+
+A área de informação da vaga, em ordem de exibição, contempla os seguintes dados: "título da vaga", "localização", "áreas de interesse", "autor da vaga", "descrição completa", "modalidade", "tipo de vaga", "experiência exigida", "carga horária", "turnos", "data de início", "duração", "exigência de currículo", "exigência de histórico escolar", "benefício PRAE". Alguns dados podem ser omitidos caso o autor da vaga opte por deixar alguma informação opcional em branco. Ao final, existe um botão de "Candidatar-se" também caso o usuário não tenha se inscrito na vaga ainda.
+
+A seção de recomendações é uma lista com todas as recomendações enviadas por usuários que decidiram avaliar positivamente a vaga ofertada. Cada recomendação contém dados básicos do autor e o texto explicando o motivo da avaliação. Os usuários podem recomendar cada vaga uma única vez.
+
+No canto superior direito, existe também um painel com uma lista de vagas semelhantes que possam interessar o usuário, facilitando assim o fluxo de navegação. O critério de ordenação é a relevância da vaga, isto é, as que possuem mais recomendações e mais favoritadas, vêm primeiro.
+
+Por fim, para a situação em que o usuário autenticado é também o autor da vaga...
+
+\begin{figure}[ht]
+    \caption{Página de vaga com todas informações disponíveis.}
+        \begin{center}
+            \includegraphics[width=1\textwidth]{figuras/arquitetura-centralizada-dados.png}
+        \end{center}
+    \label{telaVagaCompleta}
+    \legend{Fonte: Autor}
+\end{figure}
+
 \subsection{Página de inscrições}
 \label{PDVFunInscricoes}
+
+\section{Inscrição em vaga}
+\label{redeInscricao}
+
+\section{Comparação}
+\label{redeComparacao}
+
+Utilizar a mesma tabela do capitulo de trabalhos relacionados, mas adicionando o PDV...
 
 \section{Limitações}
 \label{redeLimitacao}
