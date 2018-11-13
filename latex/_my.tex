@@ -1,4 +1,3 @@
-
 % 
 % exemplo genérico de uso da classe iiufrgs.cls
 % $Id: iiufrgs.tex,v 1.1.1.1 2005/01/18 23:54:42 avila Exp $
@@ -599,6 +598,111 @@ A Figura \ref{telaLoginImg} apresenta a página de \textit{login} com os campos 
 \subsection{Página inicial}
 \label{PDVFunFeed}
 
+A página inicial do Portal de Vagas, acessada após o usuário se autenticar no sistema é composta por três seções: painel com dados resumidos do usuário, lista de postagens das pessoas seguidas na conta e painel de sugestões para seguir outros usuários e analisar vagas ofertadas, de forma a estimular o usuário a explorar a rede social. A Figura \ref{telaHome} exibe a Página inicial do sistema com suas três seções.
+
+O painel com os dados resumidos apresenta a foto de perfil do usuário; seguido por seu nome; sua profissão, escolaridade ou local onde mora de acordo com os dados preenchidos; número de seguidores e desde quando realizou seu primeiro\textit{login} no sistema.
+
+A lista de postagens começa com um campo de texto onde é possível o usuário realizar sua própria postagem que será exibida no \textit{feed} de seus seguidores. Da mesma forma, abaixo deste espaço, são apresentadas todas as postagens das pessoas que são seguidas pelo usuário. Nestas postagens, é possível curti-las e comentá-las também. Contudo, como a funcionalidade proposta seria uma alternativa aos e-mails de graduação, após comentar numa postagem, não é permitida a edição nem remoção deste, simulando assim um comportamento de serviço de \textit{webmail}.
+
+Por fim, o painel de sugestões lista cinco usuários e vagas como sugestão para interação na rede social. Para as pessoas sugeridas, são ocultadas da lista as que o usuário já segue ou bloqueou. Além disso, ambas as listas são ordenadas pelo critério de relevância, isto é, as que possuem mais recomendações são apresentadas primeiro.
+
+\begin{figure}[ht]
+    \caption{Página inicial da rede social.}
+        \begin{center}
+            \includegraphics[width=1\textwidth]{figuras/arquitetura-centralizada-dados.png}
+        \end{center}
+    \label{telaHome}
+    \legend{Fonte: Autor}
+\end{figure}
+
+\subsection{Página de perfil de usuário}
+\label{PDVFunProfile}
+
+A Página de perfil de usuário, semelhante a Página inicial, exibe informações sobre a pessoa que estamos acessando o perfil. Ela também é dividida em três seções principais, sendo elas: informações básicas de perfil, recomendações de outros usuários e um painel com sugestões de outras pessoas para interagir.
+
+A seção de informações básicas pode ser editável contanto que o usuário autenticado esteja visitando o seu próprio perfil. Caso contrário, a página é apenas para leitura. Os dados são exibidos de forma completa e segmentados nos seguintes blocos: informações gerais, experiências profissionais, educação, habilidades profissionais e idiomas. Em informações gerais são apresentados um resumo dos dados mais importantes e recentes da pessoa como trabalho e educação mais recentes, localização, número de seguidores, desde quando está ativo no sistema e uma breve autodescrição. As experiências profissionais e educacionais são uma lista de dados ordenados da mais recente à mais antiga. Contudo, o usuário pode selecionar uma experiência para deixar destacada e ser a primeira a ser exibida (independente da ordenação inicial).Habilidades profissionais são uma lista de \textit{tags} acompanhadas do nível de experiência e tempo que possui tal conhecimento, apresentando uma lista bem sucinta das principais qualificações da pessoa. Por fim, de forma similar, há o bloco de idiomas que o usuário pode indicar e quantificar as línguas que ele possui fluência.
+
+A seção de recomendações é um espaço para outras pessoas interagirem com o perfil do usuário visitado. Ali é possível recomendá-lo positivamente na rede social, qualificando-o individualmente e estimulando coletivamente as interações entre usuários. Além disso, é interessante considerar o cenário onde um professor esteja em dúvida sobre qual candidato aceitar em uma vaga ofertada: através das recomendações ele pode ter uma ideia mais concreta sobre a pessoa que estaria disposto a selecionar como seu bolsista, por exemplo. Ainda sobre a seção, um usuário só pode recomendar outros uma única vez e, obviamente, não pode recomendar a si mesmo.
+
+Por último, o painel de pessoas sugeridas para o usuário seguir segue os mesmos critérios de ordenação da Página inicial. A diferença é que o número de sugestões é maior -dez pessoas- e não são sugeridas vagas na Página de perfil. A Figura \ref{telaUserProfile} apresenta a Página de perfil de usuário com todas as seções citadas.
+
+\begin{figure}[ht]
+    \caption{Página de perfil de usuário.}
+        \begin{center}
+            \includegraphics[width=1\textwidth]{figuras/arquitetura-centralizada-dados.png}
+        \end{center}
+    \label{telaUserProfile}
+    \legend{Fonte: Autor}
+\end{figure}
+
+\subsection{Página de vagas disponíveis}
+\label{PDVFunVagas}
+
+A Página de vagas fornece ao usuário uma lista de todas as vagas disponíveis no sistema, sejam elas bolsa de monitoria, iniciação científica, estágio, ou até mesmo de efetivo. Uma das propostas do Portal de Vagas é uma releitura da página de vagas ofertadas no Mural de Bolsas.A estrutura da página é composta por duas seções principais: a área de filtros de pesquisa e a lista de vagas disponíveis.
+
+A área de filtros foi expandida em relação ao Mural de Bolsas. Agora é possível filtrar por localidade e também incorporar as funcionalidades integradas de vagas que exigem currículos e/ou histórico escolar. Além disso, é possível selecionar o método de ordenação: mais relevantes, melhores avaliados, mais recentes e mais antigos. No MB a listagem era ordenada pelas vagas mais recentes primeiro. Por padrão, a lista de filtros é oculta e, se o usuário sentir necessidade, pode expandi-la e aplicar os filtros desejados. A Figura \ref{telaFiltros} exibe a seção em formato expandido com todos os campos possíveis.
+
+\begin{figure}[ht]
+    \caption{Lista de filtros expandidos.}
+        \begin{center}
+            \includegraphics[width=1\textwidth]{figuras/arquitetura-centralizada-dados.png}
+        \end{center}
+    \label{telaFiltros}
+    \legend{Fonte: Autor}
+\end{figure}
+
+A lista de vagas é apresentada em uma visão de \textit{cards}, onde cada cartão apresenta as conjunto de informações compacto com "título", "localização", "áreas de atuação", "resumo", "remuneração" e "carga horária". Além disso, possui um botão para salvar a vaga na lista de favoritos do usuário; o botão "Candidatar-se" para se inscrever numa vaga disponível (ver seção \ref{PDVFunInscricoes}) e o botão "Ver mais" que abre a página da vaga selecionada com todas suas informações e recomendações. A Figura \ref{telaVagasLista} apresenta a visualização de vagas disponíveis.
+
+\begin{figure}[ht]
+    \caption{Lista de vagas disponíveis em formato de \textit{card}.}
+        \begin{center}
+            \includegraphics[width=1\textwidth]{figuras/arquitetura-centralizada-dados.png}
+        \end{center}
+    \label{telaVagasLista}
+    \legend{Fonte: Autor}
+\end{figure}
+
+\subsection{Página de vaga específica}
+\label{PDVFunVaga}
+
+A Página de vaga específica é uma versão completa dos \textit{cards} apresentados na página de Lista de vagas. Essa página apresenta três seções: a área de informação de vaga, o painel com lista de vagas relacionadas e a área de recomendações. Se o usuário que acessa a página é o próprio autor da vaga, existe ainda uma quarta seção: a de candidatos inscritos. A Figura \ref{telaVagaCompleta} exibe a página da Vaga de maneira completa com todas as seções disponíveis.
+
+A área de informação da vaga, em ordem de exibição, contempla os seguintes dados: "título da vaga", "localização", "áreas de interesse", "autor da vaga", "descrição completa", "modalidade", "tipo de vaga", "experiência exigida", "carga horária", "turnos", "data de início", "duração", "exigência de currículo", "exigência de histórico escolar", "benefício PRAE". Alguns dados podem ser omitidos caso o autor da vaga opte por deixar alguma informação opcional em branco. Ao final, existe um botão de "Candidatar-se" também caso o usuário não tenha se inscrito na vaga ainda.
+
+A seção de recomendações é uma lista com todas as recomendações enviadas por usuários que decidiram avaliar positivamente a vaga ofertada. Cada recomendação contém dados básicos do autor e o texto explicando o motivo da avaliação. Os usuários podem recomendar cada vaga uma única vez.
+
+No canto superior direito, existe também um painel com uma lista de vagas semelhantes que possam interessar o usuário, facilitando assim o fluxo de navegação. O critério de ordenação é a relevância da vaga, isto é, as que possuem mais recomendações e mais favoritadas, vêm primeiro.
+
+Por fim, para a situação em que o usuário autenticado é também o autor da vaga...
+
+\begin{figure}[ht]
+    \caption{Página de vaga com todas informações disponíveis.}
+        \begin{center}
+            \includegraphics[width=1\textwidth]{figuras/arquitetura-centralizada-dados.png}
+        \end{center}
+    \label{telaVagaCompleta}
+    \legend{Fonte: Autor}
+\end{figure}
+
+\subsection{Página de Favoritos}
+\label{PDVFunFavoritos}
+
+A Página de favoritos é apenas uma comodidade oferecida pelo sistema. Nela se encontram todas as vagas que estão favoritadas pelo usuário. Dessa forma, a página já oferece uma lista de vagas que atendem a esse critério inicial. Além disso, os filtros tradicionais presentes na página de Vagas também estão disponíveis para uso e posterior refinamento de pesquisa. A Figura \ref{telaVagaFav} apresenta todas as vagas favoritas pelo usuário: repare que o ícone de estrela fica destacado na cor azul.
+
+\begin{figure}[ht]
+    \caption{Página de vagas favoritas do usuário.}
+        \begin{center}
+            \includegraphics[width=1\textwidth]{figuras/arquitetura-centralizada-dados.png}
+        \end{center}
+    \label{telaVagaFav}
+    \legend{Fonte: Autor}
+\end{figure}
+
+\subsection{Página de inscrições}
+\label{PDVFunInscricoes}
+
+falar sobre funcionalidade de inscrição... controle pelo autor etc
+
 \subsection{Página de pesquisa}
 \label{PDVFunPesquisa}
 
@@ -721,64 +825,6 @@ As principais consequências de bloquear um usuário são: ele não aparecerá n
     \label{telaConfigBloq}
     \legend{Fonte: Autor}
 \end{figure}
-
-\subsection{Página de perfil de usuário}
-\label{PDVFunProfile}
-
-\subsection{Página de vagas disponíveis}
-\label{PDVFunVagas}
-
-A Página de vagas fornece ao usuário uma lista de todas as vagas disponíveis no sistema, sejam elas bolsa de monitoria, iniciação científica, estágio, ou até mesmo de efetivo. Uma das propostas do Portal de Vagas é uma releitura da página de vagas ofertadas no Mural de Bolsas.A estrutura da página é composta por duas seções principais: a área de filtros de pesquisa e a lista de vagas disponíveis.
-
-A área de filtros foi expandida em relação ao Mural de Bolsas. Agora é possível filtrar por localidade e também incorporar as funcionalidades integradas de vagas que exigem currículos e/ou histórico escolar. Além disso, é possível selecionar o método de ordenação: mais relevantes, melhores avaliados, mais recentes e mais antigos. No MB a listagem era ordenada pelas vagas mais recentes primeiro. Por padrão, a lista de filtros é oculta e, se o usuário sentir necessidade, pode expandi-la e aplicar os filtros desejados. A Figura \ref{telaFiltros} exibe a seção em formato expandido com todos os campos possíveis.
-
-\begin{figure}[ht]
-    \caption{Lista de filtros expandidos.}
-        \begin{center}
-            \includegraphics[width=1\textwidth]{figuras/arquitetura-centralizada-dados.png}
-        \end{center}
-    \label{telaFiltros}
-    \legend{Fonte: Autor}
-\end{figure}
-
-A lista de vagas é apresentada em uma visão de \textit{cards}, onde cada cartão apresenta as conjunto de informações compacto com "título", "localização", "áreas de atuação", "resumo", "remuneração" e "carga horária". Além disso, possui um botão para salvar a vaga na lista de favoritos do usuário; o botão "Candidatar-se" para se inscrever numa vaga disponível (ver seção \ref{redeInscricao}) e o botão "Ver mais" que abre a página da vaga selecionada com todas suas informações e recomendações. A Figura \ref{telaVagasLista} apresenta a visualização de vagas disponíveis.
-
-\begin{figure}[ht]
-    \caption{Lista de vagas disponíveis em formato de \textit{card}.}
-        \begin{center}
-            \includegraphics[width=1\textwidth]{figuras/arquitetura-centralizada-dados.png}
-        \end{center}
-    \label{telaVagasLista}
-    \legend{Fonte: Autor}
-\end{figure}
-
-\subsection{Página de vaga específica}
-\label{PDVFunVaga}
-
-A Página de vaga específica é uma versão completa dos \textit{cards} apresentados na página de Lista de vagas. Essa página apresenta três seções: a área de informação de vaga, o painel com lista de vagas relacionadas e a área de recomendações. Se o usuário que acessa a página é o próprio autor da vaga, existe ainda uma quarta seção: a de candidatos inscritos. A Figura \ref{telaVagaCompleta} exibe a página da Vaga de maneira completa com todas as seções disponíveis.
-
-A área de informação da vaga, em ordem de exibição, contempla os seguintes dados: "título da vaga", "localização", "áreas de interesse", "autor da vaga", "descrição completa", "modalidade", "tipo de vaga", "experiência exigida", "carga horária", "turnos", "data de início", "duração", "exigência de currículo", "exigência de histórico escolar", "benefício PRAE". Alguns dados podem ser omitidos caso o autor da vaga opte por deixar alguma informação opcional em branco. Ao final, existe um botão de "Candidatar-se" também caso o usuário não tenha se inscrito na vaga ainda.
-
-A seção de recomendações é uma lista com todas as recomendações enviadas por usuários que decidiram avaliar positivamente a vaga ofertada. Cada recomendação contém dados básicos do autor e o texto explicando o motivo da avaliação. Os usuários podem recomendar cada vaga uma única vez.
-
-No canto superior direito, existe também um painel com uma lista de vagas semelhantes que possam interessar o usuário, facilitando assim o fluxo de navegação. O critério de ordenação é a relevância da vaga, isto é, as que possuem mais recomendações e mais favoritadas, vêm primeiro.
-
-Por fim, para a situação em que o usuário autenticado é também o autor da vaga...
-
-\begin{figure}[ht]
-    \caption{Página de vaga com todas informações disponíveis.}
-        \begin{center}
-            \includegraphics[width=1\textwidth]{figuras/arquitetura-centralizada-dados.png}
-        \end{center}
-    \label{telaVagaCompleta}
-    \legend{Fonte: Autor}
-\end{figure}
-
-\subsection{Página de inscrições}
-\label{PDVFunInscricoes}
-
-\section{Inscrição em vaga}
-\label{redeInscricao}
 
 \section{Comparação}
 \label{redeComparacao}
