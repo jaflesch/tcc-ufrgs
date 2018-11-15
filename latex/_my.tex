@@ -855,10 +855,18 @@ As principais consequências de bloquear um usuário são: ele não aparecerá n
 \section{Limitações e trabalhos futuros}
 \label{redeLimitacao}
 
+A rede social Portal de Vagas, por se tratar de um protótipo, possui limitações de sistema. Para tornar possível sua aplicação completa, são necessários alguns passos adicionais. O primeiro e mais importante seria a realização de uma integração real com as demais ferramentas utilizadas pela UFRGS. Por exemplo: a funcionalidade de obter o histórico escolar do aluno e enviar seu currículo automaticamente por e-mail ao responsável pela vaga foi implementada no protótipo com o envio de um arquivo estático em formato \textit{.pdf}. Na versão final, um passo adicional seria realizar uma consulta ao banco de dados utilizado no Portal do Aluno e retornar os valores que lá são apresentados. Além disso, outras ferramentas como o próprio Moodle e o \textit{Webmail} poderiam ser utilizados para aumentar a experiência de usuário. 
+
+O Moodle mantém as informações de turmas que o aluno cursou em sua jornada acadêmica. Dessa forma, o critério de ordenação por relevância em vagas poderia se valer de uma inteligência artificial mais sofisticada e atribuir um peso maior para vagas relacionadas às disciplinas cursadas. Essa estratégia seria bastante útil com cadeiras eletivas, visto que elas abordam assuntos específicos de áreas de conhecimento e ajudam a descrever o perfil do aluno mais precisamente. 
+
+O \textit{Webmail} é um interface online que oferece serviço de leitura e envio de e-mails utilizando o navegador. No INF, alunos de graduação fazem parte do grupo \textit{graduacao@inf.ufrgs.br} e sempre que um e-mail é enviado ao grupo, todos seus participantes o recebem. Dessa forma, quando um professor divulga uma nova vaga ofertada, o sistema poderia automaticamente enviar e-mails para a lista da graduação. De maneira similar, quando um usuário faz uma postagem, ele pode escolher se deseja também notificar os usuários pelo e-mail da graduação, além dos seus seguidores na rede social.
+
+Do ponto de vista do sistema como rede social, existe uma variedade de funcionalidades que podem ser estentidas e adicionadas, visando o aumento da experiência do usuário final. Compartilhar uma postagem ou uma vaga, curtir comentários e recomendações, aumentar o número de configurações da conta, podendo restringir o acesso a campos individuais do perfil de usuário são apenas alguns exemplos.
+
 \section{Comparação}
 \label{redeComparacao}
 
-Utilizar a mesma tabela do capitulo de trabalhos relacionados, mas adicionando o PDV...
+[]Utilizar a mesma tabela do capitulo de trabalhos relacionados, mas adicionando o PDV...]
 
 % ========== CAP 6 ==============
 \chapter{Avaliação com os usuários}
