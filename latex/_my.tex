@@ -46,6 +46,7 @@
 \usepackage{rotating}
 \usepackage{graphics}
 \usepackage{array}
+\usepackage{epigraph}
 
 % === DEFINITIONS === 
 \floatname{algorithm}{Algoritmo}
@@ -144,21 +145,33 @@
 % \renewcommand{\coordname}{Coordenadora do Curso}
 \maketitle
 
-% dedicatoria
-%\clearpage
-%\begin{flushright}
-%     \mbox{}\vfill
-%     {\sffamily\itshape
-%       ``If I have seen farther than others,\\
-%       it is because I stood on the shoulders of giants.''\\}
-%     --- \textsc{Sir~Isaac Newton}
-%\end{flushright}
+% Epígrafe
+\clearpage
+\begin{flushright}
+\mbox{}\vfill
+{\sffamily\itshape
+``Hoje é o dia de sua vitória perante o que você era ontem;\\ 
+Amanhã é o dia de sua vitória sobre os homens inferiores.''\\}
+--- \textsc{Miyamoto Musashi}
+\end{flushright}
 
-% agradecimentos
+% Agradecimentos
 \chapter*{Agradecimentos}
 ~meus agradecimentos vão aqui~
+\
+%\begin{epigrafe}
+%    \vspace*{\fill}
+%   \begin{flushright}%
+        %\textbf{A epígrafe é opcional. Caso não deseje uma, deixe todo
+        %este arquivo em branco}.
 
-
+        %\textit{``Não vos amoldeis às estruturas deste mundo, \\
+        %mas transformai-vos pela renovação da mente, \\
+        %a fim de distinguir qual é a vontade de Deus: \\
+        %o que é bom, o que Lhe é agradável, o que é perfeito.\\
+        %(Bíblia Sagrada, Romanos 12, 2)}
+    %\end{flushright}
+%\end{epigrafe}
 
 % resumo na língua do documento
 \begin{abstract}
@@ -216,6 +229,7 @@ Portal de Vagas - implementation of a tool to promote scholarships and internshi
 \tableofcontents
 
 % ========== CAP 1 ==============
+
 \chapter{Introdução}
 
 \section{Motivação}
