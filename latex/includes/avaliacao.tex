@@ -1,0 +1,100 @@
+\chapter{Avaliação com os usuários}
+\label{Avaliação}
+
+Este capítulo é dedicado a apresentar o experimento realizado com os usuários.  A avaliação consistiu na realização de uma sequência pré-definida de tarefas em duas plataformas diferentes: o prótotipo de rede social implementado neste trabalho, Portal de Vagas, e a ferramenta já existente utilizada na UFRGS: o Mural de Bolsas. Para a comparação entre os dois sistemas propostos, o experimento utilizou o \textit{A-B testing}. 
+
+No final deste capítulo são exibidos os resultados obtidos com a avaliação e duas análises destes: uma objetiva e outra subjetiva.
+
+\section{Ambiente dos experimentos}
+\label{avaliacaoAmbiente}
+
+Para a aplicação dos experimentos, os usuários utilizaram de equipamento apenas um computador com acesso à Internet. Dois ambientes foram escolhidos para os testes: aos usuários que realizaram o experimento na UFRGS, optou-se por utilizar as dependências dos laboratórios do Instituto de Informática; aos usuários externos à universidade, o experimento foi aplicado em uma sala isolada. Ambos os locais escolhidos contaram com ausência de interferência externa, isto é, barulhos indesejáveis que comprometessem a concentração do usuário, minimizando assim, o incômodo e eventual cansaço dos participantes.
+
+\section{Perfil dos usuários}
+\label{avaliacaoPefil}
+
+Todos os participantes assinaram um termo de consentimento livre e preencheram um formulário (vide Apêndice \ref{appendFormPortal}) de caracterização antes do experimento. Participaram X voluntários ao todo (e todos completaram os testes / mas X desistiram por motivos de... e sua participação, por ser incompleta, foi descartada nas análises posteriores). Dos X participantes que completaram todos as etapas da avaliação, X eram homens e Y mulheres; com faixa etária de X a X anos; com escolaridade majoritariamente X, (X pessoas), seguido por Y e Z. Dos X candidatos com nível superior (completo, incompleto) ou com pós-graduação, X eram da área de, Y da, Z da .... . No que tange ao conhecimento dos usuários em tecnologias, a maioria apresenta experiência com Internet, redes sociais e a minoria possui experiência com a rede social LinkedIn.
+
+As Figuras x a y apresentam características gerais dos voluntários que contribuíram para o experimento.
+
+\section{Protocolo de testes}
+\label{avaliacaoProtocolo}
+
+Para cada usuário, são realizadas as seguintes etapas:
+
+\begin{itemize}
+    \item \textbf{Formulário pré-teste:} são feitas perguntas para caracterização do usuário como \textit{"idade"}, \textit{"sexo"}, \textit{"nível de escolaridade"}, \textit{"área de formação superior"}, \textit{"experiência com Internet"}, \textit{"experiência com redes sociais"} e \textit{"experiência com LinkedIn"};
+    
+    \item \textbf{Etapa 1:} o usuário é submetido a realização de uma sequência de atividades na plataforma. São elas:
+        \begin{itemize}
+            \item atividade 1
+            \item atividade 2
+            \item atividade N
+        \end{itemize}
+        
+    \item \textbf{Formulário pós-etapa:} objetiva saber opiniões do experimento realizado, conforme descrito no Apêndice \ref{appendFormStepPortal};
+    
+    \item \textbf{Etapa 2:} novamente, o usuário é submetido a realização da mesma sequência de atividades anteriores. Porém, na outra plataforma. São elas:
+        \begin{itemize}
+            \item atividade 1
+            \item atividade 2
+            \item atividade N
+        \end{itemize}
+        
+    \item \textbf{Formulário pós-etapa:} objetiva saber opiniões do experimento realizado, conforme descrito no Apêndice \ref{appendFormStepPortal};
+    
+    \item \textbf{Formulário pós-testes:} busca comparar as duas etapas completadas pelo usuário, conforme descrito no Apêndice \ref{appendFormFinalPortal}.
+\end{itemize}
+
+Para aplicar o teste da maneira mais neutra possível, seguindo o protocolo do \textit{A-B testing}, foi alternada a ordem das Etapas 1 e 2. Metade da população realizou as tarefas no Mural de Bolsas primeiro e depois no Portal de Vagas. A outra metade, o oposto.
+
+
+\section{Análise geral dos resultados}
+\label{avaliacaoAnalise}
+
+Os resultados avaliados serão divididos em duas categorias: resultados subjetivos e resultados objetivos. O primeiro avalia as respostas e opinião dos participantes nos questionários. Já o segundo avalia o desempenho destes a partir da observação de \textit{logs} gerados durante a execução dos testes.
+
+
+\subsection{Análise Subjetiva}
+\label {avaliacaoAnaliseSubjetiva}
+
+Analisando as respostas obtidas durante a primeira etapa do teste, sobre o questionário de caracterização dos usuários, podemos destacar (escolaridade, experiência com internet, redes sociais e linkedin…). Esse resultado já era esperado e o questionário foi feito com o intuito de englobar um nicho de participantes genérico, isto é, sem ter obrigatoriamente um grande conhecimento em tecnologias, visto que, aplicações como redes sociais possuem os mais variados perfis de usuário. Portanto, nenhum participante foi descartado a partir das respostas fornecidas nesta etapa, já que foram procuradas justamente pessoas com essas características.
+Ao final de cada sequência de atividades propostas numa plataforma, foi aplicado um questionário para o participante informar o nível de dificuldade das tarefas. Como foi utilizado o protocolo \textit{AB-testing}, um grupo de usuários realizou o experimento primeiro com o Portal de Vagas e, posteriormente, o Mural de Bolsas. O outro grupo realizou o experimento na ordem inversa. 
+
+Sendo assim, X consideram a dificuldade maior em Y. Entre as principais dificuldades relatadas foram X, Y, Z. A outra parcela dos usuários, embora em menor representatividade, alegaram que a dificuldade foi maior em X pelos seguintes motivos: …
+
+Ainda, o questionário abordou a seguinte questão “De forma geral, como você avalia seu desempenho executando as atividades na plataforma?”. O objetivo é analisar o grau de satisfação do participante ao concluir todas as tarefas e identificar se existe alguma relação com a dificuldade mencionada anteriormente. Para essa questão, a maioria, X, respondeu que considera seu desempenho <...>.
+
+A última etapa do questionário instigou os participantes a compararem as duas plataformas, uma vez que eles tinham uma opinião mais sólida após realizarem os dois testes. X respondeu que notou uma diferença de dificuldade entre as plataformas. Destes, Y considerou a plataforma X mais difícil que a Y.
+
+
+\subsection{Análise Objetiva}
+\label {avaliacaoAnaliseObjetiva}
+
+Nos testes foram salvos \textit{logs} para armazenar a quantidade de tempo investida por cada participante nas atividades propostas nas duas plataformas. Dessa forma, cada \textit{log} é composto ao todo por X campos, sendo Y para cada plataforma.
+
+Posteriormente, foi calculada a média e o desvio padrão dos tempos obtidos por cada atividade nas duas plataformas, como podemos observar na tabela \ref{tableAvalObj}.
+
+\begin{table}[h]
+    \begin{adjustwidth}{-0.7in}{-0.7in}
+    \begin{center}
+    \begin{tabular}{ccccccccccccc}
+    \hline
+     & Plataforma & Tempo médio & Desvio padrão \\
+    \hline
+    Atividade 1 & MB & 1s & 1 \\
+    Atividade 1 & PDV & 1s & 1 \\
+    Atividade n & MB & 1s & 1 \\
+    Atividade n & PDV & 1s & 1 \\
+    \hline
+    \end{tabular}
+    \end{center}
+    \end{adjustwidth}
+    \bigskip
+    \legend{Tabela com os tempos obtidos pelos participantes em cada atividade nas duas plataformas.}
+    \label{tableAvalObj}
+\end{table}
+
+Observamos que ... <análise dos tempos>
+
+Portanto, podemos concluir que ... <conclusão sobre tempos>
