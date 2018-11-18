@@ -112,7 +112,7 @@ A Engenharia de \textit{software} é um ramo da engenharia cujo foco é o desenv
 
 Para contornar tais problemas, uma das áreas de estudo da Engenharia de \textit{software} é a de processo de desenvolvimento de \textit{software}. Este é uma metodologia para as atividades, ações e tarefas necessárias para desenvolver um \textit{software} de alta qualidade. Pode-se considerar processo de \textit{software} também como o roteiro na elaboração de um produto ou sistema que segue uma série de passos previsíveis, apresenta qualidade e dentro de um prazo estabelecido \cite{pressman}.
 
-Nesta seção é abordada a metodologia ágil e, posteriormente, o SCRUM e Kanban, que são \textit{frameworks} de desenvolvimento de \textit{software} ágil. Ambos foram utilizados na implementação do protótipo deste trabalho.
+Nesta seção é abordada a metodologia ágil e, posteriormente, o Scrum e Kanban, que são \textit{frameworks} de desenvolvimento de \textit{software} ágil. Ambos foram utilizados na implementação do protótipo deste trabalho.
 
 
 \subsection{Metologia ágil}
@@ -122,7 +122,7 @@ A metodologia ágil é uma abordagem para o desenvolvimento de \textit{software}
 
 Portanto, o desenvolvimento ágil defende a adaptação, evolução, entrega antecipda e melhoria contínua, destinando-se a entregar uma solução rápida ao cliente, que podem propor novos requisitos e alterações a serem implementadas nas próximas etapas do sistema.
 
-Os valores e princípios do desenvolvimento ágil podem ser encontrados no \textit{Manifesto for Agile Software Development}\footnote{\url{http://agilemanifesto.org/}, Acessado em novembro de 2018} (Manifesto para o Desenvolvimento Ágil de \textit{Software}), que inicia da seguinte maneira:
+Os valores e princípios do desenvolvimento ágil podem ser encontrados no \textit{Manifesto for Agile Software Development}\footnote{\url{http://agilemanifesto.org/}, Acessado em novembro de 2018.} (Manifesto para o Desenvolvimento Ágil de \textit{Software}), que inicia da seguinte maneira:
 
 \begin{quote}
     \textit{''Estamos descobrindo maneiras melhores de desenvolver software, fazendo-o nós mesmos e ajudando outros a 
@@ -140,7 +140,22 @@ Os valores e princípios do desenvolvimento ágil podem ser encontrados no \text
 \subsection{SCRUM}
 \label{fundSWSCRUM}
 
-a
+Scrum\footnote{Scrum é o nome dado a um movimento no esporte \textit{rugby}.} é \textit{framework} de desenvolvimento ágil para gestão e planejamento de projetos de \textit{software}. Ele é projetado para equipes pequenas, que dividem seu trabalho em ações que podem ser concluídas em iterações de tempo fixo -geralmente duas semanas-, chamadas \textit{Sprints}. \cite{pressman}
+
+A lista de funcionalidades a serem implementadas em um projeto, durante um \textit{Sprint}, recebem o nome de \textit{Product Backlog}. No início de cada \textit{Sprint}, é realizada uma reunião de planejamento onde o \textit{Product Manager}  prioriza as funcionalidades do \textit{Product Backlog} e a equipe, então, seleciona as tarefas que são capazes de complementar durante o período do \textit{Sprint}. Todas tarefas alocadas no \textit{Sprint} são transferidas ao \textit{Sprint Backlog}.
+
+Após a definição de um \textit{Sprint}, os membros da equipe podem acompanhar o progresso e replanejar prioridades em reuniões rápidas de quinze minutos, chamadas de \textit{Scrum meetings}.
+
+Ao final de um \textit{Sprint}, a equipe apresenta as funcionalidades implementadas em uma \textit{Sprint Review Meeting}, ou seja, um reunião de revisão do que foi desenvolvimento. Finalmente, faz-se uma \textit{Sprint Retrospective} (retrospectiva) e a equipe parte para o planejamento do próximo \textit{Sprint}. Reiniciando o ciclo do Scrum. A figura \ref{scrumFlow} apresenta o ciclo de desenvolvimento do \textit{framework} ágil Scrum.
+
+\begin{figure}[ht]
+    \caption{Fluxo do processo de desenvolvimento no Scrum.}
+       	\begin{center}
+            \includegraphics[width=0.75\textwidth]{arquitetura-mvc.png}
+        \end{center}
+    \label{scrumFlow}
+    \legend{Fonte: \cite{pressman}}
+\end{figure}
 
 \subsection{Kanban}
 \label{fundSWSCRUM}
