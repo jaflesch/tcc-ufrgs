@@ -14,7 +14,7 @@ A arquitetura de software; portanto, refere-se aos componentes de alto nível de
 \subsection{Arquitetura cliente-servidor}
 \label{arquiteturaCentralizadaDados}
 
-O modelo de arquitetura cliente-servidor é é um modelo em que o sistema é organizado como um conjunto de serviços e servidores e clientes associados acessam e usam estes serviços. Os clientes geralmente precisam saber nome e serviços disponíveis que os servidores oferecem. No entanto, servidores não precisam saber nomes nem quantos clientes existem. Essencialmente, um cliente faz um pedido a um servidor e espera até receber uma resposta. \cite{pressman}. Exemplos de aplicativos de computador que usam o modelo cliente-servidor são \textit{e-mail}, impressão em rede e a Internet.
+O modelo de arquitetura cliente-servidor é é um modelo em que o sistema é organizado como um conjunto de serviços e servidores e clientes associados acessam e usam estes serviços. Os clientes geralmente precisam saber nome e serviços disponíveis que os servidores oferecem. No entanto, servidores não precisam saber nomes nem quantos clientes existem. Essencialmente, um cliente faz um pedido a um servidor e espera até receber uma resposta. \cite{pressman}. Exemplos de aplicativos de computador que usam o modelo cliente-servidor são \textit{e-mail}, impressão em rede e a Internet \cite{kurose}.
 
 
 \subsection{Arquitetura centrada em dados}
@@ -61,7 +61,7 @@ Contudo, o processo de criação de um banco de dados para o \textit{software} d
 \subsection{Modelo conceitual}
 \label{fundBDModelagem}
 
-A modelagem conceitual é utilizada para obter uma descrição abstrata, independente de implementação em computador, dos dados que serão armazenados no banco de dados. A técnica de modelagem de dados mais difundida e utilizada é a abordagem entidade-relacionamento (ER). \cite{heuser} Através dela, os modelos de dados são representados graficamente por um diagrama entidade-relacionamento (DER). A figura \ref{modelagemBDExemplol} apresenta um DER parcial presente na modelagem conceitual do sistema implementado.
+A modelagem conceitual é utilizada para obter uma descrição abstrata, independente de implementação em computador, dos dados que serão armazenados no banco de dados.A técnica de modelagem de dados mais difundida e utilizada é a abordagem entidade-relacionamento (ER) \cite{heuser}. Através dela, os modelos de dados são representados graficamente por um diagrama entidade-relacionamento que captura necessidades da organização independente de implementação (DER) \cite{peterChen1976}. A Figura \ref{modelagemBDExemplol} apresenta um DER parcial presente na modelagem conceitual do sistema implementado.
 
 \begin{figure}[h]
     \caption{Exemplo de modelagem conceitual.}
@@ -105,6 +105,7 @@ A Figura \ref{modelagemBDLogicoExemplol} apresenta a transformação do modelo E
     \legend{Fonte: Autor}
 \end{figure}
 
+O banco de dados utilizado na rede social foi o SGBD relacional MySQL. A ferramenta é livre, popular, robusta e amplamente utilizada em aplicações na Internet \footnote{\url{https://db-engines.com/en/ranking} Acesso em outubro de 2018} \cite{mysql}. O MySQL utiliza a linguagem SQL, \textit{Structured Query Language}, padrão dos bancos de dados relacionais para realizar consultas e atualizar informações nos dados armazenados pelo sistema \cite{sqlCompleteBook}.
 
 \section{Processo de desenvolvimento de \textit{software}}
 
@@ -162,7 +163,7 @@ Ao final de um \textit{Sprint}, a equipe apresenta as funcionalidades implementa
 
 O Kanban\footnote{A palavra é originário do mandarim e, em português, significa painel de controle.} torna-se cada vez mais uma maneira popular de visualizar e limitar o trabalho em andamento no desenvolvimento de \textit{softwares}. Além disso, sua utilização em processos existentes cataliza mudanças culturais e oferece agilidade nos negócios \cite{kanbanBook}.
 
-Dessa forma, seguindo os preceitos do manifesto ágil, o \textit{framework} Kanban fornece um sistema de gerenciamento de processo visual que auxilia na tomada de decisões sobre o que, quando e quanto produzir \cite{kanbanBook2}. Embora não seja obrigatório, a visualização do fluxo do processo com Kanban geralmente é feita através de um Kanban \text{board} (quadro Kanban). Este quadro, de caráter simples, apresenta um processo em fluxo da esquerda para a direita, onde as colunas representam a divisão de etapas deste e cada cartão, uma atividade a ser realizada. Em Engenharia de \textit{software}, geralmente, cada coluna representa uma etapa do desenvolvimento e o cartão, uma funcionalidade a ser implementada no sistema. A Figura \ref{kanbanFlow} apresenta um exeplo de quadro Kanban.
+Dessa forma, seguindo os preceitos do manifesto ágil, o \textit{framework} Kanban fornece um sistema de gerenciamento de processo visual que auxilia na tomada de decisões sobre o que, quando e quanto produzir \cite{kanbanBook2}. Embora não seja obrigatório, a visualização do fluxo do processo com Kanban geralmente é feita através de um Kanban \textit{board} (quadro Kanban). Este quadro, de caráter simples, apresenta um processo em fluxo da esquerda para a direita, onde as colunas representam a divisão de etapas deste e cada cartão, uma atividade a ser realizada. Em Engenharia de \textit{software}, geralmente, cada coluna representa uma etapa do desenvolvimento e o cartão, uma funcionalidade a ser implementada no sistema. A Figura \ref{kanbanFlow} apresenta um exeplo de quadro Kanban.
 
 \begin{figure}[ht]
     \caption{Fluxo do processo de desenvolvimento no Kanban.}
@@ -170,7 +171,7 @@ Dessa forma, seguindo os preceitos do manifesto ágil, o \textit{framework} Kanb
             \includegraphics[width=0.8\textwidth]{kanban.png}
         \end{center}
     \label{kanbanFlow}
-    \legend{Fonte: \url{https://bobsleanlearning.wordpress.com/2010/07/28/kanban-distilled/}, Acessado em novembro de 2018}
+    \legend{Fonte: \url{https://bobsleanlearning.wordpress.com/2010/07/28/kanban-distilled/}, Acessado em novembro de 2018.}
 \end{figure}
 
 Portanto, não é incomum no processo de desenvolvimento de sistemas, a combinação da metologia Scrum aliada ao Kanban. Assim, é possível usufruir do desenvolvimento ágil de maneira organizada, tornando capaz o entendimento geral dos processos (e como eles se comunicam) por parte dos \textit{stalkeholders}, isto é, as pessoas envolvidas neste, através do quadro Kanban durante as \textit{Sprints} e ao longo de todas as etapas de implementação do sistema.
