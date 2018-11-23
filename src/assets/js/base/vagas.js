@@ -58,9 +58,12 @@ $(document).ready(function() {
 
 		var min_sal = parseInt($('[name="salary_from"]').val());
 		var max_sal = parseInt($('[name="salary_to"]').val());
-		
+		var reset_max = max_sal;
+		var reset_min = min_sal;
 		var skip = false;
 		var has_append = false;
+
+		var count = 0;
 
 		$('.filter-list .item').remove();
 		$('.filter-list').hide();
@@ -151,48 +154,17 @@ $(document).ready(function() {
 		}
 
 		$('article[data-job]').hide();
+		
+		// CV, Historic and Prae Handling
 		$('article[data-job]').each(function() {
 			var el = $(this);
-
-			// Workload
-			if($.inArray(parseInt(el.attr("data-job-workload")), workload) > -1) {
-				if(!el.is(":visible")) el.show();
-			}
-
-			//  Shift
-			if($.inArray(parseInt(el.attr("data-job-shift")), shift) > -1) {
-				if(!el.is(":visible")) el.show();
-			}
-
-			// Category
-			var all_job_categories = (el.attr("data-job-category") + '').split(',');
-			for(var i = 0; i < all_job_categories.length; i ++) {
-				for(var j = 0; j < category.length; j++) {
-					if(all_job_categories[i] == category[j]) {
-						if(!el.is(":visible")) el.show();
-					}
-				}
-			}
-			
-			// Type
-			if($.inArray(parseInt(el.attr("data-job-type")), type) > -1) {
-				if(!el.is(":visible")) el.show();
-			}
-
-			// Salary
-			if(parseInt(el.attr("data-job-salary")) < min_sal) {
-				el.hide();
-			}
-			else if(parseInt(el.attr("data-job-salary")) > max_sal) {
-				el.hide();
-			}
 
 			if(cv == -1 ) {
 				// X - X
 				if(historic == -1) {
 					if(prae == -1 ) {
 						// no filters
-						//  do nothing()
+						el.show();
 					}
 					else if(prae == 0) {
 						// X - X - 0
@@ -410,6 +382,95 @@ $(document).ready(function() {
 			}
 		});
 
+		// Workload
+		$('article[data-job]:visible').each(function() {
+			var el = $(this);
+
+			if($.inArray(parseInt(el.attr("data-job-workload")), workload) == -1) {
+				if(workload.length > 0)
+					el.hide();
+			}
+		});
+
+		//  Shift
+		$('article[data-job]:visible').each(function() {
+			var el = $(this);
+
+			if($.inArray(parseInt(el.attr("data-job-shift")), shift) == -1) {
+				if(shift.length > 0)
+					el.hide();
+			}
+		});
+
+		// Type	
+		$('article[data-job]:visible').each(function() {
+			var el = $(this);
+
+			if($.inArray(parseInt(el.attr("data-job-type")), type) == -1) {
+				if(type.length > 0) {
+					el.hide();
+				}
+			}
+			else {
+				// Voluntario
+				if($.inArray(6, type) > -1) {
+					$('[name="salary_from"]').val('0,00');
+					min_sal = 0;
+					$('[name="salary_to"]').val('0,00');
+					max_sal = 0;
+				}
+			}
+		});
+
+		// Update salary 
+		min_sal = parseInt($($("article[data-job]:visible")[0]).attr("data-job-salary"));
+		max_sal = parseInt($($("article[data-job]:visible")[0]).attr("data-job-salary"));
+
+		$('article[data-job]:visible').each(function() {
+			var el = $(this);
+
+			if(parseInt(el.attr("data-job-salary")) < min_sal) {
+				min_sal = parseInt(el.attr("data-job-salary"));
+				$('[name="salary_from"]').val(min_sal + ',00');
+			}
+
+			if(parseInt(el.attr("data-job-salary")) > max_sal) {
+				max_sal = parseInt(el.attr("data-job-salary"));
+				$('[name="salary_to"]').val(max_sal + ',00');
+			}
+		});
+
+		// Salary
+		$('article[data-job]:visible').each(function() {
+			var el = $(this);
+
+			if(parseInt(el.attr("data-job-salary")) < min_sal) {
+				el.hide();
+			}
+			else if(parseInt(el.attr("data-job-salary")) > max_sal) {
+				el.hide();
+			}
+		});
+			
+		// Category
+		$('article[data-job]:visible').each(function() {
+			var el = $(this);
+
+			var show = false;
+			if(category.length > 0) {
+				var all_job_categories = (el.attr("data-job-category") + '').split(',');
+				
+				for(var i = 0; i < all_job_categories.length; i ++) {
+					for(var j = 0; j < category.length; j++) {
+						if(parseInt(all_job_categories[i]) == category[j]) {
+							show = true;
+						}
+					}
+				}
+				if(!show) el.hide();				
+			}			
+		});
+			
 		if(has_append) {
 			$('.filter-list').show();
 		}
