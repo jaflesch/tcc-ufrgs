@@ -17,6 +17,10 @@ class Job {
 	const MANHA = 1;
 	const TARDE = 2;
 	const NOITE = 3;
+	const MANHA_TARDE = 4;
+	const TARDE_NOITE = 5;
+	const MANHA_NOITE = 6;
+	const MANHA_TARDE_NOITE = 7;
 	
 	public static function getAll($order = "") {
 		$db = new DBConn();
