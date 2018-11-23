@@ -1,4 +1,7 @@
 $(document).ready(function() {
+	var min_sal = parseInt($('[name="salary_from"]').val());
+	var max_sal = parseInt($('[name="salary_to"]').val());
+
 	// Filter toggle
 	$('.show-filter, .hide-filter').click(function() {
 		if(!$('.filter-box').is(":animated")) {
@@ -16,11 +19,17 @@ $(document).ready(function() {
 
 	// Filter
 	$('.clear-search').click(function() {
-		$('.filter-list .item').remove();
+
+		min_sal = 0;
+		$('form').trigger("reset");
+		updateResults();
+		
+		$(this).blur();
+		// $('.filter-list .item').remove();
 		$('.filter-list').hide();
 	});
 
-	$('form').on("change, keyup", "input, select, textarea", function(e) {
+	$('form').on("change", "input, select, textarea", function(e) {
 		e.preventDefault();
 		var form = $('form').serializeArray();
 
@@ -56,8 +65,6 @@ $(document).ready(function() {
 		var prae = $('[name="is_prae"]:checked').val() == undefined ? -1 : parseInt($('[name="is_prae"]:checked').val());
 		var modality = $('[name="modality"]:checked').val() == undefined ? -1 : parseInt($('[name="modality"]:checked').val());
 
-		var min_sal = parseInt($('[name="salary_from"]').val());
-		var max_sal = parseInt($('[name="salary_to"]').val());
 		var reset_max = max_sal;
 		var reset_min = min_sal;
 		var skip = false;
@@ -429,14 +436,18 @@ $(document).ready(function() {
 
 		// Salary
 		//  se voluntario...
-		if($.inArray(6, type) > -1) {
+		if($.inArray(6, type) > -1 || type == "") {
 			min_sal = 0;
 		}
-		else min_sal = 400;
+		else {
+			min_sal = parseInt($('[name="salary_from"]').val());
+		}
+		max_sal = parseInt($('[name="salary_to"]').val());
 
 		$('article[data-job]:visible').each(function() {
 			var el = $(this);
 
+			console.log(el.attr("data-job-salary"), min_sal, max_sal);
 			if(parseInt(el.attr("data-job-salary")) < min_sal) {
 				el.hide();
 			}
@@ -515,7 +526,8 @@ $(document).ready(function() {
 			$('article[data-job]').show();
 		}
 
-		skip = false;
+		if($('.filter-list .list').children().length == 0 ) $('.filter-list').hide();
+
 		// Update results count
 		$('#jobs-count').text(parseInt($('article[data-job]:visible').length));
 	}
