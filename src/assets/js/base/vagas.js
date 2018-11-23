@@ -20,7 +20,7 @@ $(document).ready(function() {
 		$('.filter-list').hide();
 	});
 
-	$('form').on("change", "input, select, textarea", function(e) {
+	$('form').on("change, keyup", "input, select, textarea", function(e) {
 		e.preventDefault();
 		var form = $('form').serializeArray();
 
@@ -477,6 +477,34 @@ $(document).ready(function() {
 				}
 				if(!show) el.hide();				
 			}			
+		});
+
+		// Title	
+		$('article[data-job]:visible').each(function() {
+			var el = $(this);
+			var term = $('[name="title"]').val();
+
+			if(term != "") {
+				if(el.attr("data-job-title").toLowerCase().search(term.toLowerCase()) == -1) {
+					el.hide();
+				}
+			}
+		});
+
+		// Location	
+		$('article[data-job]:visible').each(function() {
+			var el = $(this);
+			var location = $('[name="location"]').val();
+			
+			if(location != "") {
+				if(
+					el.attr("data-job-location").toLowerCase().search(location.toLowerCase()) == -1 &&
+					el.attr("data-job-location-city").toLowerCase().search(location.toLowerCase()) == -1 &&
+					el.attr("data-job-location-state").toLowerCase().search(location.toLowerCase()) == -1
+				) {
+					el.hide();
+				}
+			}
 		});
 			
 		if(has_append) {
