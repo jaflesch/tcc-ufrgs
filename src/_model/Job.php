@@ -392,10 +392,11 @@ class Job {
 
 		foreach ($jobs as $job) {
 			$type[] = $job->type;
-			$salary[] = $job->salary;
 			$workload[] = $job->workload;
 			$shift[] = $job->shift;
 
+			if($job->salary > 0) $salary[] = $job->salary;
+			
 			$list = explode(",", $job->category_list);
 			foreach ($list as $l) {
 				$category[] = $l;

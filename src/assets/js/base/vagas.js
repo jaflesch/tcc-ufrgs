@@ -186,62 +186,239 @@ $(document).ready(function() {
 			else if(parseInt(el.attr("data-job-salary")) > max_sal) {
 				el.hide();
 			}
-			
-			// CV
-			if(parseInt(el.attr("data-job-cv")) == cv) {
-				if(!el.is(":visible")) {
-					el.show();
-					has_append = true;
-					skip = false;
-				}
-			}
-			else if(cv != -1) {
-				el.hide();
-				skip = false;
-			}
-			else {
-				skip = true;
-			}
 
-			// Historic
-			if(parseInt(el.attr("data-job-historico")) == historic) {
-				if(!el.is(":visible") && skip && !has_append) {
-					el.show();
-					has_append = true;
-					skip = false;
+			if(cv == -1 ) {
+				// X - X
+				if(historic == -1) {
+					if(prae == -1 ) {
+						// no filters
+						//  do nothing()
+					}
+					else if(prae == 0) {
+						// X - X - 0
+						if(parseInt(el.attr("data-job-prae")) == 0) {
+							el.show();
+							has_append = true;
+						}
+					}
+					else {
+						// X - X - 1
+						if(parseInt(el.attr("data-job-prae")) == 1) {
+							el.show();
+							has_append = true;
+						}
+					}
+				}
+				// X - 0
+				else if(historic == 0) {
+					if(prae == -1 ) {
+						// X - 0 - X
+						if(parseInt(el.attr("data-job-historico")) == 0) {
+							el.show();
+							has_append = true;
+						}
+					}
+					else if(prae == 0) {
+						// X - 0 - 0
+						if(parseInt(el.attr("data-job-historico")) == 0 && parseInt(el.attr("data-job-prae")) == 0) {
+							el.show();
+							has_append = true;
+						}
+					}
+					else {
+						// X - 0 - 1
+						if(parseInt(el.attr("data-job-historico")) == 0 && parseInt(el.attr("data-job-prae")) == 1) {
+							el.show();
+							has_append = true;
+						}
+					}
+				}
+				// X - 1 
+				else {
+					if(prae == -1 ) {
+						// X - 1 - X
+						if(parseInt(el.attr("data-job-historico")) == 1) {
+							el.show();
+							has_append = true;
+						}
+					}
+					else if(prae == 0) {
+						// X - 1 - 0
+						if(parseInt(el.attr("data-job-historico")) == 1 && parseInt(el.attr("data-job-prae")) == 0) {
+							el.show();
+							has_append = true;
+						}
+					}
+					else {
+						// X - 1 - 1
+						if(parseInt(el.attr("data-job-historico")) == 1 && parseInt(el.attr("data-job-prae")) == 1) {
+							el.show();
+							has_append = true;
+						}
+					}
 				}
 			}
-			else if(historic != -1) {
-				el.hide();
-				skip = false;
-			} 
-			else {
-				skip = true;
-			}
-
-			// PRAE
-			if(parseInt(el.attr("data-job-prae")) == prae) {
-				if(!el.is(":visible") && skip && !has_append) {
-					el.show();
-					has_append = true;
+			else if(cv == 0) {
+				// 0 -
+				if(historic == -1) {
+					// 0 - X
+					if(prae == -1 ) {
+						// 0 - X - X
+						if(parseInt(el.attr("data-job-cv")) == 0) {
+							el.show();
+							has_append = true;
+						}
+					}
+					else if(prae == 0) {
+						// 0 - X - 0
+						if(parseInt(el.attr("data-job-cv")) == 0 && parseInt(el.attr("data-job-prae")) == 0) {
+							el.show();
+							has_append = true;
+						}
+					}
+					else {
+						// 0 - X - 1
+						if(parseInt(el.attr("data-job-cv")) == 0 && parseInt(el.attr("data-job-prae")) == 1) {
+							el.show();
+							has_append = true;
+						}
+					}
+				}
+				// 0 - 0
+				else if(historic == 0) {
+					if(prae == -1 ) {
+						// 0 - 0 - X
+						if(parseInt(el.attr("data-job-cv")) == 0 && parseInt(el.attr("data-job-historico")) == 0) {
+							el.show();
+							has_append = true;
+						}
+					}
+					else if(prae == 0) {
+						// 0 - 0 - 0
+						if(parseInt(el.attr("data-job-cv")) == 0 && parseInt(el.attr("data-job-historico")) == 0 && parseInt(el.attr("data-job-prae")) == 0) {
+							el.show();
+							has_append = true;
+						}
+					}
+					else {
+						// 0 - 0 - 1
+						if(parseInt(el.attr("data-job-cv")) == 0 && parseInt(el.attr("data-job-historico")) == 0 && parseInt(el.attr("data-job-prae")) == 1) {
+							el.show();
+							has_append = true;
+						}
+					}
+				}
+				// 0 - 1 
+				else {
+					if(prae == -1 ) {
+						// 0 - 1 - X
+						if(parseInt(el.attr("data-job-cv")) == 0 && parseInt(el.attr("data-job-historico")) == 1) {
+							el.show();
+							has_append = true;
+						}
+					}
+					else if(prae == 0) {
+						// 0 - 1 - 0
+						if(parseInt(el.attr("data-job-cv")) == 0 && parseInt(el.attr("data-job-historico")) == 1 && parseInt(el.attr("data-job-prae")) == 0) {
+							el.show();
+							has_append = true;
+						}
+					}
+					else {
+						// 0 - 1 - 1
+						if(parseInt(el.attr("data-job-cv")) == 0 && parseInt(el.attr("data-job-historico")) == 1 && parseInt(el.attr("data-job-prae")) == 1) {
+							el.show();
+							has_append = true;
+						}
+					}
 				}
 			}
-			else if(prae != -1) {
-				el.hide();
-			}
 			else {
-				skip = true;
+				// 1 -
+				if(historic == -1) {
+					// 1 - X
+					if(prae == -1 ) {
+						// 1 - X - X
+						if(parseInt(el.attr("data-job-cv")) == 1) {
+							el.show();
+							has_append = true;
+						}
+					}
+					else if(prae == 0) {
+						// 1 - X - 0
+						if(parseInt(el.attr("data-job-cv")) == 1 && parseInt(el.attr("data-job-prae")) == 0) {
+							el.show();
+							has_append = true;
+						}
+					}
+					else {
+						// 1 - X - 1
+						if(parseInt(el.attr("data-job-cv")) == 1 && parseInt(el.attr("data-job-prae")) == 1) {
+							el.show();
+							has_append = true;
+						}
+					}
+				}
+				// 0 - 0
+				else if(historic == 0) {
+					if(prae == -1 ) {
+						// 1 - 0 - X
+						if(parseInt(el.attr("data-job-cv")) == 1 && parseInt(el.attr("data-job-historico")) == 0) {
+							el.show();
+							has_append = true;
+						}
+					}
+					else if(prae == 0) {
+						// 1 - 0 - 0
+						if(parseInt(el.attr("data-job-cv")) == 1 && parseInt(el.attr("data-job-historico")) == 0 && parseInt(el.attr("data-job-prae")) == 0) {
+							el.show();
+							has_append = true;
+						}
+					}
+					else {
+						// 1 - 0 - 1
+						if(parseInt(el.attr("data-job-cv")) == 1 && parseInt(el.attr("data-job-historico")) == 0 && parseInt(el.attr("data-job-prae")) == 1) {
+							el.show();
+							has_append = true;
+						}
+					}
+				}
+				// 0 - 1 
+				else {
+					if(prae == -1 ) {
+						// 1 - 1 - X
+						if(parseInt(el.attr("data-job-cv")) == 1 && parseInt(el.attr("data-job-historico")) == 1) {
+							el.show();
+							has_append = true;
+						}
+					}
+					else if(prae == 0) {
+						// 1 - 1 - 0
+						if(parseInt(el.attr("data-job-cv")) == 1 && parseInt(el.attr("data-job-historico")) == 1 && parseInt(el.attr("data-job-prae")) == 0) {
+							el.show();
+							has_append = true;
+						}
+					}
+					else {
+						// 1 - 1 - 1
+						if(parseInt(el.attr("data-job-cv")) == 1 && parseInt(el.attr("data-job-historico")) == 1 && parseInt(el.attr("data-job-prae")) == 1) {
+							el.show();
+							has_append = true;
+						}
+					}
+				}
 			}
 		});
 
 		if(has_append) {
-			$('.filter-list').show()
+			$('.filter-list').show();
 		}
 		else {
 			// Nenhum resultado para os filtros.. então exibe todos
 			$('article[data-job]').show();
 		}
 
+		skip = false;
 		// Update results count
 		$('#jobs-count').text(parseInt($('article[data-job]:visible').length));
 	}

@@ -36,6 +36,15 @@
 							<span class="checkmark"></span>
 						</label>
 					{% endfor %}
+				</div>
+				<div>
+					<h2>Turnos</h2>
+					{% for shift in filters.shift %}
+						<label class="custom-checkbox">{{ shift.label }}
+							<input type="checkbox" name="shift" value="{{ shift.value }}" data-label="{{ shift.label }}">
+							<span class="checkmark"></span>
+						</label>
+					{% endfor %}
 					
 					<h2>Modalidade</h2>
 					<label class="custom-radio">À distância
@@ -46,15 +55,6 @@
 						<input type="radio" name="modality" value="0" checked="">
 						<span class="checkmark"></span>
 					</label>
-				</div>
-				<div>
-					<h2>Turnos</h2>
-					{% for shift in filters.shift %}
-						<label class="custom-checkbox">{{ shift.label }}
-							<input type="checkbox" name="shift" value="{{ shift.value }}" data-label="{{ shift.label }}">
-							<span class="checkmark"></span>
-						</label>
-					{% endfor %}
 					
 					<h2>Currículo</h2>
 					<label class="custom-radio">Todos
