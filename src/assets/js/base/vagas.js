@@ -153,6 +153,20 @@ $(document).ready(function() {
 			}
 		}
 
+		// Modalidade
+		if(modality != -1) {
+			if(modality == 1) {
+				var val = 1;
+				var label = "À distância";
+				appendFilter("Modalide", label, "modality", val);
+			}
+			else {
+				var val = 0;
+				var label = "Presencial";
+				appendFilter("Modalide", label, "modality", val);
+			}
+		}
+
 		$('article[data-job]').hide();
 		
 		// CV, Historic and Prae Handling
@@ -411,36 +425,15 @@ $(document).ready(function() {
 					el.hide();
 				}
 			}
-			else {
-				// Voluntario
-				if($.inArray(6, type) > -1) {
-					$('[name="salary_from"]').val('0,00');
-					min_sal = 0;
-					$('[name="salary_to"]').val('0,00');
-					max_sal = 0;
-				}
-			}
-		});
-
-		// Update salary 
-		min_sal = parseInt($($("article[data-job]:visible")[0]).attr("data-job-salary"));
-		max_sal = parseInt($($("article[data-job]:visible")[0]).attr("data-job-salary"));
-
-		$('article[data-job]:visible').each(function() {
-			var el = $(this);
-
-			if(parseInt(el.attr("data-job-salary")) < min_sal) {
-				min_sal = parseInt(el.attr("data-job-salary"));
-				$('[name="salary_from"]').val(min_sal + ',00');
-			}
-
-			if(parseInt(el.attr("data-job-salary")) > max_sal) {
-				max_sal = parseInt(el.attr("data-job-salary"));
-				$('[name="salary_to"]').val(max_sal + ',00');
-			}
 		});
 
 		// Salary
+		//  se voluntario...
+		if($.inArray(6, type) > -1) {
+			min_sal = 0;
+		}
+		else min_sal = 400;
+
 		$('article[data-job]:visible').each(function() {
 			var el = $(this);
 
@@ -450,8 +443,23 @@ $(document).ready(function() {
 			else if(parseInt(el.attr("data-job-salary")) > max_sal) {
 				el.hide();
 			}
+			has_append = true;
 		});
+
+		// Modality	
+		$('article[data-job]:visible').each(function() {
+			var el = $(this);
+			var el_modality = parseInt(el.attr("data-job-modality"));
 			
+			if(modality != -1) {
+				has_append = true;
+				
+				if(el_modality != modality) {
+					el.hide();
+				}
+			}				
+		});
+		
 		// Category
 		$('article[data-job]:visible').each(function() {
 			var el = $(this);
