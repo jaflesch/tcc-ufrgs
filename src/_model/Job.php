@@ -360,7 +360,7 @@ class Job {
 				$d->is_favorite = self::checkIfFavorite($d->favorite_id);
 
 				if($d->category_list != "") {
-					$result = $db->query("SELECT id, title FROM job_category WHERE id IN ({$d->category_list}) AND active = 1", true);
+					$result = $db->query("SELECT id, title, color FROM job_category WHERE id IN ({$d->category_list}) AND active = 1", true);
 					$d->category_list_array = $result;
 					$d->skill_array = explode(",", $d->skills);
 					$d->type_string = self::getType($d->type);
@@ -454,9 +454,13 @@ class Job {
 
 	private static function getShift($int) {
 		switch ($int) {
-			case self::MANHA: 	return "Manhã";
-			case self::TARDE: 	return "Tarde";
-			case self::NOITE: 	return "Noite";
+			case self::MANHA: 				return "Manhã";
+			case self::TARDE: 				return "Tarde";
+			case self::NOITE: 				return "Noite";
+			case self::MANHA_TARDE: 		return "Manhã / Tarde";
+			case self::MANHA_NOITE: 		return "Manhã / Noite";
+			case self::TARDE_NOITE: 		return "Tarde / Noite";
+			case self::MANHA_TARDE_NOITE: 	return "Manhã / Tarde / Noite";
 			default: return "Indefinido";
 		}
 	}

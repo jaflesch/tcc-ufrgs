@@ -61,7 +61,15 @@
 						</div>
 						<div class="category">
 							{% for category in job.category_list_array %}
-							<span>{{ category.title }}</span>
+								{% if job.category_list_array|length < 4 %}
+									<span class="{{ category.color }}">{{ category.title }}</span>
+								{% else %}
+									{% if loop.index == 3 %}
+										<span>+{{ job.category_list_array|length - 2 }} Áreas</span>
+									{% elseif loop.index < 3 %}
+										<span class="{{ category.color }}">{{ category.title }}</span>
+									{% endif %}
+								{% endif %}
 							{% endfor %}
 						</div>
 						<p class="description">
