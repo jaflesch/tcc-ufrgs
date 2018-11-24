@@ -57,18 +57,43 @@
 		
 		span { 
 			@include disp-ib();
-			@include colors(transparent, #555);
 			@include border-radius(2px);
 			@include transition();
+			@include colors(transparent, #777);
 			font-size: 13px;
 			padding: 4px 8px;
 			margin: 0 2.5px;
-			border: 1px solid #555;
-
-			&:hover { 
-				color: $primary-color;
-				border: 1px solid $primary-color;
+			border: 1px dashed #999;
+			
+			&.blue {
+				@include colors(rgba($primary-color,0.1), $primary-color);
+				border: 1px dashed $primary-color;
 			}
+
+			&.red {
+				@include colors(rgba(#f44336,0.1), #f44336);
+				border: 1px dashed #f44336;
+			}
+
+			&.green {
+				@include colors(rgba(#4caf50,0.1), #4caf50);
+				border: 1px dashed #4caf50;
+			}
+
+			&.orange {
+				@include colors(rgba(#ff9800,0.1), #ff9800);
+				border: 1px dashed #ff9800;
+			}
+
+			&.purple {
+				@include colors(rgba(#9c27b0,0.1), #9c27b0);
+				border: 1px dashed #9c27b0;
+			}
+
+			&.pink {
+				@include colors(rgba(#e91e63,0.1), #e91e63);
+				border: 1px dashed #e91e63;
+			}			
 		}
 	}	
 	.author {

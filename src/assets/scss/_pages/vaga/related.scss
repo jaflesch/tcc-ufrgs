@@ -43,6 +43,7 @@
 		line-height: $avatar-size;
 		margin-right: 10px;
 		overflow: hidden;
+		flex-shrink: 0;
 
 		img { max-width: 100%; }
 	}

@@ -29,5 +29,6 @@
 		line-height: $avatar-size;
 		margin-right: 10px;
 		overflow: hidden;
+		flex-shrink: 0;
 	}	
 }

@@ -373,7 +373,7 @@ class Job {
 			$mixed->is_favorite = self::checkIfFavorite($mixed->favorite_id);
 
 			if($mixed->category_list != "") {
-				$result = $db->query("SELECT id, title FROM job_category WHERE id IN ({$mixed->category_list}) AND active = 1", true);
+				$result = $db->query("SELECT id, title, color FROM job_category WHERE id IN ({$mixed->category_list}) AND active = 1", true);
 				$mixed->category_list_array = $result;
 				$mixed->skill_array = explode(",", $mixed->skills);
 				$mixed->type_string = self::getType($mixed->type);

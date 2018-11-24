@@ -16,7 +16,7 @@
 			<h2 class="title">{{ job.title }}</h2>
 			<div class="options">
 				<a href="#" class="favorite-bookmark {{ job.is_favorite ? 'active' : '' }}" title="{{ job.is_favorite ? 'Desfavoritar' : 'Favoritar' }} vaga">
-					<span class="fa fa-bookmark"></span>
+					<span class="fa fa-star"></span>
 				</a>
 				<a href="#" data-toggle="dropdown" class="dropdown-toggle btn-more-options">
 					<span class="fa fa-ellipsis-v"></span>
@@ -60,7 +60,7 @@
 			</div>
 			<div class="category">
 				{% for category in job.category_list_array %}
-				<span>{{ category.title }}</span>
+				<span class="{{ category.color }}">{{ category.title }}</span>
 				{% endfor %}
 			</div>
 			<div class="author">

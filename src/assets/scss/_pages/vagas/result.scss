@@ -60,7 +60,8 @@
 	.options {
 		$size: 28px;
 		font-size: 14px;
-		
+		flex-shrink: 0;
+
 		a {
 			@include disp-ib();
 			@include elipse();
@@ -70,10 +71,14 @@
 			text-align: center;
 			cursor: pointer;
 
-			&:hover { @include colors(#ddd, #333); }
-			&:focus { @include colors($primary-color, #fff !important); }
-
-			&.active { color: $primary-color; }
+			&:hover, &:focus { @include colors(#ddd, #333); }
+			
+			&.favorite-job.active {
+				span.fa-star-o:before {
+					content: "\f005";
+					color: $primary-color;
+				}
+			}
 		}		
 	}
 
