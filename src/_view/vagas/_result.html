@@ -3,6 +3,7 @@
 		{% if jobs is not empty %}
 			{% for job in jobs %}
 			<article 
+				class="{{ loop.index > 24 ? 'hide-count' : '' }}"
 				data-job = "{{ job.id }}"
 				data-job-title = "{{ job.title }}"
 				data-job-type = "{{ job.type }}"
@@ -100,13 +101,18 @@
 			{% endfor %}
 		{% else %}
 			<div class="col-md-12">
-				<p>Nenhuma vaga {{ route[1] == 'favoritos' ? 'favorita' : '' }} encontrada.</p>
+				<p class="no-result">Nenhuma vaga {{ route[1] == 'favoritos' ? 'favorita' : '' }} encontrada.</p>
 			</div>
 		{% endif%}
+		<div class="col-md-12">
+			<p class="no-result-box" style="display:{{ jobs is empty ? '' : 'none' }};">
+				Nenhuma vaga {{ route[1] == 'favoritos' ? 'favorita' : '' }} encontrada.
+			</p>
+		</div>
 	</div>
-	{% if jobs|length > 9 %}
+	{% if jobs|length > 24 %}
 	<p class="see-more">
-		<a href="#" title="Visualizar mais vagas">Visualizar mais vagas <span class="fa fa-angle-down"></span></a>		
+		<a href="#" title="Visualizar mais vagas">Visualizar todas as vagas <span class="fa fa-angle-down"></span></a>		
 	</p>
 	{% endif %}
 </section>

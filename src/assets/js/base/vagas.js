@@ -65,15 +65,16 @@ $(document).ready(function() {
 		var prae = $('[name="is_prae"]:checked').val() == undefined ? -1 : parseInt($('[name="is_prae"]:checked').val());
 		var modality = $('[name="modality"]:checked').val() == undefined ? -1 : parseInt($('[name="modality"]:checked').val());
 
+		//  reset
 		var reset_max = max_sal;
 		var reset_min = min_sal;
 		var skip = false;
 		var has_append = false;
-
 		var count = 0;
 
 		$('.filter-list .item').remove();
 		$('.filter-list').hide();
+		$('article[data-job]').removeClass('hide-count');
 
 		// Shift
 		for(var i = 0; i < $('[name="shift"]').length; i++) {
@@ -447,7 +448,6 @@ $(document).ready(function() {
 		$('article[data-job]:visible').each(function() {
 			var el = $(this);
 
-			console.log(el.attr("data-job-salary"), min_sal, max_sal);
 			if(parseInt(el.attr("data-job-salary")) < min_sal) {
 				el.hide();
 			}
@@ -529,7 +529,30 @@ $(document).ready(function() {
 		if($('.filter-list .list').children().length == 0 ) $('.filter-list').hide();
 
 		// Update results count
-		$('#jobs-count').text(parseInt($('article[data-job]:visible').length));
+		var count = $('article[data-job]:visible').length;
+		$('#jobs-count').text(parseInt(count));
+		
+		if(count == 0) {
+			$('.no-result-box').show();
+		}
+		else {
+			$('.no-result-box').hide();
+		}
+		if(count <= 24 ) {
+			$('.see-more').hide();
+		}
+		else {
+			$('.see-more').show();	
+			var i = 1;
+
+			$('article[data-job]:visible').each(function() {
+				var el = $(this);
+
+				if(i > 24) el.addClass('hide-count');
+
+				i++;
+			});
+		}
 	}
 
 	function appendFilter(title, value, name, val) {
@@ -572,4 +595,12 @@ $(document).ready(function() {
 			data: { id : el.attr("data-job") }
 		})
 	})
+
+	// Show all results 
+	$('body').on("click", ".see-more", function(e) {
+		e.preventDefault();
+		$('article[data-job]').removeClass('hide-count');
+
+		$(this).hide();
+	});
 });

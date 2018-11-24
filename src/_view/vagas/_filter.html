@@ -131,7 +131,7 @@
 
 	<div class="order-limit">
 		{% if jobs|length > 0 %}
-			<p>Exibindo <span id="jobs-count">{{ jobs|length > 9 ? '9' : jobs|length }}</span> de {{ jobs|length }} vagas encontradas.</p>
+			<p>Exibindo <span id="jobs-count">{{ jobs|length > 24 ? '24' : jobs|length }}</span> de {{ jobs|length }} vagas encontradas.</p>
 		{% else %}
 			<p>Nenhuma vaga encontrada</p>
 		{% endif %}

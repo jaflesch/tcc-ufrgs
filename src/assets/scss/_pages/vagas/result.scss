@@ -9,6 +9,8 @@
 	article {
 		flex: 0 0 33.3333%;
 		margin-bottom: 20px;
+
+		&.hide-count { display: none !important; }
 	}	
 	.job-card { 
 		@include transition();
@@ -210,6 +212,15 @@
 			color: darken($primary-color, 10%);
 			border: 1px solid darken($primary-color, 10%);
 		}
+	}
+
+	.no-result-box {
+		font: {
+			size: 18px;
+			weight: bold;
+		}
+		color: #bcbcbc;
+		margin: 15px 0;
 	}
 
 
