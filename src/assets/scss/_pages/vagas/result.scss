@@ -68,8 +68,9 @@
 	.options {
 		$size: 28px;
 		font-size: 14px;
-		flex-shrink: 0;
 		position: relative;
+		flex-shrink: 0;
+		align-self: start;
 
 		> a {
 			@include disp-ib();

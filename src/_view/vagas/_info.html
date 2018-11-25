@@ -32,7 +32,7 @@
 							<span class="fa fa-check-circle" style="margin-right:3px"></span>Candidatado
 						</a>
 					</li>
-					{% else %}
+					{% elseif not job.is_expired %}
 					<li><a href="{{ path.root }}/vagas/candidatar/" class="apply-job-link" data-job="{{ job.id }}">Candidatar-se</a></li>
 					{% endif %}
 				</ul>				

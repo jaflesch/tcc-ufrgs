@@ -96,7 +96,7 @@ class Job {
 		$jobs = $db->query("
 			SELECT 
 				j.*, f.id favorite_id, ja.id apply, ja.id_user apply_user, 
-				u.name author_name, u.id author_id, u.login author_login, u.avatar author_avatar, u.email author_email
+				u.name author_name, u.id author_id, u.login author_login, u.avatar author_avatar, u.email author_email,
 				u.born_in_city author_born_in_city, u.born_in_state author_born_in_state, 
 				u.live_in_city author_live_in_city, u.live_in_state author_live_in_state,
 				uj.title author_job_title, uj.company author_job_company, 
@@ -375,7 +375,7 @@ class Job {
 		else {
 			$mixed->slug = self::setSlug($mixed->title);
 			$mixed->is_favorite = self::checkIfFavorite($mixed->favorite_id);
-			$mixed->is_expired = self::checkIfExpired($d->date_start);
+			$mixed->is_expired = self::checkIfExpired($mixed->date_start);
 
 			if($mixed->category_list != "") {
 				$result = $db->query("SELECT id, title, color FROM job_category WHERE id IN ({$mixed->category_list}) AND active = 1", true);

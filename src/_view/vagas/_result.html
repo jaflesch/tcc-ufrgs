@@ -32,14 +32,14 @@
 					</p>
 					<div class="header">
 						<h2 class="title {{ job.is_expired ? 'expired' : '' }}">
-							{% if job.is_expired %}<span class="fa fa-warning"></span>{% endif %}
+							{% if job.is_expired %}<span class="fa fa-warning" data-toggle="tooltip" title="Vaga expirada"></span>{% endif %}
 							{{ job.title }}
 						</h2>
 						<div class="options">
-							<a href="#" class="favorite-job {{ job.is_favorite ? 'active' : '' }}" title="{{ job.is_favorite ? 'Desfavoritar' : 'Favoritar' }} vaga">
+							<a href="#" class="favorite-job {{ job.is_favorite ? 'active' : '' }}" data-toggle="tooltip" title="{{ job.is_favorite ? 'Desfavoritar' : 'Favoritar' }} vaga">
 								<span class="fa fa-star-o"></span>
 							</a>
-							<a href="#" data-toggle="dropdown" class="dropdown-toggle btn-more-options">
+							<a href="#" data-toggle="dropdown" class="dropdown-toggle btn-more-options" title="Mais opções" data-tooltip="true">
 								<span class="fa fa-ellipsis-v" role="link"></span>
 							</a>
 							<ul class="dropdown-menu">
@@ -53,7 +53,7 @@
 										<span class="fa fa-check-circle" style="margin-right:3px"></span>Candidatado
 									</a>
 								</li>
-								{% else %}
+								{% elseif not job.is_expired %}
 								<li><a href="{{ path.root }}/vagas/candidatar/" class="apply-job-link" data-job="{{ job.id }}">Candidatar-se</a></li>
 								{% endif %}
 								<li><a href="{{ path.root }}/vagas/sobre/{{ job.id }}/{{ job.slug }}" >Ver mais</a></li>
@@ -105,13 +105,19 @@
 						</p>
 					</div>
 					<div class="lower-body">
-						<h3 class="salary">R$ {{ job.salary }},00</h3>
+						<h3 class="salary">
+							{% if job.salary == 0 %}
+								Voluntária
+							{% else %}
+								R$ {{ job.salary }},00
+							{% endif %}
+						</h3>
 						<h3 class="schedule"><span class="fa fa-clock-o"></span>{{ job.workload }}h semanais</h3>
 					</div>
 					<div class="bottom">
 						{% if job.apply is not empty and user.id == job.apply_user %}
 						<a role="button" class="applied cta"><span class="fa fa-check-circle"></span> Candidatado!</a>
-						{% else %}
+						{% elseif not job.is_expired %}
 						<a href="{{ path.root }}/vagas/candidatar/" data-job="{{ job.id }}" class="apply cta">Candidatar-se</a>
 						{% endif %}
 						<a href="{{ path.root }}/vagas/sobre/{{ job.id }}/{{ job.slug }}" class="recommend cta">Ver mais</a>
