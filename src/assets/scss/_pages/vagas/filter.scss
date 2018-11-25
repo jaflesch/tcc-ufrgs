@@ -76,9 +76,10 @@
 
 		.item {
 			@include disp-ib();
+			background: #fafafa;
 			position: relative;
 			padding: 5px 30px 5px 10px;
-			margin: 0 2.5px;
+			margin: 5px 2.5px;
 			box-shadow: 0 0 2px rgba(#000, .15);
 		}
 
