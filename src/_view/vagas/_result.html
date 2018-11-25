@@ -36,9 +36,26 @@
 							<a href="#" class="favorite-job {{ job.is_favorite ? 'active' : '' }}" title="{{ job.is_favorite ? 'Desfavoritar' : 'Favoritar' }} vaga">
 								<span class="fa fa-star-o"></span>
 							</a>
-							<a href="#">
+							<a href="#" data-toggle="dropdown" class="dropdown-toggle btn-more-options">
 								<span class="fa fa-ellipsis-v" role="link"></span>
 							</a>
+							<ul class="dropdown-menu">
+								<li><a href="#" class="favorite-job" data-user="{{ job.id_author }}" class="favorite-job">{{ job.is_favorite ? 'Desfavoritar' : 'Favoritar' }}</a></li>
+								{% if user.id == job.id_author %}
+								<li><a href="#" class="edit-job">Editar</a></li>
+								<li><a href="#" class="delete-job">Excluir vaga</a></li>
+								{% elseif job.apply is not empty and user.id == job.apply_user %}
+								<li>
+									<a href="{{ path.root }}/vagas/candidatar/" class="apply-job-link" data-job="{{ job.id }}">
+										<span class="fa fa-check-circle" style="margin-right:3px"></span>Candidatado
+									</a>
+								</li>
+								{% else %}
+								<li><a href="{{ path.root }}/vagas/candidatar/" class="apply-job-link" data-job="{{ job.id }}">Candidatar-se</a></li>
+								{% endif %}
+								<li><a href="{{ path.root }}/vagas/sobre/{{ job.id }}/{{ job.slug }}" >Ver mais</a></li>
+								<li><a href="mailto:{{ job.author_email }}" >Enviar e-mail para autor</a></li>
+							</ul>			
 						</div>
 					</div>
 					<div class="upper-body">

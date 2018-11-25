@@ -61,8 +61,9 @@
 		$size: 28px;
 		font-size: 14px;
 		flex-shrink: 0;
+		position: relative;
 
-		a {
+		> a {
 			@include disp-ib();
 			@include elipse();
 			@include size($size, $size);
@@ -80,6 +81,24 @@
 				}
 			}
 		}		
+
+		.dropdown-menu { 
+			top: calc(100% + 10px);
+			right: -5px; 
+			left: auto;
+
+			&:before {
+				@include size(16px, 16px);
+				content: '';
+				background: #fff;
+			    position: absolute;
+			    top: -9px;
+			    right: 10px;
+			    border-left: 1px solid #ccc;
+			    border-top: 1px solid #ccc;
+				transform: rotateZ(45deg);
+			}
+		}
 	}
 
 	.upper-body { margin: 0 0 20px; }

@@ -29,7 +29,7 @@ class Job {
 
 		if($order == "_custom_most_rated") {
 			$result = $db->query("
-				SELECT count(rj.id_job) AS recommend_total, j.*, f.id favorite_id, ja.id apply, ja.id_user apply_user
+				SELECT count(rj.id_job) AS recommend_total, j.*, f.id favorite_id, ja.id apply, ja.id_user apply_user, u.email author_email 
 				FROM job j
 				LEFT JOIN recommendation_job rj ON rj.id_job = j.id AND rj.active = 1
 				LEFT JOIN 
@@ -38,6 +38,7 @@ class Job {
 					f.active = 1 AND
 					f.id_user = {$id_user}
 				LEFT JOIN job_apply ja ON ja.id_job = j.id AND ja.id_user = {$id_user} AND ja.active = 1
+				INNER JOIN user u ON u.id = j.id_author
 				WHERE j.active = 1
 				GROUP BY j.id
 				ORDER BY recommend_total DESC
@@ -45,7 +46,7 @@ class Job {
 		}
 		else {
 			$result = $db->query("
-				SELECT j.*, f.id favorite_id, ja.id apply, ja.id_user apply_user
+				SELECT j.*, f.id favorite_id, ja.id apply, ja.id_user apply_user, u.email author_email 
 				FROM job j
 				LEFT JOIN 
 					favorite f ON j.id = f.id_object AND
@@ -53,6 +54,7 @@ class Job {
 					f.active = 1 AND
 					f.id_user = {$id_user}
 				LEFT JOIN job_apply ja ON ja.id_job = j.id AND ja.id_user = {$id_user} AND ja.active = 1
+				INNER JOIN user u ON u.id = j.id_author
 				WHERE j.active = 1
 				ORDER BY {$order}
 			", TRUE);			
@@ -72,13 +74,14 @@ class Job {
 		$id_user = Auth::id();
 
 		$result = $db->query("
-			SELECT j.*, f.id favorite_id 
+			SELECT j.*, f.id favorite_id, u.email author_email 
 			FROM job j
 			INNER JOIN 
 				favorite f ON j.id = f.id_object AND
 				f.type = 1 AND
 				f.active = 1 AND
 				f.id_user = {$id_user}
+			INNER JOIN user u ON u.id = j.id_author
 			WHERE j.active = 1
 			ORDER BY j.date_start, f.datetime DESC, title
 		", true);
@@ -93,7 +96,7 @@ class Job {
 		$jobs = $db->query("
 			SELECT 
 				j.*, f.id favorite_id, ja.id apply, ja.id_user apply_user, 
-				u.name author_name, u.id author_id, u.login author_login, u.avatar author_avatar,
+				u.name author_name, u.id author_id, u.login author_login, u.avatar author_avatar, u.email author_email
 				u.born_in_city author_born_in_city, u.born_in_state author_born_in_state, 
 				u.live_in_city author_live_in_city, u.live_in_state author_live_in_state,
 				uj.title author_job_title, uj.company author_job_company, 
