@@ -51,11 +51,19 @@
 	}
 	.title {
 		font: {
-			size: 18px;
+			size: 16px;
 		}
 		color: #000;
+		line-height: 125%;
 		margin: 0;
 		flex-grow: 10;
+		
+		&.expired { color: #999; }
+		
+		.fa { 
+			color: #f00; 
+			margin-right: 3px;
+		}
 	}
 	.options {
 		$size: 28px;

@@ -361,6 +361,7 @@ class Job {
 			foreach ($mixed as $d) {
 				$d->slug = self::setSlug($d->title);
 				$d->is_favorite = self::checkIfFavorite($d->favorite_id);
+				$d->is_expired = self::checkIfExpired($d->date_start);
 
 				if($d->category_list != "") {
 					$result = $db->query("SELECT id, title, color FROM job_category WHERE id IN ({$d->category_list}) AND active = 1", true);
@@ -374,6 +375,7 @@ class Job {
 		else {
 			$mixed->slug = self::setSlug($mixed->title);
 			$mixed->is_favorite = self::checkIfFavorite($mixed->favorite_id);
+			$mixed->is_expired = self::checkIfExpired($d->date_start);
 
 			if($mixed->category_list != "") {
 				$result = $db->query("SELECT id, title, color FROM job_category WHERE id IN ({$mixed->category_list}) AND active = 1", true);
@@ -483,5 +485,15 @@ class Job {
 
 	private static function checkIfFavorite($id) {
 		return $id !== NULL;
+	}
+
+	private static function checkIfExpired($date) {
+		// if job->date - date(today) > 6 months
+		$datetime1 = date_create($date);
+		$datetime2 = date_create(date('Y-m-d'));
+
+		$interval = date_diff($datetime1, $datetime2);
+
+		return $interval->format('%m') > 6;
 	}
 }

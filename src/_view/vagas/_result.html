@@ -31,7 +31,10 @@
 						<span class="close">&times;</span>
 					</p>
 					<div class="header">
-						<h2 class="title">{{ job.title }}</h2>
+						<h2 class="title {{ job.is_expired ? 'expired' : '' }}">
+							{% if job.is_expired %}<span class="fa fa-warning"></span>{% endif %}
+							{{ job.title }}
+						</h2>
 						<div class="options">
 							<a href="#" class="favorite-job {{ job.is_favorite ? 'active' : '' }}" title="{{ job.is_favorite ? 'Desfavoritar' : 'Favoritar' }} vaga">
 								<span class="fa fa-star-o"></span>
