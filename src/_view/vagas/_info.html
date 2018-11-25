@@ -15,10 +15,10 @@
 		<div class="header">
 			<h2 class="title">{{ job.title }}</h2>
 			<div class="options">
-				<a href="#" class="favorite-bookmark {{ job.is_favorite ? 'active' : '' }}" title="{{ job.is_favorite ? 'Desfavoritar' : 'Favoritar' }} vaga">
+				<a href="#" class="favorite-bookmark {{ job.is_favorite ? 'active' : '' }}" title="{{ job.is_favorite ? 'Desfavoritar' : 'Favoritar' }} vaga" data-toggle="tooltip">
 					<span class="fa fa-star"></span>
 				</a>
-				<a href="#" data-toggle="dropdown" class="dropdown-toggle btn-more-options">
+				<a href="#" data-toggle="dropdown" class="dropdown-toggle btn-more-options" data-tooltip="true" title="Mais opções">
 					<span class="fa fa-ellipsis-v"></span>
 				</a>
 				<ul class="dropdown-menu">
@@ -73,11 +73,11 @@
 						{% endif %}
 						<img src="{{ path.img }}/profile/{{ avatar }}" alt="Foto de {{ job.author_name }}" title="Foto de {{ job.author_name }}" class="profile-default-avatar">
 					{% else %}
-					<div style="background-image:url('{{ path.root }}/public/avatar/{{ job.author_id }}/{{ job.author_avatar }}');"  alt="Foto de {{ job.author }}" title="Foto de {{ post.author }}"></div>
+					<div style="background-image:url('{{ path.root }}/public/avatar/{{ job.author_id }}/{{ job.author_avatar }}');"  alt="Foto de {{ job.author }}" title="Foto de {{ job.author_name }}"></div>
 					{% endif %}
 				</div>
 				<div class="text">
-					<h2><a href="{{ path.root }}/feed/usuario/{{ job.author_login }}" title="Ver perfil de {{ job.author_name }}">{{ job.author_name }}</a></h2>
+					<h2><a href="{{ path.root }}/feed/usuario/{{ job.author_login }}" title="Ver perfil {{ job.author_gender == 0 ? 'do autor' : 'da autora' }}" data-toggle="tooltip">{{ job.author_name }}</a></h2>
 					<h3>
 					{% if job.author_job_title is not empty%}
 						{{ job.author_job_title }} em {{ job.author_job_company }}

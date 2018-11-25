@@ -51,7 +51,7 @@
 					<span class="fa fa-briefcase"></span>
 				</div>
 				<div class="user-info">
-					<h4><a href="{{ path.root }}/vagas/sobre/{{ job.id }}/{{ job.slug }}">{{ job.title }}</a></h4>
+					<h4><a href="{{ path.root }}/vagas/sobre/{{ job.id }}/{{ job.slug }}" title="Ver mais sobre {{ job.title }}">{{ job.title }}</a></h4>
 					<h5>{{ job.location is empty ? job.location_city ~ ', ' ~ job.location_state : job.location }}</h5>
 				</div>
 			</li>

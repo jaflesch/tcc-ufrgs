@@ -2,13 +2,9 @@
 	<section id="basic-info">
 		<div class="banner">
 			{% if user.getId() == profile.user.id %}
-			<button role="button" class="btn-edit">Editar perfil</button>
+			<button role="button" class="btn-edit">Alterar plano de fundo</button>
 			{% else %}
 			<button role="button" class="btn-edit follow-user" data-user="{{ profile.user.id }}">{{ profile.follow ? 'Seguindo' : 'Seguir' }}</button>
-			{% endif %}
-			
-			{% if user.is('adm') and user.getId() != profile.user.id %}
-			<button role="button" class="btn-options">Bloquear perfil</button>
 			{% endif %}
 		</div>		
 		<div class="top-content">
@@ -48,7 +44,7 @@
 				</h2>
 			</div>
 			<div class="more-options-box">
-				<button data-toggle="dropdown" class="dropdown-toggle">
+				<button data-toggle="dropdown" class="dropdown-toggle" data-tooltip="true" title="Ver opções">
 					<span class="fa fa-ellipsis-v" ></span>
 				</button>
 				<ul class="dropdown-menu">
@@ -203,10 +199,12 @@
 					
 					<p class="item-resume">{{ job.resume }}</p>
 
-					<div class="show-more-item"><span class="fa fa-plus-circle"></span></div>
+					{% if job.resume is not empty %}
+						<div class="show-more-item" data-tooltip="true" title="Expandir"><span class="fa fa-plus-circle"></span></div>
+					{% endif %}
 					{% if user.getId() == profile.user.id %}
-					<div class="edit-item"><span class="fa fa-edit"></span></div>
-					<div class="remove-item">&times;</div>
+					<div class="edit-item" data-tooltip="true" title="Editar"><span class="fa fa-edit"></span></div>
+					<div class="remove-item" data-tooltip="true" title="Remover">&times;</div>
 					{% endif %}
 				</div>
 			</li>
@@ -309,10 +307,13 @@
 
 					<p class="item-resume">{{ education.resume }}</p>
 					
-					<div class="show-more-item"><span class="fa fa-plus-circle"></span></div>
+					{% if education.resume is not empty %}
+					<div class="show-more-item" data-tooltip="true" title="Expandir"><span class="fa fa-plus-circle"></span></div>
+					{% endif %}
+
 					{% if user.getId() == profile.user.id %}
-					<div class="edit-item"><span class="fa fa-edit"></span></div>
-					<div class="remove-item">&times;</div>
+					<div class="edit-item" data-tooltip="true" title="Editar"><span class="fa fa-edit"></span></div>
+					<div class="remove-item" data-tooltip="true" title="Remover">&times;</div>
 					{% endif %}
 				</div>
 			</li>
@@ -366,8 +367,8 @@
 				</div>
 				
 				{% if user.getId() == profile.user.id %}
-				<div class="edit-item"><span class="fa fa-edit"></span></div>
-				<div class="remove-item">&times;</div>
+				<div class="edit-item" data-tooltip="true" title="Editar"><span class="fa fa-edit"></span></div>
+				<div class="remove-item" data-tooltip="true" title="Remover">&times;</div>
 				{% endif %}
 			</li>
 		{% endfor %}
@@ -435,8 +436,8 @@
 				</div>
 				
 				{% if user.getId() == profile.user.id %}
-				<div class="edit-item"><span class="fa fa-edit"></span></div>
-				<div class="remove-item">&times;</div>
+				<div class="edit-item" data-tooltip="true" title="Editar"><span class="fa fa-edit"></span></div>
+				<div class="remove-item" data-tooltip="true" title="Remover">&times;</div>
 				{% endif %}
 			</li>
 		{% endfor %}
