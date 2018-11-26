@@ -8,6 +8,7 @@
 
 	article {
 		flex: 0 0 33.3333%;
+		max-width: 33.3333%;
 		margin-bottom: 20px;
 
 		&.hide-count { display: none !important; }
@@ -261,10 +262,16 @@
 		padding-top: 20px;
 		border-top: 1px solid #d7d7d7;
 		
-		article { flex: 0 0 50%; }
+		article { 
+			flex: 0 0 50%; 
+			max-width: 50%;
+		}
 	}
 
 	@media(max-width: 767px) {
-		article { flex: 0 0 100%; }
+		article { 
+			flex: 0 0 100%; 
+			max-width: 100%;
+		}
 	}
 }	

@@ -362,7 +362,17 @@ class Job {
 				$d->slug = self::setSlug($d->title);
 				$d->is_favorite = self::checkIfFavorite($d->favorite_id);
 				$d->is_expired = self::checkIfExpired($d->date_start);
-
+				
+				$reg_exUrl = "/(?:(https?):\/\/([^\s<]+)|(www\.[^\s<]+?\.[^\s<]+))(?<![\.,:])/";				
+				preg_match($reg_exUrl, $d->resume, $url);
+				if($url) {
+					// URL dont start with "http" or "https" protocol
+					if(substr($url[0], 0, 3) == "www") {
+						$url[0] = "http://".$url[0];
+					}
+					$d->resume = preg_replace($reg_exUrl, "<a href=\"{$url[0]}\" target='_blank'>{$url[0]}</a> ", $d->resume);					
+				}
+				
 				if($d->category_list != "") {
 					$result = $db->query("SELECT id, title, color FROM job_category WHERE id IN ({$d->category_list}) AND active = 1", true);
 					$d->category_list_array = $result;
@@ -376,6 +386,11 @@ class Job {
 			$mixed->slug = self::setSlug($mixed->title);
 			$mixed->is_favorite = self::checkIfFavorite($mixed->favorite_id);
 			$mixed->is_expired = self::checkIfExpired($mixed->date_start);
+
+			$reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";				
+			if(preg_match($reg_exUrl, $d->text, $url) ) {
+				$d->text = preg_replace($reg_exUrl, "<a href=\"{$url[0]}\">{$url[0]}</a> ", $d->text);					
+			}
 
 			if($mixed->category_list != "") {
 				$result = $db->query("SELECT id, title, color FROM job_category WHERE id IN ({$mixed->category_list}) AND active = 1", true);
