@@ -388,8 +388,8 @@ class Job {
 			$mixed->is_expired = self::checkIfExpired($mixed->date_start);
 
 			$reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";				
-			if(preg_match($reg_exUrl, $d->text, $url) ) {
-				$d->text = preg_replace($reg_exUrl, "<a href=\"{$url[0]}\">{$url[0]}</a> ", $d->text);					
+			if(preg_match($reg_exUrl, $mixed->text, $url) ) {
+				$mixed->text = preg_replace($reg_exUrl, "<a href=\"{$url[0]}\">{$url[0]}</a> ", $mixed->text);					
 			}
 
 			if($mixed->category_list != "") {
