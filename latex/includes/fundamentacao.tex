@@ -12,34 +12,32 @@ A arquitetura de software; portanto, refere-se aos componentes de alto nível de
 
 
 \subsection{Arquitetura cliente-servidor}
-\label{arquiteturaCentralizadaDados}
+\label{arquiteturaClienteServidor}
 
-O modelo de arquitetura cliente-servidor é é um modelo em que o sistema é organizado como um conjunto de serviços e servidores e clientes associados acessam e usam estes serviços. Os clientes geralmente precisam saber nome e serviços disponíveis que os servidores oferecem. No entanto, servidores não precisam saber nomes nem quantos clientes existem. Essencialmente, um cliente faz um pedido a um servidor e espera até receber uma resposta. \cite{pressman}. Exemplos de aplicativos de computador que usam o modelo cliente-servidor são \textit{e-mail}, impressão em rede e a Internet \cite{kurose}.
+O modelo de arquitetura cliente-servidor é um modelo em que o sistema é organizado como um conjunto de serviços onde servidores e clientes associados os acessam e usam. Os clientes geralmente precisam saber nome e serviços disponíveis que os servidores oferecem. No entanto, servidores não precisam saber nomes nem quantos clientes existem. Essencialmente, um cliente faz um pedido a um servidor e espera até receber uma resposta \cite{pressman}. Exemplos de aplicativos de computador que usam o modelo cliente-servidor são \textit{e-mail}, impressão em rede e a Internet \cite{kurose}.
 
 
 \subsection{Arquitetura centrada em dados}
 \label{arquiteturaCentralizadaDados}
 
-Arquitetura centrada em dados é um modelo de arquitetura de \textit{software} onde os bancos de dados são imprescindíveis para o funcionamento do sistema. Um sistema provido desta arquitetura processa solicitações de usuários a um banco de dados ou solicitações para atualizar o banco de dados \cite{lewisBook}. A Figura \ref{dataCenteredArchitecture} exibe um estilo típico de arquitetura centrada em dados.
+Arquitetura centrada em dados é um modelo de arquitetura de \textit{software} onde os bancos de dados são imprescindíveis para o funcionamento do sistema. Um sistema provido desta arquitetura processa solicitações de usuários a um banco de dados para diferentes tipos de ações como leitura ou escrita (inserir, atualizar ou remover) sobre os dados \cite{lewisBook}. A Figura \ref{dataCenteredArchitecture} exibe um estilo típico de arquitetura centrada em dados.
 
 \begin{figure}[ht]
-    \caption{Arquitetura centrada em dados.}
+    \caption{Arquitetura centrada em dados: \textit{software} cliente acessa um repositório central independentemente de quaisquer alterações nos dados ou ações de outros clientes. }
        	\begin{center}
             \includegraphics[width=0.75\textwidth]{arquitetura-centralizada-dados.png}
         \end{center}
     \label{dataCenteredArchitecture}
-    \legend{
-        \textit{Software} cliente acessa um repositório central independentemente de quaisquer alterações nos dados ou ações de outro \textit{software} cliente. \cite{pressman}
-    }
+    \legend{\cite{pressman}}
 \end{figure}
 
 
 \subsection{Arquitetura MVC}
 \label{arquiteturaMVC}
 
-A arquitetura MVC, Modelo-visão-controlador, é um padrão arquitetural comumente usado para desenvolver interfaces de usuário que divide um aplicativo em três partes interconectadas: modelo, visão e controlador \cite{mvcCookbook}. Este padrão de arquitetura desacopla os três componentes principais, permitindo a reuso mais eficiente de código e desenvolvimento paralelo entre eles. 
+A arquitetura MVC, Modelo-visão-controlador, é um padrão arquitetural comumente usado para desenvolver interfaces de usuário que divide um aplicativo em três partes interconectadas: modelo, visão e controlador \cite{mvcCookbook}. Este padrão de arquitetura desacopla os três componentes principais, permitindo o reuso mais eficiente de código e desenvolvimento paralelo entre eles. 
 
-O modelo engloba todo domínio específico à aplicação e seu processamento lógico como funcionalidades e acesso a dados externos e fontes de informação. A visão é responsável por exibir, na saída de dados, o conteúdo do modelo em um formato legível e requisitado pelo usuário final. O controlador coordena a comunicação entre o modelo e a visão de acordo com as requisições do usuário. A Figura \ref{dataMVCArchitecture} ilustra a arquitetura MVC.
+O modelo engloba todo domínio específico à aplicação e seu processamento lógico como funcionalidades e acesso a dados externos e fontes de informação. A visão é responsável por exibir, na saída de dados, o conteúdo do modelo em um formato legível e requisitado pelo usuário final. O controlador, então, coordena a comunicação entre o modelo e a visão de acordo com as requisições do usuário. A Figura \ref{dataMVCArchitecture} ilustra a arquitetura MVC.
 
 \begin{figure}[ht]
     \caption{Arquitetura MVC em aplicação \textit{web}.}
@@ -54,14 +52,14 @@ O modelo engloba todo domínio específico à aplicação e seu processamento l�
 \section{Banco de dados}
 \label{fundBD}
 
-Um banco de dados pode ser definido como um conjunto de dados integrados que tem por objetivo atender a uma comunidade de usuários \cite{heuser}. Eles possuem uma coleção organizada de dados, geralmente armazenados e acessados por \textit{softwares} de computador. Devido aos avanços tecnológicos nessa área, bancos de dados foram aumentando sua complexidade e, para manter um sistema robusto, que incorpora funções de definição, alteração e recuperação, são utilizados SGBDs.
+Um banco de dados pode ser definido como um conjunto de dados integrados que tem por objetivo atender a uma comunidade de usuários \cite{heuser}. Eles possuem uma coleção organizada de dados, geralmente armazenados e acessados por \textit{softwares} de computador. Devido aos avanços tecnológicos nessa área, bancos de dados foram aumentando sua complexidade e, para manter um sistema robusto, que incorpora funções de definição, alteração e recuperação de dados, são utilizados SGBDs.
 
 Contudo, o processo de criação de um banco de dados para o \textit{software} de uma aplicação sugere a utilização de técnicas de construção de um projeto de banco de dados. No projeto, são considerados dois níveis de abstração de modelo de dados para sua implementação: o modelo conceitual e o modelo lógico.
 
 \subsection{Modelo conceitual}
 \label{fundBDModelagem}
 
-A modelagem conceitual é utilizada para obter uma descrição abstrata, independente de implementação em computador, dos dados que serão armazenados no banco de dados.A técnica de modelagem de dados mais difundida e utilizada é a abordagem entidade-relacionamento (ER) \cite{heuser}. Através dela, os modelos de dados são representados graficamente por um diagrama entidade-relacionamento que captura necessidades da organização independente de implementação (DER) \cite{peterChen1976}. A Figura \ref{modelagemBDExemplol} apresenta um DER parcial presente na modelagem conceitual do sistema implementado.
+A modelagem conceitual é utilizada para obter uma descrição abstrata, independente de implementação em computador, dos dados que serão armazenados no banco de dados. A técnica de modelagem de dados mais difundida e utilizada é a abordagem entidade-relacionamento (ER) \cite{heuser}. Através dela, os modelos de dados são representados graficamente por um diagrama entidade-relacionamento (DER) que captura necessidades da organização independente de implementação \cite{peterChen1976}. A Figura \ref{modelagemBDExemplol} apresenta um DER parcial presente na modelagem conceitual da rede social implementada.
 
 \begin{figure}[h]
     \caption{Exemplo de modelagem conceitual.}
@@ -77,7 +75,7 @@ A modelagem conceitual é utilizada para obter uma descrição abstrata, indepen
 
 O projeto lógico consiste na transformação de um modelo ER em um modelo lógico. Este implementa de forma concreta, a nível de SGBD relacional, os dados representados no modelo ER.
 
-Um determinado modelo ER pode ser implementado através de diversos modelos relacionais, que contém as informações especificadas pelo diagrama ER. Todos podem ser considerados uma implementação correta do modelo ER considerado. Entretanto, diferentes modelos relacionais podem resultar em diferentes performances do sistema construído sobre o banco de dados. 
+Um determinado modelo ER pode ser implementado através de diversos modelos relacionais, que contém as informações especificadas pelo DER. Todos podem ser considerados uma implementação correta do modelo ER considerado. Entretanto, diferentes modelos relacionais podem resultar em diferentes performances do sistema construído sobre o banco de dados. 
 
 No processo de transformação do modelo ER para o modelo relacional, foram utilizadas as seguintes regras de transformação \cite{heuser} a fim de obter uma melhor performance do sistema: 
 
@@ -99,7 +97,7 @@ A Figura \ref{modelagemBDLogicoExemplol} apresenta a transformação do modelo E
 \begin{figure}[h]
     \caption{Exemplo de modelagem relacional.}
        	\begin{center}
-            \includegraphics[width=0.68\textwidth]{figuras/twig-symf.png}
+            \includegraphics[width=0.68\textwidth]{figuras/er-exemplo.png}
         \end{center}
     \label{modelagemBDLogicoExemplol}
     \legend{Fonte: Autor}
@@ -109,9 +107,9 @@ O banco de dados utilizado na rede social foi o SGBD relacional MySQL. A ferrame
 
 \section{Processo de desenvolvimento de \textit{software}}
 
-A Engenharia de \textit{software} é um ramo da engenharia cujo foco é o desenvolvimento dentro de custos adequados de sistemas de \textit{software} de alta qualidade. Embora não existam limitações físicas em seu potencial, a falta de restrições naturais significa que o \textit{software} pode facilmente se tornar complexo e, portanto, de difícil compreensão \cite{sommerville}.
+A Engenharia de \textit{software} é um ramo da engenharia cujo foco é o desenvolvimento de sistemas de \textit{software} de alta qualidade dentro de custos adequados. Embora não existam limitações físicas em seu potencial, a falta de restrições naturais significa que o \textit{software} pode facilmente se tornar complexo e, portanto, de difícil compreensão \cite{sommerville}.
 
-Para contornar tais problemas, uma das áreas de estudo da Engenharia de \textit{software} é a de processo de desenvolvimento de \textit{software}. Este é uma metodologia para as atividades, ações e tarefas necessárias para desenvolver um \textit{software} de alta qualidade. Pode-se considerar processo de \textit{software} também como o roteiro na elaboração de um produto ou sistema que segue uma série de passos previsíveis, apresenta qualidade e dentro de um prazo estabelecido \cite{pressman}.
+Para contornar tais problemas, uma das áreas de estudo da Engenharia de \textit{software} é a de processo de desenvolvimento de \textit{software}. Este é uma metodologia para as atividades, ações e tarefas necessárias para desenvolver um \textit{software} de alta qualidade. Pode-se considerar processo de \textit{software} também como o roteiro na elaboração de um produto ou sistema, pois segue uma série de passos previsíveis, apresenta qualidade e possui um prazo de entrega estabelecido \cite{pressman}.
 
 Nesta seção é abordada a metodologia ágil e, posteriormente, o Scrum e Kanban, que são \textit{frameworks} de desenvolvimento de \textit{software} ágil. Ambos foram utilizados na implementação do protótipo deste trabalho.
 
@@ -119,7 +117,7 @@ Nesta seção é abordada a metodologia ágil e, posteriormente, o Scrum e Kanba
 \subsection{Metologia ágil}
 \label{fundSWAgil}
 
-A metodologia ágil é uma abordagem para o desenvolvimento de \textit{software} que prioriza o desenvolvimento do sistema à sua documentação e elaboração metódico no projeto. Geralmente conta com uma abordagem interativa para especificação, desenvolvimento e entrega de \textit{software} e são indicados no apoio ao desenvolvimento de aplicações onde os requisitos mudam constantemente \cite{sommerville}.
+A metodologia ágil é uma abordagem para o desenvolvimento de \textit{software} que prioriza o desenvolvimento do sistema à sua documentação e elaboração metódica no projeto. Geralmente conta com uma abordagem interativa para especificação, desenvolvimento e entrega de \textit{software} e são indicados no apoio ao desenvolvimento de aplicações onde os requisitos mudam constantemente \cite{sommerville}.
 
 Portanto, o desenvolvimento ágil defende a adaptação, evolução, entrega antecipda e melhoria contínua, destinando-se a entregar uma solução rápida ao cliente, que podem propor novos requisitos e alterações a serem implementadas nas próximas etapas do sistema.
 
@@ -159,11 +157,11 @@ Ao final de um \textit{Sprint}, a equipe apresenta as funcionalidades implementa
 \end{figure}
 
 \subsection{Kanban}
-\label{fundSWSCRUM}
+\label{fundSWKanban}
 
-O Kanban\footnote{A palavra é originário do mandarim e, em português, significa painel de controle.} torna-se cada vez mais uma maneira popular de visualizar e limitar o trabalho em andamento no desenvolvimento de \textit{softwares}. Além disso, sua utilização em processos existentes cataliza mudanças culturais e oferece agilidade nos negócios \cite{kanbanBook}.
+O Kanban\footnote{A palavra é originária do mandarim e, em português, significa painel de controle.} torna-se cada vez mais uma maneira popular de visualizar e limitar o trabalho em andamento no desenvolvimento de \textit{softwares}. Além disso, sua utilização em processos existentes cataliza mudanças culturais e oferece agilidade nos negócios \cite{kanbanBook}.
 
-Dessa forma, seguindo os preceitos do manifesto ágil, o \textit{framework} Kanban fornece um sistema de gerenciamento de processo visual que auxilia na tomada de decisões sobre o que, quando e quanto produzir \cite{kanbanBook2}. Embora não seja obrigatório, a visualização do fluxo do processo com Kanban geralmente é feita através de um Kanban \textit{board} (quadro Kanban). Este quadro, de caráter simples, apresenta um processo em fluxo da esquerda para a direita, onde as colunas representam a divisão de etapas deste e cada cartão, uma atividade a ser realizada. Em Engenharia de \textit{software}, geralmente, cada coluna representa uma etapa do desenvolvimento e o cartão, uma funcionalidade a ser implementada no sistema. A Figura \ref{kanbanFlow} apresenta um exeplo de quadro Kanban.
+Dessa forma, seguindo os preceitos do manifesto ágil, o \textit{framework} Kanban fornece um sistema de gerenciamento de processo visual que auxilia na tomada de decisões sobre o que, quando e quanto produzir \cite{kanbanBook2}. Embora não seja obrigatório, a visualização do fluxo do processo com Kanban geralmente é feita através de um Kanban \textit{board} (quadro Kanban). Este quadro, de caráter simples, apresenta um processo em fluxo da esquerda para a direita, onde as colunas representam a divisão de etapas deste e cada cartão, uma atividade a ser realizada. Em Engenharia de \textit{software}, geralmente, cada coluna representa uma etapa do desenvolvimento e o cartão, uma funcionalidade a ser implementada no sistema. A Figura \ref{kanbanFlow} apresenta um exemplo de quadro Kanban.
 
 \begin{figure}[ht]
     \caption{Fluxo do processo de desenvolvimento no Kanban.}

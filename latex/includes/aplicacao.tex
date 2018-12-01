@@ -1,23 +1,23 @@
 \chapter{A rede social Portal de Vagas}
 \label{redeSocialPortal}
 
-Este capitulo descreve as funcionalidades presentes e ausentes no prótotipo de rede social Portal de Vagas. Primeiramente, são é apresentado o funcionamento e todas interações possíveis em cada página do sistema. Em seguida, são listadas as limitações que a versão final do protótipo possui e, posteriormente, sugeridas melhorias como guia para trabalhos futuros. Por fim, é apresentado uma tabela comparativa, de maneira similar à seção [TRAB RELACIONADOS > COMPARAÇÃO]; porém, com o acréscimo do Portal de Vagas ao compartivo.
+Este capitulo descreve as funcionalidades presentes e ausentes no prótotipo de rede social Portal de Vagas. Primeiramente, é apresentado o funcionamento e todas interações possíveis em cada página do sistema. Em seguida, são listadas as limitações que a versão final do protótipo possui e, posteriormente, sugeridas melhorias como guia para trabalhos futuros. Por fim, é apresentado uma tabela comparativa, de maneira similar à seção \ref{trabRelAnalise}; porém, com o acréscimo do Portal de Vagas ao compartivo.
 
 \section{Funcionamento}
 \label{PDVFuncionamento}
 
-Nesta seção será apresentado o funcionamento da rede social Portal de Vagas, explicando as funcionalidades e possibilidades de interação entre os usuários e as vagas ofertadas em todas as páginas do sistema, como a tela de login, as páginas inicial, de perfil de usuário, de vagas disponíveis e favoritas, de vaga específica, de configurações da conta de usuário, além da realização de consultas comuns e avançadas sobre vagas e usuários e do sistema de inscrição em vagas.
+Nesta seção será apresentado o funcionamento da rede social Portal de Vagas, explicando as funcionalidades e possibilidades de interação entre os usuários e as vagas ofertadas em todas as páginas do sistema: \textit{Login}, Inicial, Perfil de usuário, Vagas disponíveis e favoritas, Vaga específica, Configurações da conta de usuário. Além disso, será detalhado como é a realização de consultas comuns e avançadas sobre vagas, usuários e sistema de inscrição em vagas.
 
 \subsection{Página de \textit{Login}}
 \label{PDVFunLogin}
 
-A rede social só pode ser utilizada através da autenticação de usuários cadastros no sistema. Dessa forma, caso algum usuário não autenticado tente acessar uma página interna e válida do sistema escrevendo diretamente sua URL no navegador, ele será redirecionando para a tela de \textit{login} automaticamente. Em contrapartida, caso o usuario já esteja autenticado e tente acessar a página de \textit{login} é redirecionado então para a página \textit{Home}.
+A rede social só pode ser utilizada através da autenticação de usuários cadastrados no sistema. Dessa forma, caso algum usuário não autenticado tente acessar uma página interna e válida do sistema escrevendo diretamente sua URL no navegador, ele será redirecionando para a tela de \textit{login} automaticamente. Em contrapartida, caso o usuario já esteja autenticado e tente acessar a página de \textit{Login} é redirecionado então para a página Inicial.
 
-A página apresenta um visual simples e objetivo, com o logotipo do INF e abaixo um formulário contendo um campo de nome de usuário ou e-mail e um para a senha. Contudo, como é mencionado na seção \ref{redeLimitacao}, por ser tratar de um protótipo, todos os usuários foram criados em um banco de dados exclusivo da aplicação. Dessa forma, não há de fato uma integração com o banco de dados de usuários da UFRGS, ou seja, não existe possibilidade, nesta implementação, de um usuário se autenticar com as mesmas credenciais em ambos os sistemas sem a criação prévia deste registro no banco do protótipo apresentado. 
+A página apresenta um visual simples e objetivo, com o logotipo do INF e abaixo um formulário contendo um campo de nome de usuário ou \textit{e-mail} e um para a senha. Contudo, como é mencionado na seção \ref{redeLimitacao}, por ser tratar de um protótipo, todos os usuários foram criados em um banco de dados exclusivo da aplicação. Dessa forma, não há de fato uma integração com o banco de dados de usuários da UFRGS, ou seja, não existe possibilidade, nesta implementação, de um usuário se autenticar com as mesmas credenciais em ambos os sistemas sem a criação prévia deste registro no banco do protótipo apresentado. 
 
 Ainda, no final do formulário, existe um link para o usuário recuperar sua senha em caso de esquecimento. Como essa funcionalidade não seria necessária no protótipo, o link apenas redireciona o usuário para a página de recuperação de senha\footnote{\url{https://www.inf.ufrgs.br/portal/login.php\#resetpasswd} Acesso em novembro de 2018} na área de Administração de Rede do site do INF.
 
-A Figura \ref{telaLoginImg} apresenta a página de \textit{login} com os campos de usuário e senha disponíveis para preenchimento. Só após a correta autenticação, as demais páginas da rede social ficam acessíveis.
+A Figura \ref{telaLoginImg} apresenta a página de \textit{Login} com os campos de usuário e senha disponíveis para preenchimento. Só após a correta autenticação, as demais páginas da rede social ficam acessíveis.
 
 \begin{figure}[h]
     \caption{Tela de \textit{login} do Portal de Vagas.}
