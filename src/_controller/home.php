@@ -7,7 +7,7 @@ require MODEL_PATH.'Log.php';
 
 class Home extends Controller {
 	public function index() {
-		$bag['jobs'] = Job::getAllFeedRelated()['jobs'];
+		$bag['jobs'] = array_slice(Job::getAllFeedRelated()['jobs'], 0, 5);
 		$bag['profiles'] = Profile::getAllFeedRelated();
 		$bag['followers'] = Follow::getAllFollowers(Auth::id());
 		$bag['posts'] = Post::getAllFeed(Auth::id());

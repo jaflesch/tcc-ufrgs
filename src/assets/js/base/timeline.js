@@ -1,4 +1,10 @@
 $(document).ready(function() {
+	// Close warnings
+	$('.close-warning').click(function(e) {
+		e.preventDefault();
+		$(this).parent().remove();
+	});
+
 	// Follow system
 	$('.current-status .likes-count').click(function()  {
 		var modal = $('#modalLikeQtd');

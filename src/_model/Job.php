@@ -207,7 +207,33 @@ class Job {
 	}
 
 	public static function getAllFeedRelated() {
-		return array_slice(self::getAll(), 0, 3);
+		$db = new DBConn();
+		$id_user = Auth::id();
+		
+		$result = $db->query("
+			SELECT j.*, f.id favorite_id, ja.id apply, ja.id_user apply_user, u.email author_email 
+			FROM job j
+			LEFT JOIN 
+				favorite f ON j.id = f.id_object AND
+				f.type = 1 AND
+				f.active = 1 AND
+				f.id_user <> {$id_user}
+			LEFT JOIN job_apply ja ON ja.id_job = j.id AND ja.id_user = {$id_user} AND ja.active = 1
+			INNER JOIN user u ON u.id = j.id_author
+			WHERE j.active = 1
+			ORDER BY ja.datetime_created DESC, j.date_start, f.datetime DESC, title
+		", TRUE);			
+		
+		$result = self::formatData($result);
+		foreach ($result as &$r) {
+			if($r->is_expired) unset($r);
+		}
+		$filter = self::getFilters($result);
+
+		return array(
+			"jobs" => $result,
+			"filters" => $filter
+		);
 	}
 
 	// AJAX calls

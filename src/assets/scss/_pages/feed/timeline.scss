@@ -3,6 +3,26 @@
 	margin-right: 20px;
 	margin-bottom: 40px;
 	
+	.incomplete-profile {
+		font-size: 13px;
+		padding: 10px 15px;
+		margin-bottom: 10px;
+
+		.fa { margin-right: 5px; }
+
+		a { 
+			font-weight: bold; 
+			color: inherit;
+		}
+
+		.close-warning { 
+			font-size: 18px;
+			position: relative;
+			top: -4px;
+			cursor: pointer;
+			float: right; 
+		}
+	}
 	article {
 		@include border-radius(2px);
 		background: #fff;

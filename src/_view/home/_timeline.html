@@ -1,4 +1,11 @@
 <section id="timeline">
+	{% if user.avatar is empty %}
+	<p class="alert alert-warning incomplete-profile">
+		<span class="fa fa-warning"></span> Você ainda não possui uma foto de perfil. <a href="#" data-toggle="modal" data-target="#uploadAvatarModal">Adicionar foto</a>
+
+		<span class="close-warning">&times;</span>
+	</p>
+	{% endif %}
 	<article class="post-box">
 		<form id="formNewPost" action="{{ path.root }}/feed/new-post" method="POST">
 			<div class="post-header" style="margin-bottom: 10px;">
