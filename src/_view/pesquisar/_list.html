@@ -30,7 +30,11 @@
 					<div class="text">
 						<a href="{{ path.root }}/vagas/sobre/{{ item.id }}/{{ item.slug }}">{{ item.title }}</a>
 						<span class="complement">
-							INF, Campus do Vale - Porto Alegre, Rio Grande do Sul
+							{% if item.subtitle1 is not empty %}
+								{{ item.subtitle1 }} - 
+							{% endif %}
+
+							{{ item.subtitle2 }}, {{ item.subtitle3 }}
 						</span>
 					</div>
 				</li>
@@ -52,7 +56,16 @@
 					<div class="text">
 						<a href="{{ path.root }}/feed/usuario/{{ item.login }}">{{ item.title }}</a>
 						<span class="complement">
-							UFRGS
+							{% if item.subtitle1 is not empty or item.subtitle3 is not empty or (item.subtitle5 is not empty and item.subtitle6 is not empty) %}
+							{% if item.subtitle1 is not empty %}
+								{{ item.subtitle1 }} - {{ item.subtitle2 }}
+							{% elseif item.subtitle3 %}
+							{{ item.subtitle3 }} - {{ item.subtitle4 }}
+						{% else %}
+							{{ item.subtitle5 }}, {{ item.subtitle6 }}
+						{% endif %}
+					</h5>
+					{% endif %}
 						</span>
 					</div>
 				</li>

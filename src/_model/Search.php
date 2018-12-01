@@ -28,15 +28,28 @@ class Search {
 
 		$result = $db->query("
 			(
-				SELECT id, title, 'job' AS category, '' AS login, '' AS avatar
-				FROM job 
+				SELECT 
+					id, title, 'job' AS category, '' AS login, '' AS avatar, 
+					location AS subtitle1, 
+					location_city AS subtitle2, 
+					location_state AS subtitle3,
+					'' AS subtitle4, '' AS subtitle5, '' AS subtitle6
+				FROM job
 				WHERE active = 1 AND (title LIKE '%{$value}%' OR resume LIKE '%{$value}%' OR text LIKE '%{$value}%')
 			)
 			UNION
 			(
-				SELECT id, name AS title, 'user' AS category, login, avatar
-				FROM user
-				WHERE active = 1 AND (name LIKE '%{$value}%' OR login LIKE '%{$value}%')
+				SELECT 
+					u.id, u.name AS title, 'user' AS category, u.login, u.avatar,
+					uj.title AS subtitle1, 
+					uj.company AS subtitle2,
+					ue.title AS subtitle3, 
+					ue.subtitle AS subtitle4,
+					u.live_in_city AS subtitle5, u.live_in_state AS subtitle6
+				FROM user u
+				LEFT JOIN user_job uj ON u.id = uj.id_user AND uj.selected = 1 AND uj.active = 1
+				LEFT JOIN user_education ue ON u.id = ue.id_user AND ue.selected = 1 AND ue.active = 1
+				WHERE u.active = 1 AND (u.name LIKE '%{$value}%' OR u.login LIKE '%{$value}%')
 			)
 			ORDER BY title
 		", true);
@@ -56,7 +69,12 @@ class Search {
 		$db = new DBConn();
 
 		return $db->query("
-			SELECT id, title, 'job' AS category, '' AS login
+			SELECT 
+				id, title, 'job' AS category, '' AS login,
+				location AS subtitle1, 
+				location_city AS subtitle2, 
+				location_state AS subtitle3,
+				'' AS subtitle4, '' AS subtitle5, '' AS subtitle6
 			FROM job 
 			WHERE active = 1 AND (title LIKE '%{$value}%' OR resume LIKE '%{$value}%' OR text LIKE '%{$value}%')
 			ORDER BY title
@@ -67,10 +85,18 @@ class Search {
 		$db = new DBConn();
 
 		return $db->query("
-			SELECT id, name AS title, 'user' AS category, login, avatar
-			FROM user
-			WHERE active = 1 AND (name LIKE '%{$value}%' OR login LIKE '%{$value}%')
-			ORDER BY name
+			SELECT 
+				u.id, u.name AS title, 'user' AS category, u.login, u.avatar,
+				uj.title AS subtitle1, 
+				uj.company AS subtitle2,
+				ue.title AS subtitle3, 
+				ue.subtitle AS subtitle4,
+				u.live_in_city AS subtitle5, u.live_in_state AS subtitle6
+			FROM user u
+			LEFT JOIN user_job uj ON u.id = uj.id_user AND uj.selected = 1 AND uj.active = 1
+			LEFT JOIN user_education ue ON u.id = ue.id_user AND ue.selected = 1 AND ue.active = 1
+			WHERE u.active = 1 AND (u.name LIKE '%{$value}%' OR u.login LIKE '%{$value}%')
+			ORDER BY u.name
 		", true);
 	}
 
