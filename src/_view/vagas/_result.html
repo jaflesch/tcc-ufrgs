@@ -127,11 +127,11 @@
 			<p class="no-result-box" style="display:{{ jobs is empty ? '' : 'none' }};">
 				Nenhuma vaga {{ route[1] == 'favoritos' ? 'favorita' : '' }} encontrada.
 			</p>
+			{% if jobs|length > 24 %}
+			<p class="see-more">
+				<a href="#" title="Visualizar mais vagas">Visualizar todas as vagas <span class="fa fa-angle-down"></span></a>		
+			</p>
+			{% endif %}
 		</div>
 	</div>
-	{% if jobs|length > 24 %}
-	<p class="see-more">
-		<a href="#" title="Visualizar mais vagas">Visualizar todas as vagas <span class="fa fa-angle-down"></span></a>		
-	</p>
-	{% endif %}
 </section>

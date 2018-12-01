@@ -112,6 +112,12 @@ class Vagas extends Controller {
 			case 4:
 				$by = "j.date_start";
 				break;
+			case 5:
+				$by = "j.salary DESC";
+				break;
+			case 6:
+				$by = "j.salary";
+				break;
 			case 1:
 			default:
 				$by = "";
