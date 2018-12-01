@@ -1,0 +1,24 @@
+#modalLoading {
+	.modal-dialog {
+		@include va-middle();
+		margin: 0 auto;
+		transform: translateY(-75%);
+		text-align: center;
+
+		@media(max-width: 767px) { margin: 0 15px; }
+	}
+	.modal-content { display: inline-block; }
+
+	.modal-body { padding: 15px 45px; }
+
+	h4 {
+		font: {
+			size: 13px;
+			weight: normal;
+		}
+		margin: 15px 0 0;
+	}
+	
+	.fa { color: $primary-color; }
+
+}	

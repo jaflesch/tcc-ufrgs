@@ -569,6 +569,9 @@ $(document).ready(function() {
 		var el = $(this);
 		var val = el.find(":selected").val();
 
+		// Loading modal
+		$('#modalLoading').modal("show");
+
 		$.ajax({
 			url: el.attr("data-action"),
 			method: 'POST',
@@ -577,6 +580,11 @@ $(document).ready(function() {
 			success: function(html) {
 				$('#job-result .row').html(html);
 				updateResults();
+
+				$('#modalLoading').modal("hide");
+			},
+			error: function() {
+				$('#modalLoading').modal("hide");
 			}
 		})
 	});
