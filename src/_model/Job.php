@@ -488,7 +488,7 @@ class Job {
 	}
 
 	private static function setSlug($string) {
-		return linkfy(strtolower(trim($string)));
+		return linkfy(trim($string));
 	}
 
 	private static function getModality($int) {
