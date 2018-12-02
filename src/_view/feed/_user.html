@@ -2,9 +2,11 @@
 	<section id="basic-info">
 		<div class="banner">
 			{% if user.getId() == profile.user.id %}
-			<button role="button" class="btn-edit">Alterar plano de fundo</button>
+			<!-- <button role="button" class="btn-edit">
+				<span class="fa fa-image"></span> Alterar plano de fundo
+			</button> -->
 			{% else %}
-			<button role="button" class="btn-edit follow-user" data-user="{{ profile.user.id }}">{{ profile.follow ? 'Seguindo' : 'Seguir' }}</button>
+			<button role="button" class="btn-edit follow-user" data-user="{{ profile.user.id }}"><span class="fa fa-rss""></span>{{ profile.follow ? 'Seguindo' : 'Seguir' }}</button>
 			{% endif %}
 		</div>		
 		<div class="top-content">

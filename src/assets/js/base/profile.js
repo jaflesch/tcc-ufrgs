@@ -11,14 +11,8 @@ $(document).ready(function() {
 		var follow = false;
 		var followers = $('.follower-qty').text() == "" ? 0 : parseInt($('.follower-qty').text());
 
-		if($(this).text() == "Seguir") {
-			$(this).text("Seguindo");	
-			$('.follower-qty').text(followers + 1);
-			$('.follower-text').text($('.follower-qty').text() == "1" ? "seguidor" : "seguidores");
-			follow = true;	
-		}
-		else {
-			$(this).text("Seguir");
+		if($(this).text() == "Seguindo") {
+			$(this).html("<span class='fa fa-rss'></span> Seguir");
 			follow = false;
 
 			if(followers - 1 > 1) {
@@ -33,6 +27,12 @@ $(document).ready(function() {
 				$('.follower-qty').text("");
 				$('.follower-text').text("Nenhum seguidor ainda");
 			}
+		}
+		else {
+			$(this).text("Seguindo");	
+			$('.follower-qty').text(followers + 1);
+			$('.follower-text').text($('.follower-qty').text() == "1" ? "seguidor" : "seguidores");
+			follow = true;	
 		}
 
 		$.ajax({
