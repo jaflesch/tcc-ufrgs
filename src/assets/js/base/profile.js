@@ -1,4 +1,10 @@
 $(document).ready(function() {
+	// Close warnings
+	$('.close-warning').click(function(e) {
+		e.preventDefault();
+		$(this).parent().remove();
+	});
+
 	// Follow system
 	$('.follow-user').click(function() {
 		var id = $(this).data("user");

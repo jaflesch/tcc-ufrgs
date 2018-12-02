@@ -108,6 +108,14 @@
 			</div>
 		</div>
 	</section>
+
+	{% if user.avatar is empty and user.getId() == profile.user.id %}
+	<p class="alert alert-warning incomplete-profile">
+		<span class="fa fa-warning"></span> Você ainda não possui uma foto de perfil. <a href="#" data-toggle="modal" data-target="#uploadAvatarModal">Adicionar foto</a>
+
+		<span class="close-warning">&times;</span>
+	</p>
+	{% endif %}
 	
 	<section id="job-experiences" class="box-experience">
 		<h2>Experiência profissional</h2>
