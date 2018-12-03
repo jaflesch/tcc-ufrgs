@@ -27,9 +27,9 @@
 	<h3>
 		<span class="fa fa-fw fa-map-marker"></span>
 		{% if user.getLocation().live_in_string == ', ' %}
-			<a href="{{ path.root }}/configuracoes/meu-perfil" title="Definir endereço">Definir meu endereço</a>
+			<a href="#" class="location-link" title="Definir meu endereço" data-toggle="modal" data-target="#updateAddressModal">Definir meu endereço</a>
 		{% else %}
-			{{ user.getLocation().live_in_string  }}
+			<a href="#" class="location-link" title="Definir meu endereço" data-toggle="modal" data-target="#updateAddressModal">{{ user.getLocation().live_in_string  }}</a>
 		{% endif %}
 	</h3>
 	{% if user.getPersonalLink() %}

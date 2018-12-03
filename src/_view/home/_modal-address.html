@@ -1,0 +1,92 @@
+<div id="updateAddressModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="formAddress" action="{{ path.root }}/home/atualizar-endereco" method='POST'>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Atualizar endereço</h4>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+              <div class="col-sm-6">
+                <input type="text" name="born_in_city" class="form-data" required="" placeholder="Cidade onde nasceu" value="{{ user.getLocation().born_in_city }}">
+              </div>
+              <div class="col-sm-6">
+                <select name="born_in_state" class="form-data" required="">
+                  <option value="">Estado onde nasceu</option>
+                  <option value="AC" {{ user.getLocation().born_in_state == 'AC' ? 'selected' : '' }}>Acre</option>
+                  <option value="AL" {{ user.getLocation().born_in_state == 'AL' ? 'selected' : '' }}>Alagoas</option>
+                  <option value="AP" {{ user.getLocation().born_in_state == 'AP' ? 'selected' : '' }}>Amapá</option>
+                  <option value="AM" {{ user.getLocation().born_in_state == 'AM' ? 'selected' : '' }}>Amazonas</option>
+                  <option value="BA" {{ user.getLocation().born_in_state == 'BA' ? 'selected' : '' }}>Bahia</option>
+                  <option value="CE" {{ user.getLocation().born_in_state == 'CE' ? 'selected' : '' }}>Ceará</option>
+                  <option value="DF" {{ user.getLocation().born_in_state == 'DF' ? 'selected' : '' }}>Distrito Federal</option>
+                  <option value="ES" {{ user.getLocation().born_in_state == 'ES' ? 'selected' : '' }}>Espírito Santo</option>
+                  <option value="GO" {{ user.getLocation().born_in_state == 'GO' ? 'selected' : '' }}>Goiás</option>
+                  <option value="MA" {{ user.getLocation().born_in_state == 'MA' ? 'selected' : '' }}>Maranhão</option>
+                  <option value="MT" {{ user.getLocation().born_in_state == 'MT' ? 'selected' : '' }}>Mato Grosso</option>
+                  <option value="MS" {{ user.getLocation().born_in_state == 'MS' ? 'selected' : '' }}>Mato Grosso do Sul</option>
+                  <option value="MG" {{ user.getLocation().born_in_state == 'MG' ? 'selected' : '' }}>Minas Gerais</option>
+                  <option value="PA" {{ user.getLocation().born_in_state == 'PA' ? 'selected' : '' }}>Pará</option>
+                  <option value="PB" {{ user.getLocation().born_in_state == 'PB' ? 'selected' : '' }}>Paraíba</option>
+                  <option value="PR" {{ user.getLocation().born_in_state == 'PR' ? 'selected' : '' }}>Paraná</option>
+                  <option value="PE" {{ user.getLocation().born_in_state == 'PE' ? 'selected' : '' }}>Pernambuco</option>
+                  <option value="PI" {{ user.getLocation().born_in_state == 'PI' ? 'selected' : '' }}>Piauí</option>
+                  <option value="RJ" {{ user.getLocation().born_in_state == 'RJ' ? 'selected' : '' }}>Rio de Janeiro</option>
+                  <option value="RN" {{ user.getLocation().born_in_state == 'RN' ? 'selected' : '' }}>Rio Grande do Norte</option>
+                  <option value="RS" {{ user.getLocation().born_in_state == 'RS' ? 'selected' : '' }}>Rio Grande do Sul</option>
+                  <option value="RO" {{ user.getLocation().born_in_state == 'RO' ? 'selected' : '' }}>Rondônia</option>
+                  <option value="RR" {{ user.getLocation().born_in_state == 'RR' ? 'selected' : '' }}>Roraima</option>
+                  <option value="SC" {{ user.getLocation().born_in_state == 'SC' ? 'selected' : '' }}>Santa Catarina</option>
+                  <option value="SP" {{ user.getLocation().born_in_state == 'SP' ? 'selected' : '' }}>São Paulo</option>
+                  <option value="SE" {{ user.getLocation().born_in_state == 'SE' ? 'selected' : '' }}>Sergipe</option>
+                  <option value="TO" {{ user.getLocation().born_in_state == 'TO' ? 'selected' : '' }}>Tocantis</option>
+                </select>
+              </div>
+            </div>   
+            <div class="row">
+              <div class="col-sm-6">
+                <input type="text" name="live_in_city" class="form-data" required="" placeholder="Cidade onde vive atualmente" value="{{ user.getLocation().live_in_city }}">
+              </div>
+              <div class="col-sm-6">
+                <select name="live_in_state" class="form-data" required="">
+                  <option value="">Estado onde vive atualmente</option>
+                  <option value="AC" {{ user.getLocation().live_in_state == 'AC' ? 'selected' : '' }}>Acre</option>
+                  <option value="AL" {{ user.getLocation().live_in_state == 'AL' ? 'selected' : '' }}>Alagoas</option>
+                  <option value="AP" {{ user.getLocation().live_in_state == 'AP' ? 'selected' : '' }}>Amapá</option>
+                  <option value="AM" {{ user.getLocation().live_in_state == 'AM' ? 'selected' : '' }}>Amazonas</option>
+                  <option value="BA" {{ user.getLocation().live_in_state == 'BA' ? 'selected' : '' }}>Bahia</option>
+                  <option value="CE" {{ user.getLocation().live_in_state == 'CE' ? 'selected' : '' }}>Ceará</option>
+                  <option value="DF" {{ user.getLocation().live_in_state == 'DF' ? 'selected' : '' }}>Distrito Federal</option>
+                  <option value="ES" {{ user.getLocation().live_in_state == 'ES' ? 'selected' : '' }}>Espírito Santo</option>
+                  <option value="GO" {{ user.getLocation().live_in_state == 'GO' ? 'selected' : '' }}>Goiás</option>
+                  <option value="MA" {{ user.getLocation().live_in_state == 'MA' ? 'selected' : '' }}>Maranhão</option>
+                  <option value="MT" {{ user.getLocation().live_in_state == 'MT' ? 'selected' : '' }}>Mato Grosso</option>
+                  <option value="MS" {{ user.getLocation().live_in_state == 'MS' ? 'selected' : '' }}>Mato Grosso do Sul</option>
+                  <option value="MG" {{ user.getLocation().live_in_state == 'MG' ? 'selected' : '' }}>Minas Gerais</option>
+                  <option value="PA" {{ user.getLocation().live_in_state == 'PA' ? 'selected' : '' }}>Pará</option>
+                  <option value="PB" {{ user.getLocation().live_in_state == 'PB' ? 'selected' : '' }}>Paraíba</option>
+                  <option value="PR" {{ user.getLocation().live_in_state == 'PR' ? 'selected' : '' }}>Paraná</option>
+                  <option value="PE" {{ user.getLocation().live_in_state == 'PE' ? 'selected' : '' }}>Pernambuco</option>
+                  <option value="PI" {{ user.getLocation().live_in_state == 'PI' ? 'selected' : '' }}>Piauí</option>
+                  <option value="RJ" {{ user.getLocation().live_in_state == 'RJ' ? 'selected' : '' }}>Rio de Janeiro</option>
+                  <option value="RN" {{ user.getLocation().live_in_state == 'RN' ? 'selected' : '' }}>Rio Grande do Norte</option>
+                  <option value="RS" {{ user.getLocation().live_in_state == 'RS' ? 'selected' : '' }}>Rio Grande do Sul</option>
+                  <option value="RO" {{ user.getLocation().live_in_state == 'RO' ? 'selected' : '' }}>Rondônia</option>
+                  <option value="RR" {{ user.getLocation().live_in_state == 'RR' ? 'selected' : '' }}>Roraima</option>
+                  <option value="SC" {{ user.getLocation().live_in_state == 'SC' ? 'selected' : '' }}>Santa Catarina</option>
+                  <option value="SP" {{ user.getLocation().live_in_state == 'SP' ? 'selected' : '' }}>São Paulo</option>
+                  <option value="SE" {{ user.getLocation().live_in_state == 'SE' ? 'selected' : '' }}>Sergipe</option>
+                  <option value="TO" {{ user.getLocation().live_in_state == 'TO' ? 'selected' : '' }}>Tocantis</option>
+                </select>
+              </div>
+            </div>    
+        </div>
+        <div class="modal-footer">
+          <a href="#" class="" data-dismiss="modal">Cancelar</a>        
+          <button type="submit" class="btn btn-default">Atualizar</button>     
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -163,6 +163,21 @@ class Profile {
 		);
 	}
 
+	public static function updateAddress($data) {
+		$db = new DBConn();
+		$id = Auth::id();
+
+		return $db->update("
+			UPDATE `user`
+			SET 
+				live_in_city = '{$data->live_in_city}',
+				live_in_state = '{$data->live_in_state}',
+				born_in_city = '{$data->born_in_city}',
+				born_in_state = '{$data->born_in_state}'
+			WHERE id = {$id}
+		");
+	}
+
 	public static function updateBio($post) {
 		$db = new DBConn();
 		$id = Auth::id();

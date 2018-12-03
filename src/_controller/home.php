@@ -100,6 +100,13 @@ class Home extends Controller {
 		$response->result = Post::update($this->post);
 		die(json_encode($response));
 	}
+
+	public function atualizar_endereco() {
+		$response = new stdclass();
+		$response->success = Profile::updateAddress($this->post);
+		die(json_encode($response));
+	}
+
 	// Helpers
 	private function insertImageDB($path, $id) {
 		$db = new DBConn();

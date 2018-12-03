@@ -343,5 +343,26 @@ $(document).ready(function() {
 	$("a[href='#new-post-anchor']").click(function(e) {
 		e.preventDefault();
 		$('.jodit_wysiwyg').val("").focus();
-	})
+	});
+
+	$('#formAddress').unbind("submit").bind("submit", function(e) {
+		e.preventDefault();
+		var form = $(this);
+
+		$('#formAddress button[type="submit"]').text("Atualizando...");
+		$.ajax({
+			url: form.attr("action"),
+			method: 'POST',
+			dataType: 'json',
+			data: form.serializeArray(),
+			success: function(json) {
+				if(json.success) {
+					location.reload();
+				}
+			},
+			error: function() {
+				$('#formAddress button[type="submit"]').text("Atualizar");
+			}
+		});
+	});
 });
