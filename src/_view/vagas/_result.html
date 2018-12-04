@@ -36,7 +36,7 @@
 							{{ job.title }}
 						</h2>
 						<div class="options">
-							<a href="#" class="favorite-job {{ job.is_favorite ? 'active' : '' }}" data-toggle="tooltip" title="{{ job.is_favorite ? 'Desfavoritar' : 'Favoritar' }} vaga">
+							<a href="#" data-path="{{ path.root }}/vagas" class="favorite-job {{ job.is_favorite ? 'active' : '' }}" data-toggle="tooltip" title="{{ job.is_favorite ? 'Desfavoritar' : 'Favoritar' }} vaga">
 								<span class="fa fa-star-o"></span>
 							</a>
 							<a href="#" data-toggle="dropdown" class="dropdown-toggle btn-more-options" title="Mais opções" data-tooltip="true">

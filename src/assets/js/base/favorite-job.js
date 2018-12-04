@@ -1,11 +1,14 @@
 $(document).ready(function() {
-	$(".favorite-job").click(function(e) {
+	$('body').on("click", ".favorite-job", function(e) {
 		var el = $(this);
 		var id = $(this).closest("article").data("job");
+		var path = $(this).attr("data-path");
+		var action = el.hasClass('active') ? '/desfavoritar' :  '/favoritar';
+
 		e.preventDefault();
-		
+
 		$.ajax({
-			url: el.hasClass('active') ? './vagas/desfavoritar' : './vagas/favoritar',
+			url: (path + action),
 			method: 'POST',
 			dataType: 'json',
 			data: { id: id },

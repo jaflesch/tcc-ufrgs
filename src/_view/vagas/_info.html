@@ -22,7 +22,7 @@
 					<span class="fa fa-ellipsis-v"></span>
 				</a>
 				<ul class="dropdown-menu">
-					<li><a href="#" class="favorite-job" data-user="{{ job.id_author }}" class="favorite-job">{{ job.is_favorite ? 'Desfavoritar' : 'Favoritar' }}</a></li>
+					<li><a href="#" data-path="{{ path.root }}/vagas" class="favorite-job" data-user="{{ job.id_author }}" class="favorite-job">{{ job.is_favorite ? 'Desfavoritar' : 'Favoritar' }}</a></li>
 					{% if user.id == job.id_author %}
 					<li><a href="#" class="edit-job">Editar</a></li>
 					<li><a href="#" class="delete-job">Excluir vaga</a></li>
