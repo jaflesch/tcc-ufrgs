@@ -38,7 +38,7 @@ class Vagas extends Controller {
 	public function inscricoes() {
 		$bag['applies'] = Job::getAllAppliesByMe();
 		$bag['candidates'] = Job::getAllAppliedUsersByAuthorId();
-		$bag['related_jobs'] = Job::getRelated();
+		$bag['related_jobs'] = array_slice(Job::getRelated(), 0, 12);
 
 		$this->render("vagas/inscricoes", $bag);
 	}
