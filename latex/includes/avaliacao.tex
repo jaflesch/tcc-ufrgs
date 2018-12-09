@@ -1,9 +1,9 @@
 \chapter{Avaliação com os usuários}
 \label{Avaliação}
 
-Este capítulo é dedicado a apresentar o experimento realizado com os usuários.  A avaliação consistiu na realização de uma sequência pré-definida de tarefas em duas plataformas diferentes: o prótotipo de rede social implementado neste trabalho, Portal de Vagas, e a ferramenta já existente utilizada na UFRGS: o Mural de Bolsas. Para a comparação entre os dois sistemas propostos, o experimento utilizou o \textit{A-B testing}. 
+Este capítulo é dedicado a apresentar o experimento realizado com os usuários.  A avaliação se constituiu na realização de uma sequência pré-definida de tarefas em duas plataformas diferentes: o prótotipo de rede social implementado neste trabalho, Portal de Vagas, e a ferramenta já existente utilizada na UFRGS: o Mural de Bolsas. Para a comparação entre os dois sistemas propostos, o experimento utilizou o Teste A/B. Além disso, durante a utilização do Portal de Vagas, foram solicitadas tarefas adicionais a fim de testar a usabilidade das funcionalidades propostas. Para tal, foi realizado um Teste de usabilidade.
 
-No final deste capítulo são exibidos os resultados obtidos com a avaliação e duas análises destes: uma objetiva e outra subjetiva.
+No final deste capítulo, são exibidos os resultados obtidos em ambos os testes e uma análise subjetiva destes.
 
 \section{Ambiente dos experimentos}
 \label{avaliacaoAmbiente}
@@ -13,9 +13,76 @@ Para a aplicação dos experimentos, os usuários utilizaram de equipamento apen
 \section{Perfil dos usuários}
 \label{avaliacaoPefil}
 
-Todos os participantes assinaram um termo de consentimento livre e preencheram um formulário (vide Apêndice \ref{appendFormPortal}) de caracterização antes do experimento. Participaram X voluntários ao todo (e todos completaram os testes / mas X desistiram por motivos de... e sua participação, por ser incompleta, foi descartada nas análises posteriores). Dos X participantes que completaram todos as etapas da avaliação, X eram homens e Y mulheres; com faixa etária de X a X anos; com escolaridade majoritariamente X, (X pessoas), seguido por Y e Z. Dos X candidatos com nível superior (completo, incompleto) ou com pós-graduação, X eram da área de, Y da, Z da .... . No que tange ao conhecimento dos usuários em tecnologias, a maioria apresenta experiência com Internet, redes sociais e a minoria possui experiência com a rede social LinkedIn.
+Todos os participantes assinaram um termo de consentimento livre e preencheram um formulário (vide Apêndice \ref{appendFormPortal}) de caracterização antes do experimento. Participaram 19 voluntários ao todo e não houve nenhuma desistência ou desqualificação por estouro de limite de tempo ou resposta incorreta de questões eliminatórias do teste. Destes, 14 eram homens e 5, mulheres; com faixa etária de 22 a 28 anos. A escolaridade dos participantes era majoritariamente de ensino superior incompleto, uma vez que a maioria dos candidatos são alunos de graduação de diferentes cursos da UFRGS; os demais já possuem ensino superior completo e, alguns, já ingressaram na pós-graduação. As áreas de formação superior dos candidatos foram bastante diversificadas, com pelo menos um voluntário em cada uma das opções fornecidas -a única exceção foi a área de "Humanas e Sociais"-. No que tange ao conhecimento dos usuários em tecnologias, a grande maioria apresenta muita experiência com Internet e redes sociais. 
 
-As Figuras x a y apresentam características gerais dos voluntários que contribuíram para o experimento.
+Foi questionado ainda se o voluntário possuía experiência prévia com a rede social LinkedIn e se já havia utilizado, pelo menos uma vez, o Mural de Bolsas da UFRGS. Para a primeira pergunta, as respostas foram bem distribuídas e a maioria possuía muito pouca experiência com a rede social. Para a segunda pergunta, pouco mais da metade dos usuários já utilizou o Mural de Bolsas ao menos uma vez e, na opinião destes, a maioria disse que sua experiência com a plataforma foi razoável.
+
+As Figuras de \ref{avalGrafIdade} à \ref{avalGrafMB} apresentam características gerais dos voluntários que contribuíram para o experimento.
+
+\begin{figure}[h]
+    \caption{Faixa etária dos voluntários.}
+       	\begin{center}
+            \includegraphics[width=0.75\textwidth]{figuras/avaliacao/idade.png}
+        \end{center}
+    \label{avalGrafIdade}
+    \legend{Fonte: Autor}
+\end{figure}    
+
+\begin{figure}[h]
+    \caption{Grau de escolaridade dos voluntários.}
+       	\begin{center}
+            \includegraphics[width=0.75\textwidth]{figuras/avaliacao/escolaridade.png}
+        \end{center}
+    \label{avalGrafEscolaridade}
+    \legend{Fonte: Autor}
+\end{figure} 
+
+\begin{figure}[H]
+    \caption{Áreas de formação superior dos voluntários.}
+       	\begin{center}
+            \includegraphics[width=0.75\textwidth]{figuras/avaliacao/area-formacao.png}
+        \end{center}
+    \label{avalGrafAreasAtuacao}
+    \legend{Fonte: Autor}
+\end{figure} 
+
+\begin{figure}[h]
+    \caption{Experiência dos voluntários com Internet.}
+       	\begin{center}
+            \includegraphics[width=0.75\textwidth]{figuras/avaliacao/xp-internet.png}
+        \end{center}
+    \label{avalGrafInternet}
+    \legend{Fonte: Autor}
+\end{figure} 
+
+\begin{figure}[H]
+    \caption{Experiência dos voluntários com redes sociais.}
+       	\begin{center}
+            \includegraphics[width=0.75\textwidth]{figuras/avaliacao/xp-redes-sociais.png}
+        \end{center}
+    \label{avalGrafRedesSociais}
+    \legend{Fonte: Autor}
+\end{figure} 
+
+\begin{figure}[H]
+    \caption{Experiência dos voluntários com a rede social LinkedIn.}
+       	\begin{center}
+            \includegraphics[width=0.75\textwidth]{figuras/avaliacao/xp-linkedin.png}
+        \end{center}
+    \label{avalGrafLinkedin}
+    \legend{Fonte: Autor}
+\end{figure}
+
+\begin{figure}[H]
+    \caption{Experiência dos voluntários com a plataforma Mural de Bolsas da UFRGS.}
+       	\begin{center}
+            \includegraphics[width=0.7\textwidth]{figuras/avaliacao/mural-bolsas.png}
+            \\
+            \includegraphics[width=0.8\textwidth]{figuras/avaliacao/mural-bolsas-2.png}
+        \end{center}
+    \label{avalGrafMB}
+    \legend{Fonte: Autor}
+\end{figure}
 
 \section{Protocolo de testes}
 \label{avaliacaoProtocolo}
@@ -23,30 +90,44 @@ As Figuras x a y apresentam características gerais dos voluntários que contrib
 Para cada usuário, são realizadas as seguintes etapas:
 
 \begin{itemize}
-    \item \textbf{Formulário pré-teste:} são feitas perguntas para caracterização do usuário como \textit{"idade"}, \textit{"sexo"}, \textit{"nível de escolaridade"}, \textit{"área de formação superior"}, \textit{"experiência com Internet"}, \textit{"experiência com redes sociais"} e \textit{"experiência com LinkedIn"};
+    \item \textbf{Formulário pré-teste:} são feitas perguntas para caracterização do usuário como \textit{"idade"}, \textit{"sexo"}, \textit{"nível de escolaridade"}, \textit{"área de formação superior"}, \textit{"experiência com Internet"}, \textit{"experiência com redes sociais"} ,\textit{"experiência com LinkedIn"} e \textit{"experiência com Mural de Bolsas da UFRGS"};
     
     \item \textbf{Etapa 1:} o usuário é submetido a realização de uma sequência de atividades na plataforma. São elas:
-        \begin{itemize}
-            \item atividade 1
-            \item atividade 2
-            \item atividade N
-        \end{itemize}
+        \begin{enumerate}
+            \item Filtrar vagas por áreas de atuação de interesse do voluntário;
+            \item Filtrar vagas pelos turnos de interesse do voluntário;
+            \item Filtrar vagas pelo critério de benefício PRAE de acordo com a situação do voluntário;
+            \item Os filtros aplicados devem apresentar ao menos 3 vagas diferentes. Caso isso não ocorra, o voluntário precisa repetir os passos 1-3 até a condição ser atentida;
+            \item Favoritar a vaga com melhor remuneração (caso existam duas ou mais, o participante tem liberdade para escolher ao menos uma destas);
+            \item Favoritar a vaga mais antiga (novamente, caso existam duas ou mais, o participante favorita pelo menos uma vaga);
+            \item Favoritar outra vaga que ele tenha se interessado;
+            \item Acessar a lista de vagas favoritas;
+            \item Remover uma vaga dos favoritos;
+            \item Favoritar a vaga removida recentemente dos favoritos.
+        \end{enumerate}
         
     \item \textbf{Formulário pós-etapa:} objetiva saber opiniões do experimento realizado, conforme descrito no Apêndice \ref{appendFormStepPortal};
     
-    \item \textbf{Etapa 2:} novamente, o usuário é submetido a realização da mesma sequência de atividades anteriores. Porém, na outra plataforma. São elas:
-        \begin{itemize}
-            \item atividade 1
-            \item atividade 2
-            \item atividade N
-        \end{itemize}
+    \item \textbf{Etapa 2:} novamente, o usuário é submetido a realização de uma sequência de atividades; porém, na outra plataforma. As tarefas são as mesmas descritas no item "Etapa 1".
         
     \item \textbf{Formulário pós-etapa:} objetiva saber opiniões do experimento realizado, conforme descrito no Apêndice \ref{appendFormStepPortal};
+    
+    \item \textbf{Formulário Portal de Vagas:} objetiva saber opiniões acerca da usabilidade das novas funcionalidades propostas pelo Portal de Vagas especificamente, conforme descrito no Apêndice \ref{appendFormPDV}. As tarefas solicitadas são as seguintes:
+        \begin{enumerate}
+            \item Alterar a foto do perfil;
+            \item Preencher pelo menos um campo do perfil de usuário;
+            \item Seguir 5 usuários e deixar de seguir um destes;
+            \item Curtir e comentar em uma postagem de outro usuário;
+            \item Pesquisar vagas no sistema;
+            \item Pesquisar usuários no sistema;
+            \item Recomendar um usuário;
+            \item Recomendar uma vaga.
+        \end{enumerate}
     
     \item \textbf{Formulário pós-testes:} busca comparar as duas etapas completadas pelo usuário, conforme descrito no Apêndice \ref{appendFormFinalPortal}.
 \end{itemize}
 
-Para aplicar o teste da maneira mais neutra possível, seguindo o protocolo do \textit{A-B testing}, foi alternada a ordem das Etapas 1 e 2. Metade da população realizou as tarefas no Mural de Bolsas primeiro e depois no Portal de Vagas. A outra metade, o oposto.
+Para aplicar o teste da maneira mais neutra possível, seguindo o protocolo do Teste A/B, foi alternada a ordem das Etapas 1 e 2. Metade da população realizou as tarefas no Mural de Bolsas primeiro e depois no Portal de Vagas. A outra metade, o oposto.
 
 
 \section{Análise geral dos resultados}
@@ -55,46 +136,105 @@ Para aplicar o teste da maneira mais neutra possível, seguindo o protocolo do \
 Os resultados avaliados serão divididos em duas categorias: resultados subjetivos e resultados objetivos. O primeiro avalia as respostas e opinião dos participantes nos questionários. Já o segundo avalia o desempenho destes a partir da observação de \textit{logs} gerados durante a execução dos testes.
 
 
-\subsection{Análise Subjetiva}
+\subsection{Análise Teste A/B}
 \label {avaliacaoAnaliseSubjetiva}
 
-Analisando as respostas obtidas durante a primeira etapa do teste, sobre o questionário de caracterização dos usuários, podemos destacar (escolaridade, experiência com internet, redes sociais e linkedin…). Esse resultado já era esperado e o questionário foi feito com o intuito de englobar um nicho de participantes genérico, isto é, sem ter obrigatoriamente um grande conhecimento em tecnologias, visto que, aplicações como redes sociais possuem os mais variados perfis de usuário. Portanto, nenhum participante foi descartado a partir das respostas fornecidas nesta etapa, já que foram procuradas justamente pessoas com essas características.
-Ao final de cada sequência de atividades propostas numa plataforma, foi aplicado um questionário para o participante informar o nível de dificuldade das tarefas. Como foi utilizado o protocolo \textit{AB-testing}, um grupo de usuários realizou o experimento primeiro com o Portal de Vagas e, posteriormente, o Mural de Bolsas. O outro grupo realizou o experimento na ordem inversa. 
+Analisando as respostas obtidas durante a primeira etapa do teste, sobre o questionário de caracterização dos voluntários, podemos destacar alta escolaridade em várias áreas de formação, bastante experiência com a Internet, redes sociais, pouco contato com a rede social LinkedIn e uma distribuição quase igual de participantes que já utilizaram o Mural de Bolsas dos que não o tinham usado até o momento da avaliação. 
 
-Sendo assim, X consideram a dificuldade maior em Y. Entre as principais dificuldades relatadas foram X, Y, Z. A outra parcela dos usuários, embora em menor representatividade, alegaram que a dificuldade foi maior em X pelos seguintes motivos: …
+Esses resultados já eram esperados e o questionário foi feito justamente com o intuito de englobar um nicho de participantes genérico, isto é, sem ter obrigatoriamente um grande conhecimento em tecnologias ou ser de uma área de formação específica, visto que, aplicações como redes sociais possuem uma grande diversidade de usuários. Logo, nenhum participante foi descartado a partir das respostas fornecidas nesta etapa.
 
-Ainda, o questionário abordou a seguinte questão “De forma geral, como você avalia seu desempenho executando as atividades na plataforma?”. O objetivo é analisar o grau de satisfação do participante ao concluir todas as tarefas e identificar se existe alguma relação com a dificuldade mencionada anteriormente. Para essa questão, a maioria, X, respondeu que considera seu desempenho <...>.
+Ao final de cada sequência de atividades propostas numa plataforma, foi aplicado um questionário para o participante informar o nível de dificuldade das tarefas. Como foi utilizado o protocolo de teste A/B, um grupo de usuários realizou o experimento primeiro com o Portal de Vagas e, posteriormente, o Mural de Bolsas. O outro grupo realizou o experimento na ordem inversa. Nesta etapa, em cada uma das plataformas, existiam duas perguntas referentes a telas e navegação do sistema. Caso algum usuário respondesse pelo menos uma dessas questões erradas, seria desclassificado, pois se assumiria que este não dedicou a atenção necessária durante o experimento. Contudo, não houve descarte de nenhuma participação de todos os 19 voluntários.
 
-A última etapa do questionário instigou os participantes a compararem as duas plataformas, uma vez que eles tinham uma opinião mais sólida após realizarem os dois testes. X respondeu que notou uma diferença de dificuldade entre as plataformas. Destes, Y considerou a plataforma X mais difícil que a Y.
+Sendo assim, um número maior de voluntários achou a realização das tarefas no Portal de Vagas muito mais fácil do que no Mural de Bolsas, apesar da plataforma ter recebido uma única avaliação indicando que as tarefas foram muito difíceis. De modo geral, o Portal de Vagas apresentou uma avaliação média maior que o Mural de Bolsas (4,47 e 4,26 respectivamente) e também um desvio padrão maior (0,93 contra 0,78).
+
+Ainda, o questionário abordou a seguinte questão \textit{“De forma geral, como você avalia seu desempenho executando as atividades na plataforma?”}. O objetivo é analisar o grau de satisfação do participante ao concluir todas as tarefas e identificar se existe alguma relação com a dificuldade mencionada anteriormente. Para essa questão, novamente, a avaliação média maior foi para o Portal de Vagas (4,63 contra 4,31) e o desvio padrão também, embora tenha diminuído a diferença (0,92 contra 0,86).
+
+A última etapa do questionário instigou os participantes a compararem as duas plataformas, uma vez que eles tinham uma opinião mais sólida após realizarem os dois testes. Do total, 17 voluntários responderam que notaram uma diferença de dificuldade entre as plataformas. Destes, 10 acharam mais difícil e 6, muito mais difícil o Mural de Bolsas em relação ao Portal de Vagas. Apenas uma pessoa achou o Portal de Vagas mais difícil.
+
+As principais dificuldades relatadas no Mural de Bolsas foram: a falta de ordenação nos resultados da pesquisa, a ausência da funcionalidade de favoritar bolsas quando a visão de vagas está no modo tabela e a dificuldade na recuperação de uma vaga após remover o favorito desta. No Portal de Vagas, alguns voluntários alegaram sentir falta da visão em forma de tabela das vagas ofertadas.
+
+\begin{figure}[H]
+    \caption{Dificuldade dos voluntários na realização das tarefas propostas nas duas plataformas, onde, no eixo X do gráfico, a avaliação 1 equivale a "muito difícil e, 5 "muito fácil".}
+       	\begin{center}
+            \includegraphics[width=0.85\textwidth]{figuras/avaliacao/ab-dificuldade.png}
+        \end{center}
+    \label{avalGrafABDesemp}
+    \legend{Fonte: Autor}
+\end{figure} 
+
+\begin{figure}[H]
+    \caption{Satisfação dos voluntários na realização das tarefas propostas nas duas plataformas, onde avaliação 1 equivale a "muito mal" e, 5 "muito bem".}
+       	\begin{center}
+            \includegraphics[width=0.85\textwidth]{figuras/avaliacao/ab-desempenho.png}
+        \end{center}
+    \label{avalGrafABSatisfacao}
+    \legend{Fonte: Autor}
+\end{figure} 
+
+\subsection{Teste de usabilidade}
+\label {avaliacaoUsabilidade}
+
+Complementarmente às tarefas solicitadas em comum nas duas aplicações, quando o voluntário estava no Portal de Vagas, ele realizava algumas tarefas adicionais com o intuito de avaliar a usabilidade de funcionalidades que não existem no Mural de Bolsas. Dessa forma, podemos deduzir se os incrementos na plataforma são válidos e intuitivos para os usuários finais.
+
+Para cada uma das tarefas solicitadas, uma questão de escala linear era proposta perguntando qual a dificuldade do voluntário ao realizá-la. Em todas as questões dessa seção do formulário, o valor 1 corresponde a "muito difícil" e 5, "muito fácil". De modo geral, todas as atividades tiveram como maioria das respostas uma avaliação de "muito fácil". Contudo, alguns casos interessantes foram constatados. 
+
+As atividades de curtir e comentar, ficaram com a média mais baixa entre todas avaliadas. Isto ocorreu, segundo os comentários dos voluntários, porque a navegação até a página com essas informações não é intuitiva em um primeiro momento. Logo, a experiência foi comprometida até que eles tivessem um domínio maior desta funcionalidade na rede social.
+
+A atividade de atualizar foto de perfil, seguida pelas de pesquisar usuários e vagas, foram as melhores avaliadas. Isto ocorreu porque, para a foto de perfil, havia uma mensagem em formato de alerta bastante convidativa que instruía o usuário a completar essa informação do perfil. Quanto à pesquisa, o formulário fixo no cabeçalho das páginas, bastante comum nos dias atuais em mecanismos de busca, facilitou a localização dos voluntários no sistema, tornando a tarefa bastante natural.
+
+Por fim, vários usuários alegaram que a tarefa de preencher perfil foi onerosa. Segundo eles, não houve problema para achar a página e, de fato, preencher o perfil. Contudo, por apresentar vários formulários para preenchimento, a finalização dessa atividade foi cansativa.
 
 
-\subsection{Análise Objetiva}
-\label {avaliacaoAnaliseObjetiva}
+\begin{figure}[h]
+    \caption{Dificuldade dos voluntários na realização da tarefa de atualizar foto de perfil.}
+       	\begin{center}
+            \includegraphics[width=0.75\textwidth]{figuras/avaliacao/pdv-1.png}
+        \end{center}
+    \label{avalGrafTUPerfil}
+    \legend{Fonte: Autor}
+\end{figure} 
 
-Nos testes foram salvos \textit{logs} para armazenar a quantidade de tempo investida por cada participante nas atividades propostas nas duas plataformas. Dessa forma, cada \textit{log} é composto ao todo por X campos, sendo Y para cada plataforma.
+\begin{figure}[h]
+    \caption{Dificuldade dos voluntários na realização da tarefa de preencher dados do perfil.}
+       	\begin{center}
+            \includegraphics[width=0.75\textwidth]{figuras/avaliacao/pdv-2.png}
+        \end{center}
+    \label{avalGrafTUPreencherPerfil}
+    \legend{Fonte: Autor}
+\end{figure} 
 
-Posteriormente, foi calculada a média e o desvio padrão dos tempos obtidos por cada atividade nas duas plataformas, como podemos observar na tabela \ref{tableAvalObj}.
+\begin{figure}[h]
+    \caption{Dificuldade dos voluntários na realização da tarefa de seguir usuários.}
+       	\begin{center}
+            \includegraphics[width=0.75\textwidth]{figuras/avaliacao/pdv-3.png}
+        \end{center}
+    \label{avalGrafTUSeguir}
+    \legend{Fonte: Autor}
+\end{figure} 
 
-\begin{table}[h]
-    \begin{adjustwidth}{-0.7in}{-0.7in}
-    \begin{center}
-    \begin{tabular}{ccccccccccccc}
-    \hline
-     & Plataforma & Tempo médio & Desvio padrão \\
-    \hline
-    Atividade 1 & MB & 1s & 1 \\
-    Atividade 1 & PDV & 1s & 1 \\
-    Atividade n & MB & 1s & 1 \\
-    Atividade n & PDV & 1s & 1 \\
-    \hline
-    \end{tabular}
-    \end{center}
-    \end{adjustwidth}
-    \bigskip
-    \legend{Tabela com os tempos obtidos pelos participantes em cada atividade nas duas plataformas.}
-    \label{tableAvalObj}
-\end{table}
+\begin{figure}[h]
+    \caption{Dificuldade dos voluntários na realização das tarefas de curtir e comentar em postagens.}
+       	\begin{center}
+            \includegraphics[width=0.75\textwidth]{figuras/avaliacao/pdv-4.png}
+        \end{center}
+    \label{avalGrafTUCurtir}
+    \legend{Fonte: Autor}
+\end{figure} 
 
-Observamos que ... <análise dos tempos>
+\begin{figure}[H]
+    \caption{Dificuldade dos voluntários na realização da tarefa de pesquisar usuários e vagas.}
+       	\begin{center}
+            \includegraphics[width=0.75\textwidth]{figuras/avaliacao/pdv-5.png}
+        \end{center}
+    \label{avalGrafTUPesquisar}
+    \legend{Fonte: Autor}
+\end{figure} 
 
-Portanto, podemos concluir que ... <conclusão sobre tempos>
+\begin{figure}[H]
+    \caption{Dificuldade dos voluntários na realização da tarefa de recomendar usuários e vagas.}
+       	\begin{center}
+            \includegraphics[width=0.75\textwidth]{figuras/avaliacao/pdv-6.png}
+        \end{center}
+    \label{avalGrafTURecomendar}
+    \legend{Fonte: Autor}
+\end{figure}
