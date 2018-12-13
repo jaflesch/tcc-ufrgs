@@ -64,10 +64,10 @@ A modelagem conceitual é utilizada para obter uma descrição abstrata, indepen
 \begin{figure}[h]
     \caption{Exemplo de modelagem conceitual.}
        	\begin{center}
-            \includegraphics[width=0.68\textwidth]{figuras/twig-symf.png}
+            \includegraphics[width=0.68\textwidth]{figuras/modelo-conceitual.png}
         \end{center}
     \label{modelagemBDExemplol}
-    \legend{Fonte: Autor}
+    \legend{Fonte: \cite{heuser}}
 \end{figure}
 
 \subsection{Modelo lógico}
@@ -95,9 +95,9 @@ No processo de transformação do modelo ER para o modelo relacional, foram util
 A Figura \ref{modelagemBDLogicoExemplol} apresenta a transformação do modelo ER para o modelo relacional do exemplo apresentado na figura \ref{modelagemBDExemplol}.
 
 \begin{figure}[h]
-    \caption{Exemplo de modelagem relacional.}
+    \caption{Exemplo de modelo lógico de tabelas em um SGBD.}
        	\begin{center}
-            \includegraphics[width=0.68\textwidth]{figuras/er-exemplo.png}
+            \includegraphics[width=0.75\textwidth]{figuras/er-exemplo.png}
         \end{center}
     \label{modelagemBDLogicoExemplol}
     \legend{Fonte: Autor}
@@ -136,10 +136,10 @@ Os valores e princípios do desenvolvimento ágil podem ser encontrados no \text
 \end{quote}
 
 
-\subsection{SCRUM}
+\subsection{Scrum}
 \label{fundSWSCRUM}
 
-Scrum\footnote{Scrum é o nome dado a um movimento no esporte \textit{rugby}.} é \textit{framework} de desenvolvimento ágil para gestão e planejamento de projetos de \textit{software}. Ele é projetado para equipes pequenas, que dividem seu trabalho em ações que podem ser concluídas em iterações de tempo fixo -geralmente duas semanas-, chamadas \textit{Sprints}. \cite{pressman}
+Scrum é um \textit{framework} de desenvolvimento ágil para gestão e planejamento de projetos de \textit{software}. Ele é projetado para equipes pequenas, que dividem seu trabalho em ações que podem ser concluídas em iterações de tempo fixo -geralmente duas semanas-, chamadas \textit{Sprints}. \cite{pressman}
 
 A lista de funcionalidades a serem implementadas em um projeto, durante um \textit{Sprint}, recebem o nome de \textit{Product Backlog}. No início de cada \textit{Sprint}, é realizada uma reunião de planejamento onde o \textit{Product Manager}  prioriza as funcionalidades do \textit{Product Backlog} e a equipe, então, seleciona as tarefas que são capazes de complementar durante o período do \textit{Sprint}. Todas tarefas alocadas no \textit{Sprint} são transferidas ao \textit{Sprint Backlog}.
 
@@ -173,3 +173,8 @@ Dessa forma, seguindo os preceitos do manifesto ágil, o \textit{framework} Kanb
 \end{figure}
 
 Portanto, não é incomum no processo de desenvolvimento de sistemas, a combinação da metologia Scrum aliada ao Kanban. Assim, é possível usufruir do desenvolvimento ágil de maneira organizada, tornando capaz o entendimento geral dos processos (e como eles se comunicam) por parte dos \textit{stalkeholders}, isto é, as pessoas envolvidas neste, através do quadro Kanban durante as \textit{Sprints} e ao longo de todas as etapas de implementação do sistema.
+
+\subsection{Considerações finais}
+\label{fundConsideracoes}
+
+Neste capítulo foram apresentados conceitos importantes que permearam todo o desenvolvimento do protótipo da rede social Portal de Vagas. A análise das diferentes arquiteturas de \textit{software} -em especial, cliente-servidor, centrada em dados e MVC- auxiliou na tomada de decisões ainda na etapa de projeto de sistema, visto que, ao adotar diferentes modelos de arquitetura, podemos basear o desenvolvimento do \textit{software} em regras e conceitos já bem definidos e testados ao longo de anos, aumentando a qualidade do produto final. Vimos também tópicos referentes à modelagem de banco de dados porque, há um bom tempo, sistemas presentes na Internet que utilizam SGBDs para armazenar e manipular dados são bastante comuns. Contudo, similar às decisões de arquitetura, decisões de banco de dados são cruciais ao desenvolver uma aplicação escalável; portanto, a utilização de regras e técnicas para aumentar a manutenção e performance do SGBD são essenciais. Por fim, foram apresentados processos de desenvolvimento de \textit{software} aplicados neste trabalho, como a metologia ágil e seus \textit{frameworks} complementares: Scrum e Kanban.
