@@ -224,7 +224,7 @@ $(document).ready(function() {
 		e.preventDefault();
 		var form = $(this);
 
-		$('#updatePost button').text("Atualizando...");
+		$('#updatePost .modal-footer button').text("Atualizando...");
 		$.ajax({
 			url: form.attr("action"),
 			method: 'POST',
