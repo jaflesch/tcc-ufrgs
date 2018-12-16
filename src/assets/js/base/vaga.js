@@ -73,6 +73,42 @@ $(document).ready(function() {
 		})
 	});
 
+	$(".favorite-job-icon").click(function(e) {
+		var el = $(this);
+		var id = $('#job-info').data("job");
+		
+		if(el.attr("title") == 'Favoritar vaga') {
+			el.attr("title", "Desfavoritar vaga");
+			$(el.siblings('ul').children('li').children('a')[0]).text("Desfavoritar vaga");
+		}
+		else {
+			el.attr("title", "Favoritar vaga");
+			$(el.siblings('ul').children('li').children('a')[0]).text("Favoritar vaga");
+		}
+
+		$.ajax({
+			url: el.hasClass('active') ? '../../../vagas/desfavoritar' : '../../../vagas/favoritar',
+			method: 'POST',
+			dataType: 'json',
+			data: { id: id },
+			success: function(json) {
+				// Reset
+				el.closest(".job-card").children(".alert").hide();
+				el.blur();
+
+				if(json.success) {
+					$('#feedback-context').children(".alert-info").children(".response-message").html(json.msg);
+					$('#feedback-context').children(".alert-info").show();
+					el.toggleClass('active');					
+				}
+				else {
+					$('#feedback-context').children(".alert-warning").children(".response-message").html(json.msg);
+					$('#feedback-context').children(".alert-warning").show();
+				}
+			}
+		})
+	});
+
 	$('#feedback-context').on("click", ".close", function() {
 		$(this).parent().hide();
 	});
