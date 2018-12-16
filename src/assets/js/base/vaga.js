@@ -129,6 +129,10 @@ $(document).ready(function() {
 		var form = $(this);
 		var user_id = form.children('[name="candidate_id"]').val();
 		
+		var button_text = form.children('button').text();
+		form.children('button').text('Aguarde').prop('disabled', true);
+
+		form.chil
 		if(form.attr("id") == 'formApproveCandidate') {
 			var obj = '.approve';
 			var target = 'approved';
@@ -146,12 +150,16 @@ $(document).ready(function() {
 			dataType: 'json',
 			data: form.serializeArray(),
 			success: function(json) {
-				if(json.success) {
+				if(json.result) {
 					var el = $(`.interested-user[data-user="${user_id}"]`).children().children('.user-actions').children(obj);
 					el.siblings().remove();
 					el.parent().html(`<span class="${target}">${label_text}</span>`);					
-					$('.modal').modal("hide");
+					location.reload();
 				}
+				form.children('button').text(button_text).prop('disabled', false);
+			},
+			error: function() {
+				form.children('button').text(button_text).prop('disabled', false);
 			}
 		})
 	});

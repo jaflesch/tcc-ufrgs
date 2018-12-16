@@ -3,51 +3,55 @@
 	<article class="recomendation-card">
 		<h2>Manifestaram interesse</h2>
 		
-		{% for candidate in candidates %}
-		<div class="interested-user" data-user="{{ candidate.id }}">
-			<div class="post-header" style="margin-bottom: 10px;">
-				<div class="avatar">
-					{% if candidate.avatar is empty %}
-						{% if candidate.gender == 0 %}
-							{% set avatar = 'default-male-profile-avatar.png' %}
+		{% if candidates is empty %}
+		<p>Nenhum usuário manifestou interesse na vaga ainda.</p>
+		{% else %}
+			{% for candidate in candidates %}
+			<div class="interested-user" data-user="{{ candidate.id }}">
+				<div class="post-header" style="margin-bottom: 10px;">
+					<div class="avatar">
+						{% if candidate.avatar is empty %}
+							{% if candidate.gender == 0 %}
+								{% set avatar = 'default-male-profile-avatar.png' %}
+							{% else %}
+								{% set avatar = 'default-female-profile-avatar.png' %}
+							{% endif %}
+							<img src="{{ path.img }}/profile/{{ avatar }}" alt="Foto de {{ candidate.name }}" title="Foto de {{ candidate.name }}" class="default-avatar">
 						{% else %}
-							{% set avatar = 'default-female-profile-avatar.png' %}
+						<div style="background-image:url('{{ path.root }}/public/avatar/{{ candidate.id }}/{{ candidate.avatar }}');" alt="Foto de {{ candidate.name }}" title="Foto de {{ candidate.ame }}"></div>
 						{% endif %}
-						<img src="{{ path.img }}/profile/{{ avatar }}" alt="Foto de {{ candidate.name }}" title="Foto de {{ candidate.name }}" class="default-avatar">
-					{% else %}
-					<div style="background-image:url('{{ path.root }}/public/avatar/{{ candidate.id }}/{{ candidate.avatar }}');" alt="Foto de {{ candidate.name }}" title="Foto de {{ candidate.ame }}"></div>
-					{% endif %}
-				</div>
-				<div class="user-information">
-					<h3 class="user-title">
-						<a href="{{ path.root }}/feed/usuario/{{ candidate.login }}" title="Ver perfil de {{ candidate.name }}" target="_blank">{{ candidate.name }}</a>
-					</h3>
-					
-					{% if candidate.job_title is not empty or candidate.education_title is not empty %}
-					<h4 class="user-subtitle">
-						{% if candidate.job_title is not empty %}
-							{{ candidate.job_title }}
-						{% elseif candidate.education_title %}
-							{{ candidate.education_title }}
+					</div>
+					<div class="user-information">
+						<h3 class="user-title">
+							<a href="{{ path.root }}/feed/usuario/{{ candidate.login }}" title="Ver perfil de {{ candidate.name }}" target="_blank">{{ candidate.name }}</a>
+						</h3>
+						
+						{% if candidate.job_title is not empty or candidate.education_title is not empty %}
+						<h4 class="user-subtitle">
+							{% if candidate.job_title is not empty %}
+								{{ candidate.job_title }}
+							{% elseif candidate.education_title %}
+								{{ candidate.education_title }}
+							{% else %}
+								{{ candidate.live_in_city }}, {{ candidate.live_in_state }}
+							{% endif %}
+						</h4>
+						{% endif %}
+					</div>
+					<div class="user-actions">
+						{% if candidate.accept == 0 %}
+						<button class="approve" data-toggle="modal" data-target="#modalApproveCandidate">Aprovar</button>
+						<button class="reprove" data-toggle="modal" data-target="#modalReproveCandidate">Reprovar</button>
+						{% elseif candidate.accept == -1 %}
+						<span class="reproved">Reprovado</span>
 						{% else %}
-							{{ candidate.live_in_city }}, {{ candidate.live_in_state }}
+						<span class="approved">Aprovado</span>
 						{% endif %}
-					</h4>
-					{% endif %}
-				</div>
-				<div class="user-actions">
-					{% if candidate.accept == 0 %}
-					<button class="approve" data-toggle="modal" data-target="#modalApproveCandidate">Aprovar</button>
-					<button class="reprove" data-toggle="modal" data-target="#modalReproveCandidate">Reprovar</button>
-					{% elseif candidate.accept == -1 %}
-					<span class="reproved">Reprovado</span>
-					{% else %}
-					<span class="approved">Aprovado</span>
-					{% endif %}
+					</div>
 				</div>
 			</div>
-		</div>
-		{% endfor %}
+			{% endfor %}
+		{% endif %}
 	</article>
 </section>
 {% endif %}

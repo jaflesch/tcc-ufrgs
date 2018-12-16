@@ -5,7 +5,7 @@
 	
 	<div style="margin:30px 30px 15px; padding: 15px;background:#fff;border:1px solid #fcfcfc;">
 		<p>
-			O usuário <a href="{{ path.root }}/feed/usuario" target="_blank" title="Ver perfil de {{ job.candidate_name }}" style="color:#1b98e0;font-weight:bold;"> {{ job.candidate_name }}</a> se candidatou à vaga <strong>{{ job.title }}</strong> pelo Portal de Vagas.
+			O usuário <a href="{{ path.root }}/feed/usuario/{{ job.candidate_login }}" target="_blank" title="Ver perfil de {{ job.candidate_name }}" style="color:#1b98e0;font-weight:bold;"> {{ job.candidate_name }}</a> se candidatou à vaga <strong>{{ job.title }}</strong> pelo Portal de Vagas.
 		<p>
 		 	Para realizar a aprovação ou reprovação do candidato, acesse a <a href="{{ path.root }}/vagas/sobre/{{ job.id }}/{{ job.slug }}" target="_blank" title="Ver vaga {{ job.title }}" style="color:#1b98e0;font-weight:bold;">página da vaga</a> ou sua <a href="{{ path.root }}/vagas/candidaturas" target="_blank" title="Ver lista de candidaturas" style="color:#1b98e0;font-weight:bold;">lista de candidatos</a> com aprovação pendente.
 		</p>
