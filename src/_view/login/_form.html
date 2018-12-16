@@ -11,6 +11,18 @@
 						<input class='form-data' name='login' type='text' placeholder='Nome de usuário ou e-mail'><br/>
 						<input class='form-data' name='password' type='password' placeholder='Senha' autocomplete="new-password">
 
+						<p class="alert" id="error-login" style="
+							display:none;
+							margin: 0 0 10px;
+							font-size: 12px;
+							text-align: left;
+							color: #d64845;
+						    background-color: #fdeaea;
+						    border-color: #f39e9e;
+						">
+							<span class="fa fa-warning" style="margin-right: 3px"></span> O usuário ou a senha informados não conferem.
+						</p>
+
 						<button type="submit" role="submit" class='btn btn-submit'>Entrar</button>
 					</form>
 					<p>

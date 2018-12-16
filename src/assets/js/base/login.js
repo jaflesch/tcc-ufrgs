@@ -16,9 +16,12 @@ $(document).ready(function() {
 				data: form.serializeArray(),
 				success: function(json) {
 					if(json.success)
+						$('#error-login').hide();
 						document.location = "";
-					else 
-						alert(json.msg);
+					else {
+						$('#error-login').show();
+						$('#formLogin button').text("Enviar").prop("disabled", false);
+					}
 				},
 				error: function(json) {
 					$('#formLogin button').text("Enviar").prop("disabled", false);
