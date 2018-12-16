@@ -1,7 +1,7 @@
 \chapter{A rede social Portal de Vagas}
 \label{redeSocialPortal}
 
-Este capitulo descreve as funcionalidades presentes e ausentes no prótotipo de rede social Portal de Vagas. Primeiramente, é apresentado o funcionamento e todas interações possíveis em cada página do sistema. Em seguida, são listadas as limitações que a versão final do protótipo possui e, posteriormente, sugeridas melhorias como guia para trabalhos futuros. Por fim, é apresentado uma tabela comparativa, de maneira similar à seção \ref{trabRelAnalise}; porém, com o acréscimo do Portal de Vagas ao compartivo.
+Este capitulo descreve as funcionalidades presentes no prótotipo de rede social Portal de Vagas. Primeiramente, é apresentado o funcionamento e todas interações possíveis em cada página do sistema. Em seguida, são listadas as limitações que a versão final do protótipo possui e, posteriormente, sugeridas melhorias como guia para trabalhos futuros. Por fim, é apresentado uma tabela comparativa, de maneira similar à seção \ref{trabRelAnalise}; porém, com o acréscimo do Portal de Vagas ao compartivo.
 
 \section{Funcionamento}
 \label{PDVFuncionamento}
@@ -293,4 +293,41 @@ Esta seção se assemelha à \ref{trabRelAnalise}, onde foram comparadas as prin
 
 Por ser um protótipo de rede social, algumas características de interação entre usuários foram suprimidas por decisão de projeto. A principal intenção era apresentar funcionalidades básicas que suportassem o mínimo de interações possíveis e, ainda, complementassem o sistema de forma a melhorar a usabilidade na procura por vagas disponíveis.
 
-A tabela comparativo completa é apresentada no Apêndice \ref{appendTabela}.
+A Tabela \ref{tabelaAvalTrabFinal} apresenta um comparativo das principais características dos quatro trabalhos relacionados com uma nova coluna referente ao Portal de Vagas.
+
+ \begin{landscape}  
+    \begin{table}[h]
+        \begin{center}
+        \caption{Tabela comparativa sobre os trabalhos relacionados e o Portal de Vagas.}
+        \begin{tabular}{l|l|l|l|l|>{\columncolor{tableblue!30}}l}
+        \hline
+        \rowcolor{tableblue}
+                            & \textbf{PDGEP}  & \textbf{SGEEO}    & \textbf{LKDIN}& \textbf{MB} & \textbf{PDV}\\
+        \hline
+        \textit{Software}   & Sistema         & Sistema           & Rede social   & Sistema & Rede social \\
+        Oferta              & Estágios        & Estágios, empregos &Estágios, empregos & Bolsas & Todas opções \\
+        Login               & Sim             & Sim               & Sim           & Sim     & Sim \\
+        Enviar currículo    & Não             & Sim               & Sim           & Não     & Sim \\
+        Pesquisar vagas     & Sim             & Sim               & Sim           & Sim     & Sim \\
+        Pesquisar usuários  & Empresas        & Parceiros         & Sim           & Não     & Sim \\
+        Candidatar-se a vaga& Sim             & Sim               & Sim           & Não     & Sim \\
+        \textit{Feedback} do candidato & Sim  & Não               & Sim           & Não     & Sim \\
+        Preferências do usuário & Sim         & Sim               & Sim           & Sim     & Sim \\
+        Recomendações       & Sim             & Não               & Sim           & Não     & Sim \\
+        Favoritar vagas     & Não             & Não               & Sim           & Não     & Sim \\
+        Seguir usuário      & Não             & Não               & Sim           & Não     & Sim \\
+        Amizades            & Não             & Não               & Sim (conexões) & Não    & Não \\
+        Fazer posts         & Não             & Não               & Sim           & Não     & Sim \\
+        Fazer comentários   & Não             & Não               & Sim           & Não     & Sim \\
+        Compartilhar vagas  & Não             & Não               & Sim           & Não     & Não \\
+        Grupos de usuários  & Não             & Não               & Sim           & Não     & Não \\
+        Chat Online         & Não             & Global            & Individual    & Não     & Não \\
+        \hline
+        
+        \end{tabular}
+        \end{center}
+        \bigskip
+        \legend{Releitura da tabela apresentada nos trabalhos relacionados com a inclusão da coluna PDV, referente à rede social Portal de Vagas. }
+        \label{tabelaAvalTrabFinal}
+    \end{table}
+\end{landscape}
