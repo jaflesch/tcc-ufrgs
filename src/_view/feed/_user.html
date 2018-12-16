@@ -60,14 +60,14 @@
 				{% if profile.jobs is not empty %}
 				<h3>
 					<span class="fa fa-fw fa-briefcase"></span>
-					{{ profile.jobs[0].title }}
+					{{ profile.jobs[0].title }} <span class="separator">·</span> {{ profile.jobs[0].company }}
 				</h3>
 				{% endif %}
 
 				{% if profile.educations is not empty %}
 				<h3>
 					<span class="fa fa-fw fa-graduation-cap"></span>
-					{{ profile.educations[0].title }}
+					{{ profile.educations[0].title }} <span class="separator">·</span> {{ profile.educations[0].subtitle }}
 				</h3>
 				{% endif %}
 				{% if profile.user.id == user.getId() %}
