@@ -30,6 +30,19 @@ class AppRouter {
 	}
 
 	public function loadController() {
+		/**
+		 * @param: (void)
+		 * @return: (void)
+		 * ---
+		 * Checa se um usuário está logado no sistema;
+		 * Se não está, redireciona ele para página de login
+		 *
+		 * Se está, checa se acessou uma página válida
+		 * 	Se a página é válida, instancia o controlador da página solicitada
+		 *	Se não é válida, instancia o controlador Error404
+		 *
+		 */
+
 		// no SESSION found
 		if(!Auth::user()) {
 			if($this->controller != "login") {
@@ -62,6 +75,15 @@ class AppRouter {
 	}
 
 	private function getAppVars() {
+		/**
+		 * @param: (void)
+		 * @return: (object)
+		 * ---
+		 * Cria uma instancia genérica de classe
+		 * Copia todos os valores existentes na classe AppRouter e retorna esses valores
+		 *
+		 */
+
 		$app = new stdclass();
 		$app->url = $this->url;
 		$app->post = $this->post;
@@ -78,6 +100,14 @@ class AppRouter {
 	}
 
 	private function missingFileHandler() {
+		/**
+		 * @param: (void)
+		 * @return: (bool)
+		 * ---
+		 * Instancia o controlador Error404 para lidar com requisições de páginas não existentes no servidor
+		 *
+		 */
+
 		$this->controller_path = CONTROLLER_PATH."404.php";
 		$this->controller = "Error404";
 		$this->action = "index";
@@ -92,6 +122,13 @@ class AppRouter {
 	}
 
 	private function userNotLoggedHandler() {
+		/**
+		 * @param: (void)
+		 * @return: (bool)
+		 * ---
+		 * Instancia o controlador Login
+		 *
+		 */
 		$this->controller_path = CONTROLLER_PATH."login.php";
 		$this->controller = "Login";
 		$this->action =isset($this->route[ACTION_INDEX]) ? $this->route[ACTION_INDEX] : DEFAULT_ACTION;
@@ -104,6 +141,18 @@ class AppRouter {
 	}
 
 	private function initBaseUrl() {
+		/**
+		 * @param: (void)
+		 * @return: (string)
+		 * ---
+		 * Testa se a página foi carregada por um servidor com requisição HTTP ou HTTPS
+		 *	Se positivo, monta URL com http:// ou https://
+		 *	Se negativo, assume localhost
+		 *
+		 * Retorna a URL de origem da requisição
+		 *
+		 */
+
 		if (isset($_SERVER['HTTP_HOST'])) {
 			$base_url = isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off' ? 'https' : 'http';
 			$base_url .= '://' . $_SERVER['HTTP_HOST'];
@@ -115,6 +164,14 @@ class AppRouter {
 	}
 
 	private function initTwigPaths() {
+		/**
+		 * @param: (void)
+		 * @return: (array)
+		 * ---
+		 * Retorna um array de caminhos relativos / atalhos para serem utilizados no Twig
+		 *
+		 */
+
 		$root = substr($this->base_url, 0, -1);
 
 		return array(
@@ -127,6 +184,17 @@ class AppRouter {
 	}
 
 	private function normalizeController() {
+		/**
+		 * @param: (void)
+		 * @return: (string)
+		 * ---
+		 * Normaliza o nome de um controlador para ser instanciado dinamicamente. 
+		 * Padrão CamelCase.
+		 *
+		 * Retorna o nome do controlador normalizado
+		 *
+		 */
+
 		$controller = "";
 		$pieces = explode("-", $this->controller);
 		foreach ($pieces as $p) {
@@ -137,6 +205,16 @@ class AppRouter {
 	}
 
 	private function redirect($url, $internal = true) {
+		/**
+		 * @param[1]: (string)
+		 * @param[2]: (bool) [opcional]
+		 * @return: (void)
+		 * ---
+		 * Recebe uma URL e uma flag para dizer se é caminho relativo (valor default) ou absoluto
+		 * Redireciona para a página especificada
+		 *
+		 */
+
 		if (isset($_SERVER['HTTP_HOST'])) {
 			$base_url = isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off' ? 'https' : 'http';
 			$base_url .= '://' . $_SERVER['HTTP_HOST'];

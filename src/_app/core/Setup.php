@@ -3,6 +3,14 @@ file_exists("config.php") ? require 'config.php' : NULL;
 
 class Setup {
 	public static function start() {
+		/**
+		 * @param: (void)
+		 * @return: (void)
+		 * ---
+		 * Inicializa o sistema de acordo com as configurações presentes no arquivo config.php
+		 * Instancia a classe AppRouter para cuidar do roteamento, dada a URL requisitada
+		 *
+		 */
 		try {
 			if(DEBUG) {
 				ini_set("display_errors", "1");
@@ -29,6 +37,16 @@ class Setup {
 	}
 
 	public static function install() {
+		/**
+		 * @param: (void)
+		 * @return: (string)
+		 * ---
+		 * Instala os arquivos iniciais do sistema para posterior configuração.
+		 * Arquivo config.php está localizado na raiz do sistema
+		 *
+		 * Retorna uma string solicitando que o usuário recarregue a página
+		 *
+		 */
 		$filename = "_app/install/config-sample.php";
 		$string = file_get_contents($filename);
 		
