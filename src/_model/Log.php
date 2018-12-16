@@ -161,7 +161,7 @@ class Log {
 			case 11:	$d[1] = "Nov"; break;
 			case 12:	$d[1] = "Dez"; break;
 		}
-		$d[0] = date('Y') == $d[0] ? "" : " ".$d[0];
+		$d[0] = date('Y') == $d[0] ? " deste ano" : " de".$d[0];
 		
 		return $d[2]." ".$d[1].$d[0];
 	}

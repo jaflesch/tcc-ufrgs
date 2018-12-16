@@ -3,7 +3,7 @@
 	<hr>
 	<ul class="log-list">
 	{% for log in logs %}
-		<li>
+		<li style="display:{{ loop.index > 10 ? 'none': '' }}">
 			<div class="log-icon">
 				<span class="fa fa-{{ log.icon }}"></span>
 			</div>
@@ -12,6 +12,8 @@
 
 				{% if log.action == 17 %}
 					entrou no Portal de Vagas pela primeira vez
+				{% elseif log.action == 18 %}
+
 				{% else %}
 					{% if log.type == 1 %}
 						{{ log.user_gender == 0 ? 'o usuário' : 'a usuária' }} 
@@ -26,4 +28,17 @@
 		</li>
 	{% endfor %}
 	</ul>
+	{% if logs|length > 10 %}
+	<a href="#" id="ver-mais" style="
+		font-weight: bold;
+    	color: #1b98e0 !important;
+    	margin-top: 20px;
+    	display: block;
+    	text-align: center;
+    	border-top: 1px solid #ddd;
+    	padding-top: 20px;
+	">
+    	Ver mais <span class="fa fa-angle-down"></span>
+    </a>
+	{% endif %}
 </section>

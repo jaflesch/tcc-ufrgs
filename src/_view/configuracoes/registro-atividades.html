@@ -16,4 +16,13 @@
 
 {% block scripts %}
 <script type="text/javascript" src="{{ path.js }}/base/configuracoes.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#ver-mais').click(function(e) {
+			e.preventDefault();
+			$('.log-list li').show();
+			$(this).remove();
+		});
+	})
+</script>
 {% endblock %}
