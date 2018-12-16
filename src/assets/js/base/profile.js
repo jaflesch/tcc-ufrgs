@@ -127,6 +127,7 @@ $(document).ready(function() {
 		var location_city = $('#job-experiences [name="location_city"]').val();
 		var location_state = $('#job-experiences [name="location_state"]').find(":selected").val();
 		var textarea = $('#job-experiences [name="resume"]').val();
+		var selected = $('#education-experiences [name="selected"]').find(":selected").val();
 		data_fim = (data_fim == "") ? "o momento" : data_fim = data_fim.split('/')[2];
 		
 		// AJAX call
@@ -148,6 +149,7 @@ $(document).ready(function() {
 						data-job-date_start="${date_start}"
 						data-job-date_finish="${date_finish}"
 						data-job-resume="${textarea}"
+						data-education-selected="${selected}"
 					>
 						<div class="avatar">
 							<span class="fa fa-briefcase"></span>
@@ -207,6 +209,7 @@ $(document).ready(function() {
 		var location_city = $('#education-experiences [name="location_city"]').val();
 		var location_state = $('#education-experiences [name="location_state"]').find(":selected").val();
 		var textarea = $('#education-experiences [name="resume"]').val();
+		var selected = $('#education-experiences [name="selected"]').find(":selected").val();
 		data_fim = (data_fim == "") ? "o momento" : data_fim = data_fim.split('/')[2];
 		
 		// AJAX call
@@ -228,6 +231,7 @@ $(document).ready(function() {
 						data-education-date_start="${date_start}"
 						data-education-date_finish="${date_finish}"
 						data-education-resume="${textarea}"
+						data-education-selected="${selected}"
 					>
 						<div class="avatar">
 							<span class="fa fa-graduation-cap"></span>

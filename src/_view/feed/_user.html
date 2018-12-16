@@ -191,6 +191,16 @@
 			</div>
 			<textarea name="resume" class="form-data" placeholder="Fale um pouco sobre sua experiência neste trabalho" style="min-height:120px"></textarea>
 
+			<div class="row mgb20">
+				<div class="col-sm-6">
+					<select name="selected" class="form-data" required="">
+						<option value="">Destacar profissão</option>
+						<option value="0">Não</option>
+						<option value="1">Sim</option>
+					</select>
+				</div>
+			</div>
+
 			<button type="submit" class="btn-add-to-list">Adicionar</button>
 			<a href="#" class="hide-form" style="color:#555;margin-left:10px;">Cancelar</a>
 			<hr style="margin: 0 auto 20px">
@@ -209,13 +219,24 @@
 				data-job-location_city="{{ job.location_city }}"
 				data-job-location_state="{{ job.location_state }}"
 				data-job-resume="{{ job.resume }}"
+				data-job-selected="{{ job.selected }}"
 			>
 				<div class="avatar">
 					<span class="fa fa-briefcase"></span>
 				</div>
 				<div class="text">
-					<h3>{{ job.company }} </h3>
-					<h4>{{ job.title }} <span class="separator">·</span> {{ job.date }} De 2017 até o momento <span class="separator">·</span> {{ job.location_city }} , {{ job.location_state }}</h4>
+					<h3>
+						{{ job.company }} 
+						{% if user.getId() == profile.user.id and job.selected == 1 %}
+						<span class="fa fa-thumb-tack"></span>
+						{% endif %}
+					</h3>
+					<h4>
+						{{ job.title }} 
+						<span class="separator">·</span> 
+					 	De {{ job.date_start[:4] }} até {{ job.date_finish[:4] == '0000' ? 'o momento' : job.date_finish[:4] }}
+					 	<span class="separator">·</span> 
+					 	{{ job.location_city }} , {{ job.location_state }}
 					</h4>
 					
 					<p class="item-resume">{{ job.resume }}</p>
@@ -299,6 +320,16 @@
 			</div>
 			<textarea name="resume" class="form-data" placeholder="Fale um pouco sobre sua experiência nesta educação" style="min-height:120px"></textarea>
 
+			<div class="row mgb20">
+				<div class="col-sm-6">
+					<select name="selected" class="form-data" required="">
+						<option value="">Destacar educação</option>
+						<option value="0">Não</option>
+						<option value="1">Sim</option>
+					</select>
+				</div>
+			</div>
+
 			<button type="submit" class="btn-add-to-list">Adicionar</button>
 			<a href="#" class="hide-form" style="color:#555;margin-left:10px;">Cancelar</a>
 			<hr style="margin: 0 auto 20px">
@@ -317,13 +348,25 @@
 				data-education-location_city="{{ education.location_city }}"
 				data-education-location_state="{{ education.location_state }}"
 				data-education-resume="{{ education.resume }}"
+				data-education-selected="{{ education.selected }}"
 			>
 				<div class="avatar">
 					<span class="fa fa-graduation-cap"></span>
 				</div>
 				<div class="text">
-					<h3>{{ education.title }} </h3>
-					<h4>{{ education.subtitle }} <span class="separator">·</span> De {{ education.date_start }} até {{ education.date_finish == '0000-00-00' ? 'o momento' : education.date_finish }} <span class="separator">·</span> {{ education.location_city }}, {{ education.location_state }}</h4>
+					<h3>
+						{{ education.title }} 
+						{% if user.getId() == profile.user.id and education.selected == 1 %}
+						<span class="fa fa-thumb-tack"></span>
+						{% endif %}
+					</h3>
+					<h4>
+						<h4>
+						{{ education.subtitle }} 
+						<span class="separator">·</span> 
+					 	De {{ education.date_start[:4] }} até {{ education.date_finish[:4] == '0000' ? 'o momento' : education.date_finish[:4] }}
+					 	<span class="separator">·</span> 
+					 	{{ education.location_city }} , {{ education.location_state }}
 					</h4>
 
 					<p class="item-resume">{{ education.resume }}</p>

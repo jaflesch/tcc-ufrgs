@@ -16,9 +16,14 @@ class Education {
 		$data->date_start = Data::str2date($data->date_start);
 		$data->date_finish = $data->date_finish == "" ? "" : Data::str2date($data->date_finish);
 
-		// First entry?
-		$r = $db->query("SELECT id FROM user_education WHERE id_user = {$id_user} AND active = 1");
-		$selected = ($r == NULL) ? 1 : 0;
+		// Remove o trabalho selecionado
+		if($data->selected == 1 ) {
+			$db->update("
+				UPDATE user_education
+				SET selected = 0 
+				WHERE id_user = {$id_user} AND active = 1
+			");
+		}
 
 		$db->insert(
 			"INSERT INTO user_education (id_user, title, subtitle, resume, date_start, date_finish, location_city, location_state, selected)
@@ -31,7 +36,7 @@ class Education {
 				'{$data->date_finish}',
 				'{$data->location_city}',
 				'{$data->location_state}',
-				{$selected}
+				{$data->selected}
 			)
 		");	
 
@@ -44,7 +49,9 @@ class Education {
 
 		return $db->update(
 			"UPDATE user_education 
-			SET active = 0 
+			SET 
+				active = 0,
+				selected = 0
 			WHERE id_user = {$id_user} AND id = {$id_job} AND active = 1
 		");	
 	}
@@ -56,6 +63,15 @@ class Education {
 		$data->date_start = Data::str2date($data->date_start);
 		$data->date_finish = $data->date_finish == "" ? "" : Data::str2date($data->date_finish);
 
+		// Remove o trabalho selecionado
+		if($data->selected == 1 ) {
+			$db->update("
+				UPDATE user_education
+				SET selected = 0 
+				WHERE id_user = {$id_user} AND active = 1
+			");
+		}
+
 		return $db->update("
 			UPDATE user_education
 			SET
@@ -65,7 +81,8 @@ class Education {
 				date_start = '{$data->date_start}',
 				date_finish = '{$data->date_finish}',
 				location_city = '{$data->location_city}',
-				location_state = '{$data->location_state}'
+				location_state = '{$data->location_state}',
+				selected = {$data->selected}
 			WHERE id_user = {$id_user} AND id = {$data->content_id}
 		");	
 	}

@@ -10,6 +10,7 @@ $(document).ready(function() {
 		var location_city = el.parent().parent().attr("data-job-location_city");
 		var location_state = el.parent().parent().attr("data-job-location_state");
 		var textarea = el.parent().parent().attr("data-job-resume");
+		var selected = el.parent().parent().attr('data-job-selected');
 		location_state = location_state == "" ? 'AC' : location_state;
 
 		$('#updateJobForm [name="content_id"]').val(id);
@@ -21,7 +22,8 @@ $(document).ready(function() {
 		$('#updateJobForm [name="location_city"]').val(location_city);
 		$('#updateJobForm [name="location_state"]').val(location_state);
 		$('#updateJobForm [name="resume"]').val(textarea);
-				
+		$('#updateJobForm [name="selected"]').val(selected);
+
 		$('#modalJob').modal("show");
 	});
 
@@ -36,6 +38,7 @@ $(document).ready(function() {
 		var location_city = el.parent().parent().attr("data-education-location_city");
 		var location_state = el.parent().parent().attr("data-education-location_state");
 		var textarea = el.parent().parent().attr("data-education-resume");
+		var selected = el.parent().parent().attr('data-education-selected');
 		location_state = location_state == "" ? 'AC' : location_state;
 
 		$('#updateEducationForm [name="content_id"]').val(id);
@@ -47,6 +50,7 @@ $(document).ready(function() {
 		$('#updateEducationForm [name="location_city"]').val(location_city);
 		$('#updateEducationForm [name="location_state"]').val(location_state);
 		$('#updateEducationForm [name="resume"]').val(textarea);
+		$('#updateEducationForm [name="selected"]').val(selected);
 				
 		$('#modalEducation').modal("show");
 	});

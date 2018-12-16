@@ -243,10 +243,15 @@ class Job {
 		$id_user = Auth:: id();
 		$data->date_start = Data::str2date($data->date_start);
 		$data->date_finish = $data->date_finish == "" ? "" : Data::str2date($data->date_finish);
-
-		// First entry?
-		$r = $db->query("SELECT id FROM user_education WHERE id_user = {$id_user} AND active = 1");
-		$selected = ($r == NULL) ? 1 : 0;
+		
+		// Remove o trabalho selecionado
+		if($data->selected == 1 ) {
+			$db->update("
+				UPDATE user_job
+				SET selected = 0 
+				WHERE id_user = {$id_user} AND active = 1
+			");
+		}
 
 		$db->insert(
 			"INSERT INTO user_job (id_user, title, company, resume, date_start, date_finish, location_city, location_state, selected)
@@ -259,7 +264,7 @@ class Job {
 				'{$data->date_finish}',
 				'{$data->location_city}',
 				'{$data->location_state}',
-				{$selected}
+				{$data->selected}
 			)
 		");	
 
@@ -272,7 +277,9 @@ class Job {
 
 		return $db->update("
 			UPDATE user_job 
-			SET active = 0 
+			SET 
+				active = 0,
+				selected = 0
 			WHERE id_user = {$id_user} AND id = {$id_job} AND active = 1
 		");	
 	}
@@ -284,6 +291,15 @@ class Job {
 		$data->date_start = Data::str2date($data->date_start);
 		$data->date_finish = $data->date_finish == "" ? "" : Data::str2date($data->date_finish);
 
+		// Remove o trabalho selecionado
+		if($data->selected == 1 ) {
+			$db->update("
+				UPDATE user_job
+				SET selected = 0 
+				WHERE id_user = {$id_user} AND active = 1
+			");
+		}
+
 		return $db->update("
 			UPDATE user_job
 			SET
@@ -293,7 +309,8 @@ class Job {
 				date_start = '{$data->date_start}',
 				date_finish = '{$data->date_finish}',
 				location_city = '{$data->location_city}',
-				location_state = '{$data->location_state}'
+				location_state = '{$data->location_state}',
+				selected = {$data->selected}
 			WHERE id_user = {$id_user} AND id = {$data->content_id}
 		");	
 	}
