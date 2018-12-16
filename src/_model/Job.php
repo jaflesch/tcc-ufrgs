@@ -501,7 +501,8 @@ class Job {
 		$salary_max = max($salary).",00";
 
 		$workload = array_unique($workload);
-
+		sort($workload);
+		
 		return array(
 			"type" => $unique_type,
 			"salary_min" => $salary_min,
