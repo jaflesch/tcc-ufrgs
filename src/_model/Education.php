@@ -16,6 +16,10 @@ class Education {
 		$data->date_start = Data::str2date($data->date_start);
 		$data->date_finish = $data->date_finish == "" ? "" : Data::str2date($data->date_finish);
 
+		// First entry?
+		$r = $db->query("SELECT id FROM user_education WHERE id_user = {$id_user} AND active = 1");
+		$selected = ($r == NULL) ? 1 : 0;
+
 		$db->insert(
 			"INSERT INTO user_education (id_user, title, subtitle, resume, date_start, date_finish, location_city, location_state, selected)
 			VALUES(
@@ -27,7 +31,7 @@ class Education {
 				'{$data->date_finish}',
 				'{$data->location_city}',
 				'{$data->location_state}',
-				0
+				{$selected}
 			)
 		");	
 

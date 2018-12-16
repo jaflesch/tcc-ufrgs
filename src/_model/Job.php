@@ -158,7 +158,7 @@ class Job {
 	public static function getAllAppliesByMe() {
 		$db = new DBConn();
 		$id_user = Auth::id();
-
+		
 		$data = $db->query("
 			SELECT 
 				j.*,
@@ -244,6 +244,10 @@ class Job {
 		$data->date_start = Data::str2date($data->date_start);
 		$data->date_finish = $data->date_finish == "" ? "" : Data::str2date($data->date_finish);
 
+		// First entry?
+		$r = $db->query("SELECT id FROM user_education WHERE id_user = {$id_user} AND active = 1");
+		$selected = ($r == NULL) ? 1 : 0;
+
 		$db->insert(
 			"INSERT INTO user_job (id_user, title, company, resume, date_start, date_finish, location_city, location_state, selected)
 			VALUES(
@@ -255,7 +259,7 @@ class Job {
 				'{$data->date_finish}',
 				'{$data->location_city}',
 				'{$data->location_state}',
-				0
+				{$selected}
 			)
 		");	
 
@@ -425,6 +429,10 @@ class Job {
 				$mixed->type_string = self::getType($mixed->type);
 				$mixed->modality_string = self::getModality($mixed->modality);
 			}
+
+			// Custom data
+			$mixed->job_duration = strlen($mixed->title) % 2 == 0 ? '6 meses' : '1 ano';
+			$mixed->schedule = self::getShift($mixed->shift);
 		}			
 
 		return $mixed;
