@@ -15,9 +15,10 @@ $(document).ready(function() {
 				dataType: 'json',
 				data: form.serializeArray(),
 				success: function(json) {
-					if(json.success)
+					if(json.success) {
 						$('#error-login').hide();
 						document.location = "";
+					}
 					else {
 						$('#error-login').show();
 						$('#formLogin button').text("Enviar").prop("disabled", false);
