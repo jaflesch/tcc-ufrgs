@@ -19,6 +19,33 @@
 {% endblock %}
 
 {% block styles %}
+<style type="text/css">
+	.footer-job img { width: 50%; }
+	
+	.footer-job .img-container {
+		width: 32px;
+		height: 32px;
+		display: inline-block;
+	}
+	.footer-job a {
+		display: inline-block;
+	    vertical-align: middle;
+	    -webkit-border-radius: 50%;
+	    -moz-border-radius: 50%;
+	    -ms-border-radius: 50%;
+	    border-radius: 50%;
+	    width: 32px;
+	    height: 32px;
+	    color: #555;
+	    line-height: 32px;
+	    text-align: center;
+	    cursor: pointer;
+	}
+	.footer-job a:hover,.footer-job a:focus,.footer-job a:active {
+		background: #ddd;
+    	color: #333;
+	}
+</style>
 {% endblock %}
 
 {% block scripts %}

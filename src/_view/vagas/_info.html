@@ -15,14 +15,14 @@
 		<div class="header">
 			<h2 class="title">{{ job.title }}</h2>
 			<div class="options">
-				<a href="#" class="favorite-bookmark {{ job.is_favorite ? 'active' : '' }}" title="{{ job.is_favorite ? 'Desfavoritar' : 'Favoritar' }} vaga" data-toggle="tooltip">
+				<a href="#" class="favorite-bookmark {{ job.is_favorite ? 'active' : '' }} favorite-job-icon" title="{{ job.is_favorite ? 'Desfavoritar' : 'Favoritar' }} vaga" data-toggle="tooltip" data-user="{{ job.id_author }}">
 					<span class="fa fa-star"></span>
 				</a>
 				<a href="#" data-toggle="dropdown" class="dropdown-toggle btn-more-options" data-tooltip="true" title="Mais opções">
 					<span class="fa fa-ellipsis-v"></span>
 				</a>
 				<ul class="dropdown-menu">
-					<li><a href="#" data-path="{{ path.root }}/vagas" class="favorite-job" data-user="{{ job.id_author }}" class="favorite-job">{{ job.is_favorite ? 'Desfavoritar' : 'Favoritar' }}</a></li>
+					<li><a href="#" data-path="{{ path.root }}" class="favorite-job" data-user="{{ job.id_author }}" class="favorite-job">{{ job.is_favorite ? 'Desfavoritar' : 'Favoritar' }}</a></li>
 					{% if user.id == job.id_author %}
 					<li><a href="#" class="edit-job">Editar</a></li>
 					<li><a href="#" class="delete-job">Excluir vaga</a></li>
@@ -90,23 +90,26 @@
 				</div>
 			</div>
 			<hr>
-			<div class="description">
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-				</p>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-				</p>
+			<div class="description" style="font-size:14px">
+				<div>{{ job.text | raw }}</div>
+			</div>
+		</div>
+		<hr style="border-top-width:1px;margin-top:40px;">
+		<div class="footer-job">
+			<a href="{{ path.root }}/vagas/edital/{{ job.id }}" target="_blank" title="Ver Edital" data-toggle="tooltip">
+				<img src="{{ path.img }}/icons/pdf.png">
+			</a>
+			<a href="mailto:{{ job.author_email }}" title="Enviar e-mail a {{ job.author_name }}" data-toggle="tooltip">
+				<img src="{{ path.img }}/icons/mail.png">
+			</a>
+			<a href="https://www.ufrgs.br" target="_blank" title="Acessar link externo" data-toggle="tooltip">
+				<img src="{{ path.img }}/icons/attachment.png">
+			</a>
+			<div class="pull-right" style="line-height: 32px">
+				<span><small><em>Última edição em {{ job.datetime_publication }}.</em></small></span>
+				<span class="img-container">
+					<img src="{{ path.img }}/icons/edit.png" title="Última edição" style="margin-left: 3px">
+				</span>
 			</div>
 		</div>
 	</article>
