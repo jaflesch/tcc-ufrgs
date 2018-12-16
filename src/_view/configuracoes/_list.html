@@ -1,36 +1,85 @@
-<section id="settings-list-widget">
-	<article>
-		<ul>
-			<li class="{{ app.action == 'index' or app.action == 'geral' ? 'active': '' }}">
-				<a href="{{ path.root }}/configuracoes/geral" title="Editar configurações gerais">
-					<span class="fa fa-gear fa-fw icon"></span>Geral
-				</a>
-			</li>
-			<li class="{{ app.action ==  'meu-perfil' ? 'active': '' }}">
-				<a href="{{ path.root }}/feed/usuario/{{ user.login }}" title="Editar meu perfil">
-					<span class="fa fa-user-o fa-fw icon"></span>Meu perfil
-				</a>
-			</li>
-			<li class="{{ app.action == 'seguidores' ? 'active': '' }}">
-				<a href="{{ path.root }}/configuracoes/seguidores" title="Ver seus seguidores">
-					<span class="fa fa-rss fa-fw icon"></span>Seguidores
-				</a>
-			</li>
-			<li class="{{ app.action ==  'registro-atividades' ? 'active': '' }}">
-				<a href="{{ path.root }}/configuracoes/registro-atividades" title="Editar registro de atividades">
-					<span class="fa fa-file-text-o fa-fw icon"></span>Registro de atividades
-				</a>
-			</li>
-			<li class="{{ app.action == 'privacidade' ? 'active': '' }}">
-				<a href="{{ path.root }}/configuracoes/privacidade" title="Editar privacidade">
-					<span class="fa fa-eye fa-fw icon"></span>Privacidade
-				</a>
-			</li>
-			<li class="{{ app.action == 'bloqueio' ? 'active': '' }}">
-				<a href="{{ path.root }}/configuracoes/bloqueio" title="Editar bloqueio de usuários">
-					<span class="fa fa-lock fa-fw icon"></span>Bloqueio
-				</a>
-			</li>
-		</ul>
-	</article>
+<section style="
+    width: 300px;
+    flex-shrink: 0;
+">
+	<section id="user-profile-widget" style="width:280px;">
+		<div style="
+			width: 128px;
+		    height: 128px;
+		    -webkit-border-radius: 50%;
+		    -moz-border-radius: 50%;
+		    -ms-border-radius: 50%;
+		    border-radius: 50%;
+		    position: relative;
+		    display: block;
+		    background-color: #eee;
+		    margin: 0 auto 20px;
+		    overflow: hidden;
+		">
+			{% if user.getAvatar() is empty %}
+				{% if user.gender == 'masculino' %}
+					{% set avatar = 'default-male-profile-avatar.png' %}
+				{% else %}
+					{% set avatar = 'default-female-profile-avatar.png' %}
+				{% endif %}
+				<img src="{{ path.img }}/profile/{{ avatar }}" alt="Foto de {{ user.name }}" title="Foto de {{ user.name }}" class="default-avatar">
+			{% else %}
+			<div style="
+				background-image:url('{{ path.root }}/public/avatar/{{ user.id }}/{{ user.avatar }}');
+				background-position: center;
+			    background-repeat: no-repeat;
+			    background-size: cover;
+			    height: 128px;
+			"  alt="Foto de {{ user.name }}" title="Foto de {{ user.name }}"></div>
+			{% endif %}
+		</div>
+		
+		<h1><a href="{{ path.root }}/feed/usuario/{{ user.login }}">{{ user.name }}</a></h1>
+		<h2>
+			{% if user.getJobTitle() is not empty %}
+				{{ user.getJobTitle() }}
+			{% elseif user.getEducationTitle() %}
+				{{ user.getEducationTitle() }}
+			{% else %}
+				{{ user.getLocation().live_in_string }}
+			{% endif %}
+		</h2>
+		<hr>
+		
+		<h3>
+			<span class="fa fa-fw fa-calendar"></span>
+			{{ user.gender == 'masculino' ? 'Ativo' : 'Ativa' }} desde {{ user.getJoinedDatetime().str }}
+		</h3>
+	</section>
+	<section id="settings-list-widget" style="width: auto;margin-top: 20px;margin-bottom: 10px">
+		<article>
+			<ul>
+				<li class="{{ app.action == 'index' or app.action == 'geral' ? 'active': '' }}">
+					<a href="{{ path.root }}/configuracoes/geral" title="Editar configurações gerais">
+						<span class="fa fa-gear fa-fw icon"></span>Geral
+					</a>
+				</li>
+				<li class="{{ app.action == 'seguidores' ? 'active': '' }}">
+					<a href="{{ path.root }}/configuracoes/seguidores" title="Ver seus seguidores">
+						<span class="fa fa-rss fa-fw icon"></span>Seguidores
+					</a>
+				</li>
+				<li class="{{ app.action ==  'registro-atividades' ? 'active': '' }}">
+					<a href="{{ path.root }}/configuracoes/registro-atividades" title="Editar registro de atividades">
+						<span class="fa fa-file-text-o fa-fw icon"></span>Registro de atividades
+					</a>
+				</li>
+				<li class="{{ app.action == 'privacidade' ? 'active': '' }}">
+					<a href="{{ path.root }}/configuracoes/privacidade" title="Editar privacidade">
+						<span class="fa fa-eye fa-fw icon"></span>Privacidade
+					</a>
+				</li>
+				<li class="{{ app.action == 'bloqueio' ? 'active': '' }}">
+					<a href="{{ path.root }}/configuracoes/bloqueio" title="Editar bloqueio de usuários">
+						<span class="fa fa-lock fa-fw icon"></span>Bloqueio
+					</a>
+				</li>
+			</ul>
+		</article>
+	</section>
 </section>
